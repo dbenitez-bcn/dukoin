@@ -1,4 +1,6 @@
+import 'package:dukoin/presentation/pages/home_page.dart';
 import 'package:dukoin/presentation/widgets/bouncy_bottom_nav_bar.dart';
+import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,23 +9,21 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Dukoin',
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.light,
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key});
 
-  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    Center(child: Text('Home')),
+    HomePage(),
     Center(child: Text('Settings')),
   ];
   
