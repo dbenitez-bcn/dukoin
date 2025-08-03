@@ -1,3 +1,4 @@
+import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:flutter/material.dart';
 
 import 'bouncy_nav_item.dart';
@@ -16,13 +17,9 @@ class BouncyBottomNavBar extends StatefulWidget {
     NavItem(icon: Icons.home, label: 'Home'),
     NavItem(icon: Icons.settings, label: 'Settings'),
   ];
-  final int currentIndex;
-  final ValueChanged<int> onItemSelected;
 
   const BouncyBottomNavBar({
     super.key,
-    required this.currentIndex,
-    required this.onItemSelected,
   });
 
   @override
@@ -53,8 +50,8 @@ class _BouncyBottomNavBarState extends State<BouncyBottomNavBar> {
             return BouncyNavItem(
               icon: item.icon,
               label: item.label,
-              isActive: widget.currentIndex == index,
-              onTap: () => widget.onItemSelected(index),
+              index: index,
+              onTap: () => NavigationState.of(context).setPageIndex(index),
             );
           }),
         ),

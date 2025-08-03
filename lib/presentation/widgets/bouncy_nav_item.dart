@@ -1,16 +1,17 @@
+import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:flutter/material.dart';
 
 class BouncyNavItem extends StatefulWidget {
   final IconData icon;
   final String label;
-  final bool isActive;
+  final int index;
   final VoidCallback onTap;
 
   const BouncyNavItem({
     super.key,
     required this.icon,
     required this.label,
-    required this.isActive,
+    required this.index,
     required this.onTap,
   });
 
@@ -48,6 +49,14 @@ class _BouncyNavItemState extends State<BouncyNavItem>
     _controller.dispose();
     super.dispose();
   }
+  
+  bool isCurrentPage(AsyncSnapshot<int> snapshot) {
+    if (snapshot.hasData) {
+      return snapshot.data == widget.index;
+    } else {
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,28 +69,35 @@ class _BouncyNavItemState extends State<BouncyNavItem>
         builder: (context, child) {
           return Transform.scale(
             scale: _scaleAnimation.value,
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-              decoration: BoxDecoration(
-                color: widget.isActive ? colorScheme.primary.withValues(alpha: 0.1) : Colors.transparent,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    widget.icon,
-                    color: widget.isActive ? colorScheme.primary : Colors.grey,
+            child: StreamBuilder(
+              stream: NavigationState.of(context).currentPageStream,
+              initialData: 0,
+              builder: (context, asyncSnapshot) {
+                bool isActive = isCurrentPage(asyncSnapshot);
+                return Container(
+                  padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: isActive ? colorScheme.primary.withValues(alpha: 0.1) : Colors.transparent,
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    widget.label,
-                    style: TextStyle(
-                      color: widget.isActive ? colorScheme.primary : Colors.grey,
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        widget.icon,
+                        color: isActive ? colorScheme.primary : Colors.grey,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        widget.label,
+                        style: TextStyle(
+                          color: isActive ? colorScheme.primary : Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              }
             ),
           );
         },
