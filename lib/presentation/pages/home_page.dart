@@ -1,3 +1,4 @@
+import 'package:dukoin/presentation/pages/add_expense_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,10 +7,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      alignment: Alignment.center,
-      child: SafeArea(
-        child: Container(
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: SafeArea(
           child: Column(
             children: [
               Text('Daily Expenses', style: Theme.of(context).textTheme.displayLarge,),
@@ -18,6 +19,14 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
+          child: Icon(Icons.add),
+          onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => AddExpensePage()),
+        );
+      }),
     );
   }
 

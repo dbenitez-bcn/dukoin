@@ -71,7 +71,7 @@ class _BouncyNavItemState extends State<BouncyNavItem>
             scale: _scaleAnimation.value,
             child: StreamBuilder(
               stream: NavigationState.of(context).currentPageStream,
-              initialData: 0,
+              initialData: NavigationState.of(context).currentPageIndex,
               builder: (context, asyncSnapshot) {
                 bool isActive = isCurrentPage(asyncSnapshot);
                 return Container(

@@ -1,4 +1,6 @@
+import 'package:dukoin/presentation/pages/dukoin_page_route.dart';
 import 'package:dukoin/presentation/pages/home_page.dart';
+import 'package:dukoin/presentation/pages/settings_page.dart';
 import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:dukoin/presentation/widgets/bouncy_bottom_nav_bar.dart';
 import 'package:dukoin/styles/theme.dart';
@@ -17,34 +19,33 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
-      home: NavigationState(child: const MyHomePage()),
+      home: NavigationState(child: DukoinApp()),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class DukoinApp extends StatelessWidget {
+  DukoinApp({super.key});
 
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final List<Widget> _pages = [
-    HomePage(),
-    Center(child: Text('Settings')),
+  static final List<GlobalKey<NavigatorState>> _navigatorKeys = [
+    GlobalKey<NavigatorState>(), // Home
+    GlobalKey<NavigatorState>(), // Settings
   ];
-  
+
+  static final List<Widget> _pages = [HomePage(), SettingsPage()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-        stream: NavigationState.of(context).currentPageStream,
-        initialData: 0,
-        builder: (context, asyncSnapshot) {
-          return _pages[asyncSnapshot.data!];
-        }
+      body: Stack(
+        children: List.generate(
+          _pages.length,
+          (i) => DukoinPageRoute(
+            navigatorKey: _navigatorKeys[i],
+            index: i,
+            child: _pages[i],
+          ),
+        ),
       ),
       bottomNavigationBar: BouncyBottomNavBar(),
     );
