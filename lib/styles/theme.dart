@@ -8,8 +8,11 @@ const lightColorScheme = ColorScheme(
   onSecondary: Color(0xFF0F172A),
   error: Color(0xFFEF4444),
   onError: Color(0xFFFFFFFF),
-  surface: Color(0xFFFFFFFF), // card
+  surface: Color(0xFFFFFFFF),
+  // card
   onSurface: Color(0xFF252525), // card-foreground
+
+    background: Color(0xFFFFFFFF)
 );
 
 const darkColorScheme = ColorScheme(
@@ -22,45 +25,54 @@ const darkColorScheme = ColorScheme(
   onError: Color(0xFFFFFFFF),
   surface: Color(0xFF0F172A),
   onSurface: Color(0xFFF8FAFC),
+  background: Color(0xcd1e293b)
 );
 
 final baseTextTheme = const TextTheme(
-  displayLarge: TextStyle( // h1
+  displayLarge: TextStyle(
+    // h1
     fontSize: 24,
     fontWeight: FontWeight.w500,
     height: 1.5,
   ),
-  displayMedium: TextStyle( // h2
+  displayMedium: TextStyle(
+    // h2
     fontSize: 20,
     fontWeight: FontWeight.w500,
     height: 1.5,
   ),
-  displaySmall: TextStyle( // h3
+  displaySmall: TextStyle(
+    // h3
     fontSize: 18,
     fontWeight: FontWeight.w500,
     height: 1.5,
   ),
-  headlineMedium: TextStyle( // h4
+  headlineMedium: TextStyle(
+    // h4
     fontSize: 16,
     fontWeight: FontWeight.w500,
     height: 1.5,
   ),
-  bodyLarge: TextStyle( // paragraph
+  bodyLarge: TextStyle(
+    // paragraph
     fontSize: 16,
     fontWeight: FontWeight.w400,
     height: 1.5,
   ),
-  labelLarge: TextStyle( // label
+  labelLarge: TextStyle(
+    // label
     fontSize: 16,
     fontWeight: FontWeight.w500,
     height: 1.5,
   ),
-  titleMedium: TextStyle( // input
+  titleMedium: TextStyle(
+    // input
     fontSize: 16,
     fontWeight: FontWeight.w400,
     height: 1.5,
   ),
-  labelMedium: TextStyle( // button
+  labelMedium: TextStyle(
+    // button
     fontSize: 16,
     fontWeight: FontWeight.w500,
     height: 1.5,
@@ -74,17 +86,34 @@ final lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: lightColorScheme.surface,
     foregroundColor: lightColorScheme.onSurface,
-    elevation: 0,
+    surfaceTintColor: Colors.transparent,
+    elevation: 0, // No shadow, so border is clean
+    shape: Border(
+      bottom: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)),
+    ),
   ),
   textTheme: baseTextTheme.apply(
     bodyColor: lightColorScheme.onSurface,
     displayColor: lightColorScheme.onSurface,
   ),
-  inputDecorationTheme: const InputDecorationTheme(
+  cardTheme: CardThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+      side: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
+    ),
+  ),
+  inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: Color(0xFFF8FAFC), // input-background
-    border: OutlineInputBorder(
+    fillColor: const Color(0xFFF4F6F8),
+    // input-background
+    contentPadding: const EdgeInsets.all(16),
+    hintStyle: TextStyle(color: Colors.grey[700]),
+    border: const OutlineInputBorder(
       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+    ),
+    enabledBorder: const OutlineInputBorder(
+      borderSide: BorderSide.none,//(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
       borderRadius: BorderRadius.all(Radius.circular(10)),
     ),
   ),
@@ -97,17 +126,35 @@ final darkTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: darkColorScheme.surface,
     foregroundColor: darkColorScheme.onSurface,
-    elevation: 0,
+    surfaceTintColor: Colors.transparent,
+    elevation: 0, // No shadow, so border is clean
+    shape: Border(
+      bottom: BorderSide(color: Color(0xFF334155)),
+    ),
   ),
   textTheme: baseTextTheme.apply(
     bodyColor: darkColorScheme.onSurface,
     displayColor: darkColorScheme.onSurface,
   ),
+  cardTheme: CardThemeData(
+    color: Color(0xFF1e293b),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+      side: BorderSide(color: Color(0xFF334155)), // border
+    ),
+  ),
   inputDecorationTheme: const InputDecorationTheme(
     filled: true,
-    fillColor: Color(0xFF1E293B), // input-background
+    fillColor: Color(0xFF334155),
+    // input-background
+    contentPadding: EdgeInsets.all(16),
+    hintStyle: TextStyle(color: Colors.white54),
     border: OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xFF334155)), // border
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Color(0xFF273140)), // border
       borderRadius: BorderRadius.all(Radius.circular(10)),
     ),
   ),
