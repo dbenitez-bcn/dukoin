@@ -8,11 +8,7 @@ class FormCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card.outlined(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: BorderSide(
-        color: Colors.grey,
-        width: 1,
-      ),
-      ),
+      margin: EdgeInsets.symmetric(vertical: 8),
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
