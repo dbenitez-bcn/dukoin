@@ -32,7 +32,7 @@ class _BouncyBottomNavBarState extends State<BouncyBottomNavBar> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
+        color: Theme.of(context).colorScheme.background,
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
