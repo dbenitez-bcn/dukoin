@@ -89,7 +89,6 @@ final lightTheme = ThemeData(
     foregroundColor: lightColorScheme.onSurface,
     surfaceTintColor: Colors.transparent,
     elevation: 0,
-    // No shadow, so border is clean
     shape: Border(bottom: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1))),
   ),
   textTheme: baseTextTheme.apply(
@@ -98,7 +97,7 @@ final lightTheme = ThemeData(
   ),
   cardTheme: CardThemeData(
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(8),
       side: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
     ),
   ),
@@ -110,13 +109,23 @@ final lightTheme = ThemeData(
     hintStyle: TextStyle(color: Colors.grey[700]),
     border: const OutlineInputBorder(
       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
     enabledBorder: const OutlineInputBorder(
       borderSide: BorderSide.none,
       //(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      elevation: 0.0,
+      backgroundColor: lightColorScheme.primary,
+      foregroundColor: lightColorScheme.onPrimary,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+    )
   ),
 );
 
@@ -139,7 +148,7 @@ final darkTheme = ThemeData(
   cardTheme: CardThemeData(
     color: Color(0xFF1e293b),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(8),
       side: BorderSide(color: Color(0xFF334155)), // border
     ),
   ),
@@ -151,11 +160,21 @@ final darkTheme = ThemeData(
     hintStyle: TextStyle(color: Colors.white54),
     border: OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xFF334155)), // border
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xFF273140)), // border
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        elevation: 0.0,
+        backgroundColor: darkColorScheme.primary,
+        foregroundColor: darkColorScheme.onPrimary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      )
   ),
 );
