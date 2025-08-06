@@ -169,7 +169,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
                 ElevatedButton(
                   onPressed: _submit,
                   child: Text(
