@@ -1,4 +1,5 @@
 import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/presentation/widgets/category_dropdown_menu_item.dart';
 import 'package:dukoin/presentation/widgets/form_card_item.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +13,10 @@ class AddExpensePage extends StatefulWidget {
 class _AddExpensePageState extends State<AddExpensePage> {
   final TextEditingController amountController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  Category? selectedCategory;
+  ExpenseCategory? selectedCategory;
   DateTime selectedDate = DateTime.now();
 
-  void setCategory(Category? category) {
+  void setCategory(ExpenseCategory? category) {
     selectedCategory = category;
   }
 
@@ -82,11 +83,11 @@ class _AddExpensePageState extends State<AddExpensePage> {
               ),
               FormCardItem(
                 title: 'Category',
-                child: DropdownButtonFormField<Category>(
+                child: DropdownButtonFormField<ExpenseCategory>(
                   value: selectedCategory,
-                  items: Category.values
+                  items: ExpenseCategory.values
                       .map(
-                        (c) => DropdownMenuItem(value: c, child: Text(c.name)),
+                        (c) => DropdownMenuItem(value: c, child: CategoryDropdownMenuItem(category: c,)),
                       )
                       .toList(),
                   onChanged: setCategory,

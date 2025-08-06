@@ -1,4 +1,4 @@
-enum Category {
+enum ExpenseCategory {
   food,
   transport,
   shopping,
@@ -12,7 +12,7 @@ enum Category {
 class Expense {
   final int? id;
   int amount;
-  Category category;
+  ExpenseCategory category;
   String description;
   DateTime createdAt;
 
@@ -42,7 +42,7 @@ class Expense {
     return Expense(
       id: map['id'],
       amount: map['amount'],
-      category: Category.values[map['category']],
+      category: ExpenseCategory.values[map['category']],
       description: map['description'],
       createdAt: DateTime.parse(map['createdAt']),
     );
