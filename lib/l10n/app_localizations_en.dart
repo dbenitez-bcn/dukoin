@@ -1,0 +1,84 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for English (`en`).
+class AppLocalizationsEn extends AppLocalizations {
+  AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get navTab1 => 'Home';
+
+  @override
+  String get navTab2 => 'Settings';
+
+  @override
+  String get homeTitle => 'Daily Expenses';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get addExpenseTitle => 'Add Expense';
+
+  @override
+  String addExpenseAmountTitle(String currency) {
+    return 'Amount ($currency)';
+  }
+
+  @override
+  String addExpenseAmountHint(double value) {
+    final intl.NumberFormat valueNumberFormat =
+        intl.NumberFormat.decimalPatternDigits(
+          locale: localeName,
+          decimalDigits: 2,
+        );
+    final String valueString = valueNumberFormat.format(value);
+
+    return '$valueString';
+  }
+
+  @override
+  String get addExpenseDescriptionTitle => 'Description';
+
+  @override
+  String get addExpenseDescriptionHint => 'What did you spend on?';
+
+  @override
+  String get addExpenseCategoryTitle => 'Category';
+
+  @override
+  String get addExpenseCategoryHint => 'Select a category';
+
+  @override
+  String get addExpenseDateTitle => 'Date';
+
+  @override
+  String get addExpenseSubmitButtonTitle => 'Save Expense';
+
+  @override
+  String get categoryFood => 'Food';
+
+  @override
+  String get categoryTransport => 'Transport';
+
+  @override
+  String get categoryShopping => 'Shopping';
+
+  @override
+  String get categoryEntertainment => 'Entertainment';
+
+  @override
+  String get categoryBills => 'Bills';
+
+  @override
+  String get categoryHealth => 'Health';
+
+  @override
+  String get categoryEducation => 'Education';
+
+  @override
+  String get categoryOthers => 'Others';
+}

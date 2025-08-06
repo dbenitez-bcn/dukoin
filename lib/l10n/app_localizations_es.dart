@@ -1,0 +1,84 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Spanish Castilian (`es`).
+class AppLocalizationsEs extends AppLocalizations {
+  AppLocalizationsEs([String locale = 'es']) : super(locale);
+
+  @override
+  String get navTab1 => 'Inicio';
+
+  @override
+  String get navTab2 => 'Ajustes';
+
+  @override
+  String get homeTitle => 'Gastos diarios';
+
+  @override
+  String get settingsTitle => 'Ajustes';
+
+  @override
+  String get addExpenseTitle => 'Añadir gasto';
+
+  @override
+  String addExpenseAmountTitle(String currency) {
+    return 'Importe ($currency)';
+  }
+
+  @override
+  String addExpenseAmountHint(double value) {
+    final intl.NumberFormat valueNumberFormat =
+        intl.NumberFormat.decimalPatternDigits(
+          locale: localeName,
+          decimalDigits: 2,
+        );
+    final String valueString = valueNumberFormat.format(value);
+
+    return '$valueString';
+  }
+
+  @override
+  String get addExpenseDescriptionTitle => 'Descripción';
+
+  @override
+  String get addExpenseDescriptionHint => '¿En qué has gastado?';
+
+  @override
+  String get addExpenseCategoryTitle => 'Categoría';
+
+  @override
+  String get addExpenseCategoryHint => 'Selecciona una categoría';
+
+  @override
+  String get addExpenseDateTitle => 'Fecha';
+
+  @override
+  String get addExpenseSubmitButtonTitle => 'Guardar gasto';
+
+  @override
+  String get categoryFood => 'Comida';
+
+  @override
+  String get categoryTransport => 'Transporte';
+
+  @override
+  String get categoryShopping => 'Compras';
+
+  @override
+  String get categoryEntertainment => 'Entretenimiento';
+
+  @override
+  String get categoryBills => 'Facturas';
+
+  @override
+  String get categoryHealth => 'Salud';
+
+  @override
+  String get categoryEducation => 'Educación';
+
+  @override
+  String get categoryOthers => 'Otros';
+}

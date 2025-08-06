@@ -1,0 +1,102 @@
+{
+  "@@locale": "en",
+  "navTab1": "Home",
+  "@navTab1": {
+    "description": "Label for the Home tab in the bottom navigation bar"
+  },
+  "navTab2": "Settings",
+  "@navTab2": {
+    "description": "Label for the Settings tab in the bottom navigation bar"
+  },
+  "homeTitle": "Daily Expenses",
+  "@homeTitle": {
+    "description": "Title displayed on the Home screen"
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title displayed on the Settings screen"
+  },
+  "addExpenseTitle": "Add Expense",
+  "@addExpenseTitle": {
+    "description": "Title for the screen where the user adds a new expense"
+  },
+  "addExpenseAmountTitle": "Amount ({currency})",
+  "@addExpenseAmountTitle": {
+    "description": "Label for the amount input field, showing the currency as a placeholder",
+    "placeholders": {
+      "currency": {
+        "type": "String",
+        "example": "€"
+      }
+    }
+  },
+  "addExpenseAmountHint": "{value}",
+  "@addExpenseAmountHint": {
+    "description": "Hint text shown inside the amount input field",
+    "placeholders": {
+      "value": {
+        "type": "double",
+        "format": "decimalPatternDigits",
+        "optionalParameters": {
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+  "addExpenseDescriptionTitle": "Description",
+  "@addExpenseDescriptionTitle": {
+    "description": "Label for the description input field when adding a new expense"
+  },
+  "addExpenseDescriptionHint": "What did you spend on?",
+  "@addExpenseDescriptionHint": {
+    "description": "Hint text shown inside the description input field"
+  },
+  "addExpenseCategoryTitle": "Category",
+  "@addExpenseCategoryTitle": {
+    "description": "Label for the category selection when adding a new expense"
+  },
+  "addExpenseCategoryHint": "Select a category",
+  "@addExpenseCategoryHint": {
+    "description": "Hint text prompting the user to select a category"
+  },
+  "addExpenseDateTitle": "Date",
+  "@addExpenseDateTitle": {
+    "description": "Label for the date picker when adding a new expense"
+  },
+  "addExpenseSubmitButtonTitle": "Save Expense",
+  "@addExpenseSubmitButtonTitle": {
+    "description": "Text for the button that saves the new expense"
+  },
+  "categoryFood": "Food",
+  "@categoryFood": {
+    "description": "Category for food-related expenses"
+  },
+  "categoryTransport": "Transport",
+  "@categoryTransport": {
+    "description": "Category for transportation expenses"
+  },
+  "categoryShopping": "Shopping",
+  "@categoryShopping": {
+    "description": "Category for general shopping expenses"
+  },
+  "categoryEntertainment": "Entertainment",
+  "@categoryEntertainment": {
+    "description": "Category for entertainment or leisure expenses"
+  },
+  "categoryBills": "Bills",
+  "@categoryBills": {
+    "description": "Category for utility or service bills"
+  },
+  "categoryHealth": "Health",
+  "@categoryHealth": {
+    "description": "Category for health-related expenses"
+  },
+  "categoryEducation": "Education",
+  "@categoryEducation": {
+    "description": "Category for educational expenses"
+  },
+  "categoryOthers": "Others",
+  "@categoryOthers": {
+    "description": "Category for miscellaneous or uncategorized expenses"
+  }
+}
