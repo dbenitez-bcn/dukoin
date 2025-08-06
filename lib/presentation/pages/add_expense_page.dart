@@ -141,7 +141,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                             ),
                             Icon(
                               Icons.calendar_today_outlined,
-                              color: Theme.of(context).colorScheme.primary,
+                              color: Theme.of(context).colorScheme.primary, // TODO: Change color to match with input and work for both themes
                               size: 18.0,
                             ),
                           ],
