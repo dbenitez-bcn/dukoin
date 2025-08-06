@@ -10,9 +10,10 @@ const lightColorScheme = ColorScheme(
   onError: Color(0xFFFFFFFF),
   surface: Color(0xFFFFFFFF),
   // card
-  onSurface: Color(0xFF252525), // card-foreground
+  onSurface: Color(0xFF252525),
 
-    background: Color(0xFFFFFFFF)
+  // card-foreground
+  background: Color(0xFFFFFFFF),
 );
 
 const darkColorScheme = ColorScheme(
@@ -25,7 +26,7 @@ const darkColorScheme = ColorScheme(
   onError: Color(0xFFFFFFFF),
   surface: Color(0xFF0F172A),
   onSurface: Color(0xFFF8FAFC),
-  background: Color(0xcd1e293b)
+  background: Color(0xcd1e293b),
 );
 
 final baseTextTheme = const TextTheme(
@@ -87,10 +88,9 @@ final lightTheme = ThemeData(
     backgroundColor: lightColorScheme.surface,
     foregroundColor: lightColorScheme.onSurface,
     surfaceTintColor: Colors.transparent,
-    elevation: 0, // No shadow, so border is clean
-    shape: Border(
-      bottom: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)),
-    ),
+    elevation: 0,
+    // No shadow, so border is clean
+    shape: Border(bottom: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1))),
   ),
   textTheme: baseTextTheme.apply(
     bodyColor: lightColorScheme.onSurface,
@@ -113,7 +113,8 @@ final lightTheme = ThemeData(
       borderRadius: BorderRadius.all(Radius.circular(10)),
     ),
     enabledBorder: const OutlineInputBorder(
-      borderSide: BorderSide.none,//(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
+      borderSide: BorderSide.none,
+      //(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
       borderRadius: BorderRadius.all(Radius.circular(10)),
     ),
   ),
@@ -127,10 +128,9 @@ final darkTheme = ThemeData(
     backgroundColor: darkColorScheme.surface,
     foregroundColor: darkColorScheme.onSurface,
     surfaceTintColor: Colors.transparent,
-    elevation: 0, // No shadow, so border is clean
-    shape: Border(
-      bottom: BorderSide(color: Color(0xFF334155)),
-    ),
+    elevation: 0,
+    // No shadow, so border is clean
+    shape: Border(bottom: BorderSide(color: Color(0xFF334155))),
   ),
   textTheme: baseTextTheme.apply(
     bodyColor: darkColorScheme.onSurface,
