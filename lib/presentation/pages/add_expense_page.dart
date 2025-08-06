@@ -30,7 +30,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
     selectedCategory = null;
     selectedDate = DateTime.now();
   }
-  
+
   @override
   void dispose() {
     amountController.dispose();
@@ -126,13 +126,16 @@ class _AddExpensePageState extends State<AddExpensePage> {
                         );
                         if (picked != null) setDate(picked);
                       },
-                      child: Text('Pick Date'),
+                      child: Icon(Icons.calendar_today_outlined),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 20),
-              ElevatedButton(onPressed: _submit, child: Text('Save Expense')),
+              SizedBox(height: 8),
+              ElevatedButton(
+                  onPressed: _submit,
+                  child: Text('Save Expense'),
+              ),
             ],
           ),
         ),
