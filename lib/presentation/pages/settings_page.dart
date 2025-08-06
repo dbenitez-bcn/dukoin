@@ -20,8 +20,8 @@ class SettingsPage extends StatelessWidget {
               child: ListTile(
                 contentPadding: const EdgeInsets.all(16.0),
                 leading: FlutterLogo(size: 56.0),
-                title: Text('Dark theme'),
-                subtitle: Text('Switch between light and dark appearance'),
+                title: Text(AppLocalizations.of(context)!.settingsDarkThemeTitle, style: Theme.of(context).textTheme.labelLarge,),
+                subtitle: Text(AppLocalizations.of(context)!.settingsDarkThemeSubtitle),
                 trailing: Switch.adaptive(
                   activeColor: Theme.of(context).colorScheme.primary,
                   value: ThemeProvider.of(context).isDarkMode,
