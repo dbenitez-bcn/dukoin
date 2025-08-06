@@ -128,6 +128,18 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settingsTitle;
 
+  /// Title for theme toggle card
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Theme'**
+  String get settingsDarkThemeTitle;
+
+  /// Subtitle for theme toggle card
+  ///
+  /// In en, this message translates to:
+  /// **'Switch between light and dark appearance'**
+  String get settingsDarkThemeSubtitle;
+
   /// Title for the screen where the user adds a new expense
   ///
   /// In en, this message translates to:

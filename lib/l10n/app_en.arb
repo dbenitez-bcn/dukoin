@@ -26,6 +26,14 @@
   "@settingsTitle": {
     "description": "Title displayed on the Settings screen"
   },
+  "settingsDarkThemeTitle": "Dark Theme",
+  "@settingsDarkThemeTitle": {
+    "description": "Title for theme toggle card"
+  },
+  "settingsDarkThemeSubtitle": "Switch between light and dark appearance",
+  "@settingsDarkThemeSubtitle": {
+    "description": "Subtitle for theme toggle card"
+  },
   "addExpenseTitle": "Add Expense",
   "@addExpenseTitle": {
     "description": "Title for the screen where the user adds a new expense"
