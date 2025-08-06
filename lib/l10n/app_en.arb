@@ -73,6 +73,16 @@
   "@addExpenseDateTitle": {
     "description": "Label for the date picker when adding a new expense"
   },
+  "addExpenseDateValue": "{date}",
+  "@addExpenseDateValue": {
+    "description": "Displays date's value",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMd"
+      }
+    }
+  },
   "addExpenseSubmitButtonTitle": "Save Expense",
   "@addExpenseSubmitButtonTitle": {
     "description": "Text for the button that saves the new expense"

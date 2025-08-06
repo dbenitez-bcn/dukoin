@@ -155,7 +155,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              selectedDate.toLocal().toString().split(' ')[0],
+                              AppLocalizations.of(context)!.addExpenseDateValue(selectedDate)
                             ),
                             Icon(
                               Icons.calendar_today_outlined,

@@ -176,6 +176,12 @@ abstract class AppLocalizations {
   /// **'Date'**
   String get addExpenseDateTitle;
 
+  /// Displays date's value
+  ///
+  /// In en, this message translates to:
+  /// **'{date}'**
+  String addExpenseDateValue(DateTime date);
+
   /// Text for the button that saves the new expense
   ///
   /// In en, this message translates to:

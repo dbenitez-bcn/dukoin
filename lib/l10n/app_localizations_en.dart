@@ -66,6 +66,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addExpenseDateTitle => 'Date';
 
   @override
+  String addExpenseDateValue(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$dateString';
+  }
+
+  @override
   String get addExpenseSubmitButtonTitle => 'Save Expense';
 
   @override

@@ -13,6 +13,7 @@
   "addExpenseCategoryTitle": "Categoría",
   "addExpenseCategoryHint": "Selecciona una categoría",
   "addExpenseDateTitle": "Fecha",
+  "addExpenseDateValue": "{date}",
   "addExpenseSubmitButtonTitle": "Guardar gasto",
   "categoryFood": "Comida",
   "categoryTransport": "Transporte",
