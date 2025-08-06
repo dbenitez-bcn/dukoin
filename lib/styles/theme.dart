@@ -4,7 +4,7 @@ const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF6366F1),
   onPrimary: Color(0xFFFFFFFF),
-  secondary: Color(0xFFF1F5F9),
+  secondary: Color(0xFFF4F6F8),
   onSecondary: Color(0xFF0F172A),
   error: Color(0xFFEF4444),
   onError: Color(0xFFFFFFFF),
@@ -96,6 +96,7 @@ final lightTheme = ThemeData(
     displayColor: lightColorScheme.onSurface,
   ),
   cardTheme: CardThemeData(
+    elevation: 0.0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
       side: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
@@ -103,7 +104,7 @@ final lightTheme = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: const Color(0xFFF4F6F8),
+    fillColor: lightColorScheme.secondary,
     // input-background
     contentPadding: const EdgeInsets.all(16),
     hintStyle: TextStyle(color: Colors.grey[700]),
@@ -122,10 +123,8 @@ final lightTheme = ThemeData(
       elevation: 0.0,
       backgroundColor: lightColorScheme.primary,
       foregroundColor: lightColorScheme.onPrimary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-    )
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ),
   ),
 );
 
@@ -139,7 +138,7 @@ final darkTheme = ThemeData(
     surfaceTintColor: Colors.transparent,
     elevation: 0,
     // No shadow, so border is clean
-    shape: Border(bottom: BorderSide(color: Color(0xFF334155))),
+    shape: Border(bottom: BorderSide(color: darkColorScheme.secondary)),
   ),
   textTheme: baseTextTheme.apply(
     bodyColor: darkColorScheme.onSurface,
@@ -149,17 +148,17 @@ final darkTheme = ThemeData(
     color: Color(0xFF1e293b),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
-      side: BorderSide(color: Color(0xFF334155)), // border
+      side: BorderSide(color: darkColorScheme.secondary), // border
     ),
   ),
-  inputDecorationTheme: const InputDecorationTheme(
+  inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: Color(0xFF334155),
+    fillColor: darkColorScheme.secondary,
     // input-background
     contentPadding: EdgeInsets.all(16),
     hintStyle: TextStyle(color: Colors.white54),
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xFF334155)), // border
+      borderSide: BorderSide(color: darkColorScheme.secondary), // border
       borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
     enabledBorder: OutlineInputBorder(
@@ -168,13 +167,11 @@ final darkTheme = ThemeData(
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        elevation: 0.0,
-        backgroundColor: darkColorScheme.primary,
-        foregroundColor: darkColorScheme.onPrimary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      )
+    style: ElevatedButton.styleFrom(
+      elevation: 0.0,
+      backgroundColor: darkColorScheme.primary,
+      foregroundColor: darkColorScheme.onPrimary,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ),
   ),
 );
