@@ -4,10 +4,10 @@ import 'package:dukoin/presentation/pages/dukoin_page_route.dart';
 import 'package:dukoin/presentation/pages/home_page.dart';
 import 'package:dukoin/presentation/pages/settings_page.dart';
 import 'package:dukoin/presentation/state/navigation_state.dart';
+import 'package:dukoin/presentation/state/theme_provider.dart';
 import 'package:dukoin/presentation/widgets/bouncy_bottom_nav_bar.dart';
 import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,16 +15,25 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dukoin',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.light,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: NavigationState(child: DukoinApp()),
+    return NavigationState(
+      child: ThemeProvider(
+        child: Builder(
+          builder: (context) {
+            return MaterialApp(
+              title: 'Dukoin',
+              theme: lightTheme,
+              darkTheme: darkTheme,
+              themeMode: ThemeProvider.of(context).themeMode,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              home: DukoinApp(),
+            );
+          },
+        ),
+      ),
     );
   }
 }
