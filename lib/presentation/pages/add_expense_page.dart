@@ -22,7 +22,9 @@ class _AddExpensePageState extends State<AddExpensePage> {
   }
 
   void setDate(DateTime date) {
-    selectedDate = date;
+    setState(() {
+      selectedDate = date;
+    });
   }
 
   void clear() {
@@ -38,14 +40,13 @@ class _AddExpensePageState extends State<AddExpensePage> {
     descriptionController.dispose();
     super.dispose();
   }
+
   //final ExpenseRepository repo = GetIt.I<ExpenseRepository>();
 
   final _formKey = GlobalKey<FormState>();
 
   Future<void> _submit() async {
-    if (!_formKey.currentState!.validate() ||
-        selectedCategory == null)
-      return;
+    if (!_formKey.currentState!.validate() || selectedCategory == null) return;
 
     final expense = Expense(
       amount: int.parse(amountController.text),
@@ -74,19 +75,21 @@ class _AddExpensePageState extends State<AddExpensePage> {
                 FormCardItem(
                   title: 'Amount (€)',
                   child: TextField(
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    keyboardType: TextInputType.numberWithOptions(
+                      decimal: true,
+                    ),
                     controller: amountController,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
-                    decoration: InputDecoration(
-                      hintText: '0.00',
-                    ),
+                    decoration: InputDecoration(hintText: '0.00'),
                   ),
                 ),
                 FormCardItem(
                   title: 'Description',
                   child: TextField(
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    keyboardType: TextInputType.numberWithOptions(
+                      decimal: true,
+                    ),
                     controller: descriptionController,
                     decoration: InputDecoration(
                       hintText: 'What did you spend on?',
@@ -99,45 +102,56 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     value: selectedCategory,
                     items: ExpenseCategory.values
                         .map(
-                          (c) => DropdownMenuItem(value: c, child: CategoryDropdownMenuItem(category: c,)),
-                    )
+                          (c) => DropdownMenuItem(
+                            value: c,
+                            child: CategoryDropdownMenuItem(category: c),
+                          ),
+                        )
                         .toList(),
                     onChanged: setCategory,
-                    decoration: InputDecoration(
-                      hintText: 'Select a category',
-                    ),
+                    decoration: InputDecoration(hintText: 'Select a category'),
                     validator: (value) =>
-                    value == null ? 'Select a category' : null,
+                        value == null ? 'Select a category' : null,
                   ),
                 ),
                 FormCardItem(
                   title: "Date",
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        selectedDate.toLocal().toString().split(' ')[0],
+                  child: GestureDetector(
+                    onTap: () async {
+                      final picked = await showDatePicker(
+                        context: context,
+                        initialDate: selectedDate,
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime.now(),
+                      );
+                      if (picked != null) setDate(picked);
+                    },
+                    child: Card.outlined(
+                      color: Theme.of(context).colorScheme.secondary,
+                      shape: Theme.of(
+                        context,
+                      ).inputDecorationTheme.enabledBorder,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              selectedDate.toLocal().toString().split(' ')[0],
+                            ),
+                            Icon(
+                              Icons.calendar_today_outlined,
+                              color: Theme.of(context).colorScheme.primary,
+                              size: 18.0,
+                            ),
+                          ],
+                        ),
                       ),
-                      TextButton(
-                        onPressed: () async {
-                          final picked = await showDatePicker(
-                            context: context,
-                            initialDate: selectedDate,
-                            firstDate: DateTime(2000),
-                            lastDate: DateTime(2100),
-                          );
-                          if (picked != null) setDate(picked);
-                        },
-                        child: Icon(Icons.calendar_today_outlined),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 8),
-                ElevatedButton(
-                    onPressed: _submit,
-                    child: Text('Save Expense'),
-                ),
+                ElevatedButton(onPressed: _submit, child: Text('Save Expense')),
               ],
             ),
           ),
