@@ -10,7 +10,7 @@ class FormCardItem extends StatelessWidget {
     return Card.outlined(
       margin: EdgeInsets.symmetric(vertical: 8),
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

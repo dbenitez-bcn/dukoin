@@ -82,23 +82,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
                 ),
               ),
               FormCardItem(
-                title: 'Category',
-                child: DropdownButtonFormField<ExpenseCategory>(
-                  value: selectedCategory,
-                  items: ExpenseCategory.values
-                      .map(
-                        (c) => DropdownMenuItem(value: c, child: CategoryDropdownMenuItem(category: c,)),
-                      )
-                      .toList(),
-                  onChanged: setCategory,
-                  decoration: InputDecoration(
-                    hintText: 'Select a category',
-                  ),
-                  validator: (value) =>
-                      value == null ? 'Select a category' : null,
-                ),
-              ),
-              FormCardItem(
                 title: 'Description',
                 child: TextField(
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
@@ -106,6 +89,23 @@ class _AddExpensePageState extends State<AddExpensePage> {
                   decoration: InputDecoration(
                     hintText: 'What did you spend on?',
                   ),
+                ),
+              ),
+              FormCardItem(
+                title: 'Category',
+                child: DropdownButtonFormField<ExpenseCategory>(
+                  value: selectedCategory,
+                  items: ExpenseCategory.values
+                      .map(
+                        (c) => DropdownMenuItem(value: c, child: CategoryDropdownMenuItem(category: c,)),
+                  )
+                      .toList(),
+                  onChanged: setCategory,
+                  decoration: InputDecoration(
+                    hintText: 'Select a category',
+                  ),
+                  validator: (value) =>
+                  value == null ? 'Select a category' : null,
                 ),
               ),
               FormCardItem(
