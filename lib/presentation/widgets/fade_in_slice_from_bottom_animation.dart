@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 class FadeInSliceFromBottomAnimation extends StatefulWidget {
   final Widget child;
+
   const FadeInSliceFromBottomAnimation({super.key, required this.child});
 
   @override
-  State<FadeInSliceFromBottomAnimation> createState() => _FadeInSliceFromBottomAnimationState();
+  State<FadeInSliceFromBottomAnimation> createState() =>
+      _FadeInSliceFromBottomAnimationState();
 }
 
-class _FadeInSliceFromBottomAnimationState extends State<FadeInSliceFromBottomAnimation>
+class _FadeInSliceFromBottomAnimationState
+    extends State<FadeInSliceFromBottomAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
@@ -30,10 +33,7 @@ class _FadeInSliceFromBottomAnimationState extends State<FadeInSliceFromBottomAn
     _slideAnimation = Tween<Offset>(
       begin: const Offset(0, 0.04), // From bottom
       end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) _controller.forward();
@@ -50,10 +50,7 @@ class _FadeInSliceFromBottomAnimationState extends State<FadeInSliceFromBottomAn
   Widget build(BuildContext context) {
     return SlideTransition(
       position: _slideAnimation,
-      child: FadeTransition(
-        opacity: _fadeAnimation,
-        child: widget.child,
-      ),
+      child: FadeTransition(opacity: _fadeAnimation, child: widget.child),
     );
   }
 }

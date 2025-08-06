@@ -1,4 +1,5 @@
 import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/widgets/category_dropdown_menu_item.dart';
 import 'package:dukoin/presentation/widgets/fade_in_slice_from_bottom_animation.dart';
 import 'package:dukoin/presentation/widgets/form_card_item.dart';
@@ -63,7 +64,9 @@ class _AddExpensePageState extends State<AddExpensePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add Expense')),
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.addExpenseTitle),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: FadeInSliceFromBottomAnimation(
@@ -73,7 +76,9 @@ class _AddExpensePageState extends State<AddExpensePage> {
               padding: EdgeInsets.only(top: 16),
               children: [
                 FormCardItem(
-                  title: 'Amount (€)',
+                  title: AppLocalizations.of(
+                    context,
+                  )!.addExpenseAmountTitle("€"),
                   child: TextField(
                     keyboardType: TextInputType.numberWithOptions(
                       decimal: true,
@@ -81,23 +86,31 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     controller: amountController,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
-                    decoration: InputDecoration(hintText: '0.00'),
+                    decoration: InputDecoration(
+                      hintText: AppLocalizations.of(
+                        context,
+                      )!.addExpenseAmountHint(0),
+                    ),
                   ),
                 ),
                 FormCardItem(
-                  title: 'Description',
+                  title: AppLocalizations.of(
+                    context,
+                  )!.addExpenseDescriptionTitle,
                   child: TextField(
                     keyboardType: TextInputType.numberWithOptions(
                       decimal: true,
                     ),
                     controller: descriptionController,
                     decoration: InputDecoration(
-                      hintText: 'What did you spend on?',
+                      hintText: AppLocalizations.of(
+                        context,
+                      )!.addExpenseDescriptionHint,
                     ),
                   ),
                 ),
                 FormCardItem(
-                  title: 'Category',
+                  title: AppLocalizations.of(context)!.addExpenseCategoryTitle,
                   child: DropdownButtonFormField<ExpenseCategory>(
                     value: selectedCategory,
                     items: ExpenseCategory.values
@@ -109,13 +122,18 @@ class _AddExpensePageState extends State<AddExpensePage> {
                         )
                         .toList(),
                     onChanged: setCategory,
-                    decoration: InputDecoration(hintText: 'Select a category'),
-                    validator: (value) =>
-                        value == null ? 'Select a category' : null,
+                    decoration: InputDecoration(
+                      hintText: AppLocalizations.of(
+                        context,
+                      )!.addExpenseCategoryHint,
+                    ),
+                    validator: (value) => value == null
+                        ? AppLocalizations.of(context)!.addExpenseCategoryHint
+                        : null,
                   ),
                 ),
                 FormCardItem(
-                  title: "Date",
+                  title: AppLocalizations.of(context)!.addExpenseDateTitle,
                   child: GestureDetector(
                     onTap: () async {
                       final picked = await showDatePicker(
@@ -141,7 +159,8 @@ class _AddExpensePageState extends State<AddExpensePage> {
                             ),
                             Icon(
                               Icons.calendar_today_outlined,
-                              color: Theme.of(context).colorScheme.primary, // TODO: Change color to match with input and work for both themes
+                              color: Theme.of(context).colorScheme.primary,
+                              // TODO: Change color to match with input and work for both themes
                               size: 18.0,
                             ),
                           ],
@@ -151,7 +170,12 @@ class _AddExpensePageState extends State<AddExpensePage> {
                   ),
                 ),
                 SizedBox(height: 8),
-                ElevatedButton(onPressed: _submit, child: Text('Save Expense')),
+                ElevatedButton(
+                  onPressed: _submit,
+                  child: Text(
+                    AppLocalizations.of(context)!.addExpenseSubmitButtonTitle,
+                  ),
+                ),
               ],
             ),
           ),

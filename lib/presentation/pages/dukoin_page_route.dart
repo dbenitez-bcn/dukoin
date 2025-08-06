@@ -5,7 +5,13 @@ class DukoinPageRoute extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
   final int index;
   final Widget child;
-  const DukoinPageRoute({super.key,required this.navigatorKey, required this.index, required this.child});
+
+  const DukoinPageRoute({
+    super.key,
+    required this.navigatorKey,
+    required this.index,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {

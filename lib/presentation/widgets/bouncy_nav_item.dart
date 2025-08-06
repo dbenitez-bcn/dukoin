@@ -49,7 +49,7 @@ class _BouncyNavItemState extends State<BouncyNavItem>
     _controller.dispose();
     super.dispose();
   }
-  
+
   bool isCurrentPage(AsyncSnapshot<int> snapshot) {
     if (snapshot.hasData) {
       return snapshot.data == widget.index;
@@ -75,9 +75,14 @@ class _BouncyNavItemState extends State<BouncyNavItem>
               builder: (context, asyncSnapshot) {
                 bool isActive = isCurrentPage(asyncSnapshot);
                 return Container(
-                  padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 4,
+                    horizontal: 16,
+                  ),
                   decoration: BoxDecoration(
-                    color: isActive ? colorScheme.primary.withValues(alpha: 0.1) : Colors.transparent,
+                    color: isActive
+                        ? colorScheme.primary.withValues(alpha: 0.1)
+                        : Colors.transparent,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
@@ -97,7 +102,7 @@ class _BouncyNavItemState extends State<BouncyNavItem>
                     ],
                   ),
                 );
-              }
+              },
             ),
           );
         },

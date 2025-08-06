@@ -24,8 +24,6 @@ class Expense {
     required this.createdAt,
   });
 
-
-
   // Convert to Map for DB
   Map<String, dynamic> toMap() {
     return {

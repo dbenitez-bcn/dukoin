@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class FormCardItem extends StatelessWidget {
   final String title;
   final Widget child;
+
   const FormCardItem({super.key, required this.child, required this.title});
 
   @override
@@ -16,13 +17,10 @@ class FormCardItem extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 12),
-            child
+            child,
           ],
         ),
       ),
