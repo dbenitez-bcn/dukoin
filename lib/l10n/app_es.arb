@@ -3,6 +3,7 @@
   "navTab1": "Inicio",
   "navTab2": "Ajustes",
   "homeTitle": "Gastos diarios",
+  "homeSubtitle": "{date}",
   "settingsTitle": "Ajustes",
   "addExpenseTitle": "Añadir gasto",
   "addExpenseAmountTitle": "Importe ({currency})",

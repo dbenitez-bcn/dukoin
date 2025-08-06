@@ -116,6 +116,12 @@ abstract class AppLocalizations {
   /// **'Daily Expenses'**
   String get homeTitle;
 
+  /// Displays today's date
+  ///
+  /// In en, this message translates to:
+  /// **'{date}'**
+  String homeSubtitle(DateTime date);
+
   /// Title displayed on the Settings screen
   ///
   /// In en, this message translates to:

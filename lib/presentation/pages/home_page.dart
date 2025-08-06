@@ -1,3 +1,4 @@
+import 'package:dukoin/extensions/string_extension.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/pages/add_expense_page.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class HomePage extends StatelessWidget {
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               Text(
-                getFormattedCurrentDate(),
+                AppLocalizations.of(context)!.homeSubtitle(DateTime.now()).capitalize(),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

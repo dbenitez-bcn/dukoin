@@ -18,6 +18,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeTitle => 'Gastos diarios';
 
   @override
+  String homeSubtitle(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMMMMEEEEd(
+      localeName,
+    );
+    final String dateString = dateDateFormat.format(date);
+
+    return '$dateString';
+  }
+
+  @override
   String get settingsTitle => 'Ajustes';
 
   @override

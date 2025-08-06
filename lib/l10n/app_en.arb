@@ -12,6 +12,16 @@
   "@homeTitle": {
     "description": "Title displayed on the Home screen"
   },
+  "homeSubtitle": "{date}",
+  "@homeSubtitle": {
+    "description": "Displays today's date",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMMEEEEd"
+      }
+    }
+  },
   "settingsTitle": "Settings",
   "@settingsTitle": {
     "description": "Title displayed on the Settings screen"
