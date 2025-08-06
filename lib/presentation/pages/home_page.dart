@@ -37,38 +37,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
-  String getFormattedCurrentDate() {
-    final now = DateTime.now();
-    final weekdayNames = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
-    ];
-    final monthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-
-    final weekday = weekdayNames[now.weekday - 1];
-    final month = monthNames[now.month - 1];
-    final day = now.day;
-    final year = now.year;
-
-    return '$weekday, $month $day, $year';
-  }
 }
