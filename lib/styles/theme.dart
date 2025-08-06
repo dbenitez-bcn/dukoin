@@ -101,6 +101,7 @@ final lightTheme = ThemeData(
       borderRadius: BorderRadius.circular(8),
       side: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
     ),
+    margin: EdgeInsets.symmetric(vertical: 8),
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
@@ -150,6 +151,7 @@ final darkTheme = ThemeData(
       borderRadius: BorderRadius.circular(8),
       side: BorderSide(color: darkColorScheme.secondary), // border
     ),
+   margin: EdgeInsets.symmetric(vertical: 8),
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
