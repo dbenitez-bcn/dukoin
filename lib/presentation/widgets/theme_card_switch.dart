@@ -28,7 +28,7 @@ class ThemeCardSwitch extends StatelessWidget {
           ),
           trailing: Switch.adaptive(
             activeColor: Theme.of(context).colorScheme.primary,
-            value: ThemeProvider.of(context).isDarkMode,
+            value: isDarkMode,
             onChanged: ThemeProvider.of(context).toggleTheme,
           ),
         ),
