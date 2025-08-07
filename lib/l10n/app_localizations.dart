@@ -128,6 +128,12 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settingsTitle;
 
+  /// Subtitle displayed on the Settings screen
+  ///
+  /// In en, this message translates to:
+  /// **'Manage yout preferences'**
+  String get settingsSubtitle;
+
   /// Title for theme toggle card
   ///
   /// In en, this message translates to:

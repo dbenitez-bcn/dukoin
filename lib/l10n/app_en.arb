@@ -26,6 +26,10 @@
   "@settingsTitle": {
     "description": "Title displayed on the Settings screen"
   },
+  "settingsSubtitle": "Manage yout preferences",
+  "@settingsSubtitle": {
+    "description": "Subtitle displayed on the Settings screen"
+  },
   "settingsDarkThemeTitle": "Dark Theme",
   "@settingsDarkThemeTitle": {
     "description": "Title for theme toggle card"
