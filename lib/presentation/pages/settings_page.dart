@@ -1,3 +1,4 @@
+import 'package:dukoin/presentation/widgets/daily_reminder_setting.dart';
 import 'package:dukoin/presentation/widgets/default_currency_selector.dart';
 import 'package:dukoin/presentation/widgets/settings_app_bar.dart';
 import 'package:dukoin/presentation/widgets/theme_card_switch.dart';
@@ -17,6 +18,7 @@ class SettingsPage extends StatelessWidget {
             SizedBox(height: 16.0),
             ThemeCardSwitch(),
             DefaultCurrencySelector(),
+            DailyReminderSetting()
           ],
         ),
       ),
