@@ -158,6 +158,36 @@ abstract class AppLocalizations {
   /// **'Choose your preferred currency'**
   String get settingsDefaultCurrencySubtitle;
 
+  /// Title for daily reminder setting
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Reminder'**
+  String get settingsDailyReminderTitle;
+
+  /// Subtitle for daily reminder setting
+  ///
+  /// In en, this message translates to:
+  /// **'Get remainded to track expenses'**
+  String get settingsDailyReminderSubtitle;
+
+  /// Title for data management setting
+  ///
+  /// In en, this message translates to:
+  /// **'Data Management'**
+  String get settingsDataManagementTitle;
+
+  /// Subtitle for data management setting
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your expense data'**
+  String get settingsDataManagementSubtitle;
+
+  /// Button title to clear all expense data
+  ///
+  /// In en, this message translates to:
+  /// **'Clear All Data'**
+  String get settingsDataManagementButton;
+
   /// Title for the screen where the user adds a new expense
   ///
   /// In en, this message translates to:

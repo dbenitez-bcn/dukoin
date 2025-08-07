@@ -46,6 +46,26 @@
   "@settingsDefaultCurrencySubtitle": {
     "description": "Subtitle for currency selector card"
   },
+  "settingsDailyReminderTitle": "Daily Reminder",
+  "@settingsDailyReminderTitle": {
+    "description": "Title for daily reminder setting"
+  },
+  "settingsDailyReminderSubtitle": "Get remainded to track expenses",
+  "@settingsDailyReminderSubtitle": {
+    "description": "Subtitle for daily reminder setting"
+  },
+  "settingsDataManagementTitle": "Data Management",
+  "@settingsDataManagementTitle": {
+    "description": "Title for data management setting"
+  },
+  "settingsDataManagementSubtitle": "Manage your expense data",
+  "@settingsDataManagementSubtitle": {
+    "description": "Subtitle for data management setting"
+  },
+  "settingsDataManagementButton": "Clear All Data",
+  "@settingsDataManagementButton": {
+    "description": "Button title to clear all expense data"
+  },
   "addExpenseTitle": "Add Expense",
   "@addExpenseTitle": {
     "description": "Title for the screen where the user adds a new expense"

@@ -48,6 +48,21 @@ class AppLocalizationsEn extends AppLocalizations {
       'Choose your preferred currency';
 
   @override
+  String get settingsDailyReminderTitle => 'Daily Reminder';
+
+  @override
+  String get settingsDailyReminderSubtitle => 'Get remainded to track expenses';
+
+  @override
+  String get settingsDataManagementTitle => 'Data Management';
+
+  @override
+  String get settingsDataManagementSubtitle => 'Manage your expense data';
+
+  @override
+  String get settingsDataManagementButton => 'Clear All Data';
+
+  @override
   String get addExpenseTitle => 'Add Expense';
 
   @override
