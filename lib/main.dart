@@ -3,6 +3,7 @@ import 'package:dukoin/presentation/pages/add_expense_page.dart';
 import 'package:dukoin/presentation/pages/dukoin_page_route.dart';
 import 'package:dukoin/presentation/pages/home_page.dart';
 import 'package:dukoin/presentation/pages/settings_page.dart';
+import 'package:dukoin/presentation/state/currency_provider.dart';
 import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:dukoin/presentation/state/theme_provider.dart';
 import 'package:dukoin/presentation/widgets/bouncy_bottom_nav_bar.dart';
@@ -18,25 +19,29 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final SharedPreferences prefs;
+
   const MyApp({super.key, required this.prefs});
 
   @override
   Widget build(BuildContext context) {
     return NavigationState(
-      child: ThemeProvider(
+      child: CurrencyProvider(
         prefs: prefs,
-        child: Builder(
-          builder: (context) {
-            return MaterialApp(
-              title: 'Dukoin',
-              theme: lightTheme,
-              darkTheme: darkTheme,
-              themeMode: ThemeProvider.of(context).themeMode,
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
-              home: DukoinApp(),
-            );
-          },
+        child: ThemeProvider(
+          prefs: prefs,
+          child: Builder(
+            builder: (context) {
+              return MaterialApp(
+                title: 'Dukoin',
+                theme: lightTheme,
+                darkTheme: darkTheme,
+                themeMode: ThemeProvider.of(context).themeMode,
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+                home: DukoinApp(),
+              );
+            },
+          ),
         ),
       ),
     );

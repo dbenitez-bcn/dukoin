@@ -1,5 +1,7 @@
 import 'package:dukoin/domain/currency.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
+import 'package:dukoin/presentation/state/currency_notifier.dart';
+import 'package:dukoin/presentation/state/currency_provider.dart';
 import 'package:dukoin/presentation/widgets/currency_dropdown_menu_item.dart';
 import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
@@ -18,6 +20,7 @@ class DefaultCurrencySelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CurrencyNotifier currencyNotifier = CurrencyProvider.of(context);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,7 +44,7 @@ class DefaultCurrencySelector extends StatelessWidget {
               ),
             ),
             DropdownButtonFormField<Currency>(
-              value: selectedCurrency,
+              value: currencyNotifier.currency,
               items: Currency.values
                   .map(
                     (c) => DropdownMenuItem(
@@ -50,7 +53,7 @@ class DefaultCurrencySelector extends StatelessWidget {
                     ),
                   )
                   .toList(),
-              onChanged: setCurrency,
+              onChanged: currencyNotifier.changeCurrency,
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.addExpenseCategoryHint,
               ),
