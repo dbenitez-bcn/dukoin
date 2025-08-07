@@ -24,6 +24,7 @@ class SettingsPage extends StatelessWidget {
               DailyReminderSetting(),
               DataManagementSetting(),
               AppInfoCard(),
+              SizedBox(height: 16),
             ],
           ),
         ),
