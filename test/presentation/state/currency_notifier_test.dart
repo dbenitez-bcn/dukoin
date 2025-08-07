@@ -6,15 +6,15 @@ import 'package:dukoin/presentation/state/currency_notifier.dart';
 void main() {
   group("CurrencyNotifier", () {
     group("changeCurrency()", () {
-      test("It should update to EUR and persist it", () async {
+      test("It should update to USD and persist it", () async {
         SharedPreferences.setMockInitialValues({});
         SharedPreferences prefs = await SharedPreferences.getInstance();
         CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
 
-        sut.changeCurrency(Currency.EUR);
+        sut.changeCurrency(Currency.USD);
 
-        expect(sut.currency, Currency.EUR);
-        expect(prefs.getInt('currency'), Currency.EUR.index);
+        expect(sut.currency, Currency.USD);
+        expect(prefs.getInt('currency'), Currency.USD.index);
       });
 
       test("It should update to JPY and persist it", () async {
@@ -35,22 +35,27 @@ void main() {
 
         sut.changeCurrency(null);
 
-        expect(sut.currency, Currency.USD);
+        expect(sut.currency, Currency.EUR);
         expect(prefs.getInt('currency'), null);
       });
     });
 
     group("_loadCurrency()", () {
-      test("It should load default Currency.USD when no value is stored", () async {
-        SharedPreferences.setMockInitialValues({});
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
+      test(
+        "It should load default Currency.EUR when no value is stored",
+        () async {
+          SharedPreferences.setMockInitialValues({});
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
 
-        expect(sut.currency, Currency.USD);
-      });
+          expect(sut.currency, Currency.EUR);
+        },
+      );
 
       test("It should load stored Currency.GBP", () async {
-        SharedPreferences.setMockInitialValues({'currency': Currency.GBP.index});
+        SharedPreferences.setMockInitialValues({
+          'currency': Currency.GBP.index,
+        });
         SharedPreferences prefs = await SharedPreferences.getInstance();
         CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
 
@@ -62,7 +67,7 @@ void main() {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
 
-        expect(sut.currency, Currency.USD); // default fallback
+        expect(sut.currency, Currency.EUR); // default fallback
       });
     });
   });
