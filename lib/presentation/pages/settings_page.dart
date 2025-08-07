@@ -11,19 +11,21 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            SettingsAppBar(),
-            SizedBox(height: 16.0),
-            ThemeCardSwitch(),
-            DefaultCurrencySelector(),
-            DailyReminderSetting(),
-            DataManagementSetting(),
-            AppInfoCard()
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: ListView(
+            children: [
+              SettingsAppBar(),
+              SizedBox(height: 16.0),
+              ThemeCardSwitch(),
+              DefaultCurrencySelector(),
+              DailyReminderSetting(),
+              DataManagementSetting(),
+              AppInfoCard(),
+            ],
+          ),
         ),
       ),
     );
