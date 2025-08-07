@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
                 AppLocalizations.of(
                   context,
                 )!.homeSubtitle(DateTime.now()).capitalize(),
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               FutureBuilder(
                 future: ExpensesProvider.of(context).loadExpenses(),
