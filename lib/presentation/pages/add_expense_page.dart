@@ -87,6 +87,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
                     decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(16),
                       hintText: AppLocalizations.of(
                         context,
                       )!.addExpenseAmountHint(0),

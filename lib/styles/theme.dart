@@ -107,8 +107,7 @@ final lightTheme = ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: lightColorScheme.secondary,
-    // input-background
-    contentPadding: const EdgeInsets.all(16),
+    contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
     hintStyle: TextStyle(color: Colors.grey[700]),
     border: const OutlineInputBorder(
       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
@@ -161,7 +160,7 @@ final darkTheme = ThemeData(
     filled: true,
     fillColor: darkColorScheme.secondary,
     // input-background
-    contentPadding: EdgeInsets.all(16),
+    contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
     hintStyle: TextStyle(color: Colors.white54),
     border: OutlineInputBorder(
       borderSide: BorderSide(color: darkColorScheme.secondary), // border
