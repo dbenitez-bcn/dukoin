@@ -22,7 +22,7 @@ class ThemeNotifier extends ChangeNotifier {
 
   void _loadTheme() {
     final index = _prefs.getInt(_key);
-    if (index != null) {
+    if (index != null && index >= 0 && index < ThemeMode.values.length) {
       _themeMode = ThemeMode.values[index];
       notifyListeners();
     }

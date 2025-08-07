@@ -54,18 +54,25 @@ void main() {
         },
       );
       test("It should load Theme.dark when Dark value is found", () async {
-        SharedPreferences.setMockInitialValues({'themeMode': 2});
+        SharedPreferences.setMockInitialValues({'themeMode': ThemeMode.dark.index});
         SharedPreferences mockPrefs = await SharedPreferences.getInstance();
         ThemeNotifier sut = ThemeNotifier(prefs: mockPrefs);
 
         expect(sut.themeMode, ThemeMode.dark);
       });
       test("It should load Theme.light when Light value is found", () async {
-        SharedPreferences.setMockInitialValues({'themeMode': 1});
+        SharedPreferences.setMockInitialValues({'themeMode': ThemeMode.light.index});
         SharedPreferences mockPrefs = await SharedPreferences.getInstance();
         ThemeNotifier sut = ThemeNotifier(prefs: mockPrefs);
 
         expect(sut.themeMode, ThemeMode.light);
+      });
+      test("It should ignore invalid stored value and keep default", () async {
+        SharedPreferences.setMockInitialValues({'themeMode': 999});
+        SharedPreferences mockPrefs = await SharedPreferences.getInstance();
+        ThemeNotifier sut = ThemeNotifier(prefs: mockPrefs);
+
+        expect(sut.themeMode, ThemeMode.system);
       });
     });
   });
