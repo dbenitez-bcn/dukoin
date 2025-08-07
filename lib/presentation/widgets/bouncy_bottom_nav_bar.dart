@@ -14,7 +14,7 @@ class NavItem {
 
 class BouncyBottomNavBar extends StatefulWidget {
   List<NavItem> _items(BuildContext context) => [
-    NavItem(icon: Icons.home, label: AppLocalizations.of(context)!.navTab1),
+    NavItem(icon: Icons.home_rounded, label: AppLocalizations.of(context)!.navTab1),
     NavItem(icon: Icons.settings, label: AppLocalizations.of(context)!.navTab2),
   ];
 
