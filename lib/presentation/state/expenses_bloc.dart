@@ -17,4 +17,9 @@ class ExpensesBloc {
     print("Total expenses ${total}");
     //_studentsController.sink.add(_students);
   }
+
+  Future<void> addExpense(Expense expense) async {
+    await _repo.insert(expense);
+    _expenses.add(expense);
+  }
 }

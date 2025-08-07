@@ -1,5 +1,6 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
+import 'package:dukoin/presentation/state/expense_provider.dart';
 import 'package:dukoin/presentation/widgets/category_dropdown_menu_item.dart';
 import 'package:dukoin/presentation/widgets/fade_in_slice_from_bottom_animation.dart';
 import 'package:dukoin/presentation/widgets/form_card_item.dart';
@@ -42,11 +43,9 @@ class _AddExpensePageState extends State<AddExpensePage> {
     super.dispose();
   }
 
-  //final ExpenseRepository repo = GetIt.I<ExpenseRepository>();
-
   final _formKey = GlobalKey<FormState>();
 
-  Future<void> _submit() async {
+  Future<void> _submit(BuildContext context) async {
     if (!_formKey.currentState!.validate() || selectedCategory == null) return;
 
     final expense = Expense(
@@ -56,7 +55,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
       createdAt: selectedDate,
     );
 
-    //await repo.insertExpense(expense);
+    ExpensesProvider.of(context).addExpense(expense);
     clear();
     if (mounted) Navigator.pop(context);
   }
@@ -156,12 +155,13 @@ class _AddExpensePageState extends State<AddExpensePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!.addExpenseDateValue(selectedDate)
+                              AppLocalizations.of(
+                                context,
+                              )!.addExpenseDateValue(selectedDate),
                             ),
                             Icon(
                               Icons.calendar_today_outlined,
                               color: Theme.of(context).colorScheme.primary,
-                              // TODO: Change color to match with input and work for both themes
                               size: 18.0,
                             ),
                           ],
@@ -171,7 +171,9 @@ class _AddExpensePageState extends State<AddExpensePage> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: _submit,
+                  onPressed: () {
+                    _submit(context);
+                  },
                   child: Text(
                     AppLocalizations.of(context)!.addExpenseSubmitButtonTitle,
                   ),
