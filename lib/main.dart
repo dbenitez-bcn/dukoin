@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpensesProvider(
-      child: NavigationState(
+      child: NavigationStateProvider(
         child: CurrencyProvider(
           prefs: prefs,
           child: ThemeProvider(

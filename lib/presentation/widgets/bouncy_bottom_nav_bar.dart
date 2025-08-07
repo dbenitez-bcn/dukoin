@@ -49,7 +49,7 @@ class _BouncyBottomNavBarState extends State<BouncyBottomNavBar> {
               icon: item.icon,
               label: item.label,
               index: index,
-              onTap: () => NavigationState.of(context).setPageIndex(index),
+              onTap: () => NavigationStateProvider.of(context).setPageIndex(index),
             );
           }),
         ),

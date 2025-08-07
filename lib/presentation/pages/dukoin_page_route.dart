@@ -16,8 +16,8 @@ class DukoinPageRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<int>(
-      stream: NavigationState.of(context).currentPageStream,
-      initialData: NavigationState.of(context).currentPageIndex,
+      stream: NavigationStateProvider.of(context).currentPageStream,
+      initialData: NavigationStateProvider.of(context).currentPageIndex,
       builder: (context, asyncSnapshot) {
         return Offstage(
           offstage: asyncSnapshot.data! != index,
