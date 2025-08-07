@@ -18,25 +18,21 @@ class DataManagementSetting extends StatelessWidget {
           children: [
             ListTile(
               contentPadding: const EdgeInsets.only(bottom: 16.0),
-              leading: DukoinIcon(
-                icon: Icons.delete_outline,
-                color: color
-              ),
+              leading: DukoinIcon(icon: Icons.delete_outline, color: color),
               title: Text(
                 AppLocalizations.of(context)!.settingsDataManagementTitle,
-                style: Theme.of(context).textTheme.labelLarge,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               subtitle: Text(
                 AppLocalizations.of(context)!.settingsDataManagementSubtitle,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () => print("Implement clear data"),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: color
-                ),
+                style: ElevatedButton.styleFrom(backgroundColor: color),
                 child: Text(
                   AppLocalizations.of(context)!.settingsDataManagementButton,
                 ),

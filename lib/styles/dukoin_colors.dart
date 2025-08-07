@@ -4,27 +4,41 @@ import 'package:flutter/material.dart';
 class DukoinColors extends ThemeExtension<DukoinColors> {
   final Color emeraldGreen;
   final Color relaxingTurquoise;
+  final Color borderColor;
+  final Color navBarBackground;
 
   const DukoinColors({
     required this.emeraldGreen,
     required this.relaxingTurquoise,
+    required this.borderColor,
+    required this.navBarBackground,
   });
 
   static const light = DukoinColors(
     emeraldGreen: Color(0xFF2ECC71),
     relaxingTurquoise: Color(0xFF06B6D4),
+    borderColor: Color.fromRGBO(0, 0, 0, 0.1),
+    navBarBackground: Colors.white,
   );
 
   static const dark = DukoinColors(
     emeraldGreen: Color(0xFF2BE379),
     relaxingTurquoise: Color(0xFF22D3EE),
+    borderColor: Color(0xFF334155),
+    navBarBackground: Color(0xCD1E293B),
   );
 
   @override
-  DukoinColors copyWith({Color? emeraldGreen, Color? relaxingTeal}) {
+  DukoinColors copyWith({
+    Color? emeraldGreen,
+    Color? relaxingTeal,
+    Color? borderColor,
+  }) {
     return DukoinColors(
       emeraldGreen: emeraldGreen ?? this.emeraldGreen,
       relaxingTurquoise: relaxingTeal ?? this.relaxingTurquoise,
+      borderColor: borderColor ?? this.borderColor,
+      navBarBackground: navBarBackground ?? this.navBarBackground,
     );
   }
 
@@ -36,6 +50,12 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
       relaxingTurquoise: Color.lerp(
         relaxingTurquoise,
         other.relaxingTurquoise,
+        t,
+      )!,
+      borderColor: Color.lerp(borderColor, other.borderColor, t)!,
+      navBarBackground: Color.lerp(
+        navBarBackground,
+        other.navBarBackground,
         t,
       )!,
     );

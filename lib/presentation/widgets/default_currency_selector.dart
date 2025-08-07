@@ -33,10 +33,11 @@ class DefaultCurrencySelector extends StatelessWidget {
               ),
               title: Text(
                 AppLocalizations.of(context)!.settingsDefaultCurrencyTitle,
-                style: Theme.of(context).textTheme.labelLarge,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               subtitle: Text(
                 AppLocalizations.of(context)!.settingsDefaultCurrencySubtitle,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
             DropdownButtonFormField<Currency>(

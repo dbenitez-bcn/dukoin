@@ -30,11 +30,11 @@ class AppInfoCard extends StatelessWidget {
                     children: [
                       Text(
                         snapshot.data!.appName,
-                        style: Theme.of(context).textTheme.labelLarge,
+                        style: Theme.of(context).textTheme.displaySmall,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text("-"),
+                        child: Text("·"),
                       ),
                       Text(
                         AppLocalizations.of(

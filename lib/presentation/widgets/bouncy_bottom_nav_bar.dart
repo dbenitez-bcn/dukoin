@@ -1,5 +1,6 @@
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/navigation_state.dart';
+import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'bouncy_nav_item.dart';
@@ -29,7 +30,7 @@ class _BouncyBottomNavBarState extends State<BouncyBottomNavBar> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).extension<DukoinColors>()!.navBarBackground,
         boxShadow: [
           BoxShadow(
             color: Colors.black12,

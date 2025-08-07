@@ -15,27 +15,27 @@ class DailyReminderSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = Theme.of(context).extension<DukoinColors>()!.relaxingTurquoise;
+    final Color color = Theme.of(
+      context,
+    ).extension<DukoinColors>()!.relaxingTurquoise;
     return Card(
-        child: ListTile(
-          contentPadding: const EdgeInsets.all(16.0),
-          leading: DukoinIcon(
-            icon: Icons.notifications_outlined,
-            color: color,
-          ),
-          title: Text(
-            AppLocalizations.of(context)!.settingsDailyReminderTitle,
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          subtitle: Text(
-            AppLocalizations.of(context)!.settingsDailyReminderSubtitle,
-          ),
-          trailing: Switch.adaptive(
-            activeColor: color,
-            value: isActive,
-            onChanged: setActive,
-          ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16.0),
+        leading: DukoinIcon(icon: Icons.notifications_outlined, color: color),
+        title: Text(
+          AppLocalizations.of(context)!.settingsDailyReminderTitle,
+          style: Theme.of(context).textTheme.displaySmall,
         ),
-      );
+        subtitle: Text(
+          AppLocalizations.of(context)!.settingsDailyReminderSubtitle,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        trailing: Switch.adaptive(
+          activeColor: color,
+          value: isActive,
+          onChanged: setActive,
+        ),
+      ),
+    );
   }
 }

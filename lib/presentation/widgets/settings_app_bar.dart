@@ -7,19 +7,21 @@ class SettingsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      ListTile(
-        contentPadding: const EdgeInsets.all(0.0),
-        leading: DukoinIcon(
-          icon: Icons.settings_outlined,
-          color: Theme.of(context).colorScheme.primary,
-          isSolid: true,
-        ),
-        title: Text(
-          AppLocalizations.of(context)!.settingsTitle,
-          style: Theme.of(context).textTheme.displayLarge,
-        ),
-        subtitle: Text(AppLocalizations.of(context)!.settingsSubtitle),
-      );
+    return ListTile(
+      contentPadding: const EdgeInsets.all(0.0),
+      leading: DukoinIcon(
+        icon: Icons.settings_outlined,
+        color: Theme.of(context).colorScheme.primary,
+        isSolid: true,
+      ),
+      title: Text(
+        AppLocalizations.of(context)!.settingsTitle,
+        style: Theme.of(context).textTheme.displayLarge,
+      ),
+      subtitle: Text(
+        AppLocalizations.of(context)!.settingsSubtitle,
+        style: Theme.of(context).textTheme.bodyMedium,
+      ),
+    );
   }
 }

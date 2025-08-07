@@ -11,27 +11,28 @@ class ThemeCardSwitch extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Card(
-        child: ListTile(
-          contentPadding: const EdgeInsets.all(16.0),
-          leading: DukoinIcon(
-            icon: isDarkMode
-                ? Icons.dark_mode_outlined
-                : Icons.light_mode_outlined,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          title: Text(
-            AppLocalizations.of(context)!.settingsDarkThemeTitle,
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          subtitle: Text(
-            AppLocalizations.of(context)!.settingsDarkThemeSubtitle,
-          ),
-          trailing: Switch.adaptive(
-            activeColor: Theme.of(context).colorScheme.primary,
-            value: isDarkMode,
-            onChanged: ThemeProvider.of(context).toggleTheme,
-          ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16.0),
+        leading: DukoinIcon(
+          icon: isDarkMode
+              ? Icons.dark_mode_outlined
+              : Icons.light_mode_outlined,
+          color: Theme.of(context).colorScheme.primary,
         ),
-      );
+        title: Text(
+          AppLocalizations.of(context)!.settingsDarkThemeTitle,
+          style: Theme.of(context).textTheme.displaySmall,
+        ),
+        subtitle: Text(
+          AppLocalizations.of(context)!.settingsDarkThemeSubtitle,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        trailing: Switch.adaptive(
+          activeColor: Theme.of(context).colorScheme.primary,
+          value: isDarkMode,
+          onChanged: ThemeProvider.of(context).toggleTheme,
+        ),
+      ),
+    );
   }
 }

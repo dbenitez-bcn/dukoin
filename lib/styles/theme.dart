@@ -10,11 +10,7 @@ const lightColorScheme = ColorScheme(
   error: Color(0xFFEF4444),
   onError: Color(0xFFFFFFFF),
   surface: Color(0xFFFFFFFF),
-  // card
   onSurface: Color(0xFF252525),
-
-  // card-foreground
-  background: Color(0xFFFFFFFF),
 );
 
 const darkColorScheme = ColorScheme(
@@ -27,7 +23,6 @@ const darkColorScheme = ColorScheme(
   onError: Color(0xFFFFFFFF),
   surface: Color(0xFF0F172A),
   onSurface: Color(0xFFF8FAFC),
-  background: Color(0xcd1e293b),
 );
 
 final baseTextTheme = const TextTheme(
@@ -61,6 +56,7 @@ final baseTextTheme = const TextTheme(
     fontWeight: FontWeight.w400,
     height: 1.5,
   ),
+  bodyMedium: TextStyle(),
   labelLarge: TextStyle(
     // label
     fontSize: 16,
@@ -90,17 +86,17 @@ final lightTheme = ThemeData(
     foregroundColor: lightColorScheme.onSurface,
     surfaceTintColor: Colors.transparent,
     elevation: 0,
-    shape: Border(bottom: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1))),
+    shape: Border(bottom: BorderSide(color: DukoinColors.light.borderColor)),
   ),
   textTheme: baseTextTheme.apply(
-    bodyColor: lightColorScheme.onSurface,
+    bodyColor: Colors.grey[700],
     displayColor: lightColorScheme.onSurface,
   ),
   cardTheme: CardThemeData(
     elevation: 0.0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
-      side: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
+      side: BorderSide(color: DukoinColors.light.borderColor), // border
     ),
     margin: EdgeInsets.symmetric(vertical: 8),
   ),
@@ -109,13 +105,12 @@ final lightTheme = ThemeData(
     fillColor: lightColorScheme.secondary,
     contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
     hintStyle: TextStyle(color: Colors.grey[700]),
-    border: const OutlineInputBorder(
-      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
-      borderRadius: BorderRadius.all(Radius.circular(8)),
+    border: OutlineInputBorder(
+      borderSide: BorderSide(color: DukoinColors.light.borderColor), // border
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
     ),
     enabledBorder: const OutlineInputBorder(
       borderSide: BorderSide.none,
-      //(color: Color.fromRGBO(0, 0, 0, 0.1)), // border
       borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
   ),
@@ -127,9 +122,7 @@ final lightTheme = ThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
   ),
-  extensions: <ThemeExtension<DukoinColors>>[
-    DukoinColors.light,
-  ],
+  extensions: <ThemeExtension<DukoinColors>>[DukoinColors.light],
 );
 
 final darkTheme = ThemeData(
@@ -142,19 +135,19 @@ final darkTheme = ThemeData(
     surfaceTintColor: Colors.transparent,
     elevation: 0,
     // No shadow, so border is clean
-    shape: Border(bottom: BorderSide(color: darkColorScheme.secondary)),
+    shape: Border(bottom: BorderSide(color: DukoinColors.dark.borderColor)),
   ),
   textTheme: baseTextTheme.apply(
-    bodyColor: darkColorScheme.onSurface,
+    bodyColor: Colors.white70,
     displayColor: darkColorScheme.onSurface,
   ),
   cardTheme: CardThemeData(
     color: Color(0xFF1e293b),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
-      side: BorderSide(color: darkColorScheme.secondary), // border
+      side: BorderSide(color: DukoinColors.dark.borderColor), // border
     ),
-   margin: EdgeInsets.symmetric(vertical: 8),
+    margin: EdgeInsets.symmetric(vertical: 8),
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
@@ -163,7 +156,7 @@ final darkTheme = ThemeData(
     contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
     hintStyle: TextStyle(color: Colors.white54),
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: darkColorScheme.secondary), // border
+      borderSide: BorderSide(color: DukoinColors.dark.borderColor), // border
       borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
     enabledBorder: OutlineInputBorder(
@@ -179,7 +172,5 @@ final darkTheme = ThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
   ),
-  extensions: <ThemeExtension<DukoinColors>>[
-    DukoinColors.dark,
-  ],
+  extensions: <ThemeExtension<DukoinColors>>[DukoinColors.dark],
 );
