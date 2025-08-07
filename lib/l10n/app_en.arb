@@ -26,7 +26,7 @@
   "@settingsTitle": {
     "description": "Title displayed on the Settings screen"
   },
-  "settingsSubtitle": "Manage yout preferences",
+  "settingsSubtitle": "Manage your preferences",
   "@settingsSubtitle": {
     "description": "Subtitle displayed on the Settings screen"
   },

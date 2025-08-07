@@ -31,7 +31,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTitle => 'Settings';
 
   @override
-  String get settingsSubtitle => 'Manage yout preferences';
+  String get settingsSubtitle => 'Manage your preferences';
 
   @override
   String get settingsDarkThemeTitle => 'Dark Theme';
