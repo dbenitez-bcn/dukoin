@@ -24,11 +24,11 @@ class DailyReminderSetting extends StatelessWidget {
             color: color,
           ),
           title: Text(
-            AppLocalizations.of(context)!.settingsDarkThemeTitle,
+            AppLocalizations.of(context)!.settingsDailyReminderTitle,
             style: Theme.of(context).textTheme.labelLarge,
           ),
           subtitle: Text(
-            AppLocalizations.of(context)!.settingsDarkThemeSubtitle,
+            AppLocalizations.of(context)!.settingsDailyReminderSubtitle,
           ),
           trailing: Switch.adaptive(
             activeColor: color,
