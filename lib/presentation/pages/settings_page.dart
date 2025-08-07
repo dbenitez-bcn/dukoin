@@ -1,3 +1,4 @@
+import 'package:dukoin/presentation/widgets/app_info_card.dart';
 import 'package:dukoin/presentation/widgets/daily_reminder_setting.dart';
 import 'package:dukoin/presentation/widgets/data_management_setting.dart';
 import 'package:dukoin/presentation/widgets/default_currency_selector.dart';
@@ -20,7 +21,8 @@ class SettingsPage extends StatelessWidget {
             ThemeCardSwitch(),
             DefaultCurrencySelector(),
             DailyReminderSetting(),
-            DataManagementSetting()
+            DataManagementSetting(),
+            AppInfoCard()
           ],
         ),
       ),
