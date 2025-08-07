@@ -38,6 +38,14 @@
   "@settingsDarkThemeSubtitle": {
     "description": "Subtitle for theme toggle card"
   },
+  "settingsDefaultCurrencyTitle": "Default Currency",
+  "@settingsDefaultCurrencyTitle": {
+    "description": "Title for currency selector card"
+  },
+  "settingsDefaultCurrencySubtitle": "Choose your preferred currency",
+  "@settingsDefaultCurrencySubtitle": {
+    "description": "Subtitle for currency selector card"
+  },
   "addExpenseTitle": "Add Expense",
   "@addExpenseTitle": {
     "description": "Title for the screen where the user adds a new expense"

@@ -146,6 +146,18 @@ abstract class AppLocalizations {
   /// **'Switch between light and dark appearance'**
   String get settingsDarkThemeSubtitle;
 
+  /// Title for currency selector card
+  ///
+  /// In en, this message translates to:
+  /// **'Default Currency'**
+  String get settingsDefaultCurrencyTitle;
+
+  /// Subtitle for currency selector card
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your preferred currency'**
+  String get settingsDefaultCurrencySubtitle;
+
   /// Title for the screen where the user adds a new expense
   ///
   /// In en, this message translates to:

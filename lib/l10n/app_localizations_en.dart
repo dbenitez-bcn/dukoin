@@ -41,6 +41,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Switch between light and dark appearance';
 
   @override
+  String get settingsDefaultCurrencyTitle => 'Default Currency';
+
+  @override
+  String get settingsDefaultCurrencySubtitle =>
+      'Choose your preferred currency';
+
+  @override
   String get addExpenseTitle => 'Add Expense';
 
   @override
