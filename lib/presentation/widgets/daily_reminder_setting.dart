@@ -5,7 +5,7 @@ import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
 class DailyReminderSetting extends StatelessWidget {
-  DailyReminderSetting({super.key});
+  const DailyReminderSetting({super.key});
 
   @override
   Widget build(BuildContext context) {

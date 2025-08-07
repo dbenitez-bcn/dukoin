@@ -31,12 +31,13 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
   @override
   DukoinColors copyWith({
     Color? emeraldGreen,
-    Color? relaxingTeal,
+    Color? relaxingTurquoise,
     Color? borderColor,
+    Color? navBarBackground,
   }) {
     return DukoinColors(
       emeraldGreen: emeraldGreen ?? this.emeraldGreen,
-      relaxingTurquoise: relaxingTeal ?? this.relaxingTurquoise,
+      relaxingTurquoise: relaxingTurquoise ?? this.relaxingTurquoise,
       borderColor: borderColor ?? this.borderColor,
       navBarBackground: navBarBackground ?? this.navBarBackground,
     );

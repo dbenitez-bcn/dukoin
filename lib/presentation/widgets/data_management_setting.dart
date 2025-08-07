@@ -1,8 +1,5 @@
-import 'package:dukoin/domain/currency.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
-import 'package:dukoin/presentation/widgets/currency_dropdown_menu_item.dart';
 import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
-import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
 class DataManagementSetting extends StatelessWidget {

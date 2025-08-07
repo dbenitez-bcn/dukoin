@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
 }
 
 class DukoinApp extends StatelessWidget {
-  DukoinApp({super.key});
+  const DukoinApp({super.key});
 
   static final List<GlobalKey<NavigatorState>> _navigatorKeys = [
     GlobalKey<NavigatorState>(), // Home
