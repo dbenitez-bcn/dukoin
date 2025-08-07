@@ -1,3 +1,4 @@
+import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
 const lightColorScheme = ColorScheme(
@@ -127,6 +128,9 @@ final lightTheme = ThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
   ),
+  extensions: <ThemeExtension<DukoinColors>>[
+    DukoinColors.light,
+  ],
 );
 
 final darkTheme = ThemeData(
@@ -176,4 +180,7 @@ final darkTheme = ThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
   ),
+  extensions: <ThemeExtension<DukoinColors>>[
+    DukoinColors.dark,
+  ],
 );
