@@ -6,9 +6,6 @@ class ThemeProvider extends InheritedNotifier<ThemeNotifier> {
     : super(notifier: ThemeNotifier());
 
   static ThemeNotifier of(BuildContext context) {
-    final provider = context
-        .dependOnInheritedWidgetOfExactType<ThemeProvider>();
-    assert(provider != null, 'No ThemeProvider found in context');
-    return provider!.notifier!;
+    return context.dependOnInheritedWidgetOfExactType<ThemeProvider>()!.notifier!;
   }
 }

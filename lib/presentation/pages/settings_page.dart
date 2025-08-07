@@ -10,7 +10,6 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.settingsTitle),
-        leading: Icon(Icons.ac_unit),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
