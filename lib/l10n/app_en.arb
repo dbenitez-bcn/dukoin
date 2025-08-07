@@ -66,6 +66,19 @@
   "@settingsDataManagementButton": {
     "description": "Button title to clear all expense data"
   },
+  "settingsApplicationInfoVersion": "Version {version}",
+  "@settingsApplicationInfoVersion" : {
+    "description": "Displays application version number",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsApplicationInfoMessage": "Made with ❤\uFE0F for simple expense tracking",
+  "@settingsApplicationInfoMessage" : {
+    "description": "Displays application message"
+  },
   "addExpenseTitle": "Add Expense",
   "@addExpenseTitle": {
     "description": "Title for the screen where the user adds a new expense"

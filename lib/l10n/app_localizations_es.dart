@@ -63,6 +63,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsDataManagementButton => 'Clear All Data';
 
   @override
+  String settingsApplicationInfoVersion(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get settingsApplicationInfoMessage =>
+      'Made with ❤️ for simple expense tracking';
+
+  @override
   String get addExpenseTitle => 'Añadir gasto';
 
   @override

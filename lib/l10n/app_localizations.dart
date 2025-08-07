@@ -188,6 +188,18 @@ abstract class AppLocalizations {
   /// **'Clear All Data'**
   String get settingsDataManagementButton;
 
+  /// Displays application version number
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}'**
+  String settingsApplicationInfoVersion(String version);
+
+  /// Displays application message
+  ///
+  /// In en, this message translates to:
+  /// **'Made with ❤️ for simple expense tracking'**
+  String get settingsApplicationInfoMessage;
+
   /// Title for the screen where the user adds a new expense
   ///
   /// In en, this message translates to:
