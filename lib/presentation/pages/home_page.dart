@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               FutureBuilder(
-                future: ExpensesProvider.of(context).loadStudents(),
+                future: ExpensesProvider.of(context).loadExpenses(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return CircularProgressIndicator();

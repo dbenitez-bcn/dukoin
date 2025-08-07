@@ -12,9 +12,8 @@ class ExpensesBloc {
 
   int get total => _expenses.length;
 
-  Future<void> loadStudents() async {
+  Future<void> loadExpenses() async {
     _expenses = await _repo.getAll();
-    print("Total expenses ${total}");
     //_studentsController.sink.add(_students);
   }
 
