@@ -18,7 +18,7 @@ class NavigationState extends InheritedWidget {
   static NavigationState of(BuildContext context) {
     final NavigationState? result =
       context.dependOnInheritedWidgetOfExactType<NavigationState>();
-    assert(result != null, 'No CurrentList found in context');
+    assert(result != null, 'No NavigationState found in context');
     return result!;
   }
 
