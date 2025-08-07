@@ -7,12 +7,6 @@ import 'package:flutter/material.dart';
 class DailyReminderSetting extends StatelessWidget {
   DailyReminderSetting({super.key});
 
-  bool isActive = true;
-
-  void setActive(bool value) {
-    isActive = value;
-  }
-
   @override
   Widget build(BuildContext context) {
     final Color color = Theme.of(
@@ -30,12 +24,37 @@ class DailyReminderSetting extends StatelessWidget {
           AppLocalizations.of(context)!.settingsDailyReminderSubtitle,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
-        trailing: Switch.adaptive(
-          activeColor: color,
-          value: isActive,
-          onChanged: setActive,
-        ),
+        trailing: DailySwtich(),
       ),
+    );
+  }
+}
+
+class DailySwtich extends StatefulWidget {
+  const DailySwtich({super.key});
+
+  @override
+  State<DailySwtich> createState() => _DailySwtichState();
+}
+
+class _DailySwtichState extends State<DailySwtich> {
+  bool isActive = true;
+
+  void setActive(bool value) {
+    setState(() {
+      isActive = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Color color = Theme.of(
+      context,
+    ).extension<DukoinColors>()!.relaxingTurquoise;
+    return Switch.adaptive(
+      activeColor: color,
+      value: isActive,
+      onChanged: setActive,
     );
   }
 }
