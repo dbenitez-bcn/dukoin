@@ -1,6 +1,7 @@
 import 'package:dukoin/extensions/string_extension.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/pages/add_expense_page.dart';
+import 'package:dukoin/presentation/state/expense_provider.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,8 +20,20 @@ class HomePage extends StatelessWidget {
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               Text(
-                AppLocalizations.of(context)!.homeSubtitle(DateTime.now()).capitalize(),
+                AppLocalizations.of(
+                  context,
+                )!.homeSubtitle(DateTime.now()).capitalize(),
                 style: Theme.of(context).textTheme.bodySmall,
+              ),
+              FutureBuilder(
+                future: ExpensesProvider.of(context).loadStudents(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else {
+                    return Text("Total ${ExpensesProvider.of(context).total}");
+                  }
+                },
               ),
             ],
           ),
