@@ -116,4 +116,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get categoryOthers => 'Others';
+
+  @override
+  String get currencyUSD => 'US Dollar';
+
+  @override
+  String get currencyEUR => 'Euro';
+
+  @override
+  String get currencyGBP => 'British Pound';
+
+  @override
+  String get currencyJPY => 'Japanese Yen';
+
+  @override
+  String get currencyCAD => 'Canadian Dollar';
+
+  @override
+  String get currencyAUD => 'Australian Dollar';
 }

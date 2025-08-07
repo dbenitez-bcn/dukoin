@@ -265,6 +265,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Others'**
   String get categoryOthers;
+
+  /// US Dollar currency
+  ///
+  /// In en, this message translates to:
+  /// **'US Dollar'**
+  String get currencyUSD;
+
+  /// Euro currency
+  ///
+  /// In en, this message translates to:
+  /// **'Euro'**
+  String get currencyEUR;
+
+  /// British Pound currency
+  ///
+  /// In en, this message translates to:
+  /// **'British Pound'**
+  String get currencyGBP;
+
+  /// Japanese Yen currency
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese Yen'**
+  String get currencyJPY;
+
+  /// Canadian Dollar currency
+  ///
+  /// In en, this message translates to:
+  /// **'Canadian Dollar'**
+  String get currencyCAD;
+
+  /// Australian Dollar currency
+  ///
+  /// In en, this message translates to:
+  /// **'Australian Dollar'**
+  String get currencyAUD;
 }
 
 class _AppLocalizationsDelegate

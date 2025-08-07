@@ -138,5 +138,29 @@
   "categoryOthers": "Others",
   "@categoryOthers": {
     "description": "Category for miscellaneous or uncategorized expenses"
+  },
+  "currencyUSD": "US Dollar",
+  "@currencyUSD": {
+    "description": "US Dollar currency"
+  },
+  "currencyEUR": "Euro",
+  "@currencyEUR": {
+    "description": "Euro currency"
+  },
+  "currencyGBP": "British Pound",
+  "@currencyGBP": {
+    "description": "British Pound currency"
+  },
+  "currencyJPY": "Japanese Yen",
+  "@currencyJPY": {
+    "description": "Japanese Yen currency"
+  },
+  "currencyCAD": "Canadian Dollar",
+  "@currencyCAD": {
+    "description": "Canadian Dollar currency"
+  },
+  "currencyAUD": "Australian Dollar",
+  "@currencyAUD": {
+    "description": "Australian Dollar currency"
   }
 }
