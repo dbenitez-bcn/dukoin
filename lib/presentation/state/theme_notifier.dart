@@ -3,9 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeNotifier extends ChangeNotifier {
   static const _key = 'themeMode';
+  final SharedPreferences prefs;
   ThemeMode _themeMode = ThemeMode.system;
 
-  ThemeNotifier() {
+  ThemeNotifier({required this.prefs}) {
     _loadTheme();
   }
 
@@ -21,17 +22,15 @@ class ThemeNotifier extends ChangeNotifier {
     _saveTheme();
   }
 
-  Future<void> _loadTheme() async {
-    final prefs = await SharedPreferences.getInstance();
+  void _loadTheme() {
     final index = prefs.getInt(_key);
     if (index != null) {
       _themeMode = ThemeMode.values[index];
-      notifyListeners(); // important to notify after loading
+      notifyListeners();
     }
   }
 
   Future<void> _saveTheme() async {
-    final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_key, _themeMode.index);
   }
 }

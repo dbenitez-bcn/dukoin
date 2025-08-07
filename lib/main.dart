@@ -8,19 +8,23 @@ import 'package:dukoin/presentation/state/theme_provider.dart';
 import 'package:dukoin/presentation/widgets/bouncy_bottom_nav_bar.dart';
 import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  runApp(MyApp(prefs: prefs));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final SharedPreferences prefs;
+  const MyApp({super.key, required this.prefs});
 
   @override
   Widget build(BuildContext context) {
     return NavigationState(
       child: ThemeProvider(
+        prefs: prefs,
         child: Builder(
           builder: (context) {
             return MaterialApp(
