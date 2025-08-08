@@ -349,6 +349,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Australian Dollar'**
   String get currencyAUD;
+
+  /// Title for clear all data dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Clear All Data'**
+  String get clearAllDataDialogTitle;
+
+  /// Message for clear all data dialog
+  ///
+  /// In en, this message translates to:
+  /// **'This action cannot be undone. This will permanently delete all your expense data.'**
+  String get clearAllDataDialogMessage;
+
+  /// ButtonTitle for clear all data dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Clear All Data'**
+  String get clearAllDataDialogButtonTitle;
+
+  /// CancelButton title for clear all data dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get clearAllDataDialogCancelButton;
 }
 
 class _AppLocalizationsDelegate

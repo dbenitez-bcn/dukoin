@@ -71,7 +71,7 @@
     "description": "Button title to clear all expense data"
   },
   "settingsApplicationInfoVersion": "Version {version}",
-  "@settingsApplicationInfoVersion" : {
+  "@settingsApplicationInfoVersion": {
     "description": "Displays application version number",
     "placeholders": {
       "version": {
@@ -80,7 +80,7 @@
     }
   },
   "settingsApplicationInfoMessage": "Made with ❤\uFE0F for simple expense tracking",
-  "@settingsApplicationInfoMessage" : {
+  "@settingsApplicationInfoMessage": {
     "description": "Displays application message"
   },
   "addExpenseTitle": "Add Expense",
@@ -199,5 +199,21 @@
   "currencyAUD": "Australian Dollar",
   "@currencyAUD": {
     "description": "Australian Dollar currency"
+  },
+  "clearAllDataDialogTitle": "Clear All Data",
+  "@clearAllDataDialogTitle": {
+    "description": "Title for clear all data dialog"
+  },
+  "clearAllDataDialogMessage": "This action cannot be undone. This will permanently delete all your expense data.",
+  "@clearAllDataDialogMessage": {
+    "description": "Message for clear all data dialog"
+  },
+  "clearAllDataDialogButtonTitle": "Clear All Data",
+  "@clearAllDataDialogButtonTitle": {
+    "description": "ButtonTitle for clear all data dialog"
+  },
+  "clearAllDataDialogCancelButton": "Cancel",
+  "@clearAllDataDialogCancelButton": {
+    "description": "CancelButton title for clear all data dialog"
   }
 }

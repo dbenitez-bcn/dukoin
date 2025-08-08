@@ -161,4 +161,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get currencyAUD => 'Australian Dollar';
+
+  @override
+  String get clearAllDataDialogTitle => 'Clear All Data';
+
+  @override
+  String get clearAllDataDialogMessage =>
+      'This action cannot be undone. This will permanently delete all your expense data.';
+
+  @override
+  String get clearAllDataDialogButtonTitle => 'Clear All Data';
+
+  @override
+  String get clearAllDataDialogCancelButton => 'Cancel';
 }
