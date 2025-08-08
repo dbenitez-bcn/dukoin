@@ -49,7 +49,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
     if (!_formKey.currentState!.validate() || selectedCategory == null) return;
 
     final expense = Expense(
-      amount: int.parse(amountController.text),
+      amount: double.parse(amountController.text),
       category: selectedCategory!,
       description: descriptionController.text,
       createdAt: selectedDate,

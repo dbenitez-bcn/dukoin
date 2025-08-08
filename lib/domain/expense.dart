@@ -11,7 +11,7 @@ enum ExpenseCategory {
 
 class Expense {
   final int? id;
-  int amount;
+  double amount;
   ExpenseCategory category;
   String description;
   DateTime createdAt;
