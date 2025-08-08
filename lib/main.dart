@@ -31,19 +31,7 @@ class MyApp extends StatelessWidget {
           prefs: prefs,
           child: ThemeProvider(
             prefs: prefs,
-            child: Builder(
-              builder: (context) {
-                return MaterialApp(
-                  title: 'Dukoin',
-                  theme: lightTheme,
-                  darkTheme: darkTheme,
-                  themeMode: ThemeProvider.of(context).themeMode,
-                  localizationsDelegates: AppLocalizations.localizationsDelegates,
-                  supportedLocales: AppLocalizations.supportedLocales,
-                  home: DukoinApp(),
-                );
-              },
-            ),
+            child: DukoinApp()
           ),
         ),
       ),
@@ -63,18 +51,26 @@ class DukoinApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: List.generate(
-          _pages.length,
-          (i) => DukoinPageRoute(
-            navigatorKey: _navigatorKeys[i],
-            index: i,
-            child: _pages[i],
+    return MaterialApp(
+      title: 'Dukoin',
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeProvider.of(context).themeMode,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: Scaffold(
+        body: Stack(
+          children: List.generate(
+            _pages.length,
+            (i) => DukoinPageRoute(
+              navigatorKey: _navigatorKeys[i],
+              index: i,
+              child: _pages[i],
+            ),
           ),
         ),
+        bottomNavigationBar: BouncyBottomNavBar(),
       ),
-      bottomNavigationBar: BouncyBottomNavBar(),
     );
   }
 }
