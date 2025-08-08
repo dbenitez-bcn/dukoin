@@ -12,7 +12,7 @@ class TotalAmountCard extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Card(
-        elevation: 6.0,
+        elevation: 4.0,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: Column(
