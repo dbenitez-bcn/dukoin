@@ -1,4 +1,5 @@
 import 'package:dukoin/presentation/state/expense_provider.dart';
+import 'package:dukoin/presentation/widgets/expenses_list.dart';
 import 'package:dukoin/presentation/widgets/total_amount_card.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,9 @@ class HomeContent extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    return Column(children: [TotalAmountCard()]);
+    return Column(
+      children: [TotalAmountCard(), SizedBox(height: 16.0), ExpensesList()],
+    );
   }
 
   @override
