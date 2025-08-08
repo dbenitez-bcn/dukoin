@@ -6,6 +6,7 @@ import 'package:dukoin/domain/expense_repository.dart';
 class ExpensesBloc {
   final ExpenseRepository _repo;
   final _totalAmountController = StreamController<double>();
+  final _expensesController = StreamController<List<Expense>>();
 
   List<Expense> _expenses = [];
 
@@ -15,27 +16,36 @@ class ExpensesBloc {
 
   Stream<double> get totalAmountStream => _totalAmountController.stream;
 
+  Stream<List<Expense>> get expensesStream => _expensesController.stream;
+
   Future<void> loadExpenses() async {
     _expenses = await _repo.getAll();
-    _calculateTotal();
+    _updateStreams();
   }
 
-  void _calculateTotal() {
+  void _updateStreams() {
     _totalAmountController.sink.add(
       _expenses.fold(0.0, (total, e) => total + e.amount),
     );
+    _expensesController.sink.add(_expenses);
   }
 
   Future<void> addExpense(Expense expense) async {
     int id = await _repo.insert(expense);
     expense.id = id;
     _expenses.add(expense);
-    _calculateTotal();
+    _updateStreams();
   }
 
   Future<void> clearAllData() async {
     _expenses.clear();
     await _repo.deleteAll();
-    _calculateTotal();
+    _updateStreams();
+  }
+
+  Future<void> delete(int id) async {
+    _expenses.removeWhere((e) => e.id == id);
+    await _repo.delete(id);
+    _updateStreams();
   }
 }
