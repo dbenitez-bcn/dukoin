@@ -12,7 +12,10 @@ class HomePage extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         child: SafeArea(
-          child: ListView(children: [HomeAppBar(), HomeContent()]),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: ListView(children: [HomeAppBar(), HomeContent()]),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

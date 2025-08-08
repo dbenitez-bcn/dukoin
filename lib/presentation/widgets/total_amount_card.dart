@@ -9,27 +9,37 @@ class TotalAmountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card.outlined(
-      child: Column(
-        children: [
-          Text(
-            AppLocalizations.of(context)!.homeTodayTotalTitle,
-            style: Theme.of(context).textTheme.bodyMedium,
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        elevation: 6.0,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Column(
+            children: [
+              Text(
+                AppLocalizations.of(context)!.homeTodayTotalTitle,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              StreamBuilder<double>(
+                stream: ExpensesProvider.of(context).totalAmountStream,
+                initialData: 0.0,
+                builder: (context, snapshot) {
+                  return Text(
+                    formatCurrency(
+                      CurrencyProvider.of(context).currency,
+                      snapshot.data!,
+                      AppLocalizations.of(context)!.localeName,
+                    ),
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
-          StreamBuilder<double>(
-            stream: ExpensesProvider.of(context).totalAmountStream,
-            initialData: 0.0,
-            builder: (context, snapshot) {
-              return Text(
-                formatCurrency(
-                  CurrencyProvider.of(context).currency,
-                  snapshot.data!,
-                  AppLocalizations.of(context)!.localeName,
-                ),
-              );
-            },
-          ),
-        ],
+        ),
       ),
     );
   }
