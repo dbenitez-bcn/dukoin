@@ -49,7 +49,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
     if (!_formKey.currentState!.validate() || selectedCategory == null) return;
 
     final expense = Expense(
-      amount: double.parse(amountController.text),
+      amount: double.parse(amountController.text.replaceAll(",", ".")),
       category: selectedCategory!,
       description: descriptionController.text,
       createdAt: selectedDate,
@@ -98,9 +98,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     context,
                   )!.addExpenseDescriptionTitle,
                   child: TextField(
-                    keyboardType: TextInputType.numberWithOptions(
-                      decimal: true,
-                    ),
                     controller: descriptionController,
                     decoration: InputDecoration(
                       hintText: AppLocalizations.of(
