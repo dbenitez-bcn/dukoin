@@ -32,4 +32,10 @@ class ExpensesBloc {
     _expenses.add(expense);
     _calculateTotal();
   }
+
+  Future<void> clearAllData() async {
+    _expenses.clear();
+    await _repo.deleteAll();
+    _calculateTotal();
+  }
 }

@@ -33,6 +33,9 @@ class SqfliteExpenseRepository implements ExpenseRepository {
 
   @override
   Future<int> update(Expense expense) async {
+    if (expense.id == null) {
+      throw ArgumentError('Cannot update an expense without an ID');
+    }
     final db = await _db;
     return db.update(
       'expenses',
@@ -46,5 +49,18 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   Future<int> delete(int id) async {
     final db = await _db;
     return db.delete('expenses', where: 'id = ?', whereArgs: [id]);
+  }
+
+  @override
+  Future<void> deleteAll() async {
+    final db = await _db;
+    await db.transaction((txn) async {
+      await txn.delete('expenses');
+      await txn.delete(
+        'sqlite_sequence',
+        where: 'name = ?',
+        whereArgs: ['expenses'],
+      );
+    });
   }
 }
