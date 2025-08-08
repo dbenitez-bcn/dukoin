@@ -1,9 +1,20 @@
 import 'package:dukoin/l10n/app_localizations.dart';
+import 'package:dukoin/presentation/widgets/clear_all_data_dialog.dart';
 import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
 import 'package:flutter/material.dart';
 
 class DataManagementSetting extends StatelessWidget {
   const DataManagementSetting({super.key});
+
+  Future<void> _showDeleteConfirmationDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return ClearAllDataDialog();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +39,7 @@ class DataManagementSetting extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => print("Implement clear data"),
+                onPressed: () => _showDeleteConfirmationDialog(context),
                 style: ElevatedButton.styleFrom(backgroundColor: color),
                 child: Text(
                   AppLocalizations.of(context)!.settingsDataManagementButton,
