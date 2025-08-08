@@ -122,6 +122,12 @@ abstract class AppLocalizations {
   /// **'{date}'**
   String homeSubtitle(DateTime date);
 
+  /// Title displayed on today's total amount
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Total'**
+  String get homeTodayTotalTitle;
+
   /// Title displayed on the Settings screen
   ///
   /// In en, this message translates to:

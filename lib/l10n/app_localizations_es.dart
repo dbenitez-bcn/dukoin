@@ -28,6 +28,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get homeTodayTotalTitle => 'Today\'s Total';
+
+  @override
   String get settingsTitle => 'Ajustes';
 
   @override

@@ -22,6 +22,10 @@
       }
     }
   },
+  "homeTodayTotalTitle": "Today's Total",
+  "@homeTodayTotalTitle": {
+    "description": "Title displayed on today's total amount"
+  },
   "settingsTitle": "Settings",
   "@settingsTitle": {
     "description": "Title displayed on the Settings screen"
