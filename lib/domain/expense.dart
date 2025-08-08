@@ -10,7 +10,7 @@ enum ExpenseCategory {
 }
 
 class Expense {
-  final int? id;
+  int? id;
   double amount;
   ExpenseCategory category;
   String description;

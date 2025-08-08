@@ -27,7 +27,8 @@ class ExpensesBloc {
   }
 
   Future<void> addExpense(Expense expense) async {
-    await _repo.insert(expense);
+    int id = await _repo.insert(expense);
+    expense.id = id;
     _expenses.add(expense);
     _calculateTotal();
   }
