@@ -9,7 +9,7 @@ enum ExpenseCategory {
   others,
 }
 
-class Expense {
+class Expense implements Comparable<Expense>{
   int? id;
   double amount;
   ExpenseCategory category;
@@ -44,5 +44,10 @@ class Expense {
       description: map['description'],
       createdAt: DateTime.parse(map['createdAt']),
     );
+  }
+
+  @override
+  int compareTo(Expense obj) {
+    return obj.createdAt.compareTo(createdAt);
   }
 }
