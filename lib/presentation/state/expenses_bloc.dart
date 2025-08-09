@@ -34,6 +34,7 @@ class ExpensesBloc {
     int id = await _repo.insert(expense);
     expense.id = id;
     _expenses.add(expense);
+    _expenses.sort();
     _updateStreams();
   }
 
