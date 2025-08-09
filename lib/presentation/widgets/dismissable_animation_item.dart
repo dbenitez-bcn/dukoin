@@ -10,7 +10,7 @@ class DismissibleAnimatedItem extends StatefulWidget {
     required this.child,
     required this.onRemove,
     this.duration = const Duration(
-      milliseconds: 500,
+      milliseconds: 350,
     ), // Increased total duration
   });
 
