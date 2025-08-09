@@ -82,6 +82,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     keyboardType: TextInputType.numberWithOptions(
                       decimal: true,
                     ),
+                    autofocus: true,
                     controller: amountController,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
