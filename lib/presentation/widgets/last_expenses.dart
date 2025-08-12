@@ -1,6 +1,7 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
+import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:dukoin/presentation/widgets/expense_info_card.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,9 @@ class LastExpenses extends StatelessWidget {
               style: TextTheme.of(context).displayMedium,
             ),
             InkWell(
-              onTap: () {}, // TODO: Nagivate to history
+              onTap: () {
+                NavigationStateProvider.of(context).setPageIndex(1);
+              },
               borderRadius: BorderRadius.circular(8),
               child: Row(
                 children: [
