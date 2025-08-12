@@ -41,9 +41,14 @@ class ExpenseInfoCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          expense.description,
-                          style: TextTheme.of(context).displaySmall,
+                        Expanded(
+                          child: Text(
+                            expense.description,
+                            style: TextTheme.of(context).displaySmall,
+                            softWrap: true, // allows multiple lines
+                            maxLines: 2,    // limit to 2 lines if needed
+                            overflow: TextOverflow.fade,
+                          ),
                         ),
                         CurrencyText(amount: expense.amount),
                       ],
