@@ -18,7 +18,7 @@ class TotalAmountCard extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                AppLocalizations.of(context)!.homeTodayTotalTitle,
+                AppLocalizations.of(context)!.homeWeeklyTotalTitle,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               StreamBuilder<double>(

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
+import 'package:dukoin/utils/utils.dart';
 
 class ExpensesBloc {
   final ExpenseRepository _repo;
@@ -23,9 +24,18 @@ class ExpensesBloc {
     _updateStreams();
   }
 
+  double _calculateTotalOfCurrentWeek() {
+    int i = 0;
+    double total = 0.0;
+    while (i < _expenses.length && _expenses[i].createdAt.compareTo(firstDayOfCurrentWeek()) > 0) {
+      total += _expenses[i++].amount;
+    }
+    return total;
+  }
+
   void _updateStreams() {
     _totalAmountController.sink.add(
-      _expenses.fold(0.0, (total, e) => total + e.amount),
+      _calculateTotalOfCurrentWeek(),
     );
     _expensesController.sink.add(_expenses);
   }
