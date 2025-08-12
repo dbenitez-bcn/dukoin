@@ -113,7 +113,7 @@ abstract class AppLocalizations {
   /// Title displayed on the Home screen
   ///
   /// In en, this message translates to:
-  /// **'Daily Expenses'**
+  /// **'Weekly Expenses'**
   String get homeTitle;
 
   /// Displays today's date
@@ -127,6 +127,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Today\'s Total'**
   String get homeTodayTotalTitle;
+
+  /// Title displayed on weekly total amount
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Total'**
+  String get homeWeeklyTotalTitle;
 
   /// Title displayed on the Settings screen
   ///

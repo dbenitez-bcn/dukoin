@@ -15,7 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navTab2 => 'Settings';
 
   @override
-  String get homeTitle => 'Daily Expenses';
+  String get homeTitle => 'Weekly Expenses';
 
   @override
   String homeSubtitle(DateTime date) {
@@ -29,6 +29,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeTodayTotalTitle => 'Today\'s Total';
+
+  @override
+  String get homeWeeklyTotalTitle => 'Weekly Total';
 
   @override
   String get settingsTitle => 'Settings';

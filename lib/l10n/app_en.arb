@@ -8,7 +8,7 @@
   "@navTab2": {
     "description": "Label for the Settings tab in the bottom navigation bar"
   },
-  "homeTitle": "Daily Expenses",
+  "homeTitle": "Weekly Expenses",
   "@homeTitle": {
     "description": "Title displayed on the Home screen"
   },
@@ -25,6 +25,10 @@
   "homeTodayTotalTitle": "Today's Total",
   "@homeTodayTotalTitle": {
     "description": "Title displayed on today's total amount"
+  },
+  "homeWeeklyTotalTitle": "Weekly Total",
+  "@homeWeeklyTotalTitle": {
+    "description": "Title displayed on weekly total amount"
   },
   "settingsTitle": "Settings",
   "@settingsTitle": {
