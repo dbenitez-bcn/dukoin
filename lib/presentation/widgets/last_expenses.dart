@@ -3,6 +3,7 @@ import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
 import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:dukoin/presentation/widgets/expense_info_card.dart';
+import 'package:dukoin/presentation/widgets/no_expenses.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -45,6 +46,9 @@ class LastExpenses extends StatelessWidget {
           initialData: [],
           builder: (context, snapshot) {
             List<Expense> expenses = snapshot.data ?? [];
+            if (expenses.isEmpty) {
+              return NoExpensesWidget();
+            }
             return Column(
               children: List<Widget>.generate(expenses.length, (index) {
                 return ExpenseInfoCard(expense: expenses[index]);
