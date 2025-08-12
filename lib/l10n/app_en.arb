@@ -30,6 +30,14 @@
   "@homeWeeklyTotalTitle": {
     "description": "Title displayed on weekly total amount"
   },
+  "homeLastExpensesTitle": "Last Expenses",
+  "@homeLastExpensesTitle": {
+    "description": "Title displayed on last expenses"
+  },
+  "homeLastExpensesSeeAll": "See all",
+  "@homeLastExpensesSeeAll": {
+    "description": "Title displayed on see all button"
+  },
   "settingsTitle": "Settings",
   "@settingsTitle": {
     "description": "Title displayed on the Settings screen"

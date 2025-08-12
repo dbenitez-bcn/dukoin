@@ -134,6 +134,18 @@ abstract class AppLocalizations {
   /// **'Weekly Total'**
   String get homeWeeklyTotalTitle;
 
+  /// Title displayed on last expenses
+  ///
+  /// In en, this message translates to:
+  /// **'Last Expenses'**
+  String get homeLastExpensesTitle;
+
+  /// Title displayed on see all button
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get homeLastExpensesSeeAll;
+
   /// Title displayed on the Settings screen
   ///
   /// In en, this message translates to:
