@@ -7,6 +7,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
   final Color borderColor;
   final Color navBarBackground;
   final Color bodyColor;
+  final Color accent;
 
   const DukoinColors({
     required this.emeraldGreen,
@@ -14,6 +15,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     required this.borderColor,
     required this.navBarBackground,
     required this.bodyColor,
+    required this.accent,
   });
 
   static const light = DukoinColors(
@@ -21,7 +23,8 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     relaxingTurquoise: Color(0xFF06B6D4),
     borderColor: Color.fromRGBO(0, 0, 0, 0.1),
     navBarBackground: Colors.white,
-    bodyColor: Color(0xFF616161)
+    bodyColor: Color(0xFF616161),
+    accent: Color(0xFFE0E7FF)
   );
 
   static const dark = DukoinColors(
@@ -29,7 +32,8 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     relaxingTurquoise: Color(0xFF22D3EE),
     borderColor: Color(0xFF334155),
     navBarBackground: Color(0xCD1E293B),
-    bodyColor: Colors.white70
+    bodyColor: Colors.white70,
+    accent: Color(0xFF475569)
   );
 
   @override
@@ -39,6 +43,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     Color? borderColor,
     Color? navBarBackground,
     Color? bodyColor,
+    Color? accent,
   }) {
     return DukoinColors(
       emeraldGreen: emeraldGreen ?? this.emeraldGreen,
@@ -46,6 +51,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
       borderColor: borderColor ?? this.borderColor,
       navBarBackground: navBarBackground ?? this.navBarBackground,
       bodyColor: bodyColor ?? this.bodyColor,
+      accent: accent ?? this.accent,
     );
   }
 
@@ -68,6 +74,11 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
       bodyColor: Color.lerp(
         bodyColor,
         other.bodyColor,
+        t,
+      )!,
+      accent: Color.lerp(
+        accent,
+        other.accent,
         t,
       )!,
     );
