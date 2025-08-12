@@ -38,6 +38,14 @@
   "@homeLastExpensesTitle": {
     "description": "Title displayed on last expenses"
   },
+  "homeNoExpensesTitle": "You have no expenses yet",
+  "@homeNoExpensesTitle": {
+    "description": "Title displayed when no expenses are found"
+  },
+  "homeNoExpensesSubtitle": "Tap the + button to add your first expense",
+  "@homeNoExpensesSubtitle": {
+    "description": "Subtitle displayed when no expenses are found"
+  },
   "homeLastExpensesSeeAll": "See all",
   "@homeLastExpensesSeeAll": {
     "description": "Title displayed on see all button"

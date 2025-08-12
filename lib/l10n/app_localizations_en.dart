@@ -40,6 +40,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeLastExpensesTitle => 'Last Expenses';
 
   @override
+  String get homeNoExpensesTitle => 'You have no expenses yet';
+
+  @override
+  String get homeNoExpensesSubtitle =>
+      'Tap the + button to add your first expense';
+
+  @override
   String get homeLastExpensesSeeAll => 'See all';
 
   @override

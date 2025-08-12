@@ -146,6 +146,18 @@ abstract class AppLocalizations {
   /// **'Last Expenses'**
   String get homeLastExpensesTitle;
 
+  /// Title displayed when no expenses are found
+  ///
+  /// In en, this message translates to:
+  /// **'You have no expenses yet'**
+  String get homeNoExpensesTitle;
+
+  /// Subtitle displayed when no expenses are found
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the + button to add your first expense'**
+  String get homeNoExpensesSubtitle;
+
   /// Title displayed on see all button
   ///
   /// In en, this message translates to:
