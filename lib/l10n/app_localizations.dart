@@ -102,13 +102,19 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Home'**
-  String get navTab1;
+  String get navTabHome;
 
   /// Label for the Settings tab in the bottom navigation bar
   ///
   /// In en, this message translates to:
   /// **'Settings'**
-  String get navTab2;
+  String get navTabSettings;
+
+  /// Label for the History tab in the bottom navigation bar
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get navTabHistory;
 
   /// Title displayed on the Home screen
   ///

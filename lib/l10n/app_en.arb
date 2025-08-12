@@ -1,12 +1,16 @@
 {
   "@@locale": "en",
-  "navTab1": "Home",
-  "@navTab1": {
+  "navTabHome": "Home",
+  "@navTabHome": {
     "description": "Label for the Home tab in the bottom navigation bar"
   },
-  "navTab2": "Settings",
-  "@navTab2": {
+  "navTabSettings": "Settings",
+  "@navTabSettings": {
     "description": "Label for the Settings tab in the bottom navigation bar"
+  },
+  "navTabHistory": "History",
+  "@navTabHistory": {
+    "description": "Label for the History tab in the bottom navigation bar"
   },
   "homeTitle": "Weekly Expenses",
   "@homeTitle": {

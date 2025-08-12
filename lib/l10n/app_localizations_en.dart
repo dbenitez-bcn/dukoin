@@ -9,10 +9,13 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get navTab1 => 'Home';
+  String get navTabHome => 'Home';
 
   @override
-  String get navTab2 => 'Settings';
+  String get navTabSettings => 'Settings';
+
+  @override
+  String get navTabHistory => 'History';
 
   @override
   String get homeTitle => 'Weekly Expenses';
