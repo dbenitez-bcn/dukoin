@@ -89,7 +89,7 @@ final lightTheme = ThemeData(
     shape: Border(bottom: BorderSide(color: DukoinColors.light.borderColor)),
   ),
   textTheme: baseTextTheme.apply(
-    bodyColor: Colors.grey[700],
+    bodyColor: DukoinColors.light.bodyColor,
     displayColor: lightColorScheme.onSurface,
   ),
   cardTheme: CardThemeData(
@@ -143,7 +143,7 @@ final darkTheme = ThemeData(
     shape: Border(bottom: BorderSide(color: DukoinColors.dark.borderColor)),
   ),
   textTheme: baseTextTheme.apply(
-    bodyColor: Colors.white70,
+    bodyColor: DukoinColors.dark.bodyColor,
     displayColor: darkColorScheme.onSurface,
   ),
   cardTheme: CardThemeData(
