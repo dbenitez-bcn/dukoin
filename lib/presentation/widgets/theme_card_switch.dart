@@ -21,11 +21,11 @@ class ThemeCardSwitch extends StatelessWidget {
         ),
         title: Text(
           AppLocalizations.of(context)!.settingsDarkThemeTitle,
-          style: Theme.of(context).textTheme.displaySmall,
+          style: TextTheme.of(context).displaySmall,
         ),
         subtitle: Text(
           AppLocalizations.of(context)!.settingsDarkThemeSubtitle,
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: TextTheme.of(context).bodyMedium,
         ),
         trailing: Switch.adaptive(
           activeColor: Theme.of(context).colorScheme.primary,

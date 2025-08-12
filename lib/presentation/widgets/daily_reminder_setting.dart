@@ -18,11 +18,11 @@ class DailyReminderSetting extends StatelessWidget {
         leading: DukoinIcon(icon: Icons.notifications_outlined, color: color),
         title: Text(
           AppLocalizations.of(context)!.settingsDailyReminderTitle,
-          style: Theme.of(context).textTheme.displaySmall,
+          style: TextTheme.of(context).displaySmall,
         ),
         subtitle: Text(
           AppLocalizations.of(context)!.settingsDailyReminderSubtitle,
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: TextTheme.of(context).bodyMedium,
         ),
         trailing: DailySwtich(),
       ),

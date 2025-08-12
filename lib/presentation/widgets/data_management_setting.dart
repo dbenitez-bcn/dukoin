@@ -29,11 +29,11 @@ class DataManagementSetting extends StatelessWidget {
               leading: DukoinIcon(icon: Icons.delete_outline, color: color),
               title: Text(
                 AppLocalizations.of(context)!.settingsDataManagementTitle,
-                style: Theme.of(context).textTheme.displaySmall,
+                style: TextTheme.of(context).displaySmall,
               ),
               subtitle: Text(
                 AppLocalizations.of(context)!.settingsDataManagementSubtitle,
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: TextTheme.of(context).bodyMedium,
               ),
             ),
             SizedBox(

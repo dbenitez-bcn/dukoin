@@ -16,11 +16,11 @@ class SettingsAppBar extends StatelessWidget {
       ),
       title: Text(
         AppLocalizations.of(context)!.settingsTitle,
-        style: Theme.of(context).textTheme.displayLarge,
+        style: TextTheme.of(context).displayLarge,
       ),
       subtitle: Text(
         AppLocalizations.of(context)!.settingsSubtitle,
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: TextTheme.of(context).bodyMedium,
       ),
     );
   }

@@ -19,7 +19,7 @@ class TotalAmountCard extends StatelessWidget {
             children: [
               Text(
                 AppLocalizations.of(context)!.homeWeeklyTotalTitle,
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: TextTheme.of(context).bodyMedium,
               ),
               StreamBuilder<double>(
                 stream: ExpensesProvider.of(context).totalAmountStream,
@@ -31,7 +31,7 @@ class TotalAmountCard extends StatelessWidget {
                       snapshot.data!,
                       AppLocalizations.of(context)!.localeName,
                     ),
-                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                    style: TextTheme.of(context).displayLarge!.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
                   );

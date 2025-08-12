@@ -16,7 +16,7 @@ class CurrencyText extends StatelessWidget {
         amount,
         AppLocalizations.of(context)!.localeName,
       ),
-      style: Theme.of(context).textTheme.displaySmall!.copyWith(
+      style: TextTheme.of(context).displaySmall!.copyWith(
         color: Theme.of(context).colorScheme.primary,
       ),
     );

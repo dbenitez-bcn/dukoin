@@ -11,13 +11,13 @@ class HomeAppBar extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(context)!.homeTitle,
-          style: Theme.of(context).textTheme.displayLarge,
+          style: TextTheme.of(context).displayLarge,
         ),
         Text(
           AppLocalizations.of(
             context,
           )!.homeSubtitle(DateTime.now()).capitalize(),
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: TextTheme.of(context).bodyMedium,
         ),
       ],
     );

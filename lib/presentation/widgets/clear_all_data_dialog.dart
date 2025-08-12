@@ -18,14 +18,14 @@ class ClearAllDataDialog extends StatelessWidget {
             children: [
               Text(
                 AppLocalizations.of(context)!.clearAllDataDialogTitle,
-                style: Theme.of(context).textTheme.displayMedium,
+                style: TextTheme.of(context).displayMedium,
                 textAlign: TextAlign.center,
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 12.0, top: 8),
                 child: Text(
                   AppLocalizations.of(context)!.clearAllDataDialogMessage,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: TextTheme.of(context).bodyMedium,
                   textAlign: TextAlign.center,
                 ),
               ),
