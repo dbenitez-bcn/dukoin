@@ -1,6 +1,6 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
-import 'package:dukoin/presentation/widgets/expense_info_card.dart';
+import 'package:dukoin/presentation/widgets/dismissible_expense_info_card.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesList extends StatelessWidget {
@@ -15,7 +15,7 @@ class ExpensesList extends StatelessWidget {
         List<Expense> expenses = snapshot.data ?? [];
         return Column(
           children: List<Widget>.generate(expenses.length, (index) {
-            return ExpenseInfoCard(expense: expenses[index]);
+            return DismissibleExpenseInfoCard(expense: expenses[index]);
           }),
         );
       },

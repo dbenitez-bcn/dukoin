@@ -27,17 +27,21 @@ class ExpensesBloc {
   double _calculateTotalOfCurrentWeek() {
     int i = 0;
     double total = 0.0;
-    while (i < _expenses.length && _expenses[i].createdAt.compareTo(firstDayOfCurrentWeek()) > 0) {
+    print("${firstDayOfCurrentWeek().toUtc()}");
+    while (i < _expenses.length &&
+        _expenses[i].createdAt.compareTo(firstDayOfCurrentWeek()) > 0) {
+      print("EXPENSE $i - ${_expenses[i].amount}");
       total += _expenses[i++].amount;
     }
+    _expenses.forEach((e) => print("${e.amount} - ${e.createdAt.toUtc()}"));
     return total;
   }
 
   void _updateStreams() {
-    _totalAmountController.sink.add(
-      _calculateTotalOfCurrentWeek(),
+    _totalAmountController.sink.add(_calculateTotalOfCurrentWeek());
+    _expensesController.sink.add(
+      _expenses.length <= 4 ? List.from(_expenses) : _expenses.sublist(0, 4),
     );
-    _expensesController.sink.add(_expenses);
   }
 
   Future<void> addExpense(Expense expense) async {
