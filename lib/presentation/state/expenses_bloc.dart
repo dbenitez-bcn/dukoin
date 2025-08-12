@@ -27,13 +27,10 @@ class ExpensesBloc {
   double _calculateTotalOfCurrentWeek() {
     int i = 0;
     double total = 0.0;
-    print("${firstDayOfCurrentWeek().toUtc()}");
     while (i < _expenses.length &&
-        _expenses[i].createdAt.compareTo(firstDayOfCurrentWeek()) > 0) {
-      print("EXPENSE $i - ${_expenses[i].amount}");
+        _expenses[i].createdAt.compareTo(firstDayOfCurrentWeek()) >= 0) {
       total += _expenses[i++].amount;
     }
-    _expenses.forEach((e) => print("${e.amount} - ${e.createdAt.toUtc()}"));
     return total;
   }
 
