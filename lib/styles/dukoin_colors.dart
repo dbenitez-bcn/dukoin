@@ -6,12 +6,14 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
   final Color relaxingTurquoise;
   final Color borderColor;
   final Color navBarBackground;
+  final Color bodyColor;
 
   const DukoinColors({
     required this.emeraldGreen,
     required this.relaxingTurquoise,
     required this.borderColor,
     required this.navBarBackground,
+    required this.bodyColor,
   });
 
   static const light = DukoinColors(
@@ -19,6 +21,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     relaxingTurquoise: Color(0xFF06B6D4),
     borderColor: Color.fromRGBO(0, 0, 0, 0.1),
     navBarBackground: Colors.white,
+    bodyColor: Color(0xFF616161)
   );
 
   static const dark = DukoinColors(
@@ -26,6 +29,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     relaxingTurquoise: Color(0xFF22D3EE),
     borderColor: Color(0xFF334155),
     navBarBackground: Color(0xCD1E293B),
+    bodyColor: Colors.white70
   );
 
   @override
@@ -34,12 +38,14 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     Color? relaxingTurquoise,
     Color? borderColor,
     Color? navBarBackground,
+    Color? bodyColor,
   }) {
     return DukoinColors(
       emeraldGreen: emeraldGreen ?? this.emeraldGreen,
       relaxingTurquoise: relaxingTurquoise ?? this.relaxingTurquoise,
       borderColor: borderColor ?? this.borderColor,
       navBarBackground: navBarBackground ?? this.navBarBackground,
+      bodyColor: bodyColor ?? this.bodyColor,
     );
   }
 
@@ -57,6 +63,11 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
       navBarBackground: Color.lerp(
         navBarBackground,
         other.navBarBackground,
+        t,
+      )!,
+      bodyColor: Color.lerp(
+        bodyColor,
+        other.bodyColor,
         t,
       )!,
     );
