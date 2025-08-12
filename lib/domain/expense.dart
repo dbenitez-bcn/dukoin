@@ -21,8 +21,8 @@ class Expense implements Comparable<Expense>{
     required this.amount,
     required this.category,
     required this.description,
-    required this.createdAt,
-  });
+    required DateTime createdAt,
+  }) : createdAt = DateTime(createdAt.year, createdAt.month, createdAt.day);
 
   // Convert to Map for DB
   Map<String, dynamic> toMap() {
