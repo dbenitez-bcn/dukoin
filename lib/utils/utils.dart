@@ -4,6 +4,7 @@ import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
+// TODO: Split in different files (Effort: L | Value: M)
 String formatCurrency(Currency currency, double amount, String locale) {
   final format = NumberFormat.currency(
     locale: locale,
@@ -52,7 +53,6 @@ String getIconFromCategory(ExpenseCategory category) {
   }
 }
 
-
 String getCategoryTitle(BuildContext context, ExpenseCategory category) {
   switch (category) {
     case ExpenseCategory.food:
@@ -72,4 +72,14 @@ String getCategoryTitle(BuildContext context, ExpenseCategory category) {
     default:
       return AppLocalizations.of(context)!.categoryOthers;
   }
+}
+
+DateTime firstDayOfCurrentWeek() {
+  final now = DateTime.now();
+  final weekday = now.weekday;
+  return DateTime(
+    now.year,
+    now.month,
+    now.day,
+  ).subtract(Duration(days: weekday - 1));
 }
