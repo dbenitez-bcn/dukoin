@@ -55,6 +55,7 @@ class ExpensesBloc {
     _timePeriodController.add(_currentTimePeriod);
     _updateVM();
     _updateStreams();
+    await Future.delayed(Duration(seconds: 2));
   }
 
   double _calculateTotalOfCurrentWeek() {

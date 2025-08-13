@@ -1,4 +1,5 @@
 import 'package:dukoin/presentation/state/expense_provider.dart';
+import 'package:dukoin/presentation/widgets/dukoin_shimmer.dart';
 import 'package:dukoin/presentation/widgets/last_expenses.dart';
 import 'package:dukoin/presentation/widgets/time_period_selector.dart';
 import 'package:dukoin/presentation/widgets/total_amount_card.dart';
@@ -8,7 +9,34 @@ class HomeContent extends StatelessWidget {
   const HomeContent({super.key});
 
   Widget _buildLoading(BuildContext context) {
-    return CircularProgressIndicator();
+    return Column(
+      children: [
+        SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          child: DukoinShimmer(height: 50),
+        ),
+        SizedBox(height: 8),
+        DukoinShimmer(height: 124),
+        SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(flex: 3, child: DukoinShimmer()),
+            Flexible(flex: 2, child: Container()),
+            Flexible(flex: 1, child: DukoinShimmer()),
+          ],
+        ),
+        SizedBox(height: 16),
+        DukoinShimmer(height: 60),
+        SizedBox(height: 16),
+        DukoinShimmer(height: 60),
+        SizedBox(height: 16),
+        DukoinShimmer(height: 60),
+        SizedBox(height: 16),
+        DukoinShimmer(height: 60),
+      ],
+    );
   }
 
   Widget _buildContent(BuildContext context) {
