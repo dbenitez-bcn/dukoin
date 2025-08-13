@@ -23,7 +23,7 @@ class TimePeriodSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var expensesBloc = ExpensesProvider.of(context);
-    return StreamBuilder(
+    return StreamBuilder<TimePeriod>(
       stream: expensesBloc.timePeriodStream,
       initialData: expensesBloc.currentTimePeriod,
       builder: (context, asyncSnapshot) {
