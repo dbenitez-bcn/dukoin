@@ -37,9 +37,8 @@ class ExpensesBloc {
 
   ExpensesBloc(this._repo, this._prefs);
 
-  int get total => _expenses.length;
-
   TimePeriod get currentTimePeriod => _currentTimePeriod;
+  List<Expense> get expenses => _expenses;
 
   Stream<double> get totalAmountStream => _totalAmountController.stream;
 
