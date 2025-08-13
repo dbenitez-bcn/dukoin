@@ -55,6 +55,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeAllTotalTitle => 'All Time Total';
 
   @override
+  String homeTransactionsCounterTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count transactions',
+      one: '$count transaction',
+      zero: 'No transactions',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get homeLastExpensesTitle => 'Last Expenses';
 
   @override

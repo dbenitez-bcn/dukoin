@@ -176,6 +176,12 @@ abstract class AppLocalizations {
   /// **'All Time Total'**
   String get homeAllTotalTitle;
 
+  /// Title showing number of transactions on Home screen (zero, singular, plural)
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0 {No transactions} one {{count} transaction} other {{count} transactions}}'**
+  String homeTransactionsCounterTitle(int count);
+
   /// Title displayed on last expenses
   ///
   /// In en, this message translates to:

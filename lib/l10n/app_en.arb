@@ -58,6 +58,16 @@
   "@homeAllTotalTitle": {
     "description": "Title displayed on all's total amount"
   },
+  "homeTransactionsCounterTitle": "{count, plural, =0 {No transactions} one {{count} transaction} other {{count} transactions}}",
+  "@homeTransactionsCounterTitle": {
+    "description": "Title showing number of transactions on Home screen (zero, singular, plural)",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "0"
+      }
+    }
+  },
   "homeLastExpensesTitle": "Last Expenses",
   "@homeLastExpensesTitle": {
     "description": "Title displayed on last expenses"
