@@ -7,10 +7,25 @@ import 'package:dukoin/domain/time_period.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+class TotalAmountCardVM {
+  final double amount;
+  final int totalTransactions;
+
+  TotalAmountCardVM(this.amount, this.totalTransactions);
+}
+
 class ExpensesBloc {
   static final String _key = 'time_period';
   final ExpenseRepository _repo;
   final SharedPreferences _prefs;
+
+  final _vmController = StreamController<TotalAmountCardVM>();
+
+  Stream<TotalAmountCardVM> get vmStream => _vmController.stream;
+
+  TotalAmountCardVM get vm => _vm;
+  TotalAmountCardVM _vm = TotalAmountCardVM(0.0, 0);
+
   final _totalAmountController = StreamController<double>();
   final _expensesController = StreamController<List<Expense>>();
   final _timePeriodController = StreamController<TimePeriod>();
@@ -19,8 +34,6 @@ class ExpensesBloc {
 
   List<Expense> _expenses = [];
   TimePeriod _currentTimePeriod = TimePeriod.week;
-  double _amount = 0.0;
-  int _totalTransaction = 0;
 
   ExpensesBloc(this._repo, this._prefs);
 
@@ -36,15 +49,11 @@ class ExpensesBloc {
 
   Stream<StateStatus> get statusStream => _statusController.stream;
 
-  double get amount => _amount;
-
-  int get totalTransactions => _totalTransaction;
-
   Future<void> load() async {
     _expenses = await _repo.getAll();
     _currentTimePeriod = TimePeriod.values[_prefs.getInt(_key) ?? 1];
     _timePeriodController.add(_currentTimePeriod);
-    _updateData();
+    _updateVM();
     _updateStreams();
   }
 
@@ -58,35 +67,36 @@ class ExpensesBloc {
     return total;
   }
 
-  void _updateData() {
+  void _updateVM() {
     switch (_currentTimePeriod) {
       case TimePeriod.day:
-        _calculateTotalFromDate(currentDayDate());
+        _calculateVMFromDate(currentDayDate());
       case TimePeriod.week:
-        _calculateTotalFromDate(firstDayOfCurrentWeek());
+        _calculateVMFromDate(firstDayOfCurrentWeek());
       case TimePeriod.month:
-        _calculateTotalFromDate(firstDayOfCurrentMonth());
+        _calculateVMFromDate(firstDayOfCurrentMonth());
       case TimePeriod.all:
-        _calculateTotalFromDate(DateTime(0));
+        _calculateVMFromDate(DateTime(0));
     }
   }
 
-  void _calculateTotalFromDate(DateTime date) {
+  void _calculateVMFromDate(DateTime date) {
     int i = 0;
     double total = 0.0;
     while (i < _expenses.length &&
         _expenses[i].createdAt.compareTo(date) >= 0) {
       total += _expenses[i++].amount;
     }
-    _totalTransaction = i;
-    _amount = total;
+    _vm = TotalAmountCardVM(total, i);
+    _vmController.add(_vm);
   }
 
   void _updateStreams() {
-    _totalAmountController.sink.add(_calculateTotalOfCurrentWeek());
-    _expensesController.sink.add(
+    _totalAmountController.add(_calculateTotalOfCurrentWeek());
+    _expensesController.add(
       _expenses.length <= 4 ? List.from(_expenses) : _expenses.sublist(0, 4),
     );
+    _updateVM();
   }
 
   Future<void> addExpense(Expense expense) async {
@@ -95,7 +105,6 @@ class ExpensesBloc {
     _expenses.add(expense);
     _expenses.sort();
     _updateStreams();
-    _updateData();
   }
 
   Future<void> clearAllData() async {
@@ -115,8 +124,8 @@ class ExpensesBloc {
     await _prefs.setInt(_key, newValue.index);
     _currentTimePeriod = newValue;
     _timePeriodController.add(newValue);
-    _updateData();
-    //await Future.delayed(Duration(milliseconds: 500));
+    _updateVM();
+    //await Future.delayed(Duration(milliseconds: 2000));
     _statusController.add(StateStatus.done);
   }
 }

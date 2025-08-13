@@ -15,7 +15,6 @@ class HomeContent extends StatelessWidget {
     return Column(
       children: [
         TimePeriodSelector(),
-        TotalAmountCard2(),
         TotalAmountCard(),
         SizedBox(height: 16.0),
         LastExpenses(),
