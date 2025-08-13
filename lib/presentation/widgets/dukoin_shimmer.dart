@@ -5,7 +5,7 @@ class DukoinShimmer extends StatefulWidget {
   const DukoinShimmer({
     super.key,
     this.width = double.infinity,
-    this.height = 16.0,
+    this.height = 24.0,
   });
 
   final double width;
