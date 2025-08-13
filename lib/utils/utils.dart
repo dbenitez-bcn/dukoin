@@ -83,3 +83,14 @@ DateTime firstDayOfCurrentWeek() {
     now.day,
   ).subtract(Duration(days: weekday - 1));
 }
+
+DateTime currentDayDate() {
+  final now = DateTime.now();
+  return DateTime(now.year, now.month, now.day);
+}
+
+DateTime firstDayOfCurrentMonth() {
+  final now = DateTime.now();
+  return DateTime(now.year, now.month, 1);
+}
+
