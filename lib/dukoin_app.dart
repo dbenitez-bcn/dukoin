@@ -15,6 +15,7 @@ class DukoinApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpensesProvider(
+      prefs: prefs,
       child: NavigationStateProvider(
         child: CurrencyProvider(
           prefs: prefs,

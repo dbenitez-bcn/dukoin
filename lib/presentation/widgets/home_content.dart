@@ -25,7 +25,7 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ExpensesProvider.of(context).loadExpenses(),
+      future: ExpensesProvider.of(context).load(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return _buildContent(context);

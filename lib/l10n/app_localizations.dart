@@ -158,6 +158,24 @@ abstract class AppLocalizations {
   /// **'Today\'s Total'**
   String get homeTodayTotalTitle;
 
+  /// Title displayed on week's total amount
+  ///
+  /// In en, this message translates to:
+  /// **'This Week\'s Total'**
+  String get homeWeekTotalTitle;
+
+  /// Title displayed on month's total amount
+  ///
+  /// In en, this message translates to:
+  /// **'This Month\'s Total'**
+  String get homeMonthTotalTitle;
+
+  /// Title displayed on all's total amount
+  ///
+  /// In en, this message translates to:
+  /// **'All Time Total'**
+  String get homeAllTotalTitle;
+
   /// Title displayed on weekly total amount
   ///
   /// In en, this message translates to:
