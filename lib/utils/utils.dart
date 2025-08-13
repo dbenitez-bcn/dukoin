@@ -35,7 +35,7 @@ String _getCurrencySymbol(Currency currency) {
 String getIconFromCategory(ExpenseCategory category) {
   switch (category) {
     case ExpenseCategory.food:
-      return '🍽️';
+      return '🍔️';
     case ExpenseCategory.transport:
       return '🚗';
     case ExpenseCategory.shopping:
