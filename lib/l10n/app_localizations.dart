@@ -176,12 +176,6 @@ abstract class AppLocalizations {
   /// **'All Time Total'**
   String get homeAllTotalTitle;
 
-  /// Title displayed on weekly total amount
-  ///
-  /// In en, this message translates to:
-  /// **'Weekly Total'**
-  String get homeWeeklyTotalTitle;
-
   /// Title displayed on last expenses
   ///
   /// In en, this message translates to:

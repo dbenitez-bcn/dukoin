@@ -55,9 +55,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeAllTotalTitle => 'All Time Total';
 
   @override
-  String get homeWeeklyTotalTitle => 'Weekly Total';
-
-  @override
   String get homeLastExpensesTitle => 'Last Expenses';
 
   @override

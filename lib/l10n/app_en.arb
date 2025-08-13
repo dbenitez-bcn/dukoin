@@ -58,10 +58,6 @@
   "@homeAllTotalTitle": {
     "description": "Title displayed on all's total amount"
   },
-  "homeWeeklyTotalTitle": "Weekly Total",
-  "@homeWeeklyTotalTitle": {
-    "description": "Title displayed on weekly total amount"
-  },
   "homeLastExpensesTitle": "Last Expenses",
   "@homeLastExpensesTitle": {
     "description": "Title displayed on last expenses"
