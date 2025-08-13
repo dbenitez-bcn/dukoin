@@ -128,6 +128,30 @@ abstract class AppLocalizations {
   /// **'{date}'**
   String homeSubtitle(DateTime date);
 
+  /// Title for Time Period day
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get homeTimePeriodDay;
+
+  /// Title for Time Period week
+  ///
+  /// In en, this message translates to:
+  /// **'Week'**
+  String get homeTimePeriodWeek;
+
+  /// Title for Time Period month
+  ///
+  /// In en, this message translates to:
+  /// **'Month'**
+  String get homeTimePeriodMonth;
+
+  /// Title for Time Period all
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get homeTimePeriodAll;
+
   /// Title displayed on today's total amount
   ///
   /// In en, this message translates to:

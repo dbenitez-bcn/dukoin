@@ -31,6 +31,18 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get homeTimePeriodDay => 'Day';
+
+  @override
+  String get homeTimePeriodWeek => 'Week';
+
+  @override
+  String get homeTimePeriodMonth => 'Month';
+
+  @override
+  String get homeTimePeriodAll => 'All';
+
+  @override
   String get homeTodayTotalTitle => 'Today\'s Total';
 
   @override

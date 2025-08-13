@@ -26,9 +26,37 @@
       }
     }
   },
+  "homeTimePeriodDay": "Day",
+  "@homeTimePeriodDay": {
+    "description": "Title for Time Period day"
+  },
+  "homeTimePeriodWeek": "Week",
+  "@homeTimePeriodWeek": {
+    "description": "Title for Time Period week"
+  },
+  "homeTimePeriodMonth": "Month",
+  "@homeTimePeriodMonth": {
+    "description": "Title for Time Period month"
+  },
+  "homeTimePeriodAll": "All",
+  "@homeTimePeriodAll": {
+    "description": "Title for Time Period all"
+  },
   "homeTodayTotalTitle": "Today's Total",
   "@homeTodayTotalTitle": {
     "description": "Title displayed on today's total amount"
+  },
+  "homeWeekTotalTitle": "This Week's Total",
+  "@homeWeekTotalTitle": {
+    "description": "Title displayed on week's total amount"
+  },
+  "homeMonthTotalTitle": "This Month's Total",
+  "@homeMonthTotalTitle": {
+    "description": "Title displayed on month's total amount"
+  },
+  "homeAllTotalTitle": "All Time Total",
+  "@homeAllTotalTitle": {
+    "description": "Title displayed on all's total amount"
   },
   "homeWeeklyTotalTitle": "Weekly Total",
   "@homeWeeklyTotalTitle": {
