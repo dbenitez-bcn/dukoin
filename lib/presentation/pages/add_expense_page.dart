@@ -16,11 +16,16 @@ class AddExpensePage extends StatefulWidget {
 class _AddExpensePageState extends State<AddExpensePage> {
   final TextEditingController amountController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  final _amountFocus = FocusNode();
+  final _descriptionFocus = FocusNode();
+  final _categoryFocus = FocusNode();
+  final _dateFocus = FocusNode();
   ExpenseCategory? selectedCategory;
   DateTime selectedDate = DateTime.now();
 
   void setCategory(ExpenseCategory? category) {
     selectedCategory = category;
+    //_thirdFocus.unfocus(); // Close keyboard
   }
 
   void setDate(DateTime date) {
@@ -40,6 +45,9 @@ class _AddExpensePageState extends State<AddExpensePage> {
   void dispose() {
     amountController.dispose();
     descriptionController.dispose();
+    _amountFocus.dispose();
+    _descriptionFocus.dispose();
+    _categoryFocus.dispose();
     super.dispose();
   }
 
@@ -82,8 +90,15 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     keyboardType: TextInputType.numberWithOptions(
                       decimal: true,
                     ),
+                    textInputAction: TextInputAction.next,
                     autofocus: true,
+                    focusNode: _amountFocus,
                     controller: amountController,
+                    onSubmitted: (_) {
+                      FocusScope.of(
+                        context,
+                      ).requestFocus(_descriptionFocus); // Go to next
+                    },
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24),
                     decoration: InputDecoration(
@@ -105,12 +120,18 @@ class _AddExpensePageState extends State<AddExpensePage> {
                         context,
                       )!.addExpenseDescriptionHint,
                     ),
+                    textInputAction: TextInputAction.done,
+                    focusNode: _descriptionFocus,
+                    onSubmitted: (_) {
+                      FocusScope.of(context).unfocus(); // Close keyboard
+                    },
                   ),
                 ),
                 FormCardItem(
                   title: AppLocalizations.of(context)!.addExpenseCategoryTitle,
                   child: DropdownButtonFormField<ExpenseCategory>(
                     value: selectedCategory,
+                    focusNode: _categoryFocus,
                     items: ExpenseCategory.values
                         .map(
                           (c) => DropdownMenuItem(
@@ -134,6 +155,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                   title: AppLocalizations.of(context)!.addExpenseDateTitle,
                   child: GestureDetector(
                     onTap: () async {
+                      FocusScope.of(context).requestFocus(_dateFocus);
                       final picked = await showDatePicker(
                         context: context,
                         initialDate: selectedDate,
@@ -144,9 +166,20 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     },
                     child: Card.outlined(
                       color: Theme.of(context).colorScheme.secondary,
-                      shape: Theme.of(
-                        context,
-                      ).inputDecorationTheme.enabledBorder,
+                      shape: _dateFocus.hasFocus
+                          ? OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.primary,
+                                width: 2.0,
+                              ), // border
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                            )
+                          : Theme.of(
+                              context,
+                            ).inputDecorationTheme.enabledBorder,
+
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Row(
@@ -176,6 +209,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     AppLocalizations.of(context)!.addExpenseSubmitButtonTitle,
                   ),
                 ),
+                SizedBox(height: 8.0),
               ],
             ),
           ),
