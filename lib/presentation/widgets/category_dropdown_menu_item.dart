@@ -1,5 +1,4 @@
 import 'package:dukoin/domain/expense.dart';
-import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:flutter/material.dart';
 
