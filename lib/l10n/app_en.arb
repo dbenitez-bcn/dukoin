@@ -234,6 +234,34 @@
   "@categoryOthers": {
     "description": "Category for miscellaneous or uncategorized expenses"
   },
+  "categoryTravel": "Travel",
+  "@categoryTravel": {
+    "description": "Category for travel expenses"
+  },
+  "categoryInvestments": "Investments",
+  "@categoryInvestments": {
+    "description": "Category for investments expenses"
+  },
+  "categoryInsurance": "Insurance",
+  "@categoryInsurance": {
+    "description": "Category for insurance expenses"
+  },
+  "categorySubscriptions": "Subscriptions",
+  "@categorySubscriptions": {
+    "description": "Category for subscriptions expenses"
+  },
+  "categoryPets": "Pets",
+  "@categoryPets": {
+    "description": "Category for pets expenses"
+  },
+  "categoryPersonalCare": "Personal care",
+  "@categoryPersonalCare": {
+    "description": "Category for personal care expenses"
+  },
+  "categoryHouse": "House",
+  "@categoryHouse": {
+    "description": "Category for house expenses"
+  },
   "currencyUSD": "US Dollar",
   "@currencyUSD": {
     "description": "US Dollar currency"

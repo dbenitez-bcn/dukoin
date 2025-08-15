@@ -392,6 +392,48 @@ abstract class AppLocalizations {
   /// **'Others'**
   String get categoryOthers;
 
+  /// Category for travel expenses
+  ///
+  /// In en, this message translates to:
+  /// **'Travel'**
+  String get categoryTravel;
+
+  /// Category for investments expenses
+  ///
+  /// In en, this message translates to:
+  /// **'Investments'**
+  String get categoryInvestments;
+
+  /// Category for insurance expenses
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance'**
+  String get categoryInsurance;
+
+  /// Category for subscriptions expenses
+  ///
+  /// In en, this message translates to:
+  /// **'Subscriptions'**
+  String get categorySubscriptions;
+
+  /// Category for pets expenses
+  ///
+  /// In en, this message translates to:
+  /// **'Pets'**
+  String get categoryPets;
+
+  /// Category for personal care expenses
+  ///
+  /// In en, this message translates to:
+  /// **'Personal care'**
+  String get categoryPersonalCare;
+
+  /// Category for house expenses
+  ///
+  /// In en, this message translates to:
+  /// **'House'**
+  String get categoryHouse;
+
   /// US Dollar currency
   ///
   /// In en, this message translates to:

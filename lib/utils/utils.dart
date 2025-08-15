@@ -48,8 +48,22 @@ String getIconFromCategory(ExpenseCategory category) {
       return '🏥';
     case ExpenseCategory.education:
       return '📚';
-    default:
+    case ExpenseCategory.others:
       return '💰';
+    case ExpenseCategory.travel:
+      return '✈️';
+    case ExpenseCategory.investments:
+      return '📈';
+    case ExpenseCategory.insurance:
+      return '🛡️';
+    case ExpenseCategory.subscriptions:
+      return '💳';
+    case ExpenseCategory.pets:
+      return '🐾';
+    case ExpenseCategory.house:
+      return '🏠';
+    case ExpenseCategory.personalCare:
+      return '💇';
   }
 }
 
@@ -69,8 +83,22 @@ String getCategoryTitle(BuildContext context, ExpenseCategory category) {
       return AppLocalizations.of(context)!.categoryHealth;
     case ExpenseCategory.education:
       return AppLocalizations.of(context)!.categoryEducation;
-    default:
+    case ExpenseCategory.others:
       return AppLocalizations.of(context)!.categoryOthers;
+    case ExpenseCategory.travel:
+      return AppLocalizations.of(context)!.categoryTravel;
+    case ExpenseCategory.investments:
+      return AppLocalizations.of(context)!.categoryInvestments;
+    case ExpenseCategory.insurance:
+      return AppLocalizations.of(context)!.categoryInsurance;
+    case ExpenseCategory.subscriptions:
+      return AppLocalizations.of(context)!.categorySubscriptions;
+    case ExpenseCategory.pets:
+      return AppLocalizations.of(context)!.categoryPets;
+    case ExpenseCategory.personalCare:
+      return AppLocalizations.of(context)!.categoryPersonalCare;
+    case ExpenseCategory.house:
+      return AppLocalizations.of(context)!.categoryHouse;
   }
 }
 

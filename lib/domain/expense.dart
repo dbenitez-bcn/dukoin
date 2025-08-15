@@ -1,15 +1,22 @@
 enum ExpenseCategory {
-  food,
-  transport,
-  shopping,
-  entertainment,
-  bills,
-  health,
-  education,
   others,
+  travel,
+  investments,
+  insurance,
+  subscriptions,
+  pets,
+  personalCare,
+  house,
+  education,
+  health,
+  bills,
+  entertainment,
+  shopping,
+  transport,
+  food,
 }
 
-class Expense implements Comparable<Expense>{
+class Expense implements Comparable<Expense> {
   int? id;
   double amount;
   ExpenseCategory category;
