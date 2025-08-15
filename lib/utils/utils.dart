@@ -17,17 +17,17 @@ String formatCurrency(Currency currency, double amount, String locale) {
 
 String _getCurrencySymbol(Currency currency) {
   switch (currency) {
-    case Currency.USD:
+    case Currency.usd:
       return '\$';
-    case Currency.EUR:
+    case Currency.eur:
       return '€';
-    case Currency.GBP:
+    case Currency.gbp:
       return '£';
-    case Currency.JPY:
+    case Currency.jpy:
       return '¥';
-    case Currency.CAD:
+    case Currency.cad:
       return 'C\$';
-    case Currency.AUD:
+    case Currency.aud:
       return 'A\$';
   }
 }

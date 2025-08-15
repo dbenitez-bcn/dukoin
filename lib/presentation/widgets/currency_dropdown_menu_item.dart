@@ -9,17 +9,17 @@ class CurrencyDropdownMenuItem extends StatelessWidget {
 
   String getText(BuildContext context) {
     switch (currency) {
-      case Currency.USD:
+      case Currency.usd:
         return "\$ ${AppLocalizations.of(context)!.currencyUSD} (${currency.name})";
-      case Currency.EUR:
+      case Currency.eur:
         return "€ ${AppLocalizations.of(context)!.currencyEUR} (${currency.name})";
-      case Currency.GBP:
+      case Currency.gbp:
         return "£ ${AppLocalizations.of(context)!.currencyGBP} (${currency.name})";
-      case Currency.JPY:
+      case Currency.jpy:
         return "¥ ${AppLocalizations.of(context)!.currencyJPY} (${currency.name})";
-      case Currency.CAD:
+      case Currency.cad:
         return "C\$ ${AppLocalizations.of(context)!.currencyCAD} (${currency.name})";
-      case Currency.AUD:
+      case Currency.aud:
         return "A\$ ${AppLocalizations.of(context)!.currencyAUD} (${currency.name})";
     }
   }

@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CurrencyNotifier extends ChangeNotifier {
   static const _key = 'currency';
   final SharedPreferences _prefs;
-  Currency _currency = Currency.EUR;
+  Currency _currency = Currency.eur;
 
   CurrencyNotifier({required SharedPreferences prefs}) : _prefs = prefs {
     _loadCurrency();

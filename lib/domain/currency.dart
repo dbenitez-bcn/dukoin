@@ -1,1 +1,1 @@
-enum Currency { USD, EUR, GBP, JPY, CAD, AUD }
+enum Currency { usd, eur, gbp, jpy, cad, aud }

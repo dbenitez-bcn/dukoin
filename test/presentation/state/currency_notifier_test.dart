@@ -11,10 +11,10 @@ void main() {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
 
-        sut.changeCurrency(Currency.USD);
+        sut.changeCurrency(Currency.usd);
 
-        expect(sut.currency, Currency.USD);
-        expect(prefs.getInt('currency'), Currency.USD.index);
+        expect(sut.currency, Currency.usd);
+        expect(prefs.getInt('currency'), Currency.usd.index);
       });
 
       test("It should update to JPY and persist it", () async {
@@ -22,10 +22,10 @@ void main() {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
 
-        sut.changeCurrency(Currency.JPY);
+        sut.changeCurrency(Currency.jpy);
 
-        expect(sut.currency, Currency.JPY);
-        expect(prefs.getInt('currency'), Currency.JPY.index);
+        expect(sut.currency, Currency.jpy);
+        expect(prefs.getInt('currency'), Currency.jpy.index);
       });
 
       test("It should not update the currency when value is null", () async {
@@ -35,7 +35,7 @@ void main() {
 
         sut.changeCurrency(null);
 
-        expect(sut.currency, Currency.EUR);
+        expect(sut.currency, Currency.eur);
         expect(prefs.getInt('currency'), null);
       });
     });
@@ -48,18 +48,18 @@ void main() {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
 
-          expect(sut.currency, Currency.EUR);
+          expect(sut.currency, Currency.eur);
         },
       );
 
       test("It should load stored Currency.GBP", () async {
         SharedPreferences.setMockInitialValues({
-          'currency': Currency.GBP.index,
+          'currency': Currency.gbp.index,
         });
         SharedPreferences prefs = await SharedPreferences.getInstance();
         CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
 
-        expect(sut.currency, Currency.GBP);
+        expect(sut.currency, Currency.gbp);
       });
 
       test("It should ignore invalid stored value and keep default", () async {
@@ -67,7 +67,7 @@ void main() {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         CurrencyNotifier sut = CurrencyNotifier(prefs: prefs);
 
-        expect(sut.currency, Currency.EUR); // default fallback
+        expect(sut.currency, Currency.eur); // default fallback
       });
     });
   });

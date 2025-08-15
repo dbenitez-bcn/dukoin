@@ -8,7 +8,7 @@ import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
 class DefaultCurrencySelector extends StatelessWidget {
-  Currency selectedCurrency = Currency.EUR;
+  Currency selectedCurrency = Currency.eur;
 
   DefaultCurrencySelector({super.key});
 
