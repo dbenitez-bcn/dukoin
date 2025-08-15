@@ -132,7 +132,9 @@ class _AddExpensePageState extends State<AddExpensePage> {
                   child: DropdownButtonFormField<ExpenseCategory>(
                     value: selectedCategory,
                     focusNode: _categoryFocus,
-                    items: ExpenseCategory.values
+                    menuMaxHeight: 300.0,
+                    icon: Icon(Icons.add),
+                    items: ExpenseCategory.values.reversed
                         .map(
                           (c) => DropdownMenuItem(
                             value: c,
