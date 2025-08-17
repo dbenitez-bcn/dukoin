@@ -39,6 +39,7 @@ class ExpensesBloc {
 
   TimePeriod get currentTimePeriod => _currentTimePeriod;
   List<Expense> get expenses => _expenses;
+  List<Expense> get lastExpenses => _expenses.length > 4 ? _expenses.sublist(0, 4) : _expenses;
 
   Stream<double> get totalAmountStream => _totalAmountController.stream;
 
