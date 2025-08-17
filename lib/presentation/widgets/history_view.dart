@@ -58,9 +58,7 @@ class _ExpenseHistoryListViewState extends State<ExpenseHistoryListView> {
         SliverAppBar(
           title: Text(AppLocalizations.of(context)!.historyTitle),
           pinned: true, // keeps the app bar visible
-          flexibleSpace: FlexibleSpaceBar(
-            //background: Container(color: Theme.of(context).primaryColor),
-          ),
+          flexibleSpace: FlexibleSpaceBar(),
         ),
       ],
       body: RefreshIndicator(
@@ -68,6 +66,7 @@ class _ExpenseHistoryListViewState extends State<ExpenseHistoryListView> {
         child: CustomScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           slivers: [
+            SliverStickyHeader(), // makes refresh indicator better looking
             ...grouped.entries.map((entry) {
               final date = entry.key;
               final expenses = entry.value;
