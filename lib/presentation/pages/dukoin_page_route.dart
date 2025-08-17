@@ -1,17 +1,24 @@
 import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:flutter/material.dart';
 
-class DukoinPageRoute extends StatelessWidget {
+class DukoinPageRoute extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
   final int index;
-  final Widget child;
+  final WidgetBuilder builder;
 
   const DukoinPageRoute({
     super.key,
     required this.navigatorKey,
     required this.index,
-    required this.child,
+    required this.builder,
   });
+
+  @override
+  State<DukoinPageRoute> createState() => _DukoinPageRouteState();
+}
+
+class _DukoinPageRouteState extends State<DukoinPageRoute> {
+  Widget? _cachedChild; // Para no reconstruir siempre
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +26,21 @@ class DukoinPageRoute extends StatelessWidget {
       stream: NavigationStateProvider.of(context).currentPageStream,
       initialData: NavigationStateProvider.of(context).currentPageIndex,
       builder: (context, asyncSnapshot) {
+        final isActive = asyncSnapshot.data! == widget.index;
+
+        if (isActive && _cachedChild == null) {
+          _cachedChild = widget.builder(context);
+        }
+
         return Offstage(
-          offstage: asyncSnapshot.data! != index,
-          child: Navigator(
-            key: navigatorKey,
-            onGenerateRoute: (_) => MaterialPageRoute(builder: (_) => child),
-          ),
+          offstage: !isActive,
+          child: _cachedChild == null
+              ? const SizedBox.shrink()
+              : Navigator(
+                  key: widget.navigatorKey,
+                  onGenerateRoute: (_) =>
+                      MaterialPageRoute(builder: (_) => _cachedChild!),
+                ),
         );
       },
     );

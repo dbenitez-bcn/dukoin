@@ -40,7 +40,7 @@ class DukoinMainScreen extends StatelessWidget {
             (i) => DukoinPageRoute(
               navigatorKey: _navigatorKeys[i],
               index: i,
-              child: _pages[i],
+              builder: (_) => _pages[i],
             ),
           ),
         ),
