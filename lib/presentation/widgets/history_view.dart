@@ -46,7 +46,7 @@ class ExpenseHistoryListView extends StatelessWidget {
           ...grouped.entries.map((entry) {
             final date = entry.key;
             final expenses = entry.value;
-      
+
             return SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               sliver: SliverStickyHeader(
@@ -68,6 +68,9 @@ class ExpenseHistoryListView extends StatelessWidget {
               ),
             );
           }),
+          SliverToBoxAdapter(
+            child: SizedBox(height: 32), // adjust height as needed
+          ),
         ],
       ),
     );
