@@ -25,7 +25,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
 
   void setCategory(ExpenseCategory? category) {
     selectedCategory = category;
-    //_thirdFocus.unfocus(); // Close keyboard
   }
 
   void setDate(DateTime date) {
@@ -48,7 +47,18 @@ class _AddExpensePageState extends State<AddExpensePage> {
     _amountFocus.dispose();
     _descriptionFocus.dispose();
     _categoryFocus.dispose();
+    _dateFocus.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    _dateFocus.addListener(() {
+      if (!_dateFocus.hasFocus) {
+        setState(() {});
+      }
+    });
+    super.initState();
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -133,7 +143,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     value: selectedCategory,
                     focusNode: _categoryFocus,
                     menuMaxHeight: 300.0,
-                    icon: Icon(Icons.add),
                     items: ExpenseCategory.values.reversed
                         .map(
                           (c) => DropdownMenuItem(
@@ -181,7 +190,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
                           : Theme.of(
                               context,
                             ).inputDecorationTheme.enabledBorder,
-
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Row(
