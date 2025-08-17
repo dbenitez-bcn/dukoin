@@ -21,9 +21,9 @@ class ExpenseHistoryListView extends StatelessWidget {
     } else if (target == yesterday) {
       return appLocales.yesterday;
     } else if (target.year == now.year) {
-      return DateFormat('d MMMM', appLocales.localeName).format(target);
+      return DateFormat('MMMMd', appLocales.localeName).format(target);
     } else {
-      return DateFormat('d MMMM y', appLocales.localeName).format(target);
+      return DateFormat('yMMMMd', appLocales.localeName).format(target);
     }
   }
 
