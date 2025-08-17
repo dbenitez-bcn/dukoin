@@ -53,14 +53,8 @@ class _ExpenseHistoryListViewState extends State<ExpenseHistoryListView> {
       grouped.putIfAbsent(day, () => []).add(e);
     }
 
-    return NestedScrollView(
-      headerSliverBuilder: (context, innerBoxIsScrolled) => [
-        SliverAppBar(
-          title: Text(AppLocalizations.of(context)!.historyTitle),
-          pinned: true, // keeps the app bar visible
-          flexibleSpace: FlexibleSpaceBar(),
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.historyTitle),),
       body: RefreshIndicator(
         onRefresh: () => _refresh(ExpensesProvider.of(context)),
         child: CustomScrollView(
