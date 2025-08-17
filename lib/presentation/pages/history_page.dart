@@ -1,3 +1,5 @@
+import 'package:dukoin/presentation/state/expense_provider.dart';
+import 'package:dukoin/presentation/widgets/history_view.dart';
 import 'package:flutter/material.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -5,6 +7,10 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text("History")));
+    return Scaffold(
+      body: ExpenseHistoryListView(
+        expenses: ExpensesProvider.of(context).expenses,
+      ),
+    );
   }
 }
