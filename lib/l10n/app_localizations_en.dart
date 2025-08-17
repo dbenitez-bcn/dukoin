@@ -18,7 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navTabHistory => 'History';
 
   @override
-  String get homeTitle => 'Weekly Expenses';
+  String get homeTitle => 'My Expenses';
 
   @override
   String homeSubtitle(DateTime date) {
@@ -78,6 +78,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeLastExpensesSeeAll => 'See all';
+
+  @override
+  String get historyTitle => 'History';
 
   @override
   String get settingsTitle => 'Settings';
@@ -244,4 +247,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get clearAllDataDialogCancelButton => 'Cancel';
+
+  @override
+  String get today => 'Today';
+
+  @override
+  String get yesterday => 'Yesterday';
 }

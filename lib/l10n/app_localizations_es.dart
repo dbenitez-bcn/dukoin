@@ -80,6 +80,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeLastExpensesSeeAll => 'See all';
 
   @override
+  String get historyTitle => 'History';
+
+  @override
   String get settingsTitle => 'Ajustes';
 
   @override
@@ -244,4 +247,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get clearAllDataDialogCancelButton => 'Cancel';
+
+  @override
+  String get today => 'Today';
+
+  @override
+  String get yesterday => 'Yesterday';
 }

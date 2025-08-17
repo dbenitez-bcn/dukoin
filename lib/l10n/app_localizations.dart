@@ -119,7 +119,7 @@ abstract class AppLocalizations {
   /// Title displayed on the Home screen
   ///
   /// In en, this message translates to:
-  /// **'Weekly Expenses'**
+  /// **'My Expenses'**
   String get homeTitle;
 
   /// Displays today's date
@@ -205,6 +205,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'See all'**
   String get homeLastExpensesSeeAll;
+
+  /// Title displayed on the history screen
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get historyTitle;
 
   /// Title displayed on the Settings screen
   ///
@@ -493,6 +499,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get clearAllDataDialogCancelButton;
+
+  /// String for today
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// String for yesterday
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterday;
 }
 
 class _AppLocalizationsDelegate

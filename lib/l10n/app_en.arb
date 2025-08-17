@@ -12,7 +12,7 @@
   "@navTabHistory": {
     "description": "Label for the History tab in the bottom navigation bar"
   },
-  "homeTitle": "Weekly Expenses",
+  "homeTitle": "My Expenses",
   "@homeTitle": {
     "description": "Title displayed on the Home screen"
   },
@@ -83,6 +83,10 @@
   "homeLastExpensesSeeAll": "See all",
   "@homeLastExpensesSeeAll": {
     "description": "Title displayed on see all button"
+  },
+  "historyTitle": "History",
+  "@historyTitle": {
+    "description": "Title displayed on the history screen"
   },
   "settingsTitle": "Settings",
   "@settingsTitle": {
@@ -301,5 +305,13 @@
   "clearAllDataDialogCancelButton": "Cancel",
   "@clearAllDataDialogCancelButton": {
     "description": "CancelButton title for clear all data dialog"
+  },
+  "today": "Today",
+  "@today": {
+    "description": "String for today"
+  },
+  "yesterday": "Yesterday",
+  "@yesterday": {
+    "description": "String for yesterday"
   }
 }
