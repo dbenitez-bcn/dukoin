@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../domain/expense.dart';
@@ -20,7 +21,11 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   @override
   Future<List<Expense>> getLast() async {
     final db = await _db;
-    final maps = await db.query('expenses', orderBy: 'createdAt DESC', limit: 4);
+    final maps = await db.query(
+      'expenses',
+      orderBy: 'createdAt DESC',
+      limit: 4,
+    );
     return maps.map((e) => Expense.fromMap(e)).toList();
   }
 
@@ -77,5 +82,24 @@ class SqfliteExpenseRepository implements ExpenseRepository {
       offset: offset,
     );
     return maps.map((e) => Expense.fromMap(e)).toList();
+  }
+
+  @override
+  Future<TotalAmountVM> getTotalAmount({required DateTime date}) async {
+    final db = await _db;
+    final result = await db.rawQuery(
+      '''
+    SELECT COUNT(*) as total, SUM(amount) as amount
+    FROM expenses
+    WHERE createdAt >= ?
+    ''',
+      [date.toIso8601String()],
+    );
+
+    final row = result.first;
+    final amount = row['amount'] != null ? (row['amount'] as num).toDouble() : 0.0;
+    final totalTransactions = row['total'] != null ? row['total'] as int : 0;
+
+    return TotalAmountVM(amount, totalTransactions);
   }
 }

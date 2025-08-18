@@ -1,4 +1,5 @@
 import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/infrastructure/database_provider.dart';
 import 'package:dukoin/infrastructure/sqflite_expense_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -121,27 +122,33 @@ void main() {
 
       // simulate transaction behavior
       when(mockDatabase.transaction(any)).thenAnswer((invocation) async {
-        final txnFn = invocation.positionalArguments[0] as Future<void> Function(Transaction txn);
+        final txnFn =
+            invocation.positionalArguments[0]
+                as Future<void> Function(Transaction txn);
         await txnFn(mockTransaction);
         return null;
       });
 
       when(mockTransaction.delete('expenses')).thenAnswer((_) async => 1);
-      when(mockTransaction.delete(
-        'sqlite_sequence',
-        where: 'name = ?',
-        whereArgs: ['expenses'],
-      )).thenAnswer((_) async => 1);
+      when(
+        mockTransaction.delete(
+          'sqlite_sequence',
+          where: 'name = ?',
+          whereArgs: ['expenses'],
+        ),
+      ).thenAnswer((_) async => 1);
 
       final sut = SqfliteExpenseRepository(mockDBProvider);
       await sut.deleteAll();
 
       verify(mockTransaction.delete('expenses')).called(1);
-      verify(mockTransaction.delete(
-        'sqlite_sequence',
-        where: 'name = ?',
-        whereArgs: ['expenses'],
-      )).called(1);
+      verify(
+        mockTransaction.delete(
+          'sqlite_sequence',
+          where: 'name = ?',
+          whereArgs: ['expenses'],
+        ),
+      ).called(1);
     });
     group("getPaginated", () {
       test("It should fetch paginated data with limit and offset", () async {
@@ -161,12 +168,14 @@ void main() {
           'createdAt': now.subtract(const Duration(days: 1)).toIso8601String(),
         };
 
-        when(mockDatabase.query(
-          'expenses',
-          orderBy: 'createdAt DESC',
-          limit: 2,
-          offset: 0,
-        )).thenAnswer((_) async => [mockMap1, mockMap2]);
+        when(
+          mockDatabase.query(
+            'expenses',
+            orderBy: 'createdAt DESC',
+            limit: 2,
+            offset: 0,
+          ),
+        ).thenAnswer((_) async => [mockMap1, mockMap2]);
 
         final got = await sut.getPaginated(limit: 2, offset: 0);
 
@@ -186,12 +195,14 @@ void main() {
           'createdAt': now.subtract(const Duration(days: 2)).toIso8601String(),
         };
 
-        when(mockDatabase.query(
-          'expenses',
-          orderBy: 'createdAt DESC',
-          limit: 1,
-          offset: 2,
-        )).thenAnswer((_) async => [mockMap3]);
+        when(
+          mockDatabase.query(
+            'expenses',
+            orderBy: 'createdAt DESC',
+            limit: 1,
+            offset: 2,
+          ),
+        ).thenAnswer((_) async => [mockMap3]);
 
         final got = await sut.getPaginated(limit: 1, offset: 2);
 
@@ -201,17 +212,67 @@ void main() {
       });
 
       test("It should return empty list when no more data", () async {
-        when(mockDatabase.query(
-          'expenses',
-          orderBy: 'createdAt DESC',
-          limit: 2,
-          offset: 10,
-        )).thenAnswer((_) async => []);
+        when(
+          mockDatabase.query(
+            'expenses',
+            orderBy: 'createdAt DESC',
+            limit: 2,
+            offset: 10,
+          ),
+        ).thenAnswer((_) async => []);
 
         final got = await sut.getPaginated(limit: 2, offset: 10);
 
         expect(got, isEmpty);
       });
+    });
+    group("getTotalAmount", () {
+      test(
+        "it should return the transactions and the amount for the given date",
+        () async {
+          final date = DateTime.now();
+          when(mockDatabase.rawQuery(any, [date.toIso8601String()])).thenAnswer(
+            (_) async => [
+              {'total': 1, 'amount': 102.23},
+            ],
+          );
+
+          TotalAmountVM got = await sut.getTotalAmount(date: date);
+
+          expect(got.amount, 102.23);
+          expect(got.totalTransactions, 1);
+        },
+      );
+      test(
+        "it should return 0 transactions and 0.0 amount when no data is found",
+        () async {
+          final date = DateTime.now();
+          when(mockDatabase.rawQuery(any, [date.toIso8601String()])).thenAnswer(
+            (_) async => [
+              {'total': 0, 'amount': 0.0},
+            ],
+          );
+
+          TotalAmountVM got = await sut.getTotalAmount(date: date);
+
+          expect(got.amount, 0.0);
+          expect(got.totalTransactions, 0);
+        },
+      );
+      test(
+        "it should return 0 transactions and 0.0 amount when data is empty",
+        () async {
+          final date = DateTime.now();
+          when(
+            mockDatabase.rawQuery(any, [date.toIso8601String()]),
+          ).thenAnswer((_) async => [{}]);
+
+          TotalAmountVM got = await sut.getTotalAmount(date: date);
+
+          expect(got.amount, 0.0);
+          expect(got.totalTransactions, 0);
+        },
+      );
     });
   });
 }
