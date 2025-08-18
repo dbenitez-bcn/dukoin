@@ -8,7 +8,6 @@ import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class ExpensesBloc {
   static final String _key = 'time_period';
   final ExpenseRepository _repo;
@@ -49,7 +48,7 @@ class ExpensesBloc {
     _expenses = await _repo.getLast();
     _currentTimePeriod = TimePeriod.values[_prefs.getInt(_key) ?? 1];
     _timePeriodController.add(_currentTimePeriod);
-    _updateVM();
+    await _updateVM();
     _updateStreams();
     await Future.delayed(Duration(seconds: 2));
   }
@@ -64,36 +63,24 @@ class ExpensesBloc {
     return total;
   }
 
-  void _updateVM() {
+  Future<void> _updateVM() async {
     switch (_currentTimePeriod) {
       case TimePeriod.day:
-        _calculateVMFromDate(currentDayDate());
+        _vm = await _repo.getTotalAmount(date: currentDayDate());
       case TimePeriod.week:
-        _calculateVMFromDate(firstDayOfCurrentWeek());
+        _vm = await _repo.getTotalAmount(date: firstDayOfCurrentWeek());
       case TimePeriod.month:
-        _calculateVMFromDate(firstDayOfCurrentMonth());
+        _vm = await _repo.getTotalAmount(date: firstDayOfCurrentMonth());
       case TimePeriod.all:
-        _calculateVMFromDate(DateTime(0));
+        _vm = await _repo.getTotalAmount(date: DateTime(0));
     }
-  }
-
-  void _calculateVMFromDate(DateTime date) {
-    int i = 0;
-    double total = 0.0;
-    while (i < _expenses.length &&
-        _expenses[i].createdAt.compareTo(date) >= 0) {
-      total += _expenses[i++].amount;
-    }
-    _vm = TotalAmountVM(total, i);
     _vmController.add(_vm);
   }
 
-  void _updateStreams() {
+  Future<void> _updateStreams() async {
     _totalAmountController.add(_calculateTotalOfCurrentWeek());
-    _lastExpensesController.add(
-      _expenses.length <= 4 ? List.from(_expenses) : _expenses.sublist(0, 4),
-    );
-    _updateVM();
+    _lastExpensesController.add(_expenses);
+    await _updateVM();
   }
 
   Future<void> addExpense(Expense expense) async {
@@ -101,7 +88,7 @@ class ExpensesBloc {
     expense.id = id;
     _expenses.add(expense);
     _expenses.sort();
-    _updateStreams();
+    await _updateStreams();
   }
 
   Future<void> clearAllData() async {
@@ -121,7 +108,7 @@ class ExpensesBloc {
     await _prefs.setInt(_key, newValue.index);
     _currentTimePeriod = newValue;
     _timePeriodController.add(newValue);
-    _updateVM();
+    await _updateVM();
     //await Future.delayed(Duration(milliseconds: 2000));
     _statusController.add(StateStatus.done);
   }

@@ -1,6 +1,8 @@
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/time_period.dart';
+import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/presentation/state/expenses_bloc.dart';
+import 'package:dukoin/utils/utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -14,6 +16,9 @@ void main() {
     group("time period", () {
       var mockExpenseRepository = MockExpenseRepository();
       when(mockExpenseRepository.getLast()).thenAnswer((_) async => []);
+      when(
+        mockExpenseRepository.getTotalAmount(date: anyNamed("date")),
+      ).thenAnswer((_) async => TotalAmountVM(0, 0));
       test("It should load week as default time priod", () async {
         SharedPreferences.setMockInitialValues({});
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -55,37 +60,82 @@ void main() {
         expect(sut.vm.amount, 0.0);
         expect(sut.vm.totalTransactions, 0);
       });
-      /*
-      var vmTestCases = [
-        {'period': TimePeriod.day, 'expected': TotalAmountCardVM(10.0, 1)},
-        {'period': TimePeriod.week, 'expected': TotalAmountCardVM(32.0, 2)},
-        {'period': TimePeriod.month, 'expected': TotalAmountCardVM(65.0, 3)},
-        {'period': TimePeriod.all, 'expected': TotalAmountCardVM(121.0, 4)},
-      ];
-      for (var tc in vmTestCases) {
+
+      group("setTimePeriod", () {
+        var expectedVM = TotalAmountVM(0, 0);
         test(
-          "Given a ${tc['period']} period should yield ${tc['expected']}",
+          "When time period is DAY, should call repository with curren day",
           () async {
             var mockRepo = MockExpenseRepository();
-            when(mockRepo.getLast()).thenAnswer((_) async => [
-              Expense(amount: 10, category: ExpenseCategory.food, description: "A", createdAt: DateTime.now()),
-              Expense(amount: 22, category: ExpenseCategory.food, description: "B", createdAt: firstDayOfCurrentWeek()),
-              Expense(amount: 33, category: ExpenseCategory.food, description: "C", createdAt: firstDayOfCurrentMonth()),
-              Expense(amount: 56, category: ExpenseCategory.food, description: "D", createdAt: DateTime(2000)),
-            ]);
             SharedPreferences.setMockInitialValues({});
             SharedPreferences prefs = await SharedPreferences.getInstance();
+            when(
+              mockRepo.getTotalAmount(date: anyNamed("date")),
+            ).thenAnswer((_) async => expectedVM);
             ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
 
-            await sut.load();
-            await sut.setTimePeriod(tc['period'] as TimePeriod);
+            await sut.setTimePeriod(TimePeriod.day);
 
-            expect(sut.vm.amount, (tc['expected'] as TotalAmountCardVM).amount);
-            expect(sut.vm.totalTransactions, (tc['expected'] as TotalAmountCardVM).totalTransactions);
+            verify(mockRepo.getTotalAmount(date: currentDayDate())).called(1);
+            expectLater(sut.vmStream, emits(expectedVM));
           },
         );
-      }
-       */
+        test(
+          "When time period is WEEK, should call repository with curren day",
+          () async {
+            var mockRepo = MockExpenseRepository();
+            SharedPreferences.setMockInitialValues({});
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            when(
+              mockRepo.getTotalAmount(date: anyNamed("date")),
+            ).thenAnswer((_) async => expectedVM);
+            ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
+
+            await sut.setTimePeriod(TimePeriod.week);
+
+            verify(
+              mockRepo.getTotalAmount(date: firstDayOfCurrentWeek()),
+            ).called(1);
+            expectLater(sut.vmStream, emits(expectedVM));
+          },
+        );
+        test(
+          "When time period is MONTH, should call repository with curren day",
+          () async {
+            var mockRepo = MockExpenseRepository();
+            SharedPreferences.setMockInitialValues({});
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            when(
+              mockRepo.getTotalAmount(date: anyNamed("date")),
+            ).thenAnswer((_) async => expectedVM);
+            ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
+
+            await sut.setTimePeriod(TimePeriod.month);
+
+            verify(
+              mockRepo.getTotalAmount(date: firstDayOfCurrentMonth()),
+            ).called(1);
+            expectLater(sut.vmStream, emits(expectedVM));
+          },
+        );
+        test(
+          "When time period is ALL, should call repository with fist day",
+          () async {
+            var mockRepo = MockExpenseRepository();
+            SharedPreferences.setMockInitialValues({});
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            when(
+              mockRepo.getTotalAmount(date: anyNamed("date")),
+            ).thenAnswer((_) async => expectedVM);
+            ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
+
+            await sut.setTimePeriod(TimePeriod.all);
+
+            verify(mockRepo.getTotalAmount(date: DateTime(0))).called(1);
+            expectLater(sut.vmStream, emits(expectedVM));
+          },
+        );
+      });
     });
   });
 }
