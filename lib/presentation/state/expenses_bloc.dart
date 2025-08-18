@@ -19,7 +19,6 @@ class ExpensesBloc {
   TotalAmountVM get vm => _vm;
   TotalAmountVM _vm = TotalAmountVM(0.0, 0);
 
-  final _totalAmountController = StreamController<double>();
   final _lastExpensesController = StreamController<List<Expense>>();
   final _timePeriodController = StreamController<TimePeriod>();
   final TimePeriod initialTimePeriod = TimePeriod.week;
@@ -33,8 +32,6 @@ class ExpensesBloc {
 
   List<Expense> get lastExpenses => _expenses;
 
-  Stream<double> get totalAmountStream => _totalAmountController.stream;
-
   Stream<List<Expense>> get lastExpensesStream =>
       _lastExpensesController.stream;
 
@@ -47,16 +44,6 @@ class ExpensesBloc {
     await _updateVM();
     _updateStreams();
     await Future.delayed(Duration(seconds: 2));
-  }
-
-  double _calculateTotalOfCurrentWeek() {
-    int i = 0;
-    double total = 0.0;
-    while (i < _expenses.length &&
-        _expenses[i].createdAt.compareTo(firstDayOfCurrentWeek()) >= 0) {
-      total += _expenses[i++].amount;
-    }
-    return total;
   }
 
   Future<void> _updateVM() async {
@@ -74,16 +61,13 @@ class ExpensesBloc {
   }
 
   Future<void> _updateStreams() async {
-    _totalAmountController.add(_calculateTotalOfCurrentWeek());
+    _expenses = await _repo.getLast();
     _lastExpensesController.add(_expenses);
     await _updateVM();
   }
 
   Future<void> addExpense(Expense expense) async {
-    int id = await _repo.insert(expense);
-    expense.id = id;
-    _expenses.add(expense);
-    _expenses.sort();
+    await _repo.insert(expense);
     await _updateStreams();
   }
 
