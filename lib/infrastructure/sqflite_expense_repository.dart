@@ -1,8 +1,8 @@
+import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../domain/expense.dart';
-import '../domain/expense_repository.dart';
 import 'database_provider.dart';
 
 class SqfliteExpenseRepository implements ExpenseRepository {
@@ -97,7 +97,9 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     );
 
     final row = result.first;
-    final amount = row['amount'] != null ? (row['amount'] as num).toDouble() : 0.0;
+    final amount = row['amount'] != null
+        ? (row['amount'] as num).toDouble()
+        : 0.0;
     final totalTransactions = row['total'] != null ? row['total'] as int : 0;
 
     return TotalAmountVM(amount, totalTransactions);
