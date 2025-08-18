@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
-import 'package:dukoin/domain/state_status.dart';
 import 'package:dukoin/domain/time_period.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/utils/utils.dart';
@@ -23,7 +22,6 @@ class ExpensesBloc {
   final _totalAmountController = StreamController<double>();
   final _lastExpensesController = StreamController<List<Expense>>();
   final _timePeriodController = StreamController<TimePeriod>();
-  final _statusController = StreamController<StateStatus>();
   final TimePeriod initialTimePeriod = TimePeriod.week;
 
   List<Expense> _expenses = [];
@@ -41,8 +39,6 @@ class ExpensesBloc {
       _lastExpensesController.stream;
 
   Stream<TimePeriod> get timePeriodStream => _timePeriodController.stream;
-
-  Stream<StateStatus> get statusStream => _statusController.stream;
 
   Future<void> load() async {
     _expenses = await _repo.getLast();
@@ -104,12 +100,9 @@ class ExpensesBloc {
   }
 
   Future<void> setTimePeriod(TimePeriod newValue) async {
-    _statusController.add(StateStatus.loading);
     await _prefs.setInt(_key, newValue.index);
     _currentTimePeriod = newValue;
     _timePeriodController.add(newValue);
     await _updateVM();
-    //await Future.delayed(Duration(milliseconds: 2000));
-    _statusController.add(StateStatus.done);
   }
 }
