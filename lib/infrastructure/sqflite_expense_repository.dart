@@ -18,9 +18,9 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }
 
   @override
-  Future<List<Expense>> getAll() async {
+  Future<List<Expense>> getLast() async {
     final db = await _db;
-    final maps = await db.query('expenses', orderBy: 'createdAt DESC');
+    final maps = await db.query('expenses', orderBy: 'createdAt DESC', limit: 4);
     return maps.map((e) => Expense.fromMap(e)).toList();
   }
 

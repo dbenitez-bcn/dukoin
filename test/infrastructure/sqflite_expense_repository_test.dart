@@ -30,16 +30,16 @@ void main() {
       sut = SqfliteExpenseRepository(mockDBProvider);
     });
 
-    test("getAll should fetch all data", () async {
+    test("getLast should fetch all data", () async {
       when(
-        mockDatabase.query('expenses', orderBy: 'createdAt DESC'),
+        mockDatabase.query('expenses', orderBy: 'createdAt DESC', limit: 4),
       ).thenAnswer((_) async => []);
 
-      var got = await sut.getAll();
+      var got = await sut.getLast();
 
       expect(got.length, 0);
       verify(
-        mockDatabase.query('expenses', orderBy: 'createdAt DESC'),
+        mockDatabase.query('expenses', orderBy: 'createdAt DESC', limit: 4),
       ).called(1);
     });
 

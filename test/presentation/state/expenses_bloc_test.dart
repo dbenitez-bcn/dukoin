@@ -15,7 +15,7 @@ void main() {
   group("Expenses Bloc", () {
     group("time period", () {
       var mockExpenseRepository = MockExpenseRepository();
-      when(mockExpenseRepository.getAll()).thenAnswer((_) async => []);
+      when(mockExpenseRepository.getLast()).thenAnswer((_) async => []);
       test("It should load week as default time priod", () async {
         SharedPreferences.setMockInitialValues({});
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -68,7 +68,7 @@ void main() {
           "Given a ${tc['period']} period should yield ${tc['expected']}",
           () async {
             var mockRepo = MockExpenseRepository();
-            when(mockRepo.getAll()).thenAnswer((_) async => [
+            when(mockRepo.getLast()).thenAnswer((_) async => [
               Expense(amount: 10, category: ExpenseCategory.food, description: "A", createdAt: DateTime.now()),
               Expense(amount: 22, category: ExpenseCategory.food, description: "B", createdAt: firstDayOfCurrentWeek()),
               Expense(amount: 33, category: ExpenseCategory.food, description: "C", createdAt: firstDayOfCurrentMonth()),

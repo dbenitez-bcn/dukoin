@@ -50,7 +50,7 @@ class ExpensesBloc {
   Stream<StateStatus> get statusStream => _statusController.stream;
 
   Future<void> load() async {
-    _expenses = await _repo.getAll();
+    _expenses = await _repo.getLast();
     _currentTimePeriod = TimePeriod.values[_prefs.getInt(_key) ?? 1];
     _timePeriodController.add(_currentTimePeriod);
     _updateVM();
