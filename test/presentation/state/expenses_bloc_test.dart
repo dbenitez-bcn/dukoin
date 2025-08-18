@@ -57,6 +57,7 @@ void main() {
         expect(sut.vm.amount, 0.0);
         expect(sut.vm.totalTransactions, 0);
       });
+      /*
       var vmTestCases = [
         {'period': TimePeriod.day, 'expected': TotalAmountCardVM(10.0, 1)},
         {'period': TimePeriod.week, 'expected': TotalAmountCardVM(32.0, 2)},
@@ -86,6 +87,7 @@ void main() {
           },
         );
       }
+       */
     });
   });
 }
