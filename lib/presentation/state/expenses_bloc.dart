@@ -27,7 +27,7 @@ class ExpensesBloc {
   TotalAmountCardVM _vm = TotalAmountCardVM(0.0, 0);
 
   final _totalAmountController = StreamController<double>();
-  final _expensesController = StreamController<List<Expense>>();
+  final _lastExpensesController = StreamController<List<Expense>>();
   final _timePeriodController = StreamController<TimePeriod>();
   final _statusController = StreamController<StateStatus>();
   final TimePeriod initialTimePeriod = TimePeriod.week;
@@ -38,12 +38,13 @@ class ExpensesBloc {
   ExpensesBloc(this._repo, this._prefs);
 
   TimePeriod get currentTimePeriod => _currentTimePeriod;
-  List<Expense> get expenses => _expenses;
-  List<Expense> get lastExpenses => _expenses.length > 4 ? _expenses.sublist(0, 4) : _expenses;
+
+  List<Expense> get lastExpenses => _expenses;
 
   Stream<double> get totalAmountStream => _totalAmountController.stream;
 
-  Stream<List<Expense>> get expensesStream => _expensesController.stream;
+  Stream<List<Expense>> get lastExpensesStream =>
+      _lastExpensesController.stream;
 
   Stream<TimePeriod> get timePeriodStream => _timePeriodController.stream;
 
@@ -94,7 +95,7 @@ class ExpensesBloc {
 
   void _updateStreams() {
     _totalAmountController.add(_calculateTotalOfCurrentWeek());
-    _expensesController.add(
+    _lastExpensesController.add(
       _expenses.length <= 4 ? List.from(_expenses) : _expenses.sublist(0, 4),
     );
     _updateVM();

@@ -9,7 +9,7 @@ class ExpensesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Expense>>(
-      stream: ExpensesProvider.of(context).expensesStream,
+      stream: ExpensesProvider.of(context).lastExpensesStream,
       initialData: [],
       builder: (context, snapshot) {
         List<Expense> expenses = snapshot.data ?? [];

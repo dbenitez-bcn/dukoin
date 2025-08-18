@@ -9,7 +9,7 @@ class HistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ExpenseHistoryListView(
-        expenses: ExpensesProvider.of(context).expenses,
+        expenses: ExpensesProvider.of(context).lastExpenses,
       ),
     );
   }
