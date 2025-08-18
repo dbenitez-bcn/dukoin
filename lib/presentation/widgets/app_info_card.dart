@@ -1,3 +1,4 @@
+import 'package:dukoin/extensions/string_extension.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class AppInfoCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        snapshot.data!.appName,
+                        snapshot.data!.appName.capitalize(),
                         style: TextTheme.of(
                           context,
                         ).displaySmall!.copyWith(fontFamily: 'Willow'),
