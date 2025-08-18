@@ -1,8 +1,6 @@
-import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/time_period.dart';
 import 'package:dukoin/presentation/state/expenses_bloc.dart';
-import 'package:dukoin/utils/utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
