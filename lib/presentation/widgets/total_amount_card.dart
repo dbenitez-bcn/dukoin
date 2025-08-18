@@ -1,8 +1,8 @@
 import 'package:dukoin/domain/time_period.dart';
+import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/currency_provider.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
-import 'package:dukoin/presentation/state/expenses_bloc.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +25,7 @@ class TotalAmountCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var expensesBloc = ExpensesProvider.of(context);
-    return StreamBuilder<TotalAmountCardVM>(
+    return StreamBuilder<TotalAmountVM>(
       stream: expensesBloc.vmStream,
       initialData: expensesBloc.vm,
       builder: (context, asyncSnapshot) {

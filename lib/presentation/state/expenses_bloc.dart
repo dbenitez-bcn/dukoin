@@ -4,27 +4,22 @@ import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/state_status.dart';
 import 'package:dukoin/domain/time_period.dart';
+import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class TotalAmountCardVM {
-  final double amount;
-  final int totalTransactions;
-
-  TotalAmountCardVM(this.amount, this.totalTransactions);
-}
 
 class ExpensesBloc {
   static final String _key = 'time_period';
   final ExpenseRepository _repo;
   final SharedPreferences _prefs;
 
-  final _vmController = StreamController<TotalAmountCardVM>();
+  final _vmController = StreamController<TotalAmountVM>();
 
-  Stream<TotalAmountCardVM> get vmStream => _vmController.stream;
+  Stream<TotalAmountVM> get vmStream => _vmController.stream;
 
-  TotalAmountCardVM get vm => _vm;
-  TotalAmountCardVM _vm = TotalAmountCardVM(0.0, 0);
+  TotalAmountVM get vm => _vm;
+  TotalAmountVM _vm = TotalAmountVM(0.0, 0);
 
   final _totalAmountController = StreamController<double>();
   final _lastExpensesController = StreamController<List<Expense>>();
@@ -89,7 +84,7 @@ class ExpensesBloc {
         _expenses[i].createdAt.compareTo(date) >= 0) {
       total += _expenses[i++].amount;
     }
-    _vm = TotalAmountCardVM(total, i);
+    _vm = TotalAmountVM(total, i);
     _vmController.add(_vm);
   }
 
