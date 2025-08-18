@@ -63,4 +63,19 @@ class SqfliteExpenseRepository implements ExpenseRepository {
       );
     });
   }
+
+  @override
+  Future<List<Expense>> getPaginated({
+    required int limit,
+    required int offset,
+  }) async {
+    final db = await _db;
+    final maps = await db.query(
+      'expenses',
+      orderBy: 'createdAt DESC',
+      limit: limit,
+      offset: offset,
+    );
+    return maps.map((e) => Expense.fromMap(e)).toList();
+  }
 }

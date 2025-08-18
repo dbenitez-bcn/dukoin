@@ -143,5 +143,75 @@ void main() {
         whereArgs: ['expenses'],
       )).called(1);
     });
+    group("getPaginated", () {
+      test("It should fetch paginated data with limit and offset", () async {
+        final now = DateTime.now();
+        final mockMap1 = {
+          'id': 1,
+          'amount': 10.5,
+          'category': ExpenseCategory.food.index,
+          'description': 'Lunch',
+          'createdAt': now.toIso8601String(),
+        };
+        final mockMap2 = {
+          'id': 2,
+          'amount': 20.0,
+          'category': ExpenseCategory.transport.index,
+          'description': 'Bus Ticket',
+          'createdAt': now.subtract(const Duration(days: 1)).toIso8601String(),
+        };
+
+        when(mockDatabase.query(
+          'expenses',
+          orderBy: 'createdAt DESC',
+          limit: 2,
+          offset: 0,
+        )).thenAnswer((_) async => [mockMap1, mockMap2]);
+
+        final got = await sut.getPaginated(limit: 2, offset: 0);
+
+        expect(got.length, 2);
+        expect(got.first, isA<Expense>());
+        expect(got.first.description, equals('Lunch'));
+        expect(got.first.category, ExpenseCategory.food);
+      });
+
+      test("It should fetch next page of data", () async {
+        final now = DateTime.now();
+        final mockMap3 = {
+          'id': 3,
+          'amount': 30.0,
+          'category': ExpenseCategory.entertainment.index,
+          'description': 'Cinema',
+          'createdAt': now.subtract(const Duration(days: 2)).toIso8601String(),
+        };
+
+        when(mockDatabase.query(
+          'expenses',
+          orderBy: 'createdAt DESC',
+          limit: 1,
+          offset: 2,
+        )).thenAnswer((_) async => [mockMap3]);
+
+        final got = await sut.getPaginated(limit: 1, offset: 2);
+
+        expect(got.length, 1);
+        expect(got.first.description, equals('Cinema'));
+        expect(got.first.category, ExpenseCategory.entertainment);
+      });
+
+      test("It should return empty list when no more data", () async {
+        when(mockDatabase.query(
+          'expenses',
+          orderBy: 'createdAt DESC',
+          limit: 2,
+          offset: 10,
+        )).thenAnswer((_) async => []);
+
+        final got = await sut.getPaginated(limit: 2, offset: 10);
+
+        expect(got, isEmpty);
+      });
+    });
   });
 }
