@@ -44,6 +44,7 @@ dependencies:
   package_info_plus: ^8.3.0
   http: ^1.5.0
   flutter_sticky_header: ^0.8.0
+  lucide_icons_flutter: ^3.0.9
 
 dev_dependencies:
   flutter_test:
@@ -93,6 +94,9 @@ flutter:
       fonts:
         - asset: assets/fonts/Willow-Italic.otf
           style: italic
+    - family: DukoinIcons
+      fonts:
+       - asset: assets/fonts/DukoinIcons.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

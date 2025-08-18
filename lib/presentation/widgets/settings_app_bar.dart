@@ -1,6 +1,7 @@
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class SettingsAppBar extends StatelessWidget {
   const SettingsAppBar({super.key});
@@ -10,7 +11,7 @@ class SettingsAppBar extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.all(0.0),
       leading: DukoinIcon(
-        icon: Icons.settings_outlined,
+        icon: LucideIcons.settings,
         color: Theme.of(context).colorScheme.primary,
         isSolid: true,
       ),

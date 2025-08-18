@@ -2,6 +2,7 @@ import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import 'bouncy_nav_item.dart';
 
@@ -14,9 +15,9 @@ class NavItem {
 
 class BouncyBottomNavBar extends StatefulWidget {
   List<NavItem> _items(BuildContext context) => [
-    NavItem(icon: Icons.home_rounded, label: AppLocalizations.of(context)!.navTabHome),
-    NavItem(icon: Icons.watch_later, label: AppLocalizations.of(context)!.navTabHistory),
-    NavItem(icon: Icons.settings, label: AppLocalizations.of(context)!.navTabSettings),
+    NavItem(icon: LucideIcons.house, label: AppLocalizations.of(context)!.navTabHome),
+    NavItem(icon: LucideIcons.clock, label: AppLocalizations.of(context)!.navTabHistory),
+    NavItem(icon: LucideIcons.settings, label: AppLocalizations.of(context)!.navTabSettings),
   ];
 
   const BouncyBottomNavBar({super.key});

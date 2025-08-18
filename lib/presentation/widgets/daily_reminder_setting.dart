@@ -3,6 +3,7 @@ import 'package:dukoin/presentation/state/theme_provider.dart';
 import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class DailyReminderSetting extends StatelessWidget {
   const DailyReminderSetting({super.key});

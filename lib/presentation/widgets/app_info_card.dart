@@ -1,6 +1,7 @@
 import 'package:dukoin/extensions/string_extension.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
+import 'package:dukoin/styles/dukoin_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -16,7 +17,7 @@ class AppInfoCard extends StatelessWidget {
         child: Column(
           children: [
             DukoinIcon(
-              icon: Icons.flutter_dash,
+              icon: DukoinIcons.dukoinSquirrel,
               color: Theme.of(context).colorScheme.primary,
               isSolid: true,
               size: 48,
