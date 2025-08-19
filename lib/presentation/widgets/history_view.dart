@@ -104,6 +104,7 @@ class _ExpenseHistoryListViewState extends State<ExpenseHistoryListView> {
 
     return RefreshIndicator(
       onRefresh: () async {
+        await Future.delayed(Duration(seconds: 1));
         await widget.paginationController.refresh();
         setState(() {});
       },
