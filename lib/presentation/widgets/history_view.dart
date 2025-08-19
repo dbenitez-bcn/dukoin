@@ -2,6 +2,7 @@ import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_pagination_controller.dart';
 import 'package:dukoin/presentation/widgets/dismissible_expense_info_card.dart';
+import 'package:dukoin/presentation/widgets/dukoin_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:intl/intl.dart';
@@ -17,6 +18,7 @@ class ExpensesHistoryView extends StatelessWidget {
     await Future.delayed(Duration(seconds: 2));
     await paginationController.refresh();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +27,7 @@ class ExpensesHistoryView extends StatelessWidget {
         future: _initialRefresh(),
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return CircularProgressIndicator();
+            return HistoryViewLoading();
           } else {
             return ExpenseHistoryListView(
               paginationController: paginationController,
@@ -146,6 +148,36 @@ class _ExpenseHistoryListViewState extends State<ExpenseHistoryListView> {
           SliverToBoxAdapter(child: SizedBox(height: 32)),
         ],
       ),
+    );
+  }
+}
+
+class HistoryViewLoading extends StatelessWidget {
+  const HistoryViewLoading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final List<Widget> _element = [
+      SizedBox(height: 16),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(flex: 3, child: DukoinShimmer(height: 30)),
+          Flexible(flex: 3, child: Container()),
+        ],
+      ),
+      SizedBox(height: 32),
+      DukoinShimmer(height: 60),
+      SizedBox(height: 16),
+      DukoinShimmer(height: 60),
+      SizedBox(height: 16),
+      DukoinShimmer(height: 60),
+      SizedBox(height: 32),
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(children: [..._element, ..._element]),
     );
   }
 }
