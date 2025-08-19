@@ -8,7 +8,37 @@ import 'package:flutter/material.dart';
 class HomeContent extends StatelessWidget {
   const HomeContent({super.key});
 
-  Widget _buildLoading(BuildContext context) {
+  Widget _buildContent(BuildContext context) {
+    return Column(
+      children: [
+        TimePeriodSelector(),
+        TotalAmountCard(),
+        SizedBox(height: 16.0),
+        LastExpenses(),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: ExpensesProvider.of(context).load(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return _buildContent(context);
+        } else {
+          return HomeContentLoading();
+        }
+      },
+    );
+  }
+}
+
+class HomeContentLoading extends StatelessWidget {
+  const HomeContentLoading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(height: 8),
@@ -36,31 +66,6 @@ class HomeContent extends StatelessWidget {
         SizedBox(height: 16),
         DukoinShimmer(height: 60),
       ],
-    );
-  }
-
-  Widget _buildContent(BuildContext context) {
-    return Column(
-      children: [
-        TimePeriodSelector(),
-        TotalAmountCard(),
-        SizedBox(height: 16.0),
-        LastExpenses(),
-      ],
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: ExpensesProvider.of(context).load(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return _buildContent(context);
-        } else {
-          return _buildLoading(context);
-        }
-      },
     );
   }
 }
