@@ -9,19 +9,19 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get navTabHome => 'Home';
+  String get navTabHome => 'Inicio';
 
   @override
-  String get navTabSettings => 'Settings';
+  String get navTabSettings => 'Ajustes';
 
   @override
-  String get navTabHistory => 'History';
+  String get navTabHistory => 'Historial';
 
   @override
-  String get navTabStats => 'Stats';
+  String get navTabStats => 'Estadísticas';
 
   @override
-  String get homeTitle => 'Gastos diarios';
+  String get homeTitle => 'Dukoin';
 
   @override
   String homeSubtitle(DateTime date) {
@@ -34,113 +34,113 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get homeTimePeriodDay => 'Day';
+  String get homeTimePeriodDay => 'Día';
 
   @override
-  String get homeTimePeriodWeek => 'Week';
+  String get homeTimePeriodWeek => 'Semana';
 
   @override
-  String get homeTimePeriodMonth => 'Month';
+  String get homeTimePeriodMonth => 'Mes';
 
   @override
-  String get homeTimePeriodAll => 'All';
+  String get homeTimePeriodAll => 'Todo';
 
   @override
-  String get homeTodayTotalTitle => 'Today\'s Total';
+  String get homeTodayTotalTitle => 'Total de hoy';
 
   @override
-  String get homeWeekTotalTitle => 'This Week\'s Total';
+  String get homeWeekTotalTitle => 'Total de la semana';
 
   @override
-  String get homeMonthTotalTitle => 'This Month\'s Total';
+  String get homeMonthTotalTitle => 'Total del mes';
 
   @override
-  String get homeAllTotalTitle => 'All Time Total';
+  String get homeAllTotalTitle => 'Total acumulado';
 
   @override
   String homeTransactionsCounterTitle(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count transactions',
-      one: '$count transaction',
-      zero: 'No transactions',
+      other: '$count transacciones',
+      one: '$count transacción',
+      zero: 'Sin transacciones',
     );
     return '$_temp0';
   }
 
   @override
-  String get homeLastExpensesTitle => 'Last Expenses';
+  String get homeLastExpensesTitle => 'Últimos gastos';
 
   @override
-  String get homeNoExpensesTitle => 'You have no expenses yet';
+  String get homeNoExpensesTitle => 'Aún no tienes gastos';
 
   @override
   String get homeNoExpensesSubtitle =>
-      'Tap the + button to add your first expense';
+      'Pulsa el botón + para añadir tu primer gasto';
 
   @override
-  String get homeLastExpensesSeeAll => 'See all';
+  String get homeLastExpensesSeeAll => 'Ver todos';
 
   @override
-  String get historyTitle => 'My Expenses';
+  String get historyTitle => 'Mis gastos';
 
   @override
-  String get statsPageTitle => 'Statistics';
+  String get statsPageTitle => 'Estadísticas';
 
   @override
-  String get statsPageSubtitle => 'Your spending insights and analytics';
+  String get statsPageSubtitle => 'Tus análisis y visión de gastos';
 
   @override
   String get settingsTitle => 'Ajustes';
 
   @override
-  String get settingsSubtitle => 'Manage your preferences';
+  String get settingsSubtitle => 'Gestiona tus preferencias';
 
   @override
-  String get settingsDarkThemeTitle => 'Dark Theme';
+  String get settingsDarkThemeTitle => 'Tema oscuro';
 
   @override
   String get settingsDarkThemeSubtitle =>
-      'Switch between light and dark appearance';
+      'Alterna entre apariencia clara y oscura';
 
   @override
-  String get settingsDefaultCurrencyTitle => 'Default Currency';
+  String get settingsDefaultCurrencyTitle => 'Moneda predeterminada';
 
   @override
-  String get settingsDefaultCurrencySubtitle =>
-      'Choose your preferred currency';
+  String get settingsDefaultCurrencySubtitle => 'Elige tu moneda preferida';
 
   @override
-  String get settingsDailyReminderTitle => 'Daily Reminder';
+  String get settingsDailyReminderTitle => 'Recordatorio diario';
 
   @override
-  String get settingsDailyReminderSubtitle => 'Get remainded to track expenses';
+  String get settingsDailyReminderSubtitle =>
+      'Recibe un aviso para registrar tus gastos';
 
   @override
-  String get settingsDataManagementTitle => 'Data Management';
+  String get settingsDataManagementTitle => 'Gestión de datos';
 
   @override
-  String get settingsDataManagementSubtitle => 'Manage your expense data';
+  String get settingsDataManagementSubtitle => 'Gestiona tus datos de gastos';
 
   @override
-  String get settingsDataManagementButton => 'Clear All Data';
+  String get settingsDataManagementButton => 'Borrar todos los datos';
 
   @override
   String settingsApplicationInfoVersion(String version) {
-    return 'Version $version';
+    return 'Versión $version';
   }
 
   @override
   String get settingsApplicationInfoMessage =>
-      'Made with ❤️ for simple expense tracking';
+      'Hecho con ❤️ para un seguimiento sencillo de gastos';
 
   @override
   String get addExpenseTitle => 'Añadir gasto';
 
   @override
   String addExpenseAmountTitle(String currency) {
-    return 'Importe ($currency)';
+    return 'Cantidad ($currency)';
   }
 
   @override
@@ -159,7 +159,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get addExpenseDescriptionTitle => 'Descripción';
 
   @override
-  String get addExpenseDescriptionHint => '¿En qué has gastado?';
+  String get addExpenseDescriptionHint => '¿En qué gastaste?';
 
   @override
   String get addExpenseCategoryTitle => 'Categoría';
@@ -206,60 +206,60 @@ class AppLocalizationsEs extends AppLocalizations {
   String get categoryOthers => 'Otros';
 
   @override
-  String get categoryTravel => 'Travel';
+  String get categoryTravel => 'Viajes';
 
   @override
-  String get categoryInvestments => 'Investments';
+  String get categoryInvestments => 'Inversiones';
 
   @override
-  String get categoryInsurance => 'Insurance';
+  String get categoryInsurance => 'Seguros';
 
   @override
-  String get categorySubscriptions => 'Subscriptions';
+  String get categorySubscriptions => 'Suscripciones';
 
   @override
-  String get categoryPets => 'Pets';
+  String get categoryPets => 'Mascotas';
 
   @override
-  String get categoryPersonalCare => 'Personal care';
+  String get categoryPersonalCare => 'Cuidado personal';
 
   @override
-  String get categoryHouse => 'House';
+  String get categoryHouse => 'Hogar';
 
   @override
-  String get currencyUSD => 'US Dollar';
+  String get currencyUSD => 'Dólar estadounidense';
 
   @override
   String get currencyEUR => 'Euro';
 
   @override
-  String get currencyGBP => 'British Pound';
+  String get currencyGBP => 'Libra esterlina';
 
   @override
-  String get currencyJPY => 'Japanese Yen';
+  String get currencyJPY => 'Yen japonés';
 
   @override
-  String get currencyCAD => 'Canadian Dollar';
+  String get currencyCAD => 'Dólar canadiense';
 
   @override
-  String get currencyAUD => 'Australian Dollar';
+  String get currencyAUD => 'Dólar australiano';
 
   @override
-  String get clearAllDataDialogTitle => 'Clear All Data';
+  String get clearAllDataDialogTitle => 'Borrar todos los datos';
 
   @override
   String get clearAllDataDialogMessage =>
-      'This action cannot be undone. This will permanently delete all your expense data.';
+      'Esta acción no se puede deshacer. Esto eliminará permanentemente todos tus datos de gastos.';
 
   @override
-  String get clearAllDataDialogButtonTitle => 'Clear All Data';
+  String get clearAllDataDialogButtonTitle => 'Borrar todos los datos';
 
   @override
-  String get clearAllDataDialogCancelButton => 'Cancel';
+  String get clearAllDataDialogCancelButton => 'Cancelar';
 
   @override
-  String get today => 'Today';
+  String get today => 'Hoy';
 
   @override
-  String get yesterday => 'Yesterday';
+  String get yesterday => 'Ayer';
 }
