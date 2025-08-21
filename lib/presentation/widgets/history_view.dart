@@ -21,20 +21,17 @@ class ExpensesHistoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(AppLocalizations.of(context)!.historyTitle)),
-      body: FutureBuilder(
-        future: _initialRefresh(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return HistoryViewLoading();
-          } else {
-            return ExpenseHistoryListView(
-              paginationController: paginationController,
-            );
-          }
-        },
-      ),
+    return FutureBuilder(
+      future: _initialRefresh(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return HistoryViewLoading();
+        } else {
+          return ExpenseHistoryListView(
+            paginationController: paginationController,
+          );
+        }
+      },
     );
   }
 }
