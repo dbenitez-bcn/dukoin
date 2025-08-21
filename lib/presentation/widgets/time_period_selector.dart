@@ -2,6 +2,7 @@ import 'package:dukoin/domain/time_period.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
+import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
 
 class TimePeriodSelector extends StatelessWidget {
@@ -30,7 +31,7 @@ class TimePeriodSelector extends StatelessWidget {
         return Card.outlined(
           margin: EdgeInsets.only(top: 12, bottom: 2),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(appBorderRadius),
             side: BorderSide(
               color: Theme.of(context).extension<DukoinColors>()!.borderColor,
             ), // border
@@ -49,7 +50,7 @@ class TimePeriodSelector extends StatelessWidget {
                       horizontal: 16.0,
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(appBorderRadius),
                       color: isSelected
                           ? Theme.of(context).colorScheme.primary
                           : Colors.transparent,

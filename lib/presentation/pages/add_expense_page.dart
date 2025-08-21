@@ -4,6 +4,7 @@ import 'package:dukoin/presentation/state/expense_provider.dart';
 import 'package:dukoin/presentation/widgets/category_dropdown_menu_item.dart';
 import 'package:dukoin/presentation/widgets/fade_in_slice_from_bottom_animation.dart';
 import 'package:dukoin/presentation/widgets/form_card_item.dart';
+import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
 
 class AddExpensePage extends StatefulWidget {
@@ -184,7 +185,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                                 width: 2.0,
                               ), // border
                               borderRadius: const BorderRadius.all(
-                                Radius.circular(8),
+                                Radius.circular(appBorderRadius),
                               ),
                             )
                           : Theme.of(

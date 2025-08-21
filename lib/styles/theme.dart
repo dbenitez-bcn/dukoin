@@ -1,6 +1,8 @@
 import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
+const appBorderRadius = 8.0;
+
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF6366F1),
@@ -95,7 +97,7 @@ final lightTheme = ThemeData(
   cardTheme: CardThemeData(
     elevation: 0.0,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(appBorderRadius),
       side: BorderSide(color: DukoinColors.light.borderColor), // border
     ),
     margin: EdgeInsets.symmetric(vertical: 8),
@@ -107,11 +109,11 @@ final lightTheme = ThemeData(
     hintStyle: TextStyle(color: Colors.grey[700]),
     border: OutlineInputBorder(
       borderSide: BorderSide(color: DukoinColors.light.borderColor), // border
-      borderRadius: const BorderRadius.all(Radius.circular(8)),
+      borderRadius: const BorderRadius.all(Radius.circular(appBorderRadius)),
     ),
     enabledBorder: const OutlineInputBorder(
       borderSide: BorderSide.none,
-      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderRadius: BorderRadius.all(Radius.circular(appBorderRadius)),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -119,12 +121,12 @@ final lightTheme = ThemeData(
       elevation: 0.0,
       backgroundColor: lightColorScheme.primary,
       foregroundColor: lightColorScheme.onPrimary,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(appBorderRadius)),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(appBorderRadius)),
     ),
   ),
   extensions: <ThemeExtension<DukoinColors>>[DukoinColors.light],
@@ -149,7 +151,7 @@ final darkTheme = ThemeData(
   cardTheme: CardThemeData(
     color: Color(0xFF1e293b),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(appBorderRadius),
       side: BorderSide(color: DukoinColors.dark.borderColor), // border
     ),
     margin: EdgeInsets.symmetric(vertical: 8),
@@ -162,11 +164,11 @@ final darkTheme = ThemeData(
     hintStyle: TextStyle(color: Colors.white54),
     border: OutlineInputBorder(
       borderSide: BorderSide(color: DukoinColors.dark.borderColor), // border
-      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderRadius: BorderRadius.all(Radius.circular(appBorderRadius)),
     ),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xFF273140)), // border
-      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderRadius: BorderRadius.all(Radius.circular(appBorderRadius)),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -174,12 +176,12 @@ final darkTheme = ThemeData(
       elevation: 0.0,
       backgroundColor: darkColorScheme.primary,
       foregroundColor: darkColorScheme.onPrimary,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(appBorderRadius)),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(appBorderRadius)),
     ),
   ),
   extensions: <ThemeExtension<DukoinColors>>[DukoinColors.dark],

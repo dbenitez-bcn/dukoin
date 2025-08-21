@@ -1,4 +1,5 @@
 import 'package:dukoin/styles/dukoin_colors.dart';
+import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
 
 class DukoinShimmer extends StatefulWidget {
@@ -41,7 +42,7 @@ class _DukoinShimmerState extends State<DukoinShimmer>
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
+            borderRadius: const BorderRadius.all(Radius.circular(appBorderRadius)),
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,

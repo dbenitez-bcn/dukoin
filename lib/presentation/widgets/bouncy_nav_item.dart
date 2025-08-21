@@ -107,7 +107,7 @@ class _BouncyNavItemState extends State<BouncyNavItem>
                     color: isActive
                         ? colorScheme.primary.withValues(alpha: 0.1)
                         : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

@@ -1,3 +1,4 @@
+import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
 
 class DukoinIcon extends StatelessWidget {
@@ -13,7 +14,7 @@ class DukoinIcon extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: color.withAlpha(isSolid ? 255 : 64),
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(appBorderRadius),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),

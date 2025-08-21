@@ -5,6 +5,7 @@ import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:dukoin/presentation/widgets/expense_info_card.dart';
 import 'package:dukoin/presentation/widgets/no_expenses.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
+import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
 
 class LastExpenses extends StatelessWidget {
@@ -25,7 +26,7 @@ class LastExpenses extends StatelessWidget {
               onTap: () {
                 NavigationStateProvider.of(context).setPageIndex(1);
               },
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(appBorderRadius),
               child: Row(
                 children: [
                   SizedBox(width: 6.0),
