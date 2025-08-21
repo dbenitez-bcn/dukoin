@@ -1,4 +1,5 @@
 import 'package:dukoin/l10n/app_localizations.dart';
+import 'package:dukoin/presentation/widgets/dukoin_app_bar.dart';
 import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
@@ -8,21 +9,10 @@ class SettingsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.all(0.0),
-      leading: DukoinIcon(
-        icon: LucideIcons.settings,
-        color: Theme.of(context).colorScheme.primary,
-        isSolid: true,
-      ),
-      title: Text(
-        AppLocalizations.of(context)!.settingsTitle,
-        style: TextTheme.of(context).displayLarge,
-      ),
-      subtitle: Text(
-        AppLocalizations.of(context)!.settingsSubtitle,
-        style: TextTheme.of(context).bodyMedium,
-      ),
+    return DukoinAppBar(
+      title: AppLocalizations.of(context)!.settingsTitle,
+      subtitle: AppLocalizations.of(context)!.settingsSubtitle,
+      icon: LucideIcons.settings,
     );
   }
 }
