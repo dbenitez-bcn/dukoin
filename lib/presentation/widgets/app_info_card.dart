@@ -54,7 +54,10 @@ class AppInfoCard extends StatelessWidget {
                 }
               },
             ),
-            Text(AppLocalizations.of(context)!.settingsApplicationInfoMessage),
+            Text(
+              AppLocalizations.of(context)!.settingsApplicationInfoMessage,
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),
