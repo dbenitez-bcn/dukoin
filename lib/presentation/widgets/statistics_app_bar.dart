@@ -1,7 +1,7 @@
+import 'package:dukoin/extensions/string_extension.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/widgets/dukoin_app_bar.dart';
 import 'package:dukoin/presentation/widgets/dukoin_dropdown_menu.dart';
-import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
@@ -16,7 +16,7 @@ class StatisticsAppBar extends StatelessWidget {
       (i) => DateFormat(
         'yMMMM',
         Localizations.localeOf(context).languageCode,
-      ).format(DateTime(DateTime.now().year, i + 1)),
+      ).format(DateTime(DateTime.now().year, i + 1)).capitalize(),
     );
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -31,7 +31,7 @@ class StatisticsAppBar extends StatelessWidget {
             Expanded(
               child: DukoinDropdownMenu(
                 items: months,
-                initialValue: months[0],
+                initialValue: 0,
                 onSelected: (value) {
                   print('Selected: $value');
                 },

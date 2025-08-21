@@ -4,7 +4,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class DukoinDropdownMenu extends StatefulWidget {
   final List<String> items;
-  final String initialValue;
+  final int initialValue;
   final void Function(String) onSelected;
 
   const DukoinDropdownMenu({
@@ -21,20 +21,18 @@ class DukoinDropdownMenu extends StatefulWidget {
 class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
     with SingleTickerProviderStateMixin {
   final GlobalKey _key = GlobalKey();
-  late String selectedValue;
+  late int selectedValue;
   OverlayEntry? _overlayEntry;
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
-  final Map<String, GlobalKey> _itemKeys = {};
+  final List<GlobalKey> _itemKeys = [];
 
   @override
   void initState() {
     super.initState();
     selectedValue = widget.initialValue;
-    for (var item in widget.items) {
-      _itemKeys[item] = GlobalKey();
-    }
+    _itemKeys.addAll(widget.items.map((_) => GlobalKey()));
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 150),
@@ -63,15 +61,15 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
     }
   }
 
-  bool isSelected(String item) {
+  bool isSelected(int item) {
     return item == selectedValue;
   }
 
-  void _updateSelectedValue(String value) {
+  void _updateSelectedValue(int value) {
     setState(() {
       selectedValue = value;
     });
-    widget.onSelected(value);
+    widget.onSelected(widget.items[value]);
     _animationController.reverse().then((_) {
       _overlayEntry?.remove();
       _overlayEntry = null;
@@ -121,12 +119,13 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
                         child: ListView(
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
-                          children: widget.items.map((item) {
+                          children: widget.items.asMap().entries.map((entry) {
+                            var selected = isSelected(entry.key);
                             return Container(
-                              key: _itemKeys[item],
+                              key: _itemKeys[entry.key],
                               decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.primary
-                                    .withAlpha(isSelected(item) ? 51 : 0),
+                                    .withAlpha(selected ? 51 : 0),
                                 borderRadius: BorderRadius.circular(
                                   appBorderRadius,
                                 ),
@@ -135,7 +134,7 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
                                 borderRadius: BorderRadius.circular(
                                   appBorderRadius,
                                 ),
-                                onTap: () => _updateSelectedValue(item),
+                                onTap: () => _updateSelectedValue(entry.key),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -143,11 +142,11 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        item,
+                                        entry.value,
                                         style: TextTheme.of(context).titleSmall,
                                       ),
                                     ),
-                                    if (isSelected(item))
+                                    if (selected)
                                       Padding(
                                         padding: const EdgeInsets.only(
                                           right: 8.0,
@@ -202,7 +201,7 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
               ),
               Expanded(
                 child: Text(
-                  selectedValue,
+                  widget.items[selectedValue],
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
