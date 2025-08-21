@@ -116,6 +116,12 @@ abstract class AppLocalizations {
   /// **'History'**
   String get navTabHistory;
 
+  /// Label for the Stats tab in the bottom navigation bar
+  ///
+  /// In en, this message translates to:
+  /// **'Stats'**
+  String get navTabStats;
+
   /// Title displayed on the Home screen
   ///
   /// In en, this message translates to:

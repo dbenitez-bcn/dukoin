@@ -12,6 +12,10 @@
   "@navTabHistory": {
     "description": "Label for the History tab in the bottom navigation bar"
   },
+  "navTabStats": "Stats",
+  "@navTabStats": {
+    "description": "Label for the Stats tab in the bottom navigation bar"
+  },
   "homeTitle": "Dukoin",
   "@homeTitle": {
     "description": "Title displayed on the Home screen"

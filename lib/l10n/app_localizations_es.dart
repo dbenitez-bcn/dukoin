@@ -18,6 +18,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get navTabHistory => 'History';
 
   @override
+  String get navTabStats => 'Stats';
+
+  @override
   String get homeTitle => 'Gastos diarios';
 
   @override
