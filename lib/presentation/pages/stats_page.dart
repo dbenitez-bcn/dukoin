@@ -1,3 +1,4 @@
+import 'package:dukoin/presentation/widgets/statistics_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class StatsPage extends StatelessWidget {
@@ -6,8 +7,13 @@ class StatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Stats')),
-      body: Center(child: Text('Stats Page')),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Container(
+          color: Colors.transparent,
+          child: SafeArea(child: StatisticsAppBar()),
+        ),
+      ),
     );
   }
 }
