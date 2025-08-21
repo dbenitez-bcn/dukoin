@@ -13,6 +13,7 @@ const lightColorScheme = ColorScheme(
   onError: Color(0xFFFFFFFF),
   surface: Color(0xFFFFFFFF),
   onSurface: Color(0xFF252525),
+  outline: Color.fromRGBO(0, 0, 0, 0.1)
 );
 
 const darkColorScheme = ColorScheme(
@@ -25,6 +26,7 @@ const darkColorScheme = ColorScheme(
   onError: Color(0xFFFFFFFF),
   surface: Color(0xFF0F172A),
   onSurface: Color(0xFFF8FAFC),
+  outline: Color(0xFF334155),
 );
 
 final baseTextTheme = const TextTheme(
