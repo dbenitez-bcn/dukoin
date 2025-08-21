@@ -1,9 +1,9 @@
 import 'package:dukoin/l10n/app_localizations.dart';
-import 'package:dukoin/presentation/pages/add_expense_page.dart';
 import 'package:dukoin/presentation/pages/dukoin_page_route.dart';
 import 'package:dukoin/presentation/pages/history_page.dart';
 import 'package:dukoin/presentation/pages/home_page.dart';
 import 'package:dukoin/presentation/pages/settings_page.dart';
+import 'package:dukoin/presentation/pages/stats_page.dart';
 import 'package:dukoin/presentation/state/theme_provider.dart';
 import 'package:dukoin/presentation/widgets/bouncy_bottom_nav_bar.dart';
 import 'package:dukoin/styles/theme.dart';
@@ -15,12 +15,14 @@ class DukoinMainScreen extends StatelessWidget {
   static final List<GlobalKey<NavigatorState>> _navigatorKeys = [
     GlobalKey<NavigatorState>(), // Home
     GlobalKey<NavigatorState>(), // History
+    GlobalKey<NavigatorState>(), // Stats
     GlobalKey<NavigatorState>(), // Settings
   ];
 
   static final List<Widget> _pages = [
     HomePage(),
     HistoryPage(),
+    StatsPage(),
     SettingsPage(),
   ];
 

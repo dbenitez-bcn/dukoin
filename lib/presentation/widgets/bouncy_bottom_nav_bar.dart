@@ -15,9 +15,22 @@ class NavItem {
 
 class BouncyBottomNavBar extends StatefulWidget {
   List<NavItem> _items(BuildContext context) => [
-    NavItem(icon: LucideIcons.house, label: AppLocalizations.of(context)!.navTabHome),
-    NavItem(icon: LucideIcons.clock, label: AppLocalizations.of(context)!.navTabHistory),
-    NavItem(icon: LucideIcons.settings, label: AppLocalizations.of(context)!.navTabSettings),
+    NavItem(
+      icon: LucideIcons.house,
+      label: AppLocalizations.of(context)!.navTabHome,
+    ),
+    NavItem(
+      icon: LucideIcons.clock,
+      label: AppLocalizations.of(context)!.navTabHistory,
+    ),
+    NavItem(
+      icon: LucideIcons.chartArea,
+      label: AppLocalizations.of(context)!.navTabStats,
+    ),
+    NavItem(
+      icon: LucideIcons.settings,
+      label: AppLocalizations.of(context)!.navTabSettings,
+    ),
   ];
 
   const BouncyBottomNavBar({super.key});
@@ -51,7 +64,8 @@ class _BouncyBottomNavBarState extends State<BouncyBottomNavBar> {
               icon: item.icon,
               label: item.label,
               index: index,
-              onTap: () => NavigationStateProvider.of(context).setPageIndex(index),
+              onTap: () =>
+                  NavigationStateProvider.of(context).setPageIndex(index),
             );
           }),
         ),
