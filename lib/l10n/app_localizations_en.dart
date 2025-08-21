@@ -86,6 +86,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get historyTitle => 'My Expenses';
 
   @override
+  String get statsPageTitle => 'Statistics';
+
+  @override
+  String get statsPageSubtitle => 'Your spending insights and analytics';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override

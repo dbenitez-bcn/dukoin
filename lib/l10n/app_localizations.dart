@@ -218,6 +218,18 @@ abstract class AppLocalizations {
   /// **'My Expenses'**
   String get historyTitle;
 
+  /// Title displayed on the stats screen
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statsPageTitle;
+
+  /// Subtitle displayed on the stats screen
+  ///
+  /// In en, this message translates to:
+  /// **'Your spending insights and analytics'**
+  String get statsPageSubtitle;
+
   /// Title displayed on the Settings screen
   ///
   /// In en, this message translates to:

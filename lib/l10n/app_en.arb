@@ -92,6 +92,14 @@
   "@historyTitle": {
     "description": "Title displayed on the history screen"
   },
+  "statsPageTitle": "Statistics",
+  "@statsPageTitle": {
+    "description": "Title displayed on the stats screen"
+  },
+  "statsPageSubtitle": "Your spending insights and analytics",
+  "@statsPageSubtitle": {
+    "description": "Subtitle displayed on the stats screen"
+  },
   "settingsTitle": "Settings",
   "@settingsTitle": {
     "description": "Title displayed on the Settings screen"
