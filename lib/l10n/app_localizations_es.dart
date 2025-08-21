@@ -80,7 +80,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get homeLastExpensesSeeAll => 'See all';
 
   @override
-  String get historyTitle => 'History';
+  String get historyTitle => 'My Expenses';
 
   @override
   String get settingsTitle => 'Ajustes';

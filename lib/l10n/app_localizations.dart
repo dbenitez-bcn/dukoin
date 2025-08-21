@@ -119,7 +119,7 @@ abstract class AppLocalizations {
   /// Title displayed on the Home screen
   ///
   /// In en, this message translates to:
-  /// **'My Expenses'**
+  /// **'Dukoin'**
   String get homeTitle;
 
   /// Displays today's date
@@ -209,7 +209,7 @@ abstract class AppLocalizations {
   /// Title displayed on the history screen
   ///
   /// In en, this message translates to:
-  /// **'History'**
+  /// **'My Expenses'**
   String get historyTitle;
 
   /// Title displayed on the Settings screen

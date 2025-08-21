@@ -18,7 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navTabHistory => 'History';
 
   @override
-  String get homeTitle => 'My Expenses';
+  String get homeTitle => 'Dukoin';
 
   @override
   String homeSubtitle(DateTime date) {
@@ -80,7 +80,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeLastExpensesSeeAll => 'See all';
 
   @override
-  String get historyTitle => 'History';
+  String get historyTitle => 'My Expenses';
 
   @override
   String get settingsTitle => 'Settings';

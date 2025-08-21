@@ -11,7 +11,10 @@ class HomeAppBar extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(context)!.homeTitle,
-          style: TextTheme.of(context).displayLarge,
+          style: TextTheme.of(context).displayLarge!.copyWith(
+            fontFamily: 'Willow',
+            fontSize: 36.0
+          ),
         ),
         Text(
           AppLocalizations.of(

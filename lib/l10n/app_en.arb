@@ -12,7 +12,7 @@
   "@navTabHistory": {
     "description": "Label for the History tab in the bottom navigation bar"
   },
-  "homeTitle": "My Expenses",
+  "homeTitle": "Dukoin",
   "@homeTitle": {
     "description": "Title displayed on the Home screen"
   },
@@ -84,7 +84,7 @@
   "@homeLastExpensesSeeAll": {
     "description": "Title displayed on see all button"
   },
-  "historyTitle": "History",
+  "historyTitle": "My Expenses",
   "@historyTitle": {
     "description": "Title displayed on the history screen"
   },
