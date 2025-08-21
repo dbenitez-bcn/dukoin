@@ -26,12 +26,15 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
+  final Map<String, GlobalKey> _itemKeys = {};
 
   @override
   void initState() {
     super.initState();
     selectedValue = widget.initialValue;
-
+    for (var item in widget.items) {
+      _itemKeys[item] = GlobalKey();
+    }
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 150),
@@ -80,6 +83,15 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
     Size size = renderBox.size;
     Offset offset = renderBox.localToGlobal(Offset.zero);
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_itemKeys[selectedValue]?.currentContext != null) {
+        Scrollable.ensureVisible(
+          _itemKeys[selectedValue]!.currentContext!,
+          alignment: 0.5,
+        );
+      }
+    });
+
     return OverlayEntry(
       builder: (context) => GestureDetector(
         onTap: () {
@@ -107,10 +119,11 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListView(
-                          padding: EdgeInsets.zero,
                           shrinkWrap: true,
+                          padding: EdgeInsets.zero,
                           children: widget.items.map((item) {
                             return Container(
+                              key: _itemKeys[item],
                               decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.primary
                                     .withAlpha(isSelected(item) ? 51 : 0),
