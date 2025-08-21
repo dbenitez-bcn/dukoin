@@ -1,5 +1,6 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
+import 'package:get_it/get_it.dart';
 
 class ExpensePaginationController {
   final ExpenseRepository repository;
@@ -11,7 +12,8 @@ class ExpensePaginationController {
 
   List<Expense> _expenses = [];
 
-  ExpensePaginationController({required this.repository, this.pageSize = 10});
+  ExpensePaginationController({this.pageSize = 10})
+    : repository = GetIt.I<ExpenseRepository>();
 
   List<Expense> get expenses => _expenses;
 

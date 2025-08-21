@@ -1,15 +1,14 @@
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/dukoin_app.dart';
-import 'package:dukoin/infrastructure/database_provider.dart';
-import 'package:dukoin/infrastructure/sqflite_expense_repository.dart';
+import 'package:dukoin/main.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_it/get_it.dart';
 
 import 'domain/expense.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await setup();
 
   final List<Expense> expenses = [
     Expense(
@@ -153,11 +152,12 @@ void main() async {
       createdAt: DateTime.now().subtract(const Duration(days: 21, hours: 2)),
     ),
   ];
-  final ExpenseRepository repo = SqfliteExpenseRepository(DatabaseProvider());
 
+  final ExpenseRepository repo = GetIt.I<ExpenseRepository>();
   await repo.deleteAll();
   for (int i = 0; i < expenses.length; i++) {
     await repo.insert(expenses[i]);
   }
-  runApp(DukoinApp(prefs: prefs));
+
+  runApp(DukoinApp());
 }

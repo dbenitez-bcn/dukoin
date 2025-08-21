@@ -1,5 +1,3 @@
-import 'package:dukoin/infrastructure/database_provider.dart';
-import 'package:dukoin/infrastructure/sqflite_expense_repository.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_pagination_controller.dart';
 import 'package:dukoin/presentation/widgets/history_view.dart';
@@ -14,9 +12,7 @@ class HistoryPage extends StatelessWidget {
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.historyTitle)),
       body: SafeArea(
         child: ExpensesHistoryView(
-          paginationController: ExpensePaginationController(
-            repository: SqfliteExpenseRepository(DatabaseProvider()),
-          ),
+          paginationController: ExpensePaginationController(),
         ),
       ),
     );
