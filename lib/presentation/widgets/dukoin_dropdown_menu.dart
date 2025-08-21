@@ -115,55 +115,61 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
                     alignment: Alignment.topLeft,
                     child: Card.outlined(
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: ListView(
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
-                          children: widget.items.asMap().entries.map((entry) {
-                            var selected = isSelected(entry.key);
-                            return Container(
-                              key: _itemKeys[entry.key],
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.primary
-                                    .withAlpha(selected ? 51 : 0),
-                                borderRadius: BorderRadius.circular(
-                                  appBorderRadius,
+                          children: [
+                            SizedBox(height: 8),
+                            ...widget.items.asMap().entries.map((entry) {
+                              var selected = isSelected(entry.key);
+                              return Container(
+                                key: _itemKeys[entry.key],
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.primary
+                                      .withAlpha(selected ? 51 : 0),
+                                  borderRadius: BorderRadius.circular(
+                                    appBorderRadius,
+                                  ),
                                 ),
-                              ),
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(
-                                  appBorderRadius,
-                                ),
-                                onTap: () => _updateSelectedValue(entry.key),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        entry.value,
-                                        style: TextTheme.of(context).titleSmall,
-                                      ),
-                                    ),
-                                    if (selected)
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(
+                                    appBorderRadius,
+                                  ),
+                                  onTap: () => _updateSelectedValue(entry.key),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(
-                                          right: 8.0,
-                                        ),
-                                        child: Icon(
-                                          LucideIcons.check,
-                                          size: 16,
-                                          color: Theme.of(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          entry.value,
+                                          style: TextTheme.of(
                                             context,
-                                          ).colorScheme.primary,
+                                          ).titleSmall,
                                         ),
                                       ),
-                                  ],
+                                      if (selected)
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            right: 8.0,
+                                          ),
+                                          child: Icon(
+                                            LucideIcons.check,
+                                            size: 16,
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.primary,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          }).toList(),
+                              );
+                            }),
+                            SizedBox(height: 8),
+                          ],
                         ),
                       ),
                     ),
