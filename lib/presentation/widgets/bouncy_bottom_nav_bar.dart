@@ -54,8 +54,7 @@ class _BouncyBottomNavBarState extends State<BouncyBottomNavBar> {
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 12.0),
+      child: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(widget._items(context).length, (index) {
