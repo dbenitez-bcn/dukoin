@@ -325,5 +325,39 @@
   "yesterday": "Yesterday",
   "@yesterday": {
     "description": "String for yesterday"
+  },
+  "categoryFilterTitle": "Filter Categories",
+  "@categoryFilterTitle": {
+    "description": "Category filter bottom sheet title"
+  },
+  "categoryFilterSubtitle": "Select categories to include in your statistics",
+  "@categoryFilterSubtitle": {
+    "description": "Category filter bottom sheet subtitle"
+  },
+  "categoryFilterButtonTitle": "Apply Filters",
+  "@categoryFilterButtonTitle": {
+    "description": "Category filter bottom sheet button title"
+  },
+  "categoryFilterCounter": "{min} of {max}",
+  "@categoryFilterCounter": {
+    "description": "Category filter bottom sheet counter",
+    "placeholders": {
+      "min": {
+        "type": "int",
+        "example": "0"
+      },
+      "max": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "clearAll": "Clear all",
+  "@clearAll": {
+    "description": "Clear all"
+  },
+  "selectAll": "Select all",
+  "@selectAll": {
+    "description": "Select all"
   }
 }

@@ -529,6 +529,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yesterday'**
   String get yesterday;
+
+  /// Category filter bottom sheet title
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Categories'**
+  String get categoryFilterTitle;
+
+  /// Category filter bottom sheet subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Select categories to include in your statistics'**
+  String get categoryFilterSubtitle;
+
+  /// Category filter bottom sheet button title
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Filters'**
+  String get categoryFilterButtonTitle;
+
+  /// Category filter bottom sheet counter
+  ///
+  /// In en, this message translates to:
+  /// **'{min} of {max}'**
+  String categoryFilterCounter(int min, int max);
+
+  /// Clear all
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get clearAll;
+
+  /// Select all
+  ///
+  /// In en, this message translates to:
+  /// **'Select all'**
+  String get selectAll;
 }
 
 class _AppLocalizationsDelegate

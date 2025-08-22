@@ -18,7 +18,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get navTabHistory => 'Historial';
 
   @override
-  String get navTabStats => 'Estadísticas';
+  String get navTabStats => 'Gráficos';
 
   @override
   String get homeTitle => 'Dukoin';
@@ -262,4 +262,25 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get yesterday => 'Ayer';
+
+  @override
+  String get categoryFilterTitle => 'Filter Categories';
+
+  @override
+  String get categoryFilterSubtitle =>
+      'Select categories to include in your statistics';
+
+  @override
+  String get categoryFilterButtonTitle => 'Apply Filters';
+
+  @override
+  String categoryFilterCounter(int min, int max) {
+    return '$min of $max';
+  }
+
+  @override
+  String get clearAll => 'Clear all';
+
+  @override
+  String get selectAll => 'Select all';
 }

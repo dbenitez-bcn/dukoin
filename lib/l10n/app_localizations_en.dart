@@ -262,4 +262,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get yesterday => 'Yesterday';
+
+  @override
+  String get categoryFilterTitle => 'Filter Categories';
+
+  @override
+  String get categoryFilterSubtitle =>
+      'Select categories to include in your statistics';
+
+  @override
+  String get categoryFilterButtonTitle => 'Apply Filters';
+
+  @override
+  String categoryFilterCounter(int min, int max) {
+    return '$min of $max';
+  }
+
+  @override
+  String get clearAll => 'Clear all';
+
+  @override
+  String get selectAll => 'Select all';
 }
