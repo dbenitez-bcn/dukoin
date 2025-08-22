@@ -90,7 +90,7 @@ final lightTheme = ThemeData(
     foregroundColor: lightColorScheme.onSurface,
     surfaceTintColor: Colors.transparent,
     elevation: 0,
-    shape: Border(bottom: BorderSide(color: DukoinColors.light.borderColor)),
+    shape: Border(bottom: BorderSide(color: lightColorScheme.outline)),
   ),
   textTheme: baseTextTheme.apply(
     bodyColor: DukoinColors.light.bodyColor,
@@ -100,7 +100,7 @@ final lightTheme = ThemeData(
     elevation: 0.0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(appBorderRadius),
-      side: BorderSide(color: DukoinColors.light.borderColor), // border
+      side: BorderSide(color: lightColorScheme.outline), // border
     ),
     margin: EdgeInsets.symmetric(vertical: 8),
   ),
@@ -110,7 +110,7 @@ final lightTheme = ThemeData(
     contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
     hintStyle: TextStyle(color: Colors.grey[700]),
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: DukoinColors.light.borderColor), // border
+      borderSide: BorderSide(color: lightColorScheme.outline), // border
       borderRadius: const BorderRadius.all(Radius.circular(appBorderRadius)),
     ),
     enabledBorder: const OutlineInputBorder(
@@ -144,7 +144,7 @@ final darkTheme = ThemeData(
     surfaceTintColor: Colors.transparent,
     elevation: 0,
     // No shadow, so border is clean
-    shape: Border(bottom: BorderSide(color: DukoinColors.dark.borderColor)),
+    shape: Border(bottom: BorderSide(color: darkColorScheme.outline)),
   ),
   textTheme: baseTextTheme.apply(
     bodyColor: DukoinColors.dark.bodyColor,
@@ -154,7 +154,7 @@ final darkTheme = ThemeData(
     color: Color(0xFF1e293b),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(appBorderRadius),
-      side: BorderSide(color: DukoinColors.dark.borderColor), // border
+      side: BorderSide(color: darkColorScheme.outline), // border
     ),
     margin: EdgeInsets.symmetric(vertical: 8),
   ),
@@ -165,7 +165,7 @@ final darkTheme = ThemeData(
     contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
     hintStyle: TextStyle(color: Colors.white54),
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: DukoinColors.dark.borderColor), // border
+      borderSide: BorderSide(color: darkColorScheme.outline), // border
       borderRadius: BorderRadius.all(Radius.circular(appBorderRadius)),
     ),
     enabledBorder: OutlineInputBorder(

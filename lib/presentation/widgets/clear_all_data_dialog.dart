@@ -50,9 +50,7 @@ class ClearAllDataDialog extends StatelessWidget {
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(
-                      color: Theme.of(
-                        context,
-                      ).extension<DukoinColors>()!.borderColor,
+                      color: Theme.of(context).colorScheme.outline,
                       width: 1,
                     ),
                   ),

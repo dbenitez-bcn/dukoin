@@ -33,7 +33,7 @@ class TimePeriodSelector extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(appBorderRadius),
             side: BorderSide(
-              color: Theme.of(context).extension<DukoinColors>()!.borderColor,
+              color: Theme.of(context).colorScheme.outline,
             ), // border
           ),
           child: Padding(
