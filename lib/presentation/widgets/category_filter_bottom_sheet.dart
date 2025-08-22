@@ -1,6 +1,9 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
+import 'package:dukoin/presentation/widgets/dukoin_plain_button.dart';
 import 'package:flutter/material.dart';
+
+import 'dukoin_outline_button.dart';
 
 class CategoryFilterBottomSheet extends StatelessWidget {
   const CategoryFilterBottomSheet({super.key});
@@ -40,31 +43,35 @@ class CategoryFilterBottomSheet extends StatelessWidget {
                   AppLocalizations.of(context)!.categoryFilterSubtitle,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: Text(AppLocalizations.of(context)!.selectAll),
-                        ),
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: Text(AppLocalizations.of(context)!.selectAll),
-                        ),
-                      ],
-                    ),
-                    OutlinedButton(
-                      onPressed: () {},
-                      child: Text(
-                        AppLocalizations.of(context)!.categoryFilterCounter(
-                          0,
-                          ExpenseCategory.values.length,
-                        ),
+                //const SizedBox(height: 16.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          DukoinOutlineButton(
+                            onPressed: () {},
+                            title: AppLocalizations.of(context)!.selectAll,
+                          ),
+                          const SizedBox(width: 8.0),
+                          DukoinOutlineButton(
+                            onPressed: () {},
+                            title: AppLocalizations.of(context)!.clearAll,
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                      DukoinPlainButton(
+                        onPressed: () {},
+                        title: AppLocalizations.of(context)!
+                            .categoryFilterCounter(
+                              0,
+                              ExpenseCategory.values.length,
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
