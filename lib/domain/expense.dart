@@ -1,4 +1,5 @@
-enum ExpenseCategory { //TODO: move others to down.
+enum ExpenseCategory {
+  //TODO: move others to down.
   others,
   travel,
   investments,
@@ -29,14 +30,18 @@ class Expense implements Comparable<Expense> {
     required this.category,
     required this.description,
     required DateTime createdAt,
-  }) : createdAt = DateTime(createdAt.year, createdAt.month, createdAt.day); // Normalize to date only
+  }) : createdAt = DateTime(
+         createdAt.year,
+         createdAt.month,
+         createdAt.day,
+       ); // Normalize to date only
 
   // Convert to Map for DB
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'amount': amount,
-      'category': category.index, // TODO: Store enum as string
+      'category': category.name,
       'description': description,
       'createdAt': createdAt.toIso8601String(),
     };
@@ -47,7 +52,7 @@ class Expense implements Comparable<Expense> {
     return Expense(
       id: map['id'],
       amount: map['amount'],
-      category: ExpenseCategory.values[map['category']], // TODO: Load enum as string
+      category: _getCategoryFromString(map['category']),
       description: map['description'],
       createdAt: DateTime.parse(map['createdAt']),
     );
@@ -57,4 +62,11 @@ class Expense implements Comparable<Expense> {
   int compareTo(Expense obj) {
     return obj.createdAt.compareTo(createdAt);
   }
+}
+
+ExpenseCategory _getCategoryFromString(String category) {
+  return ExpenseCategory.values.firstWhere(
+    (e) => e.name == category,
+    orElse: () => ExpenseCategory.others,
+  );
 }

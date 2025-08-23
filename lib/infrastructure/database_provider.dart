@@ -28,7 +28,7 @@ class DatabaseProvider {
       CREATE TABLE expenses (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         amount REAL NOT NULL,
-        category INTEGER NOT NULL,
+        category TEXT NOT NULL,
         description TEXT NOT NULL,
         createdAt TEXT NOT NULL
       );
