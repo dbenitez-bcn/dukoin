@@ -29,6 +29,25 @@ class _CategoryFilterBottomSheetState extends State<CategoryFilterBottomSheet> {
     });
   }
 
+  Widget _buildCategoryButton(BuildContext context, int index) {
+    final category = ExpenseCategory.values[index];
+    return CategoryButton(
+      category: category,
+      isActive: _selectedCategories.contains(category),
+      onChanged: (isActive) {
+        if (isActive) {
+          setState(() {
+            _selectedCategories.add(category);
+          });
+        } else {
+          setState(() {
+            _selectedCategories.remove(category);
+          });
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
@@ -102,24 +121,7 @@ class _CategoryFilterBottomSheetState extends State<CategoryFilterBottomSheet> {
               child: ListView.separated(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 itemCount: ExpenseCategory.values.length,
-                itemBuilder: (context, index) {
-                  final category = ExpenseCategory.values[index];
-                  return CategoryButton(
-                    category: category,
-                    isActive: _selectedCategories.contains(category),
-                    onChanged: (isActive) {
-                      if (isActive) {
-                        setState(() {
-                          _selectedCategories.add(category);
-                        });
-                      } else {
-                        setState(() {
-                          _selectedCategories.remove(category);
-                        });
-                      }
-                    },
-                  );
-                },
+                itemBuilder: _buildCategoryButton,
                 separatorBuilder: (context, index) =>
                     const SizedBox(height: 12),
               ),
@@ -127,7 +129,7 @@ class _CategoryFilterBottomSheetState extends State<CategoryFilterBottomSheet> {
             SizedBox(
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
                 child: ElevatedButton(
                   child: Text(
                     AppLocalizations.of(context)!.categoryFilterButtonTitle,
