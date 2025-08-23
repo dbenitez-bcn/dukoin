@@ -55,18 +55,23 @@ class _BouncyBottomNavBarState extends State<BouncyBottomNavBar> {
         ],
       ),
       child: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(widget._items(context).length, (index) {
-            final item = widget._items(context)[index];
-            return BouncyNavItem(
-              icon: item.icon,
-              label: item.label,
-              index: index,
-              onTap: () =>
-                  NavigationStateProvider.of(context).setPageIndex(index),
-            );
-          }),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(widget._items(context).length, (index) {
+              final item = widget._items(context)[index];
+              return Expanded(
+                child: BouncyNavItem(
+                  icon: item.icon,
+                  label: item.label,
+                  index: index,
+                  onTap: () =>
+                      NavigationStateProvider.of(context).setPageIndex(index),
+                ),
+              );
+            }),
+          ),
         ),
       ),
     );

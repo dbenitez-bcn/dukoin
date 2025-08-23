@@ -122,6 +122,7 @@ class _BouncyNavItemState extends State<BouncyNavItem>
                         style: TextStyle(
                           color: isActive ? colorScheme.primary : Colors.grey,
                         ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
