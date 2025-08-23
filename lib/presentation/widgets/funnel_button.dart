@@ -1,5 +1,6 @@
 import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:dukoin/presentation/widgets/category_filter_bottom_sheet.dart';
+import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
@@ -36,6 +37,14 @@ class _FunnelButtonState extends State<FunnelButton> {
         clipBehavior: Clip.none,
         children: [
           Card.outlined(
+            shape: isClear
+                ? null
+                : const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(appBorderRadius),
+                    ),
+                    side: BorderSide.none,
+                  ),
             color: isClear ? null : Theme.of(context).colorScheme.primary,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
