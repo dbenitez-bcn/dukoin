@@ -144,7 +144,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     value: selectedCategory,
                     focusNode: _categoryFocus,
                     menuMaxHeight: 300.0,
-                    items: ExpenseCategory.values.reversed
+                    items: ExpenseCategory.values
                         .map(
                           (c) => DropdownMenuItem(
                             value: c,

@@ -54,16 +54,8 @@ String getIconFromCategory(ExpenseCategory category) {
       return '✈️';
     case ExpenseCategory.investments:
       return '📈';
-    case ExpenseCategory.insurance:
-      return '🛡️';
-    case ExpenseCategory.subscriptions:
-      return '💳';
-    case ExpenseCategory.pets:
-      return '🐾';
     case ExpenseCategory.house:
       return '🏠';
-    case ExpenseCategory.personalCare:
-      return '💇';
   }
 }
 
@@ -89,14 +81,6 @@ String getCategoryTitle(BuildContext context, ExpenseCategory category) {
       return AppLocalizations.of(context)!.categoryTravel;
     case ExpenseCategory.investments:
       return AppLocalizations.of(context)!.categoryInvestments;
-    case ExpenseCategory.insurance:
-      return AppLocalizations.of(context)!.categoryInsurance;
-    case ExpenseCategory.subscriptions:
-      return AppLocalizations.of(context)!.categorySubscriptions;
-    case ExpenseCategory.pets:
-      return AppLocalizations.of(context)!.categoryPets;
-    case ExpenseCategory.personalCare:
-      return AppLocalizations.of(context)!.categoryPersonalCare;
     case ExpenseCategory.house:
       return AppLocalizations.of(context)!.categoryHouse;
   }

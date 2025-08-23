@@ -212,18 +212,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get categoryInvestments => 'Inversiones';
 
   @override
-  String get categoryInsurance => 'Seguros';
-
-  @override
-  String get categorySubscriptions => 'Suscripciones';
-
-  @override
-  String get categoryPets => 'Mascotas';
-
-  @override
-  String get categoryPersonalCare => 'Cuidado personal';
-
-  @override
   String get categoryHouse => 'Hogar';
 
   @override

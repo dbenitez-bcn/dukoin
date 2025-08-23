@@ -1,20 +1,15 @@
 enum ExpenseCategory {
-  //TODO: move others to down.
-  others,
-  travel,
-  investments,
-  insurance,
-  subscriptions,
-  pets,
-  personalCare,
-  house,
-  education,
+  food,
+  transport,
+  shopping,
+  entertainment,
   health,
   bills,
-  entertainment,
-  shopping,
-  transport,
-  food,
+  house,
+  education,
+  investments,
+  travel,
+  others,
 }
 
 class Expense implements Comparable<Expense> {

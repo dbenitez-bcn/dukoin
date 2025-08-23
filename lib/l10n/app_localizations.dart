@@ -401,7 +401,7 @@ abstract class AppLocalizations {
   /// Category for health-related expenses
   ///
   /// In en, this message translates to:
-  /// **'Health'**
+  /// **'Health & Wellness'**
   String get categoryHealth;
 
   /// Category for educational expenses
@@ -427,30 +427,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Investments'**
   String get categoryInvestments;
-
-  /// Category for insurance expenses
-  ///
-  /// In en, this message translates to:
-  /// **'Insurance'**
-  String get categoryInsurance;
-
-  /// Category for subscriptions expenses
-  ///
-  /// In en, this message translates to:
-  /// **'Subscriptions'**
-  String get categorySubscriptions;
-
-  /// Category for pets expenses
-  ///
-  /// In en, this message translates to:
-  /// **'Pets'**
-  String get categoryPets;
-
-  /// Category for personal care expenses
-  ///
-  /// In en, this message translates to:
-  /// **'Personal care'**
-  String get categoryPersonalCare;
 
   /// Category for house expenses
   ///

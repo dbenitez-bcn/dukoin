@@ -197,7 +197,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get categoryBills => 'Bills';
 
   @override
-  String get categoryHealth => 'Health';
+  String get categoryHealth => 'Health & Wellness';
 
   @override
   String get categoryEducation => 'Education';
@@ -210,18 +210,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get categoryInvestments => 'Investments';
-
-  @override
-  String get categoryInsurance => 'Insurance';
-
-  @override
-  String get categorySubscriptions => 'Subscriptions';
-
-  @override
-  String get categoryPets => 'Pets';
-
-  @override
-  String get categoryPersonalCare => 'Personal care';
 
   @override
   String get categoryHouse => 'House';

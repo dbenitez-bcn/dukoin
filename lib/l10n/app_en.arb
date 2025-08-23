@@ -238,7 +238,7 @@
   "@categoryBills": {
     "description": "Category for utility or service bills"
   },
-  "categoryHealth": "Health",
+  "categoryHealth": "Health & Wellness",
   "@categoryHealth": {
     "description": "Category for health-related expenses"
   },
@@ -257,22 +257,6 @@
   "categoryInvestments": "Investments",
   "@categoryInvestments": {
     "description": "Category for investments expenses"
-  },
-  "categoryInsurance": "Insurance",
-  "@categoryInsurance": {
-    "description": "Category for insurance expenses"
-  },
-  "categorySubscriptions": "Subscriptions",
-  "@categorySubscriptions": {
-    "description": "Category for subscriptions expenses"
-  },
-  "categoryPets": "Pets",
-  "@categoryPets": {
-    "description": "Category for pets expenses"
-  },
-  "categoryPersonalCare": "Personal care",
-  "@categoryPersonalCare": {
-    "description": "Category for personal care expenses"
   },
   "categoryHouse": "House",
   "@categoryHouse": {
