@@ -1,7 +1,6 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:flutter/material.dart';
-
 class CategoryButton extends StatefulWidget {
   final ExpenseCategory category;
   final bool isActive;
@@ -20,60 +19,48 @@ class CategoryButton extends StatefulWidget {
 
 class _CategoryButtonState extends State<CategoryButton>
     with SingleTickerProviderStateMixin {
-  late bool _isActive;
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
   @override
   void initState() {
     super.initState();
-    _isActive = widget.isActive;
 
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
     );
 
-    // Sequence: tap down (0 → 0.2), bounce up (0.2 → 1.0)
     _scaleAnimation = TweenSequence<double>([
       TweenSequenceItem(
-        tween: Tween(
-          begin: 1.0,
-          end: 0.95,
-        ).chain(CurveTween(curve: Curves.easeOut)),
+        tween: Tween(begin: 1.0, end: 0.95)
+            .chain(CurveTween(curve: Curves.easeOut)),
         weight: 20,
       ),
       TweenSequenceItem(
-        tween: Tween(
-          begin: 0.95,
-          end: 1.0,
-        ).chain(CurveTween(curve: Curves.easeOut)),
+        tween: Tween(begin: 0.95, end: 1.0)
+            .chain(CurveTween(curve: Curves.easeOut)),
         weight: 40,
       ),
-
     ]).animate(_controller);
   }
 
   void _toggle() {
-    setState(() => _isActive = !_isActive);
-    widget.onChanged?.call(_isActive);
+    widget.onChanged?.call(!widget.isActive);
   }
 
   void _onTapDown(_) {
-    _controller.animateTo(
-      0.2,
-      duration: const Duration(milliseconds: 100),
-      curve: Curves.easeOut,
-    );
+    _controller.animateTo(0.2,
+        duration: const Duration(milliseconds: 100), curve: Curves.easeOut);
   }
 
   void _onTapUp(_) {
-    _controller.forward(from: 0.2); // play bounce
+    _controller.forward(from: 0.2);
     _toggle();
   }
 
   void _onTapCancel() {
-    _controller.reverse(); // smoothly go back to 1.0
+    _controller.reverse();
   }
 
   @override
@@ -86,13 +73,12 @@ class _CategoryButtonState extends State<CategoryButton>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    // 🎨 Style depending on state
     Color bgColor = theme.cardColor;
     Color borderColor = theme.dividerColor;
     Color textColor = theme.colorScheme.onSurface;
     FontWeight fontWeight = FontWeight.w500;
 
-    if (_isActive) {
+    if (widget.isActive) {
       bgColor = theme.colorScheme.primary.withAlpha(25);
       borderColor = theme.colorScheme.primary;
       textColor = theme.colorScheme.primary;
@@ -118,24 +104,18 @@ class _CategoryButtonState extends State<CategoryButton>
               child: Row(
                 children: [
                   Expanded(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "${getIconFromCategory(widget.category)} ${getCategoryTitle(context, widget.category)}",
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: textColor,
-                              fontWeight: fontWeight,
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: Text(
+                      "${getIconFromCategory(widget.category)} ${getCategoryTitle(context, widget.category)}",
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: textColor,
+                        fontWeight: fontWeight,
+                      ),
                     ),
                   ),
                   AnimatedScale(
                     duration: const Duration(milliseconds: 200),
-                    scale: _isActive ? 1 : 0,
+                    scale: widget.isActive ? 1 : 0,
                     child: Container(
                       width: 20,
                       height: 20,

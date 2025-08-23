@@ -1,96 +1,139 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
+import 'package:dukoin/presentation/widgets/category_button.dart';
 import 'package:dukoin/presentation/widgets/dukoin_plain_button.dart';
 import 'package:flutter/material.dart';
 
 import 'dukoin_outline_button.dart';
 
-class CategoryFilterBottomSheet extends StatelessWidget {
+class CategoryFilterBottomSheet extends StatefulWidget {
   const CategoryFilterBottomSheet({super.key});
+
+  @override
+  State<CategoryFilterBottomSheet> createState() =>
+      _CategoryFilterBottomSheetState();
+}
+
+class _CategoryFilterBottomSheetState extends State<CategoryFilterBottomSheet> {
+  List<ExpenseCategory> _selectedCategories = [];
+
+  void selectAll() {
+    setState(() {
+      _selectedCategories = ExpenseCategory.values.toList();
+    });
+  }
+
+  void clearAll() {
+    setState(() {
+      _selectedCategories.clear();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0),
+        padding: const EdgeInsets.only(bottom: 16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: Icon(
-                          Icons.close_rounded,
-                          size: 20.0,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Text(
-                  AppLocalizations.of(context)!.categoryFilterTitle,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-                Text(
-                  AppLocalizations.of(context)!.categoryFilterSubtitle,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                //const SizedBox(height: 16.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Row(
-                        children: [
-                          DukoinOutlineButton(
-                            onPressed: () {},
-                            title: AppLocalizations.of(context)!.selectAll,
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: Icon(
+                            Icons.close_rounded,
+                            size: 20.0,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
-                          const SizedBox(width: 8.0),
-                          DukoinOutlineButton(
-                            onPressed: () {},
-                            title: AppLocalizations.of(context)!.clearAll,
-                          ),
-                        ],
-                      ),
-                      DukoinPlainButton(
-                        onPressed: () {},
-                        title: AppLocalizations.of(context)!
-                            .categoryFilterCounter(
-                              0,
-                              ExpenseCategory.values.length,
-                            ),
+                        ),
                       ),
                     ],
                   ),
-                ),
-              ],
+                  Text(
+                    AppLocalizations.of(context)!.categoryFilterTitle,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!.categoryFilterSubtitle,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  //const SizedBox(height: 16.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            DukoinOutlineButton(
+                              onPressed: selectAll,
+                              title: AppLocalizations.of(context)!.selectAll,
+                            ),
+                            const SizedBox(width: 8.0),
+                            DukoinOutlineButton(
+                              onPressed: clearAll,
+                              title: AppLocalizations.of(context)!.clearAll,
+                            ),
+                          ],
+                        ),
+                        DukoinPlainButton(
+                          title: AppLocalizations.of(context)!
+                              .categoryFilterCounter(
+                                _selectedCategories.length,
+                                ExpenseCategory.values.length,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8.0,
-                children: ExpenseCategory.values.map((category) {
-                  return Text(category.name);
-                }).toList(),
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                itemCount: ExpenseCategory.values.length,
+                itemBuilder: (context, index) {
+                  final category = ExpenseCategory.values[index];
+                  return CategoryButton(
+                    category: category,
+                    isActive: _selectedCategories.contains(category),
+                    onChanged: (isActive) {
+                      if (isActive) {
+                        setState(() {
+                          _selectedCategories.add(category);
+                        });
+                      } else {
+                        setState(() {
+                          _selectedCategories.remove(category);
+                        });
+                      }
+                    },
+                  );
+                },
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 12),
               ),
             ),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                child: Text(
-                  AppLocalizations.of(context)!.categoryFilterButtonTitle,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: ElevatedButton(
+                  child: Text(
+                    AppLocalizations.of(context)!.categoryFilterButtonTitle,
+                  ),
+                  onPressed: () => Navigator.pop(context),
                 ),
-                onPressed: () => Navigator.pop(context),
               ),
             ),
           ],
