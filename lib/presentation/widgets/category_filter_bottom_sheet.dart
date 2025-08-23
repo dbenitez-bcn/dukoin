@@ -1,5 +1,6 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
+import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:dukoin/presentation/widgets/category_button.dart';
 import 'package:dukoin/presentation/widgets/dukoin_plain_button.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,14 @@ import 'package:flutter/material.dart';
 import 'dukoin_outline_button.dart';
 
 class CategoryFilterBottomSheet extends StatefulWidget {
-  const CategoryFilterBottomSheet({super.key});
+  final VoidCallback onSubmit;
+  final List<ExpenseCategory> selectedCategories;
+
+  const CategoryFilterBottomSheet({
+    super.key,
+    required this.onSubmit,
+    required this.selectedCategories,
+  });
 
   @override
   State<CategoryFilterBottomSheet> createState() =>
@@ -16,6 +24,12 @@ class CategoryFilterBottomSheet extends StatefulWidget {
 
 class _CategoryFilterBottomSheetState extends State<CategoryFilterBottomSheet> {
   List<ExpenseCategory> _selectedCategories = [];
+
+  @override
+  void initState() {
+    _selectedCategories = widget.selectedCategories;
+    super.initState();
+  }
 
   void selectAll() {
     setState(() {
@@ -122,10 +136,11 @@ class _CategoryFilterBottomSheetState extends State<CategoryFilterBottomSheet> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 itemCount: ExpenseCategory.values.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,              // 🔹 two per row
-                  mainAxisSpacing: 12,            // vertical spacing
-                  crossAxisSpacing: 8,           // horizontal spacing
-                  childAspectRatio: 4.0,          // 🔹 wider than tall (adjust as you like)
+                  crossAxisCount: 2, // 🔹 two per row
+                  mainAxisSpacing: 12, // vertical spacing
+                  crossAxisSpacing: 8, // horizontal spacing
+                  childAspectRatio:
+                      4.0, // 🔹 wider than tall (adjust as you like)
                 ),
                 itemBuilder: _buildCategoryButton,
               ),
@@ -133,12 +148,22 @@ class _CategoryFilterBottomSheetState extends State<CategoryFilterBottomSheet> {
             SizedBox(
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+                padding: const EdgeInsets.only(
+                  left: 16.0,
+                  right: 16.0,
+                  top: 8.0,
+                ),
                 child: ElevatedButton(
                   child: Text(
                     AppLocalizations.of(context)!.categoryFilterButtonTitle,
                   ),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    StatsProvider.of(
+                      context,
+                    ).onCategoriesUpdated(_selectedCategories);
+                    widget.onSubmit();
+                  },
                 ),
               ),
             ),

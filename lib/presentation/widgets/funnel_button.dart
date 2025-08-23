@@ -1,23 +1,34 @@
+import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:dukoin/presentation/widgets/category_filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-class FunnelButton extends StatelessWidget {
-  final int count = 2;
-
+class FunnelButton extends StatefulWidget {
   FunnelButton({super.key});
 
+  @override
+  State<FunnelButton> createState() => _FunnelButtonState();
+}
+
+class _FunnelButtonState extends State<FunnelButton> {
   void _openBottomSheetModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return CategoryFilterBottomSheet();
+        return CategoryFilterBottomSheet(
+          onSubmit: () {
+            setState(() {});
+          },
+          selectedCategories: StatsProvider.of(context).selectedCategories,
+        );
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    StatsBloc bloc = StatsProvider.of(context);
+    int count = bloc.selectedCategories.length;
     bool isClear = count == 0;
     return GestureDetector(
       onTap: () => _openBottomSheetModal(context),
