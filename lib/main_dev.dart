@@ -151,6 +151,13 @@ void main() async {
       description: "Museum entry",
       createdAt: DateTime.now().subtract(const Duration(days: 21, hours: 2)),
     ),
+    Expense(
+      id: 21,
+      amount: 7.50,
+      category: ExpenseCategory.food,
+      description: "Shawarma",
+      createdAt: DateTime.now().subtract(const Duration(days: 100, hours: 2)),
+    ),
   ];
 
   final ExpenseRepository repo = GetIt.I<ExpenseRepository>();
