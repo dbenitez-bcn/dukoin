@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class FunnelButton extends StatefulWidget {
-  FunnelButton({super.key});
+  const FunnelButton({super.key});
 
   @override
   State<FunnelButton> createState() => _FunnelButtonState();
@@ -60,7 +60,7 @@ class _FunnelButtonState extends State<FunnelButton> {
           Positioned(
             right: -6,
             top: 2,
-            child: RedBadge(text: count.toString(), size: isClear ? 0 : 20),
+            child: RedBadge(text: count.toString(), visible: !isClear),
           ),
         ],
       ),
@@ -70,29 +70,38 @@ class _FunnelButtonState extends State<FunnelButton> {
 
 class RedBadge extends StatelessWidget {
   final String text; // e.g. "3"
+  final bool visible; // control visibility with scale animation
   final double size; // diameter
 
-  const RedBadge({super.key, required this.text, this.size = 20});
+  const RedBadge({
+    super.key,
+    required this.text,
+    this.visible = true,
+    this.size = 20,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.error,
-        shape: BoxShape.circle,
-      ),
-      alignment: Alignment.center,
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.onError,
-          fontSize: size * 0.55,
-          fontWeight: FontWeight.w700,
-          height: 1, // keeps text vertically centered
+    return AnimatedScale(
+      scale: visible ? 1.0 : 0.0, // animate in/out
+      duration: const Duration(milliseconds: 350),
+      curve: visible ? Curves.easeInOutBack : Curves.easeOutQuint,
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.error,
+          shape: BoxShape.circle,
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          visible ? text: '',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onError,
+            fontSize: size * 0.55,
+            fontWeight: FontWeight.w700,
+            height: 1, // keeps text vertically centered
+          ),
         ),
       ),
     );
