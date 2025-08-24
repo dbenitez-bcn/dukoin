@@ -5,7 +5,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 class DukoinDropdownMenu extends StatefulWidget {
   final List<String> items;
   final int initialValue;
-  final void Function(String) onSelected;
+  final void Function(int) onSelected;
 
   const DukoinDropdownMenu({
     super.key,
@@ -65,11 +65,11 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
     return item == selectedValue;
   }
 
-  void _updateSelectedValue(int value) {
+  void _updateSelectedValue(int index) {
     setState(() {
-      selectedValue = value;
+      selectedValue = index;
     });
-    widget.onSelected(widget.items[value]);
+    widget.onSelected(index);
     _animationController.reverse().then((_) {
       _overlayEntry?.remove();
       _overlayEntry = null;
