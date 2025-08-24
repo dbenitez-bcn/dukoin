@@ -15,7 +15,7 @@ void main() {
     late MockDatabase mockDatabase;
     late MockDatabaseProvider mockDBProvider;
     late SqfliteExpenseRepository sut;
-    final testExpenses = Expense(
+    final testExpense = Expense(
       id: 1,
       description: 'Coffee',
       amount: 3.5,
@@ -46,25 +46,25 @@ void main() {
 
     test("insert should call db.insert", () async {
       when(
-        mockDatabase.insert('expenses', testExpenses.toMap()),
+        mockDatabase.insert('expenses', testExpense.toMap()),
       ).thenAnswer((_) async => 1);
 
-      final id = await sut.insert(testExpenses);
+      final id = await sut.insert(testExpense);
 
       expect(id, 1);
-      verify(mockDatabase.insert('expenses', testExpenses.toMap())).called(1);
+      verify(mockDatabase.insert('expenses', testExpense.toMap())).called(1);
     });
 
-    test("getById should return testExpenses when found", () async {
+    test("getById should return testExpense when found", () async {
       when(
         mockDatabase.query('expenses', where: 'id = ?', whereArgs: [1]),
-      ).thenAnswer((_) async => [testExpenses.toMap()]);
+      ).thenAnswer((_) async => [testExpense.toMap()]);
 
       final result = await sut.getById(1);
 
       expect(result, isNotNull);
-      expect(result!.id, testExpenses.id);
-      expect(result.description, testExpenses.description);
+      expect(result!.id, testExpense.id);
+      expect(result.description, testExpense.description);
     });
 
     test("getById should return null when not found", () async {
@@ -81,19 +81,19 @@ void main() {
       when(
         mockDatabase.update(
           'expenses',
-          testExpenses.toMap(),
+          testExpense.toMap(),
           where: 'id = ?',
           whereArgs: [1],
         ),
       ).thenAnswer((_) async => 1);
 
-      final count = await sut.update(testExpenses);
+      final count = await sut.update(testExpense);
 
       expect(count, 1);
       verify(
         mockDatabase.update(
           'expenses',
-          testExpenses.toMap(),
+          testExpense.toMap(),
           where: 'id = ?',
           whereArgs: [1],
         ),
@@ -156,14 +156,14 @@ void main() {
         final mockMap1 = {
           'id': 1,
           'amount': 10.5,
-          'category': ExpenseCategory.food.index,
+          'category': ExpenseCategory.food.name,
           'description': 'Lunch',
           'createdAt': now.toIso8601String(),
         };
         final mockMap2 = {
           'id': 2,
           'amount': 20.0,
-          'category': ExpenseCategory.transport.index,
+          'category': ExpenseCategory.transport.name,
           'description': 'Bus Ticket',
           'createdAt': now.subtract(const Duration(days: 1)).toIso8601String(),
         };
@@ -190,7 +190,7 @@ void main() {
         final mockMap3 = {
           'id': 3,
           'amount': 30.0,
-          'category': ExpenseCategory.entertainment.index,
+          'category': ExpenseCategory.entertainment.name,
           'description': 'Cinema',
           'createdAt': now.subtract(const Duration(days: 2)).toIso8601String(),
         };
@@ -273,6 +273,28 @@ void main() {
           expect(got.totalTransactions, 0);
         },
       );
+    });
+
+    group("getOldestExpenseDate", () {
+      test("If there is no last expense should return null", () {
+        when(
+          mockDatabase.query('expenses', orderBy: 'createdAt ASC', limit: 1),
+        ).thenAnswer((_) async => []);
+
+        final got = sut.getOldestExpenseDate();
+
+        expect(got, completion(isNull));
+      });
+      test("Given a expense should return the date", () {
+        final now = DateTime.now();
+        when(
+          mockDatabase.query('expenses', orderBy: 'createdAt ASC', limit: 1),
+        ).thenAnswer((_) async => [testExpense.toMap()]);
+
+        final got = sut.getOldestExpenseDate();
+
+        expect(got, completion(testExpense.createdAt));
+      });
     });
   });
 }

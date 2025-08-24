@@ -104,4 +104,20 @@ class SqfliteExpenseRepository implements ExpenseRepository {
 
     return TotalAmountVM(amount, totalTransactions);
   }
+
+  @override
+  Future<DateTime?> getOldestExpenseDate() async {
+    final db = await _db;
+    final results = await db.query(
+      'expenses',
+      orderBy: 'createdAt ASC',
+      limit: 1,
+    );
+    if (results.isEmpty) {
+      return null;
+    } else {
+      final oldestExpense = Expense.fromMap(results.first);
+      return oldestExpense.createdAt;
+    }
+  }
 }

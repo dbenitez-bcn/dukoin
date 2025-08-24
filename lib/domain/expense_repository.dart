@@ -10,4 +10,5 @@ abstract class ExpenseRepository {
   Future<void> deleteAll();
   Future<List<Expense>> getPaginated({required int limit, required int offset});
   Future<TotalAmountVM> getTotalAmount({required DateTime date});
+  Future<DateTime?> getOldestExpenseDate();
 }
