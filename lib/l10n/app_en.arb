@@ -343,5 +343,17 @@
   "selectAll": "Select all",
   "@selectAll": {
     "description": "Select all"
+  },
+  "statsMonthOverViewTotal": "Total Expenses",
+  "@statsMonthOverViewTotal": {
+    "description": "Displays the Total Expenses in the month overview card"
+  },
+  "statsMonthOverViewDailyAvg": "Daily average",
+  "@statsMonthOverViewDailyAvg": {
+    "description": "Displays the Daily average in the month overview card"
+  },
+  "statsMonthOverViewWeeklyAvg": "Weekly average",
+  "@statsMonthOverViewWeeklyAvg": {
+    "description": "Displays the Weekly average in the month overview card"
   }
 }

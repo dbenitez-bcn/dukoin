@@ -271,4 +271,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selectAll => 'Select all';
+
+  @override
+  String get statsMonthOverViewTotal => 'Total Expenses';
+
+  @override
+  String get statsMonthOverViewDailyAvg => 'Daily average';
+
+  @override
+  String get statsMonthOverViewWeeklyAvg => 'Weekly average';
 }
