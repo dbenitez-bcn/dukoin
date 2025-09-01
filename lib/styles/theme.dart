@@ -1,7 +1,7 @@
 import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
-const appBorderRadius = 8.0;
+const appBorderRadius = 12.0;
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
