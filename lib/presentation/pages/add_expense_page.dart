@@ -131,6 +131,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                         context,
                       )!.addExpenseDescriptionHint,
                     ),
+                    textCapitalization: TextCapitalization.sentences,
                     textInputAction: TextInputAction.done,
                     focusNode: _descriptionFocus,
                     onSubmitted: (_) {
