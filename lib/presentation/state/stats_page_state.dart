@@ -52,6 +52,7 @@ class StatsBloc {
   void onMonthSelected(DateTime newDate) async {
     _statusController.add(StateStatus.loading);
     _selectedMonth = newDate;
+    await loadMonthOverview();
     _statusController.add(StateStatus.done);
   }
 
@@ -83,14 +84,17 @@ class StatsBloc {
   }
 
   Future<void> loadMonthOverview() async {
-    _statusController.add(StateStatus.loading);
-    final DateTime end = DateTime(
-      _selectedMonth.year,
-      _selectedMonth.month + 1,
-      0,
-    );
-    final double daysBetween = end.difference(_selectedMonth).inDays + 1;
-    final int weeksBetween = (daysBetween / 7).floor();
+    final now = DateTime.now();
+    DateTime end = DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0);
+    if (end.isAfter(now)) {
+      end = now;
+    }
+    if (end.isBefore(_selectedMonth)) {
+      end = _selectedMonth;
+    }
+
+    final int daysBetween = end.difference(_selectedMonth).inDays + 1;
+    final int weeksBetween = (daysBetween / 7).floor().clamp(1, daysBetween);
 
     final overview = await _expenseRepository.getTotalAmount(
       start: _selectedMonth,
@@ -102,7 +106,6 @@ class StatsBloc {
       overview.amount / weeksBetween,
       overview.totalTransactions,
     );
-    _statusController.add(StateStatus.done);
   }
 
   void dispose() {
