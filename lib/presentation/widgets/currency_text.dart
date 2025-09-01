@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class CurrencyText extends StatelessWidget {
   final double amount;
+  final TextStyle? style;
 
-  const CurrencyText({super.key, required this.amount});
+  const CurrencyText(this.amount, {super.key, this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +17,11 @@ class CurrencyText extends StatelessWidget {
         amount,
         AppLocalizations.of(context)!.localeName,
       ),
-      style: TextTheme.of(context).displaySmall!.copyWith(
-        color: Theme.of(context).colorScheme.primary,
-      ),
+      style:
+          style ??
+          TextTheme.of(context).displaySmall!.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+          ),
     );
   }
 }

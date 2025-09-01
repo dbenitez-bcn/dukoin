@@ -1,9 +1,8 @@
 import 'package:dukoin/domain/time_period.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
-import 'package:dukoin/presentation/state/currency_provider.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
-import 'package:dukoin/utils/utils.dart';
+import 'package:dukoin/presentation/widgets/currency_text.dart';
 import 'package:flutter/material.dart';
 
 class TotalAmountCard extends StatelessWidget {
@@ -44,12 +43,8 @@ class TotalAmountCard extends StatelessWidget {
                     ),
                     style: TextTheme.of(context).bodyMedium,
                   ),
-                  Text(
-                    formatCurrency(
-                      CurrencyProvider.of(context).currency,
-                      asyncSnapshot.data!.amount,
-                      AppLocalizations.of(context)!.localeName,
-                    ),
+                  CurrencyText(
+                    asyncSnapshot.data!.amount,
                     style: TextTheme.of(context).displayLarge!.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),

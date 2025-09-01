@@ -41,7 +41,7 @@ class ExpenseInfoCard extends StatelessWidget {
                           overflow: TextOverflow.fade,
                         ),
                       ),
-                      CurrencyText(amount: expense.amount),
+                      CurrencyText(expense.amount),
                     ],
                   ),
                   Text(

@@ -46,11 +46,11 @@ class DismissibleExpenseInfoCard extends StatelessWidget {
                             expense.description,
                             style: TextTheme.of(context).displaySmall,
                             softWrap: true, // allows multiple lines
-                            maxLines: 2,    // limit to 2 lines if needed
+                            maxLines: 2, // limit to 2 lines if needed
                             overflow: TextOverflow.fade,
                           ),
                         ),
-                        CurrencyText(amount: expense.amount),
+                        CurrencyText(expense.amount),
                       ],
                     ),
                     Text(
