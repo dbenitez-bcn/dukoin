@@ -126,7 +126,7 @@ void main() {
             await sut.setTimePeriod(TimePeriod.month);
 
             var start = firstDayOfCurrentMonth();
-            var end = DateTime(start.year, start.month + 1, 0, 23, 59, 59, 999);
+            var end = DateTime(start.year, start.month + 1, 0);
             verify(
               mockRepo.getTotalAmount(start: start, end: end),
             ).called(1);

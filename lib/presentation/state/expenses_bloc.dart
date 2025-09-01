@@ -59,7 +59,7 @@ class ExpensesBloc {
         _vm = await _repo.getTotalAmount(start: start, end: end);
       case TimePeriod.month:
         var start = firstDayOfCurrentMonth();
-        final end = DateTime(start.year, start.month + 1, 0, 23, 59, 59, 999);
+        final end = DateTime(start.year, start.month + 1, 0);
         _vm = await _repo.getTotalAmount(start: start, end: end);
       case TimePeriod.all:
         _vm = await _repo.getTotalAmount(
