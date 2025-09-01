@@ -197,7 +197,7 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
     return Card.outlined(
       child: InkWell(
         key: _key,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(appBorderRadius),
         onTap: () => _toggleDropdown(),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
