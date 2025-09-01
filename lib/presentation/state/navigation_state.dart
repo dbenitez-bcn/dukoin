@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 class NavigationState {
   final StreamController<int> _pageController =
       StreamController<int>.broadcast();
-  int _currentPageIndex = 0;
+  int _currentPageIndex = 2;
 
   Stream<int> get currentPageStream => _pageController.stream;
 

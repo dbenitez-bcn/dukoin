@@ -28,6 +28,8 @@ void main() {
     });
     test("Given a new date then it should update the state", () {
       final newDate = DateTime(2023, 1, 1);
+      final endOfMonth = DateTime(2023, 1, 31);
+      when(mockrepo.getTotalAmount(start: newDate, end: endOfMonth)).thenAnswer((_) async => TotalAmountVM(23, 23));
       final sut = StatsBloc(mockrepo);
       expectLater(
         sut.statusStream,
@@ -37,6 +39,7 @@ void main() {
       sut.onMonthSelected(newDate);
 
       expect(sut.selectedMonth, equals(newDate));
+      verify(mockrepo.getTotalAmount(start: newDate, end: endOfMonth)).called(1);
     });
 
     group("loadAvailableMonths", () {
@@ -124,6 +127,19 @@ void main() {
 
         expect(sut.monthOverview.dailyAverage, 12.34 / 31);
         expect(sut.monthOverview.weeklyAverage, 12.34 / 4);
+        expect(sut.monthOverview.numOfTransactions, 10);
+        expect(sut.monthOverview.totalAmount, 12.34);
+      });
+      test("Given the current month selected should calculate the data correctly", () async {
+        final sut = StatsBloc(mockrepo);
+        final start = DateTime(DateTime.now().year, DateTime.now().month, 1);
+        when(
+          mockrepo.getTotalAmount(start: start, end: anyNamed("end")),
+        ).thenAnswer((_) async => TotalAmountVM(12.34, 10));
+
+        sut.onMonthSelected(start);
+        await sut.loadMonthOverview();
+
         expect(sut.monthOverview.numOfTransactions, 10);
         expect(sut.monthOverview.totalAmount, 12.34);
       });
