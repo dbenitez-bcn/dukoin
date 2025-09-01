@@ -17,7 +17,10 @@ void main() {
       var mockExpenseRepository = MockExpenseRepository();
       when(mockExpenseRepository.getLast()).thenAnswer((_) async => []);
       when(
-        mockExpenseRepository.getTotalAmount(date: anyNamed("date")),
+        mockExpenseRepository.getTotalAmount(
+          start: anyNamed("start"),
+          end: anyNamed("end"),
+        ),
       ).thenAnswer((_) async => TotalAmountVM(0, 0));
       test("It should load week as default time priod", () async {
         SharedPreferences.setMockInitialValues({});
@@ -70,13 +73,21 @@ void main() {
             SharedPreferences.setMockInitialValues({});
             SharedPreferences prefs = await SharedPreferences.getInstance();
             when(
-              mockRepo.getTotalAmount(date: anyNamed("date")),
+              mockRepo.getTotalAmount(
+                start: anyNamed("start"),
+                end: anyNamed("end"),
+              ),
             ).thenAnswer((_) async => expectedVM);
             ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
 
             await sut.setTimePeriod(TimePeriod.day);
 
-            verify(mockRepo.getTotalAmount(date: currentDayDate())).called(1);
+            verify(
+              mockRepo.getTotalAmount(
+                start: currentDayDate(),
+                end: currentDayDate(),
+              ),
+            ).called(1);
             expectLater(sut.vmStream, emits(expectedVM));
           },
         );
@@ -87,14 +98,16 @@ void main() {
             SharedPreferences.setMockInitialValues({});
             SharedPreferences prefs = await SharedPreferences.getInstance();
             when(
-              mockRepo.getTotalAmount(date: anyNamed("date")),
+              mockRepo.getTotalAmount(start: anyNamed("start"), end: anyNamed("end")),
             ).thenAnswer((_) async => expectedVM);
             ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
 
             await sut.setTimePeriod(TimePeriod.week);
 
+            var start = firstDayOfCurrentWeek();
+            var end = start.add(Duration(days: 7));
             verify(
-              mockRepo.getTotalAmount(date: firstDayOfCurrentWeek()),
+              mockRepo.getTotalAmount(start: start, end: end),
             ).called(1);
             expectLater(sut.vmStream, emits(expectedVM));
           },
@@ -106,14 +119,16 @@ void main() {
             SharedPreferences.setMockInitialValues({});
             SharedPreferences prefs = await SharedPreferences.getInstance();
             when(
-              mockRepo.getTotalAmount(date: anyNamed("date")),
+                mockRepo.getTotalAmount(start: anyNamed("start"), end: anyNamed("end")),
             ).thenAnswer((_) async => expectedVM);
             ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
 
             await sut.setTimePeriod(TimePeriod.month);
 
+            var start = firstDayOfCurrentMonth();
+            var end = DateTime(start.year, start.month + 1, 0, 23, 59, 59, 999);
             verify(
-              mockRepo.getTotalAmount(date: firstDayOfCurrentMonth()),
+              mockRepo.getTotalAmount(start: start, end: end),
             ).called(1);
             expectLater(sut.vmStream, emits(expectedVM));
           },
@@ -125,13 +140,13 @@ void main() {
             SharedPreferences.setMockInitialValues({});
             SharedPreferences prefs = await SharedPreferences.getInstance();
             when(
-              mockRepo.getTotalAmount(date: anyNamed("date")),
+                mockRepo.getTotalAmount(start: anyNamed("start"), end: anyNamed("end"))
             ).thenAnswer((_) async => expectedVM);
             ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
 
             await sut.setTimePeriod(TimePeriod.all);
 
-            verify(mockRepo.getTotalAmount(date: DateTime(0))).called(1);
+            verify(mockRepo.getTotalAmount(start: DateTime(0), end: anyNamed("end"))).called(1);
             expectLater(sut.vmStream, emits(expectedVM));
           },
         );

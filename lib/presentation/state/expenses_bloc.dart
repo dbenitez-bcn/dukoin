@@ -49,13 +49,23 @@ class ExpensesBloc {
   Future<void> _updateVM() async {
     switch (_currentTimePeriod) {
       case TimePeriod.day:
-        _vm = await _repo.getTotalAmount(date: currentDayDate());
+        _vm = await _repo.getTotalAmount(
+          start: currentDayDate(),
+          end: currentDayDate(),
+        );
       case TimePeriod.week:
-        _vm = await _repo.getTotalAmount(date: firstDayOfCurrentWeek());
+        var start = firstDayOfCurrentWeek();
+        var end = start.add(Duration(days: 7));
+        _vm = await _repo.getTotalAmount(start: start, end: end);
       case TimePeriod.month:
-        _vm = await _repo.getTotalAmount(date: firstDayOfCurrentMonth());
+        var start = firstDayOfCurrentMonth();
+        final end = DateTime(start.year, start.month + 1, 0, 23, 59, 59, 999);
+        _vm = await _repo.getTotalAmount(start: start, end: end);
       case TimePeriod.all:
-        _vm = await _repo.getTotalAmount(date: DateTime(0));
+        _vm = await _repo.getTotalAmount(
+          start: DateTime(0),
+          end: DateTime.now(),
+        );
     }
     _vmController.add(_vm);
   }

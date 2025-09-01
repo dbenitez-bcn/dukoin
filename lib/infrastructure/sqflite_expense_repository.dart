@@ -84,16 +84,18 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     return maps.map((e) => Expense.fromMap(e)).toList();
   }
 
-  @override
-  Future<TotalAmountVM> getTotalAmount({required DateTime date}) async {
+  Future<TotalAmountVM> getTotalAmount({
+    required DateTime start,
+    required DateTime end,
+  }) async {
     final db = await _db;
     final result = await db.rawQuery(
       '''
     SELECT COUNT(*) as total, SUM(amount) as amount
     FROM expenses
-    WHERE createdAt >= ?
+    WHERE createdAt >= ? AND createdAt <= ?
     ''',
-      [date.toIso8601String()],
+      [start.toIso8601String(), end.toIso8601String()],
     );
 
     final row = result.first;

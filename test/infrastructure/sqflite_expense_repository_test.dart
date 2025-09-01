@@ -227,17 +227,23 @@ void main() {
       });
     });
     group("getTotalAmount", () {
+      final end = DateTime.now();
+      final start = end.subtract(Duration(days: 7));
       test(
         "it should return the transactions and the amount for the given date",
         () async {
-          final date = DateTime.now();
-          when(mockDatabase.rawQuery(any, [date.toIso8601String()])).thenAnswer(
+          when(
+            mockDatabase.rawQuery(any, [
+              start.toIso8601String(),
+              end.toIso8601String(),
+            ]),
+          ).thenAnswer(
             (_) async => [
               {'total': 1, 'amount': 102.23},
             ],
           );
 
-          TotalAmountVM got = await sut.getTotalAmount(date: date);
+          TotalAmountVM got = await sut.getTotalAmount(start: start, end: end);
 
           expect(got.amount, 102.23);
           expect(got.totalTransactions, 1);
@@ -247,13 +253,18 @@ void main() {
         "it should return 0 transactions and 0.0 amount when no data is found",
         () async {
           final date = DateTime.now();
-          when(mockDatabase.rawQuery(any, [date.toIso8601String()])).thenAnswer(
+          when(
+            mockDatabase.rawQuery(any, [
+              start.toIso8601String(),
+              end.toIso8601String(),
+            ]),
+          ).thenAnswer(
             (_) async => [
               {'total': 0, 'amount': 0.0},
             ],
           );
 
-          TotalAmountVM got = await sut.getTotalAmount(date: date);
+          TotalAmountVM got = await sut.getTotalAmount(start: start, end: end);
 
           expect(got.amount, 0.0);
           expect(got.totalTransactions, 0);
@@ -262,12 +273,14 @@ void main() {
       test(
         "it should return 0 transactions and 0.0 amount when data is empty",
         () async {
-          final date = DateTime.now();
           when(
-            mockDatabase.rawQuery(any, [date.toIso8601String()]),
+            mockDatabase.rawQuery(any, [
+              start.toIso8601String(),
+              end.toIso8601String(),
+            ]),
           ).thenAnswer((_) async => [{}]);
 
-          TotalAmountVM got = await sut.getTotalAmount(date: date);
+          TotalAmountVM got = await sut.getTotalAmount(start: start, end: end);
 
           expect(got.amount, 0.0);
           expect(got.totalTransactions, 0);
