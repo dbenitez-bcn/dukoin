@@ -27,7 +27,7 @@ class StatsBloc {
   DateTime _selectedMonth;
   List<ExpenseCategory> _selectedCategories;
   List<DateTime> _availableMonths;
-  StreamController<StateStatus> _statusController =
+  final StreamController<StateStatus> _statusController =
       StreamController<StateStatus>.broadcast();
   MonthOverviewVM _monthOverviewVM = MonthOverviewVM(0, 0, 0, 0);
 

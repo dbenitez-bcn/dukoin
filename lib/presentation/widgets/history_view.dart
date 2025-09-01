@@ -155,7 +155,7 @@ class HistoryViewLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _element = [
+    final List<Widget> element = [
       SizedBox(height: 16),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -184,7 +184,7 @@ class HistoryViewLoading extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(children: _element),
+      child: Column(children: element),
     );
   }
 }

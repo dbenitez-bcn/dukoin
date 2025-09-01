@@ -82,9 +82,9 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
     Offset offset = renderBox.localToGlobal(Offset.zero);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_itemKeys[selectedValue]?.currentContext != null) {
+      if (_itemKeys[selectedValue].currentContext != null) {
         Scrollable.ensureVisible(
-          _itemKeys[selectedValue]!.currentContext!,
+          _itemKeys[selectedValue].currentContext!,
           alignment: 0.5,
         );
       }

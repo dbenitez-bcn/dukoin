@@ -84,6 +84,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     return maps.map((e) => Expense.fromMap(e)).toList();
   }
 
+  @override
   Future<TotalAmountVM> getTotalAmount({
     required DateTime start,
     required DateTime end,

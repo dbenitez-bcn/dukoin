@@ -1,6 +1,5 @@
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/widgets/dukoin_app_bar.dart';
-import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 

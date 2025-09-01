@@ -7,6 +7,7 @@ import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
+// TODO: replace it with a DukoinDropdownButton
 class DefaultCurrencySelector extends StatelessWidget {
   Currency selectedCurrency = Currency.eur;
 

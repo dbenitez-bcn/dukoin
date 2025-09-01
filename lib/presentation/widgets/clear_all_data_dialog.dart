@@ -1,6 +1,5 @@
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
-import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
 class ClearAllDataDialog extends StatelessWidget {

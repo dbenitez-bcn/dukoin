@@ -252,7 +252,6 @@ void main() {
       test(
         "it should return 0 transactions and 0.0 amount when no data is found",
         () async {
-          final date = DateTime.now();
           when(
             mockDatabase.rawQuery(any, [
               start.toIso8601String(),
@@ -299,7 +298,6 @@ void main() {
         expect(got, completion(isNull));
       });
       test("Given a expense should return the date", () {
-        final now = DateTime.now();
         when(
           mockDatabase.query('expenses', orderBy: 'createdAt ASC', limit: 1),
         ).thenAnswer((_) async => [testExpense.toMap()]);
