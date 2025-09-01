@@ -85,7 +85,6 @@ class StatsBloc {
   }
 
   Future<void> loadMonthOverview() async {
-    await Future.delayed(Duration(milliseconds: 500));
     final now = DateTime.now();
     DateTime end = DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0);
     if (end.isAfter(now)) {
