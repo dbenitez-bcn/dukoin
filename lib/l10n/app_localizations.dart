@@ -551,13 +551,13 @@ abstract class AppLocalizations {
   /// Displays the Daily average in the month overview card
   ///
   /// In en, this message translates to:
-  /// **'Daily average'**
+  /// **'Daily avg'**
   String get statsMonthOverViewDailyAvg;
 
   /// Displays the Weekly average in the month overview card
   ///
   /// In en, this message translates to:
-  /// **'Weekly average'**
+  /// **'Weekly avg'**
   String get statsMonthOverViewWeeklyAvg;
 }
 

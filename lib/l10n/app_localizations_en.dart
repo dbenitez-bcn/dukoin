@@ -276,8 +276,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statsMonthOverViewTotal => 'Total Expenses';
 
   @override
-  String get statsMonthOverViewDailyAvg => 'Daily average';
+  String get statsMonthOverViewDailyAvg => 'Daily avg';
 
   @override
-  String get statsMonthOverViewWeeklyAvg => 'Weekly average';
+  String get statsMonthOverViewWeeklyAvg => 'Weekly avg';
 }

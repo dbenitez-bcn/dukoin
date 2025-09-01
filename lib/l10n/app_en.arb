@@ -348,11 +348,11 @@
   "@statsMonthOverViewTotal": {
     "description": "Displays the Total Expenses in the month overview card"
   },
-  "statsMonthOverViewDailyAvg": "Daily average",
+  "statsMonthOverViewDailyAvg": "Daily avg",
   "@statsMonthOverViewDailyAvg": {
     "description": "Displays the Daily average in the month overview card"
   },
-  "statsMonthOverViewWeeklyAvg": "Weekly average",
+  "statsMonthOverViewWeeklyAvg": "Weekly avg",
   "@statsMonthOverViewWeeklyAvg": {
     "description": "Displays the Weekly average in the month overview card"
   }
