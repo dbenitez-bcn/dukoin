@@ -1,6 +1,7 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/state_status.dart';
+import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -91,7 +92,10 @@ void main() {
     test("Given a new category list then it should update the state", () {
       final sut = StatsBloc(mockrepo);
       var expected = [ExpenseCategory.food, ExpenseCategory.travel];
-      expectLater(sut.statusStream, emitsInOrder([StateStatus.loading, StateStatus.done]));
+      expectLater(
+        sut.statusStream,
+        emitsInOrder([StateStatus.loading, StateStatus.done]),
+      );
 
       sut.onCategoriesUpdated(expected);
 
@@ -105,6 +109,24 @@ void main() {
 
       await doneFuture;
     });
-  });
 
+    group("loadMonthOverview", () {
+      test("It should load the month overview data", () async {
+        final sut = StatsBloc(mockrepo);
+        final start = DateTime(2025, 1, 1);
+        final end = DateTime(2025, 1, 31);
+        when(
+          mockrepo.getTotalAmount(start: start, end: end),
+        ).thenAnswer((_) async => TotalAmountVM(12.34, 10));
+
+        sut.onMonthSelected(start);
+        await sut.loadMonthOverview();
+
+        expect(sut.monthOverview.dailyAverage, 12.34 / 31);
+        expect(sut.monthOverview.weeklyAverage, 12.34 / 4);
+        expect(sut.monthOverview.numOfTransactions, 10);
+        expect(sut.monthOverview.totalAmount, 12.34);
+      });
+    });
+  });
 }

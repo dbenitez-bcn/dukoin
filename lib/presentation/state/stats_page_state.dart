@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
+import 'package:dukoin/domain/month_overview_vm.dart';
 import 'package:dukoin/domain/state_status.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -26,7 +27,9 @@ class StatsBloc {
   DateTime _selectedMonth;
   List<ExpenseCategory> _selectedCategories;
   List<DateTime> _availableMonths;
-  StreamController<StateStatus> _statusController = StreamController<StateStatus>.broadcast();
+  StreamController<StateStatus> _statusController =
+      StreamController<StateStatus>.broadcast();
+  MonthOverviewVM _monthOverviewVM = MonthOverviewVM(0, 0, 0, 0);
 
   StatsBloc(this._expenseRepository)
     : _selectedMonth = DateTime(DateTime.now().year, DateTime.now().month, 1),
@@ -36,9 +39,15 @@ class StatsBloc {
       ];
 
   DateTime get selectedMonth => _selectedMonth;
-  List<ExpenseCategory> get selectedCategories => List.unmodifiable(_selectedCategories);
+
+  List<ExpenseCategory> get selectedCategories =>
+      List.unmodifiable(_selectedCategories);
+
   List<DateTime> get availableMonths => List.unmodifiable(_availableMonths);
+
   Stream<StateStatus> get statusStream => _statusController.stream;
+
+  MonthOverviewVM get monthOverview => _monthOverviewVM;
 
   void onMonthSelected(DateTime newDate) async {
     _statusController.add(StateStatus.loading);
@@ -71,6 +80,29 @@ class StatsBloc {
     }
 
     _availableMonths = months;
+  }
+
+  Future<void> loadMonthOverview() async {
+    _statusController.add(StateStatus.loading);
+    final DateTime end = DateTime(
+      _selectedMonth.year,
+      _selectedMonth.month + 1,
+      0,
+    );
+    final double daysBetween = end.difference(_selectedMonth).inDays + 1;
+    final int weeksBetween = (daysBetween / 7).floor();
+
+    final overview = await _expenseRepository.getTotalAmount(
+      start: _selectedMonth,
+      end: end,
+    );
+    _monthOverviewVM = MonthOverviewVM(
+      overview.amount,
+      overview.amount / daysBetween,
+      overview.amount / weeksBetween,
+      overview.totalTransactions,
+    );
+    _statusController.add(StateStatus.done);
   }
 
   void dispose() {
