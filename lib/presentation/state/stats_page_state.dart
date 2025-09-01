@@ -49,16 +49,17 @@ class StatsBloc {
 
   MonthOverviewVM get monthOverview => _monthOverviewVM;
 
-  void onMonthSelected(DateTime newDate) async {
+  Future<void> onMonthSelected(DateTime newDate) async {
     _statusController.add(StateStatus.loading);
     _selectedMonth = newDate;
     await loadMonthOverview();
     _statusController.add(StateStatus.done);
   }
 
-  void onCategoriesUpdated(List<ExpenseCategory> newCategories) {
+  Future<void> onCategoriesUpdated(List<ExpenseCategory> newCategories) async {
     _statusController.add(StateStatus.loading);
     _selectedCategories = newCategories;
+    await loadMonthOverview();
     _statusController.add(StateStatus.done);
   }
 
@@ -99,6 +100,7 @@ class StatsBloc {
     final overview = await _expenseRepository.getTotalAmount(
       start: _selectedMonth,
       end: end,
+      categories: _selectedCategories
     );
     _monthOverviewVM = MonthOverviewVM(
       overview.amount,

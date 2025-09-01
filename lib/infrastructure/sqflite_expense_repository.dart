@@ -88,16 +88,23 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   Future<TotalAmountVM> getTotalAmount({
     required DateTime start,
     required DateTime end,
+    List<ExpenseCategory>? categories,
   }) async {
     final db = await _db;
-    final result = await db.rawQuery(
-      '''
+    final args = [start.toIso8601String(), end.toIso8601String()];
+    String where = 'createdAt >= ? AND createdAt <= ?';
+
+    if (categories != null && categories.isNotEmpty) {
+      final placeholders = List.filled(categories.length, '?').join(', ');
+      where += ' AND category IN ($placeholders)';
+      args.addAll(categories.map((c) => c.name));
+    }
+
+    final result = await db.rawQuery('''
     SELECT COUNT(*) as total, SUM(amount) as amount
     FROM expenses
-    WHERE createdAt >= ? AND createdAt <= ?
-    ''',
-      [start.toIso8601String(), end.toIso8601String()],
-    );
+    WHERE $where
+    ''', args);
 
     final row = result.first;
     final amount = row['amount'] != null

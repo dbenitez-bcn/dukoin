@@ -19,6 +19,7 @@ abstract class ExpenseRepository {
   Future<TotalAmountVM> getTotalAmount({
     required DateTime start,
     required DateTime end,
+    List<ExpenseCategory>? categories,
   });
 
   Future<DateTime?> getOldestExpenseDate();

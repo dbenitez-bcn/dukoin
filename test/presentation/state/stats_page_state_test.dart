@@ -29,7 +29,13 @@ void main() {
     test("Given a new date then it should update the state", () {
       final newDate = DateTime(2023, 1, 1);
       final endOfMonth = DateTime(2023, 1, 31);
-      when(mockrepo.getTotalAmount(start: newDate, end: endOfMonth)).thenAnswer((_) async => TotalAmountVM(23, 23));
+      when(
+        mockrepo.getTotalAmount(
+          start: newDate,
+          end: endOfMonth,
+          categories: anyNamed("categories"),
+        ),
+      ).thenAnswer((_) async => TotalAmountVM(23, 23));
       final sut = StatsBloc(mockrepo);
       expectLater(
         sut.statusStream,
@@ -39,7 +45,13 @@ void main() {
       sut.onMonthSelected(newDate);
 
       expect(sut.selectedMonth, equals(newDate));
-      verify(mockrepo.getTotalAmount(start: newDate, end: endOfMonth)).called(1);
+      verify(
+        mockrepo.getTotalAmount(
+          start: newDate,
+          end: endOfMonth,
+          categories: anyNamed("categories"),
+        ),
+      ).called(1);
     });
 
     group("loadAvailableMonths", () {
@@ -95,6 +107,13 @@ void main() {
     test("Given a new category list then it should update the state", () {
       final sut = StatsBloc(mockrepo);
       var expected = [ExpenseCategory.food, ExpenseCategory.travel];
+      when(
+        mockrepo.getTotalAmount(
+          start: anyNamed("start"),
+          end: anyNamed("end"),
+          categories: anyNamed("categories"),
+        ),
+      ).thenAnswer((_) async => TotalAmountVM(23, 23));
       expectLater(
         sut.statusStream,
         emitsInOrder([StateStatus.loading, StateStatus.done]),
@@ -103,6 +122,13 @@ void main() {
       sut.onCategoriesUpdated(expected);
 
       expect(sut.selectedCategories, expected);
+      verify(
+        mockrepo.getTotalAmount(
+          start: anyNamed("start"),
+          end: anyNamed("end"),
+          categories: expected,
+        ),
+      );
     });
     test("Should close the stream controller on dispose", () async {
       final sut = StatsBloc(mockrepo);
@@ -119,7 +145,11 @@ void main() {
         final start = DateTime(2025, 1, 1);
         final end = DateTime(2025, 1, 31);
         when(
-          mockrepo.getTotalAmount(start: start, end: end),
+          mockrepo.getTotalAmount(
+            start: start,
+            end: end,
+            categories: anyNamed("categories"),
+          ),
         ).thenAnswer((_) async => TotalAmountVM(12.34, 10));
 
         sut.onMonthSelected(start);
@@ -130,19 +160,26 @@ void main() {
         expect(sut.monthOverview.numOfTransactions, 10);
         expect(sut.monthOverview.totalAmount, 12.34);
       });
-      test("Given the current month selected should calculate the data correctly", () async {
-        final sut = StatsBloc(mockrepo);
-        final start = DateTime(DateTime.now().year, DateTime.now().month, 1);
-        when(
-          mockrepo.getTotalAmount(start: start, end: anyNamed("end")),
-        ).thenAnswer((_) async => TotalAmountVM(12.34, 10));
+      test(
+        "Given the current month selected should calculate the data correctly",
+        () async {
+          final sut = StatsBloc(mockrepo);
+          final start = DateTime(DateTime.now().year, DateTime.now().month, 1);
+          when(
+            mockrepo.getTotalAmount(
+              start: start,
+              end: anyNamed("end"),
+              categories: anyNamed("categories"),
+            ),
+          ).thenAnswer((_) async => TotalAmountVM(12.34, 10));
 
-        sut.onMonthSelected(start);
-        await sut.loadMonthOverview();
+          sut.onMonthSelected(start);
+          await sut.loadMonthOverview();
 
-        expect(sut.monthOverview.numOfTransactions, 10);
-        expect(sut.monthOverview.totalAmount, 12.34);
-      });
+          expect(sut.monthOverview.numOfTransactions, 10);
+          expect(sut.monthOverview.totalAmount, 12.34);
+        },
+      );
     });
   });
 }
