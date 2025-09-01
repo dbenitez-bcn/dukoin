@@ -72,6 +72,13 @@ class MonthOverviewCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                Expanded(child: SizedBox()),
+                Text(
+                  AppLocalizations.of(
+                    context,
+                  )!.homeTransactionsCounterTitle(vm.numOfTransactions),
+                  style: TextTheme.of(context).bodyMedium,
+                ),
               ],
             ),
             Divider(color: Theme.of(context).colorScheme.outline),
