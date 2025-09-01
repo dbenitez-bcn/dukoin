@@ -147,35 +147,46 @@ class TimePeriodSelector extends StatelessWidget {
 
                           return SizedBox(
                             width: buttonWidth,
-                            child: GestureDetector(
-                              onTap: () async {
-                                await expensesBloc.setTimePeriod(
-                                  TimePeriod.values[i],
-                                );
-                              },
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 4.0,
-                                    horizontal: 4.0,
-                                  ),
-                                  child: AnimatedDefaultTextStyle(
-                                    style: isSelected
-                                        ? TextTheme.of(
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(
+                                  appBorderRadius,
+                                ),
+                                splashColor: Colors.transparent,
+                                onTap: () async {
+                                  await expensesBloc.setTimePeriod(
+                                    TimePeriod.values[i],
+                                  );
+                                },
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 4.0,
+                                      horizontal: 4.0,
+                                    ),
+                                    child: AnimatedDefaultTextStyle(
+                                      style: isSelected
+                                          ? TextTheme.of(
+                                              context,
+                                            ).labelLarge!.copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            )
+                                          : TextTheme.of(context).labelMedium!,
+                                      duration: const Duration(
+                                        milliseconds: 250,
+                                      ),
+                                      curve: Curves.fastOutSlowIn,
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: Text(
+                                          _getTimePeriodTitle(
                                             context,
-                                          ).labelLarge!.copyWith(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          )
-                                        : TextTheme.of(context).labelMedium!,
-                                    duration: const Duration(milliseconds: 250),
-                                    curve: Curves.fastOutSlowIn,
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
-                                      child: Text(
-                                        _getTimePeriodTitle(
-                                          context,
-                                          TimePeriod.values[i],
+                                            TimePeriod.values[i],
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                     ),
