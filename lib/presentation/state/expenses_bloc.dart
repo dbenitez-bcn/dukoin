@@ -43,7 +43,7 @@ class ExpensesBloc {
     _timePeriodController.add(_currentTimePeriod);
     await _updateVM();
     _updateStreams();
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1, milliseconds: 500));
   }
 
   Future<void> _updateVM() async {
