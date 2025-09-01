@@ -171,11 +171,20 @@ class HistoryViewLoading extends StatelessWidget {
       SizedBox(height: 16),
       DukoinShimmer(height: 60),
       SizedBox(height: 32),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(flex: 3, child: DukoinShimmer(height: 30)),
+          Flexible(flex: 3, child: Container()),
+        ],
+      ),
+      SizedBox(height: 32),
+      DukoinShimmer(height: 60),
     ];
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(children: [..._element, ..._element]),
+      child: Column(children: _element),
     );
   }
 }
