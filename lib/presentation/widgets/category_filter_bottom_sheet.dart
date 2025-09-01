@@ -27,7 +27,7 @@ class _CategoryFilterBottomSheetState extends State<CategoryFilterBottomSheet> {
 
   @override
   void initState() {
-    _selectedCategories = widget.selectedCategories;
+    _selectedCategories = List.of(widget.selectedCategories);
     super.initState();
   }
 
