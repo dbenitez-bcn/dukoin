@@ -1,5 +1,6 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
+import 'package:dukoin/domain/state_status.dart';
 import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -19,13 +20,22 @@ void main() {
 
       expect(sut.selectedMonth, initialDate);
     });
+    test("Inicial status should be done", () {
+      final sut = StatsBloc(mockrepo);
+
+      expect(sut.initialStatus, StateStatus.done);
+    });
     test("Given a new date then it should update the state", () {
       final newDate = DateTime(2023, 1, 1);
       final sut = StatsBloc(mockrepo);
+      expectLater(
+        sut.statusStream,
+        emitsInOrder([StateStatus.loading, StateStatus.done]),
+      );
 
       sut.onMonthSelected(newDate);
 
-      expect(sut.selectedMonth, newDate);
+      expect(sut.selectedMonth, equals(newDate));
     });
 
     group("loadAvailableMonths", () {
@@ -81,10 +91,20 @@ void main() {
     test("Given a new category list then it should update the state", () {
       final sut = StatsBloc(mockrepo);
       var expected = [ExpenseCategory.food, ExpenseCategory.travel];
+      expectLater(sut.statusStream, emitsInOrder([StateStatus.loading, StateStatus.done]));
 
       sut.onCategoriesUpdated(expected);
 
       expect(sut.selectedCategories, expected);
     });
+    test("Should close the stream controller on dispose", () async {
+      final sut = StatsBloc(mockrepo);
+      final doneFuture = expectLater(sut.statusStream, emitsDone);
+
+      sut.dispose();
+
+      await doneFuture;
+    });
   });
+
 }

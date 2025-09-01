@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
+import 'package:dukoin/domain/state_status.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -19,9 +22,11 @@ class StatsProvider extends InheritedWidget {
 
 class StatsBloc {
   final ExpenseRepository _expenseRepository;
+  final StateStatus initialStatus = StateStatus.done;
   DateTime _selectedMonth;
   List<ExpenseCategory> _selectedCategories;
   List<DateTime> _availableMonths;
+  StreamController<StateStatus> _statusController = StreamController<StateStatus>.broadcast();
 
   StatsBloc(this._expenseRepository)
     : _selectedMonth = DateTime(DateTime.now().year, DateTime.now().month, 1),
@@ -31,15 +36,20 @@ class StatsBloc {
       ];
 
   DateTime get selectedMonth => _selectedMonth;
-  List<ExpenseCategory> get selectedCategories => _selectedCategories;
-  List<DateTime> get availableMonths => _availableMonths;
+  List<ExpenseCategory> get selectedCategories => List.unmodifiable(_selectedCategories);
+  List<DateTime> get availableMonths => List.unmodifiable(_availableMonths);
+  Stream<StateStatus> get statusStream => _statusController.stream;
 
-  void onMonthSelected(DateTime newDate) {
+  void onMonthSelected(DateTime newDate) async {
+    _statusController.add(StateStatus.loading);
     _selectedMonth = newDate;
+    _statusController.add(StateStatus.done);
   }
 
   void onCategoriesUpdated(List<ExpenseCategory> newCategories) {
+    _statusController.add(StateStatus.loading);
     _selectedCategories = newCategories;
+    _statusController.add(StateStatus.done);
   }
 
   Future<void> loadAvailableMonths() async {
@@ -61,5 +71,9 @@ class StatsBloc {
     }
 
     _availableMonths = months;
+  }
+
+  void dispose() {
+    _statusController.close();
   }
 }
