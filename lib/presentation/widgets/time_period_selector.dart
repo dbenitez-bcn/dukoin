@@ -135,7 +135,7 @@ class TimePeriodSelector extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(
-                              appBorderRadius,
+                              appBorderRadius-2,
                             ),
                           ),
                         ),
