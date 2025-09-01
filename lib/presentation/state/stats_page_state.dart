@@ -19,23 +19,23 @@ class StatsProvider extends InheritedWidget {
 
 class StatsBloc {
   final ExpenseRepository _expenseRepository;
-  DateTime _selectedDate;
+  DateTime _selectedMonth;
   List<ExpenseCategory> _selectedCategories;
   List<DateTime> _availableMonths;
 
   StatsBloc(this._expenseRepository)
-    : _selectedDate = DateTime(DateTime.now().year, DateTime.now().month, 1),
+    : _selectedMonth = DateTime(DateTime.now().year, DateTime.now().month, 1),
       _selectedCategories = [],
       _availableMonths = [
         DateTime(DateTime.now().year, DateTime.now().month, 1),
       ];
 
-  DateTime get selectedDate => _selectedDate;
+  DateTime get selectedMonth => _selectedMonth;
   List<ExpenseCategory> get selectedCategories => _selectedCategories;
   List<DateTime> get availableMonths => _availableMonths;
 
-  void onDateSelected(DateTime newDate) {
-    _selectedDate = newDate;
+  void onMonthSelected(DateTime newDate) {
+    _selectedMonth = newDate;
   }
 
   void onCategoriesUpdated(List<ExpenseCategory> newCategories) {

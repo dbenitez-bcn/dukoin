@@ -17,15 +17,15 @@ void main() {
 
       final sut = StatsBloc(mockrepo);
 
-      expect(sut.selectedDate, initialDate);
+      expect(sut.selectedMonth, initialDate);
     });
     test("Given a new date then it should update the state", () {
       final newDate = DateTime(2023, 1, 1);
       final sut = StatsBloc(mockrepo);
 
-      sut.onDateSelected(newDate);
+      sut.onMonthSelected(newDate);
 
-      expect(sut.selectedDate, newDate);
+      expect(sut.selectedMonth, newDate);
     });
 
     group("loadAvailableMonths", () {

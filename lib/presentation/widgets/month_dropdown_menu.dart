@@ -31,7 +31,7 @@ class MonthDropdownMenu extends StatelessWidget {
           items: months,
           initialValue: 0,
           onSelected: (index) {
-            bloc.onDateSelected(bloc.availableMonths[index]);
+            bloc.onMonthSelected(bloc.availableMonths[index]);
           },
         );
       },
