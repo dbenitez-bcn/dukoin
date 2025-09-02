@@ -13,7 +13,7 @@ const lightColorScheme = ColorScheme(
   onError: Color(0xFFFFFFFF),
   surface: Color(0xFFFFFFFF),
   onSurface: Color(0xFF252525),
-  outline: Color.fromRGBO(0, 0, 0, 0.1)
+  outline: Color.fromRGBO(0, 0, 0, 0.1),
 );
 
 const darkColorScheme = ColorScheme(
@@ -123,14 +123,19 @@ final lightTheme = ThemeData(
       elevation: 0.0,
       backgroundColor: lightColorScheme.primary,
       foregroundColor: lightColorScheme.onPrimary,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(appBorderRadius)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(appBorderRadius),
+      ),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(appBorderRadius)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(appBorderRadius),
+      ),
     ),
   ),
+  dividerTheme: DividerThemeData(color: lightColorScheme.outline),
   extensions: <ThemeExtension<DukoinColors>>[DukoinColors.light],
 );
 
@@ -178,13 +183,18 @@ final darkTheme = ThemeData(
       elevation: 0.0,
       backgroundColor: darkColorScheme.primary,
       foregroundColor: darkColorScheme.onPrimary,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(appBorderRadius)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(appBorderRadius),
+      ),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(appBorderRadius)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(appBorderRadius),
+      ),
     ),
   ),
+  dividerTheme: DividerThemeData(color: darkColorScheme.outline),
   extensions: <ThemeExtension<DukoinColors>>[DukoinColors.dark],
 );
