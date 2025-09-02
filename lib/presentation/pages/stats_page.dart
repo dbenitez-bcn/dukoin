@@ -1,5 +1,6 @@
 import 'package:dukoin/presentation/widgets/month_overview.dart';
 import 'package:dukoin/presentation/widgets/statistics_app_bar.dart';
+import 'package:dukoin/presentation/widgets/top_five_of_the_month.dart';
 import 'package:flutter/material.dart';
 
 class StatsPage extends StatelessWidget {
@@ -13,7 +14,13 @@ class StatsPage extends StatelessWidget {
         child: Container(
           color: Colors.transparent,
           child: SafeArea(
-            child: Column(children: [StatisticsAppBar(), MonthOverview()]),
+            child: ListView(
+              children: [
+                StatisticsAppBar(),
+                MonthOverview(),
+                TopFiveOfTheMonth(),
+              ],
+            ),
           ),
         ),
       ),
