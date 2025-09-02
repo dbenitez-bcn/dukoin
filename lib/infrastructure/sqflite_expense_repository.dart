@@ -130,4 +130,17 @@ class SqfliteExpenseRepository implements ExpenseRepository {
       return oldestExpense.createdAt;
     }
   }
+
+  @override
+  Future<List<Expense>> getTopFiveExpenses({required DateTime start, required DateTime end}) async {
+    final db = await _db;
+    final maps = await db.query(
+      'expenses',
+      where: 'createdAt >= ? AND createdAt <= ?',
+      whereArgs: [start.toIso8601String(), end.toIso8601String()],
+      orderBy: 'amount DESC',
+      limit: 5,
+    );
+    return maps.map((e) => Expense.fromMap(e)).toList();
+  }
 }

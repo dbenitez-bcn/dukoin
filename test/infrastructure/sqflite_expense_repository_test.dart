@@ -307,5 +307,53 @@ void main() {
         expect(got, completion(testExpense.createdAt));
       });
     });
+
+    group("getTopFiveExpenses", () {
+      final start = DateTime(2023, 1, 1);
+      final end = DateTime(2023, 1, 31);
+
+      test("returns top 5 expenses by amount within date range", () async {
+        final mockExpenses = List.generate(6, (i) => {
+          'id': i + 1,
+          'amount': 100.0 - i * 10,
+          'category': ExpenseCategory.food.name,
+          'description': 'Expense $i',
+          'createdAt': DateTime(2023, 1, 10 + i).toIso8601String(),
+        });
+
+        when(
+          mockDatabase.query(
+            'expenses',
+            where: 'createdAt >= ? AND createdAt <= ?',
+            whereArgs: [start.toIso8601String(), end.toIso8601String()],
+            orderBy: 'amount DESC',
+            limit: 5,
+          ),
+        ).thenAnswer((_) async => mockExpenses.take(5).toList());
+
+        final got = await sut.getTopFiveExpenses(start: start, end: end);
+
+        expect(got.length, 5);
+        expect(got.first.amount, 100.0);
+        expect(got.last.amount, 60.0);
+        expect(got.every((e) => e.createdAt.isAfter(start.subtract(Duration(days: 1))) && e.createdAt.isBefore(end.add(Duration(days: 1)))), isTrue);
+      });
+
+      test("returns empty list if no expenses in range", () async {
+        when(
+          mockDatabase.query(
+            'expenses',
+            where: 'createdAt >= ? AND createdAt <= ?',
+            whereArgs: [start.toIso8601String(), end.toIso8601String()],
+            orderBy: 'amount DESC',
+            limit: 5,
+          ),
+        ).thenAnswer((_) async => []);
+
+        final got = await sut.getTopFiveExpenses(start: start, end: end);
+
+        expect(got, isEmpty);
+      });
+    });
   });
 }
