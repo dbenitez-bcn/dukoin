@@ -559,6 +559,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Weekly avg'**
   String get statsMonthOverViewWeeklyAvg;
+
+  /// Displays the title for the top 5 section
+  ///
+  /// In en, this message translates to:
+  /// **'Top {count} this month'**
+  String statsTopFiveTitle(int count);
 }
 
 class _AppLocalizationsDelegate

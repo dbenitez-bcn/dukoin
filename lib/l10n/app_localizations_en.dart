@@ -280,4 +280,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statsMonthOverViewWeeklyAvg => 'Weekly avg';
+
+  @override
+  String statsTopFiveTitle(int count) {
+    return 'Top $count this month';
+  }
 }

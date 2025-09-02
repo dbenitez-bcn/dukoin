@@ -355,5 +355,15 @@
   "statsMonthOverViewWeeklyAvg": "Weekly avg",
   "@statsMonthOverViewWeeklyAvg": {
     "description": "Displays the Weekly average in the month overview card"
+  },
+  "statsTopFiveTitle": "Top {count} this month",
+  "@statsTopFiveTitle": {
+    "description": "Displays the title for the top 5 section",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
   }
 }
