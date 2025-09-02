@@ -26,32 +26,58 @@ void main() {
 
       expect(sut.initialStatus, StateStatus.done);
     });
-    test("Given a new date then it should update the state", () {
+
+    group("onMonthSelected", () {
       final newDate = DateTime(2023, 1, 1);
       final endOfMonth = DateTime(2023, 1, 31);
-      when(
-        mockrepo.getTotalAmount(
-          start: newDate,
-          end: endOfMonth,
-          categories: anyNamed("categories"),
-        ),
-      ).thenAnswer((_) async => TotalAmountVM(23, 23));
-      final sut = StatsBloc(mockrepo);
-      expectLater(
-        sut.statusStream,
-        emitsInOrder([StateStatus.loading, StateStatus.done]),
-      );
+      setUp(() {
+        reset(mockrepo);
+        when(
+          mockrepo.getTotalAmount(
+            start: newDate,
+            end: endOfMonth,
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => TotalAmountVM(23, 23));
+        when(
+          mockrepo.getTopFiveExpenses(start: newDate, end: endOfMonth),
+        ).thenAnswer((_) async => []);
+      });
+      test("Given a new date then it should update the state", () async {
+        final sut = StatsBloc(mockrepo);
+        expectLater(
+          sut.statusStream,
+          emitsInOrder([StateStatus.loading, StateStatus.done]),
+        );
 
-      sut.onMonthSelected(newDate);
+        await sut.onMonthSelected(newDate);
 
-      expect(sut.selectedMonth, equals(newDate));
-      verify(
-        mockrepo.getTotalAmount(
-          start: newDate,
-          end: endOfMonth,
-          categories: anyNamed("categories"),
-        ),
-      ).called(1);
+        expect(sut.selectedMonth, equals(newDate));
+      });
+
+      test("it should update top five expenses", () async {
+        final sut = StatsBloc(mockrepo);
+
+        await sut.onMonthSelected(newDate);
+
+        verify(
+          mockrepo.getTopFiveExpenses(start: newDate, end: endOfMonth),
+        ).called(1);
+      });
+
+      test("it should update month overview", () async {
+        final sut = StatsBloc(mockrepo);
+
+        await sut.onMonthSelected(newDate);
+
+        verify(
+          mockrepo.getTotalAmount(
+            start: newDate,
+            end: endOfMonth,
+            categories: anyNamed("categories"),
+          ),
+        ).called(1);
+      });
     });
 
     group("loadAvailableMonths", () {
@@ -140,6 +166,15 @@ void main() {
     });
 
     group("loadMonthOverview", () {
+      setUp(() {
+        reset(mockrepo);
+        when(
+          mockrepo.getTopFiveExpenses(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+          ),
+        ).thenAnswer((_) async => []);
+      });
       test("It should load the month overview data", () async {
         final sut = StatsBloc(mockrepo);
         final start = DateTime(2025, 1, 1);
@@ -180,6 +215,50 @@ void main() {
           expect(sut.monthOverview.totalAmount, 12.34);
         },
       );
+    });
+
+    group("loadTopFive", () {
+      setUp(() {
+        reset(mockrepo);
+      });
+      test("Default top five expenses should be empty", () {
+        final sut = StatsBloc(mockrepo);
+
+        expect(sut.topFiveExpenses, isEmpty);
+      });
+
+      test("It should load the top five expenses", () async {
+        final sut = StatsBloc(mockrepo);
+        final end = DateTime(
+          sut.selectedMonth.year,
+          sut.selectedMonth.month + 1,
+          0,
+        );
+        final List<Expense> expectedList = List.generate(
+          5,
+          (i) => Expense(
+            id: i,
+            amount: i * 10,
+            category: ExpenseCategory.values[i],
+            description: "Desc $i",
+            createdAt: DateTime.now(),
+          ),
+        ).toList();
+        when(
+          mockrepo.getTopFiveExpenses(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+          ),
+        ).thenAnswer((_) async => expectedList);
+
+        await sut.loadTopFive();
+
+        expect(sut.topFiveExpenses.length, 5);
+        expect(sut.topFiveExpenses, expectedList);
+        verify(
+          mockrepo.getTopFiveExpenses(start: sut.selectedMonth, end: end),
+        ).called(1);
+      });
     });
   });
 }

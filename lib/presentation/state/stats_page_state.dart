@@ -30,6 +30,7 @@ class StatsBloc {
   final StreamController<StateStatus> _statusController =
       StreamController<StateStatus>.broadcast();
   MonthOverviewVM _monthOverviewVM = MonthOverviewVM(0, 0, 0, 0);
+  List<Expense> _topFiveExpenses = [];
 
   StatsBloc(this._expenseRepository)
     : _selectedMonth = DateTime(DateTime.now().year, DateTime.now().month, 1),
@@ -49,10 +50,13 @@ class StatsBloc {
 
   MonthOverviewVM get monthOverview => _monthOverviewVM;
 
+  List<Expense> get topFiveExpenses => List.unmodifiable(_topFiveExpenses);
+
   Future<void> onMonthSelected(DateTime newDate) async {
     _statusController.add(StateStatus.loading);
     _selectedMonth = newDate;
     await loadMonthOverview();
+    await loadTopFive();
     _statusController.add(StateStatus.done);
   }
 
@@ -100,13 +104,20 @@ class StatsBloc {
     final overview = await _expenseRepository.getTotalAmount(
       start: _selectedMonth,
       end: end,
-      categories: _selectedCategories
+      categories: _selectedCategories,
     );
     _monthOverviewVM = MonthOverviewVM(
       overview.amount,
       overview.amount / daysBetween,
       overview.amount / weeksBetween,
       overview.totalTransactions,
+    );
+  }
+
+  Future<void> loadTopFive() async {
+    _topFiveExpenses = await _expenseRepository.getTopFiveExpenses(
+      start: _selectedMonth,
+      end: DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0),
     );
   }
 
