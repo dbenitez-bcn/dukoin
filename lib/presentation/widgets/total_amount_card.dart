@@ -43,11 +43,21 @@ class TotalAmountCard extends StatelessWidget {
                     ),
                     style: TextTheme.of(context).bodyMedium,
                   ),
-                  CurrencyText(
-                    asyncSnapshot.data!.amount,
-                    style: TextTheme.of(context).displayLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
+                  TweenAnimationBuilder<double>(
+                    tween: Tween<double>(
+                      begin: asyncSnapshot.data!.amount,
+                      end: asyncSnapshot.data!.amount,
                     ),
+                    duration: const Duration(milliseconds: 250),
+                    curve: Curves.easeInCubic,
+                    builder: (context, value, child) {
+                      return CurrencyText(
+                        value,
+                        style: TextTheme.of(context).displayLarge!.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      );
+                    },
                   ),
                   Text(
                     AppLocalizations.of(context)!.homeTransactionsCounterTitle(
