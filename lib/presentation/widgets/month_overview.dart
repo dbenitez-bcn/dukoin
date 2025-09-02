@@ -81,7 +81,7 @@ class MonthOverviewCard extends StatelessWidget {
                 ),
               ],
             ),
-            Divider(color: Theme.of(context).colorScheme.outline),
+            Divider(),
             Row(
               children: [
                 Flexible(
