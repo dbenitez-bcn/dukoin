@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class DukoinColors extends ThemeExtension<DukoinColors> {
   final Color emeraldGreen;
   final Color relaxingTurquoise;
+  final Color goldenEra;
   final Color navBarBackground;
   final Color bodyColor;
   final Color accent;
@@ -13,6 +14,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
   const DukoinColors({
     required this.emeraldGreen,
     required this.relaxingTurquoise,
+    required this.goldenEra,
     required this.navBarBackground,
     required this.bodyColor,
     required this.accent,
@@ -23,6 +25,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
   static const light = DukoinColors(
     emeraldGreen: Color(0xFF2ECC71),
     relaxingTurquoise: Color(0xFF06B6D4),
+    goldenEra: Color(0xFFF59E0B),
     navBarBackground: Colors.white,
     bodyColor: Color(0xFF616161),
     accent: Color(0xFFE0E7FF),
@@ -33,6 +36,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
   static const dark = DukoinColors(
     emeraldGreen: Color(0xFF2BE379),
     relaxingTurquoise: Color(0xFF22D3EE),
+    goldenEra: Color(0xFFFBBF24),
     navBarBackground: Color(0xCD1E293B),
     bodyColor: Colors.white70,
     accent: Color(0xFF475569),
@@ -44,6 +48,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
   DukoinColors copyWith({
     Color? emeraldGreen,
     Color? relaxingTurquoise,
+    Color? goldenEra,
     Color? navBarBackground,
     Color? bodyColor,
     Color? accent,
@@ -53,6 +58,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     return DukoinColors(
       emeraldGreen: emeraldGreen ?? this.emeraldGreen,
       relaxingTurquoise: relaxingTurquoise ?? this.relaxingTurquoise,
+      goldenEra: goldenEra ?? this.goldenEra,
       navBarBackground: navBarBackground ?? this.navBarBackground,
       bodyColor: bodyColor ?? this.bodyColor,
       accent: accent ?? this.accent,
@@ -71,31 +77,16 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
         other.relaxingTurquoise,
         t,
       )!,
+      goldenEra: Color.lerp(goldenEra, other.goldenEra, t)!,
       navBarBackground: Color.lerp(
         navBarBackground,
         other.navBarBackground,
         t,
       )!,
-      bodyColor: Color.lerp(
-        bodyColor,
-        other.bodyColor,
-        t,
-      )!,
-      accent: Color.lerp(
-        accent,
-        other.accent,
-        t,
-      )!,
-      shimmer: Color.lerp(
-        shimmer,
-        other.shimmer,
-        t,
-      )!,
-      shimmerAccent: Color.lerp(
-        shimmerAccent,
-        other.shimmerAccent,
-        t,
-      )!,
+      bodyColor: Color.lerp(bodyColor, other.bodyColor, t)!,
+      accent: Color.lerp(accent, other.accent, t)!,
+      shimmer: Color.lerp(shimmer, other.shimmer, t)!,
+      shimmerAccent: Color.lerp(shimmerAccent, other.shimmerAccent, t)!,
     );
   }
 }
