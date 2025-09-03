@@ -9,7 +9,7 @@ import 'domain/expense.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
-
+  final twoMonthAgo = DateTime.now().subtract(const Duration(days: 60));
   final List<Expense> expenses = [
     Expense(
       id: 1,
@@ -156,6 +156,62 @@ void main() async {
       amount: 7.50,
       category: ExpenseCategory.food,
       description: "Shawarma",
+      createdAt: DateTime.now().subtract(const Duration(days: 41, hours: 2)),
+    ),
+    Expense(
+      id: 22,
+      amount: 4.00,
+      category: ExpenseCategory.transport,
+      description: "Taxi ride",
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month, 1),
+    ),
+    Expense(
+      id: 23,
+      amount: 150.00,
+      category: ExpenseCategory.shopping,
+      description: "Smartwatch",
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month, 5),
+    ),
+    Expense(
+      id: 24,
+      amount: 20.00,
+      category: ExpenseCategory.entertainment,
+      description: "Concert ticket",
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month, 10),
+    ),
+    Expense(
+      id: 25,
+      amount: 60.00,
+      category: ExpenseCategory.bills,
+      description: "Internet bill",
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month, 15),
+    ),
+    Expense(
+      id: 26,
+      amount: 40.00,
+      category: ExpenseCategory.health,
+      description: "Gym membership",
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month, 20),
+    ),
+    Expense(
+      id: 27,
+      amount: 80.00,
+      category: ExpenseCategory.education,
+      description: "Workshop fee",
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month, 25),
+    ),
+    Expense(
+      id: 28,
+      amount: 12.00,
+      category: ExpenseCategory.others,
+      description: "Stationery",
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month, 28),
+    ),
+    Expense(
+      id: 29,
+      amount: 7.50,
+      category: ExpenseCategory.food,
+      description: "Big Shawarma",
       createdAt: DateTime.now().subtract(const Duration(days: 100, hours: 2)),
     ),
   ];
