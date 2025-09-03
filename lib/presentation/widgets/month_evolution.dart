@@ -112,7 +112,7 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
   Widget build(BuildContext context) {
     final maxY =
         (widget.data
-                    .map((s) => s.spots.last.y)
+                    .map((s) => s.spots.isEmpty ? 0 : s.spots.last.y)
                     .reduce((a, b) => a > b ? a : b) *
                 1.05)
             .ceilToDouble();
@@ -141,6 +141,7 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
               sideTitles: SideTitles(
                 showTitles: true,
                 reservedSize: 50,
+                interval: maxY / 4,
                 getTitlesWidget: (value, meta) {
                   return CurrencyText(
                     value,
