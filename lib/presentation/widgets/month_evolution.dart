@@ -81,7 +81,11 @@ class MonthEvolutionCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            MonthEvolutionChart(data: vm.data, colors: colors),
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onVerticalDragStart: (_) {},
+              child: MonthEvolutionChart(data: vm.data, colors: colors),
+            ),
           ],
         ),
       ),
@@ -106,15 +110,20 @@ class MonthEvolutionChart extends StatefulWidget {
 class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
   @override
   Widget build(BuildContext context) {
-    //var maxY = (maxValue * 1.2).ceilToDouble();
+    final maxY =
+        (widget.data
+                    .map((s) => s.spots.last.y)
+                    .reduce((a, b) => a > b ? a : b) *
+                1.05)
+            .ceilToDouble();
     var maxX = 31.0;
     List<LineChartBarData> lines = widget.data
         .map(
           (e) => LineChartBarData(
-            spots: [FlSpot(0, 0), ...e.spots],
+            spots: e.spots.isEmpty
+                ? []
+                : [FlSpot(e.spots[0].x - 1, 0), ...e.spots],
             isCurved: true,
-            curveSmoothness: 0.1,
-            barWidth: 1,
             dotData: FlDotData(show: false),
             color: widget.colors[widget.data.indexOf(e)],
           ),
@@ -159,6 +168,7 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
           minX: 1,
           maxX: maxX,
           minY: 0,
+          maxY: maxY,
           lineBarsData: lines,
           lineTouchData: LineTouchData(
             getTouchedSpotIndicator: (barData, spotIndexes) {
