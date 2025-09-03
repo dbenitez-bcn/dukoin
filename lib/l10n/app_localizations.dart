@@ -560,6 +560,12 @@ abstract class AppLocalizations {
   /// **'Weekly avg'**
   String get statsMonthOverViewWeeklyAvg;
 
+  /// Displays the Monthly Expense Evolution title
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Expense Evolution'**
+  String get statsMonthEvolutionTitle;
+
   /// Displays the title for the top 5 section
   ///
   /// In en, this message translates to:
