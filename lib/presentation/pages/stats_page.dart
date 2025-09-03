@@ -1,3 +1,4 @@
+import 'package:dukoin/presentation/widgets/month_evolution.dart';
 import 'package:dukoin/presentation/widgets/month_overview.dart';
 import 'package:dukoin/presentation/widgets/statistics_app_bar.dart';
 import 'package:dukoin/presentation/widgets/top_five_of_the_month.dart';
@@ -18,6 +19,7 @@ class StatsPage extends StatelessWidget {
               children: [
                 StatisticsAppBar(),
                 MonthOverview(),
+                MonthEvolution(),
                 TopFiveOfTheMonth(),
               ],
             ),
