@@ -14,6 +14,7 @@ const lightColorScheme = ColorScheme(
   surface: Color(0xFFFFFFFF),
   onSurface: Color(0xFF252525),
   outline: Color.fromRGBO(0, 0, 0, 0.1),
+  onSurfaceVariant: Color(0xFFFFFFFF),
 );
 
 const darkColorScheme = ColorScheme(
@@ -27,6 +28,7 @@ const darkColorScheme = ColorScheme(
   surface: Color(0xFF0F172A),
   onSurface: Color(0xFFF8FAFC),
   outline: Color(0xFF334155),
+  onSurfaceVariant: Color(0xFF1e293b),
 );
 
 final baseTextTheme = const TextTheme(
@@ -84,7 +86,6 @@ final baseTextTheme = const TextTheme(
 final lightTheme = ThemeData(
   colorScheme: lightColorScheme,
   scaffoldBackgroundColor: lightColorScheme.surface,
-  cardColor: lightColorScheme.surface,
   appBarTheme: AppBarTheme(
     backgroundColor: lightColorScheme.surface,
     foregroundColor: lightColorScheme.onSurface,
@@ -97,6 +98,7 @@ final lightTheme = ThemeData(
     displayColor: lightColorScheme.onSurface,
   ),
   cardTheme: CardThemeData(
+    color: lightColorScheme.onSurfaceVariant,
     elevation: 0.0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(appBorderRadius),
@@ -142,7 +144,6 @@ final lightTheme = ThemeData(
 final darkTheme = ThemeData(
   colorScheme: darkColorScheme,
   scaffoldBackgroundColor: darkColorScheme.surface,
-  cardColor: darkColorScheme.surface,
   appBarTheme: AppBarTheme(
     backgroundColor: darkColorScheme.surface,
     foregroundColor: darkColorScheme.onSurface,
@@ -156,7 +157,7 @@ final darkTheme = ThemeData(
     displayColor: darkColorScheme.onSurface,
   ),
   cardTheme: CardThemeData(
-    color: Color(0xFF1e293b),
+    color: darkColorScheme.onSurfaceVariant,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(appBorderRadius),
       side: BorderSide(color: darkColorScheme.outline), // border
