@@ -64,6 +64,7 @@ class StatsBloc {
     _selectedMonth = newDate;
     await loadMonthOverview();
     await loadTopFive();
+    await loadMonthEvolution();
     _statusController.add(StateStatus.done);
   }
 

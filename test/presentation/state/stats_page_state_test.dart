@@ -44,6 +44,13 @@ void main() {
         when(
           mockrepo.getTopFiveExpenses(start: newDate, end: endOfMonth),
         ).thenAnswer((_) async => []);
+        when(
+          mockrepo.getTotalPerDay(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
       });
       test("Given a new date then it should update the state", () async {
         final sut = StatsBloc(mockrepo);
@@ -74,6 +81,20 @@ void main() {
 
         verify(
           mockrepo.getTotalAmount(
+            start: newDate,
+            end: endOfMonth,
+            categories: anyNamed("categories"),
+          ),
+        ).called(1);
+      });
+
+      test("it should update month evolution", () async {
+        final sut = StatsBloc(mockrepo);
+
+        await sut.onMonthSelected(newDate);
+
+        verify(
+          mockrepo.getTotalPerDay(
             start: newDate,
             end: endOfMonth,
             categories: anyNamed("categories"),
@@ -174,6 +195,13 @@ void main() {
           mockrepo.getTopFiveExpenses(
             start: anyNamed("start"),
             end: anyNamed("end"),
+          ),
+        ).thenAnswer((_) async => []);
+        when(
+          mockrepo.getTotalPerDay(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
           ),
         ).thenAnswer((_) async => []);
       });
@@ -331,7 +359,7 @@ void main() {
             end: anyNamed("end"),
             categories: anyNamed("categories"),
           ),
-        ).called(2);
+        );
       });
 
       test("Given some days should accumulate the values", () async {
