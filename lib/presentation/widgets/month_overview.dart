@@ -23,7 +23,9 @@ class MonthOverview extends StatelessWidget {
           return shimmer;
         }
         return StreamBuilder<StateStatus>(
-          stream: statsBloc.statusStream,
+          stream: statsBloc.statusStream.where(
+            (value) => value == StateStatus.done,
+          ),
           initialData: statsBloc.initialStatus,
           builder: (context, asyncSnapshot) {
             return MonthOverviewCard(vm: statsBloc.monthOverview);
