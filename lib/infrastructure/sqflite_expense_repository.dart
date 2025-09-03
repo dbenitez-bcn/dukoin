@@ -1,6 +1,7 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
+import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'database_provider.dart';
@@ -132,7 +133,10 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }
 
   @override
-  Future<List<Expense>> getTopFiveExpenses({required DateTime start, required DateTime end}) async {
+  Future<List<Expense>> getTopFiveExpenses({
+    required DateTime start,
+    required DateTime end,
+  }) async {
     final db = await _db;
     final maps = await db.query(
       'expenses',
@@ -142,5 +146,32 @@ class SqfliteExpenseRepository implements ExpenseRepository {
       limit: 5,
     );
     return maps.map((e) => Expense.fromMap(e)).toList();
+  }
+
+  @override
+  Future<List<TotalPerDayDTO>> getTotalPerDay({
+    required DateTime start,
+    required DateTime end,
+    List<ExpenseCategory>? categories,
+  }) async {
+    final db = await _db;
+    final args = [start.toIso8601String(), end.toIso8601String()];
+    String where = 'createdAt >= ? AND createdAt <= ?';
+
+    if (categories != null && categories.isNotEmpty) {
+      final placeholders = List.filled(categories.length, '?').join(', ');
+      where += ' AND category IN ($placeholders)';
+      args.addAll(categories.map((c) => c.name));
+    }
+
+    final result = await db.rawQuery('''
+    SELECT DATE(createdAt) as date, SUM(amount) as total
+    FROM expenses
+    WHERE $where
+    GROUP BY DATE(createdAt)
+    ORDER BY DATE(createdAt) ASC
+    ''', args);
+
+    return result.map((e) => TotalPerDayDTO.fromJson(e)).toList();
   }
 }

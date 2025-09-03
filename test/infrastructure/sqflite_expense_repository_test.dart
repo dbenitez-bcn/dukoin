@@ -1,5 +1,6 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
+import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'package:dukoin/infrastructure/database_provider.dart';
 import 'package:dukoin/infrastructure/sqflite_expense_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -313,13 +314,16 @@ void main() {
       final end = DateTime(2023, 1, 31);
 
       test("returns top 5 expenses by amount within date range", () async {
-        final mockExpenses = List.generate(6, (i) => {
-          'id': i + 1,
-          'amount': 100.0 - i * 10,
-          'category': ExpenseCategory.food.name,
-          'description': 'Expense $i',
-          'createdAt': DateTime(2023, 1, 10 + i).toIso8601String(),
-        });
+        final mockExpenses = List.generate(
+          6,
+          (i) => {
+            'id': i + 1,
+            'amount': 100.0 - i * 10,
+            'category': ExpenseCategory.food.name,
+            'description': 'Expense $i',
+            'createdAt': DateTime(2023, 1, 10 + i).toIso8601String(),
+          },
+        );
 
         when(
           mockDatabase.query(
@@ -336,7 +340,14 @@ void main() {
         expect(got.length, 5);
         expect(got.first.amount, 100.0);
         expect(got.last.amount, 60.0);
-        expect(got.every((e) => e.createdAt.isAfter(start.subtract(Duration(days: 1))) && e.createdAt.isBefore(end.add(Duration(days: 1)))), isTrue);
+        expect(
+          got.every(
+            (e) =>
+                e.createdAt.isAfter(start.subtract(Duration(days: 1))) &&
+                e.createdAt.isBefore(end.add(Duration(days: 1))),
+          ),
+          isTrue,
+        );
       });
 
       test("returns empty list if no expenses in range", () async {
@@ -353,6 +364,82 @@ void main() {
         final got = await sut.getTopFiveExpenses(start: start, end: end);
 
         expect(got, isEmpty);
+      });
+    });
+
+    group("getTotalPerDay", () {
+      test("should load allData", () async {
+        final start = DateTime(2023, 1, 1);
+        final end = DateTime(2023, 1, 7);
+        final mockData = [
+          {'date': '2023-01-01', 'total': 50.0},
+          {'date': '2023-01-02', 'total': 30.0},
+          {'date': '2023-01-03', 'total': 20.0},
+        ];
+
+        when(mockDatabase.rawQuery(any, any)).thenAnswer((_) async => mockData);
+
+        final got = await sut.getTotalPerDay(start: start, end: end);
+
+        expect(got.length, 3);
+        expect(got[0].date, DateTime.parse('2023-01-01'));
+        expect(got[0].total, 50.0);
+        expect(got[1].date, DateTime.parse('2023-01-02'));
+        expect(got[1].total, 30.0);
+        expect(got[2].date, DateTime.parse('2023-01-03'));
+        expect(got[2].total, 20.0);
+
+        verify(
+          mockDatabase.rawQuery(any, [
+            start.toIso8601String(),
+            end.toIso8601String(),
+          ]),
+        ).called(1);
+      });
+
+      test("should filter by categories", () async {
+        final start = DateTime(2023, 1, 1);
+        final end = DateTime(2023, 1, 7);
+        final categories = [ExpenseCategory.food, ExpenseCategory.transport];
+        final mockData = [
+          {'date': '2023-01-01', 'total': 50.0},
+          {'date': '2023-01-02', 'total': 30.0},
+        ];
+
+        when(mockDatabase.rawQuery(any, any)).thenAnswer((_) async => mockData);
+
+        final got = await sut.getTotalPerDay(
+          start: start,
+          end: end,
+          categories: categories,
+        );
+
+        expect(got.length, 2);
+        expect(got[0].date, DateTime.parse('2023-01-01'));
+        expect(got[0].total, 50.0);
+        expect(got[1].date, DateTime.parse('2023-01-02'));
+        expect(got[1].total, 30.0);
+
+        verify(
+          mockDatabase.rawQuery(any, [
+            start.toIso8601String(),
+            end.toIso8601String(),
+            ...categories.map((c) => c.name),
+          ]),
+        ).called(1);
+      });
+
+      test("should return empty list when no data", () async {
+        final start = DateTime(2023, 1, 1);
+        final end = DateTime(2023, 1, 7);
+
+        when(mockDatabase.rawQuery(any, any)).thenAnswer((_) async => []);
+
+        final got = await sut.getTotalPerDay(start: start, end: end);
+
+        expect(got, isEmpty);
+
+        verify(mockDatabase.rawQuery(any, any)).called(1);
       });
     });
   });
