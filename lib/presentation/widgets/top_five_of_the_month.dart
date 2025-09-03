@@ -27,10 +27,7 @@ class TopFiveOfTheMonth extends StatelessWidget {
           stream: statsBloc.statusStream,
           initialData: statsBloc.initialStatus,
           builder: (context, asyncSnapshot) {
-            if (asyncSnapshot.hasData &&
-                asyncSnapshot.data! == StateStatus.loading) {
-              return shimmer;
-            } else if (statsBloc.topFiveExpenses.isEmpty) {
+            if (statsBloc.topFiveExpenses.isEmpty) {
               return const SizedBox.shrink();
             }
             return Column(
