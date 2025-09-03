@@ -29,11 +29,7 @@ class MonthEvolution extends StatelessWidget {
           stream: statsBloc.statusStream,
           initialData: statsBloc.initialStatus,
           builder: (context, asyncSnapshot) {
-            if (asyncSnapshot.hasData &&
-                asyncSnapshot.data == StateStatus.done) {
-              return MonthEvolutionCard(vm: statsBloc.monthEvolution);
-            }
-            return shimmer;
+            return MonthEvolutionCard(vm: statsBloc.monthEvolution);
           },
         );
       },
@@ -170,7 +166,9 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
                           radius: 6,
                           color: bar.color!,
                           strokeWidth: 2,
-                          strokeColor: Theme.of(context).colorScheme.onSurfaceVariant,
+                          strokeColor: Theme.of(
+                            context,
+                          ).colorScheme.onSurfaceVariant,
                         ),
                   ),
                 );
