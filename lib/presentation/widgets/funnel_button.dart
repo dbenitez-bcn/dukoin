@@ -31,21 +31,22 @@ class _FunnelButtonState extends State<FunnelButton> {
     StatsBloc bloc = StatsProvider.of(context);
     int count = bloc.selectedCategories.length;
     bool isClear = count == 0;
-    return GestureDetector(
-      onTap: () => _openBottomSheetModal(context),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Card.outlined(
-            shape: isClear
-                ? null
-                : const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(appBorderRadius),
-                    ),
-                    side: BorderSide.none,
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Card.outlined(
+          shape: isClear
+              ? null
+              : const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(appBorderRadius),
                   ),
-            color: isClear ? null : Theme.of(context).colorScheme.primary,
+                  side: BorderSide.none,
+                ),
+          color: isClear ? null : Theme.of(context).colorScheme.primary,
+          child: InkWell(
+            onTap: () => _openBottomSheetModal(context),
+            borderRadius: BorderRadius.circular(appBorderRadius),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Icon(
@@ -57,13 +58,13 @@ class _FunnelButtonState extends State<FunnelButton> {
               ),
             ),
           ),
-          Positioned(
-            right: -6,
-            top: 2,
-            child: RedBadge(text: count.toString(), visible: !isClear),
-          ),
-        ],
-      ),
+        ),
+        Positioned(
+          right: -6,
+          top: 2,
+          child: RedBadge(text: count.toString(), visible: !isClear),
+        ),
+      ],
     );
   }
 }
@@ -95,7 +96,7 @@ class RedBadge extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Text(
-          visible ? text: '',
+          visible ? text : '',
           style: TextStyle(
             color: Theme.of(context).colorScheme.onError,
             fontSize: size * 0.55,
