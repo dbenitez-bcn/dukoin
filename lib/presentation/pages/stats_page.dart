@@ -10,20 +10,21 @@ class StatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Container(
-          color: Colors.transparent,
-          child: SafeArea(
-            child: ListView(
-              children: [
-                StatisticsAppBar(),
-                MonthOverview(),
-                MonthEvolution(),
-                TopFiveOfTheMonth(),
-              ],
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                children: [
+                  StatisticsAppBar(),
+                  MonthOverview(),
+                  MonthEvolution(),
+                  TopFiveOfTheMonth(),
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
