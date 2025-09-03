@@ -2,7 +2,9 @@ import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/state_status.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
+import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'package:dukoin/presentation/state/stats_page_state.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -258,6 +260,149 @@ void main() {
         verify(
           mockrepo.getTopFiveExpenses(start: sut.selectedMonth, end: end),
         ).called(1);
+      });
+    });
+
+    group("loadMonthEvolution", () {
+      setUp(() {
+        reset(mockrepo);
+        when(
+          mockrepo.getTotalAmount(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => TotalAmountVM(12.34, 10));
+        when(
+          mockrepo.getTopFiveExpenses(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+          ),
+        ).thenAnswer((_) async => []);
+      });
+      test("Default month evolution should be empty", () {
+        final sut = StatsBloc(mockrepo);
+
+        expect(sut.monthEvolution.data, isEmpty);
+      });
+
+      test("It should load the month evolution data", () async {
+        final sut = StatsBloc(mockrepo);
+        final startJan = DateTime(2023, 1, 1);
+        final endJan = DateTime(2023, 1, 31);
+        final startDec = DateTime(2022, 12, 1);
+        final endDec = DateTime(2022, 12, 31);
+        when(
+          mockrepo.getTotalPerDay(
+            start: startJan,
+            end: endJan,
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer(
+          (_) async => List.generate(
+            31,
+            (i) => TotalPerDayDTO(date: DateTime(2023, 1, i + 1), total: 1.0),
+          ),
+        );
+        when(
+          mockrepo.getTotalPerDay(
+            start: startDec,
+            end: endDec,
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer(
+          (_) async => List.generate(
+            31,
+            (i) => TotalPerDayDTO(date: DateTime(2022, 12, i + 1), total: 1.0),
+          ),
+        );
+
+        await sut.onMonthSelected(startJan);
+        await sut.loadMonthEvolution();
+
+        expect(sut.monthEvolution.data.length, 2);
+        expect(sut.monthEvolution.data[0].month, startJan);
+        expect(sut.monthEvolution.data[0].spots.length, 31);
+        expect(sut.monthEvolution.data[1].month, startDec);
+        expect(sut.monthEvolution.data[1].spots.length, 31);
+        verify(
+          mockrepo.getTotalPerDay(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).called(2);
+      });
+
+      test("Given some days should accumulate the values", () async {
+        final sut = StatsBloc(mockrepo);
+        final startJan = DateTime(2023, 1, 1);
+        final endJan = DateTime(2023, 1, 31);
+        final startDec = DateTime(2022, 12, 1);
+        final endDec = DateTime(2022, 12, 31);
+        when(
+          mockrepo.getTotalPerDay(
+            start: startJan,
+            end: endJan,
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer(
+          (_) async => List.generate(
+            3,
+            (i) => TotalPerDayDTO(date: DateTime(2023, 1, i + 1), total: 1.0),
+          ),
+        );
+        when(
+          mockrepo.getTotalPerDay(
+            start: startDec,
+            end: endDec,
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer(
+          (_) async => [
+            TotalPerDayDTO(date: DateTime(2022, 12, 1), total: 1.0),
+            TotalPerDayDTO(date: DateTime(2022, 12, 3), total: 3.0),
+            TotalPerDayDTO(date: DateTime(2022, 12, 5), total: 1.0),
+            TotalPerDayDTO(date: DateTime(2022, 12, 10), total: 2.0),
+          ],
+        );
+
+        await sut.onMonthSelected(startJan);
+        await sut.loadMonthEvolution();
+
+        expect(sut.monthEvolution.data.length, 2);
+        expect(sut.monthEvolution.data[0].month, startJan);
+        expect(sut.monthEvolution.data[0].spots.length, 3);
+        expect(sut.monthEvolution.data[0].spots, [
+          FlSpot(1, 1),
+          FlSpot(2, 2),
+          FlSpot(3, 3),
+        ]);
+        expect(sut.monthEvolution.data[1].month, startDec);
+        expect(sut.monthEvolution.data[1].spots.length, 4);
+        expect(sut.monthEvolution.data[1].spots, [
+          FlSpot(1, 1),
+          FlSpot(3, 4),
+          FlSpot(5, 5),
+          FlSpot(10, 7),
+        ]);
+      });
+
+      test("Given no days should return empty values", () async {
+        final sut = StatsBloc(mockrepo);
+        when(
+          mockrepo.getTotalPerDay(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
+
+        await sut.loadMonthEvolution();
+
+        expect(sut.monthEvolution.data.length, 2);
+        expect(sut.monthEvolution.data[0].spots, isEmpty);
+        expect(sut.monthEvolution.data[1].spots, isEmpty);
       });
     });
   });

@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
+import 'package:dukoin/domain/month_evolution_vm.dart';
 import 'package:dukoin/domain/month_overview_vm.dart';
 import 'package:dukoin/domain/state_status.dart';
+import 'package:dukoin/domain/total_per_day_dto.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -31,6 +34,7 @@ class StatsBloc {
       StreamController<StateStatus>.broadcast();
   MonthOverviewVM _monthOverviewVM = MonthOverviewVM(0, 0, 0, 0);
   List<Expense> _topFiveExpenses = [];
+  MonthEvolutionVM _monthEvolutionVM = MonthEvolutionVM([]);
 
   StatsBloc(this._expenseRepository)
     : _selectedMonth = DateTime(DateTime.now().year, DateTime.now().month, 1),
@@ -51,6 +55,8 @@ class StatsBloc {
   MonthOverviewVM get monthOverview => _monthOverviewVM;
 
   List<Expense> get topFiveExpenses => List.unmodifiable(_topFiveExpenses);
+
+  MonthEvolutionVM get monthEvolution => _monthEvolutionVM;
 
   Future<void> onMonthSelected(DateTime newDate) async {
     _statusController.add(StateStatus.loading);
@@ -119,6 +125,53 @@ class StatsBloc {
       start: _selectedMonth,
       end: DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0),
     );
+  }
+
+  Future<void> loadMonthEvolution() async {
+    final now = DateTime.now();
+    DateTime end = DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0);
+    if (end.isAfter(now)) {
+      end = now;
+    }
+    if (end.isBefore(_selectedMonth)) {
+      end = _selectedMonth;
+    }
+    List<TotalPerDayDTO> dataSelected = await _expenseRepository.getTotalPerDay(
+      start: _selectedMonth,
+      end: end,
+      categories: _selectedCategories,
+    );
+
+    var previousStart = DateTime(
+      _selectedMonth.year,
+      _selectedMonth.month - 1,
+      1,
+    );
+    List<TotalPerDayDTO> dataPrevious = await _expenseRepository.getTotalPerDay(
+      start: previousStart,
+      end: DateTime(_selectedMonth.year, _selectedMonth.month, 0),
+      categories: _selectedCategories,
+    );
+
+    MonthEvolutionData selectedData = MonthEvolutionData(
+      _selectedMonth,
+      _accumulateSpots(dataSelected),
+    );
+
+    MonthEvolutionData previousData = MonthEvolutionData(
+      previousStart,
+      _accumulateSpots(dataPrevious),
+    );
+
+    _monthEvolutionVM = MonthEvolutionVM([selectedData, previousData]);
+  }
+
+  List<FlSpot> _accumulateSpots(List<TotalPerDayDTO> data) {
+    double sum = 0;
+    return data.map((e) {
+      sum += e.total;
+      return FlSpot(e.date.day.toDouble(), sum);
+    }).toList();
   }
 
   void dispose() {
