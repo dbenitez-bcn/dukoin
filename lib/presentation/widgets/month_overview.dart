@@ -45,7 +45,7 @@ class MonthOverviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Card.outlined(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -66,7 +66,7 @@ class MonthOverviewCard extends StatelessWidget {
                       AppLocalizations.of(context)!.statsMonthOverViewTotal,
                       style: TextTheme.of(context).bodyMedium,
                     ),
-                    CurrencyText(
+                    CurrencyText.animated(
                       vm.totalAmount,
                       style: TextTheme.of(context).displayMedium,
                     ),
@@ -107,7 +107,7 @@ class MonthOverviewCard extends StatelessWidget {
                               )!.statsMonthOverViewDailyAvg,
                               style: TextTheme.of(context).bodyMedium,
                             ),
-                            CurrencyText(
+                            CurrencyText.animated(
                               vm.dailyAverage,
                               style: TextTheme.of(context).displayMedium,
                             ),
@@ -140,7 +140,7 @@ class MonthOverviewCard extends StatelessWidget {
                               )!.statsMonthOverViewWeeklyAvg,
                               style: TextTheme.of(context).bodyMedium,
                             ),
-                            CurrencyText(
+                            CurrencyText.animated(
                               vm.weeklyAverage,
                               style: TextTheme.of(context).displayMedium,
                             ),
