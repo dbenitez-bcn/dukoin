@@ -72,6 +72,7 @@ class StatsBloc {
     _statusController.add(StateStatus.loading);
     _selectedCategories = newCategories;
     await loadMonthOverview();
+    await loadMonthEvolution();
     _statusController.add(StateStatus.done);
   }
 

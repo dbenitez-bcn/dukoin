@@ -153,32 +153,76 @@ void main() {
       expect(sut.selectedCategories, isEmpty);
     });
 
-    test("Given a new category list then it should update the state", () {
-      final sut = StatsBloc(mockrepo);
-      var expected = [ExpenseCategory.food, ExpenseCategory.travel];
-      when(
-        mockrepo.getTotalAmount(
-          start: anyNamed("start"),
-          end: anyNamed("end"),
-          categories: anyNamed("categories"),
-        ),
-      ).thenAnswer((_) async => TotalAmountVM(23, 23));
-      expectLater(
-        sut.statusStream,
-        emitsInOrder([StateStatus.loading, StateStatus.done]),
+    group("onCategoriesUpdated", () {
+      setUp(() {
+        reset(mockrepo);
+        when(
+          mockrepo.getTotalAmount(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => TotalAmountVM(23, 23));
+        when(
+          mockrepo.getTotalPerDay(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
+      });
+
+      test(
+        "Given a new category list then it should update the state",
+        () async {
+          final sut = StatsBloc(mockrepo);
+          var expected = [ExpenseCategory.food, ExpenseCategory.travel];
+          expectLater(
+            sut.statusStream,
+            emitsInOrder([StateStatus.loading, StateStatus.done]),
+          );
+
+          await sut.onCategoriesUpdated(expected);
+
+          expect(sut.selectedCategories, expected);
+        },
       );
+      test(
+        "Given a new category list then it should update the mont overview",
+        () async {
+          final sut = StatsBloc(mockrepo);
+          var expected = [ExpenseCategory.food, ExpenseCategory.travel];
 
-      sut.onCategoriesUpdated(expected);
+          await sut.onCategoriesUpdated(expected);
 
-      expect(sut.selectedCategories, expected);
-      verify(
-        mockrepo.getTotalAmount(
-          start: anyNamed("start"),
-          end: anyNamed("end"),
-          categories: expected,
-        ),
+          verify(
+            mockrepo.getTotalAmount(
+              start: anyNamed("start"),
+              end: anyNamed("end"),
+              categories: expected,
+            ),
+          );
+        },
+      );
+      test(
+        "Given a new category list then it should update the mont evolution",
+        () async {
+          final sut = StatsBloc(mockrepo);
+          var expected = [ExpenseCategory.food, ExpenseCategory.travel];
+
+          await sut.onCategoriesUpdated(expected);
+
+          verify(
+            mockrepo.getTotalPerDay(
+              start: anyNamed("start"),
+              end: anyNamed("end"),
+              categories: expected,
+            ),
+          );
+        },
       );
     });
+
     test("Should close the stream controller on dispose", () async {
       final sut = StatsBloc(mockrepo);
       final doneFuture = expectLater(sut.statusStream, emitsDone);
