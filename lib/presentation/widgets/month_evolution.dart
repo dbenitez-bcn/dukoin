@@ -18,7 +18,10 @@ class MonthEvolution extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final statsBloc = StatsProvider.of(context);
-    final shimmer = DukoinShimmer(height: 236.5, width: double.infinity);
+    final shimmer = Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: DukoinShimmer(height: 216.5, width: double.infinity),
+    );
     return FutureBuilder(
       future: statsBloc.loadMonthEvolution(),
       builder: (context, snapshot) {
@@ -155,7 +158,7 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
           minX: 1,
           maxX: maxX,
           minY: 0,
-          lineBarsData: lines,
+          lineBarsData: [lines[0]],
           lineTouchData: LineTouchData(
             getTouchedSpotIndicator: (barData, spotIndexes) {
               return spotIndexes.map((index) {
@@ -193,8 +196,8 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
             ),
           ),
         ),
-        duration: Duration(seconds: 1), // Optional
-        curve: Curves.linear, // Optional
+        duration: Duration(milliseconds: 1000), // Optional
+        curve: Curves.easeInQuart, // Optional
       ),
     );
   }

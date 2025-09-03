@@ -15,7 +15,10 @@ class MonthOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final statsBloc = StatsProvider.of(context);
-    final shimmer = DukoinShimmer(height: 148, width: double.infinity);
+    final shimmer = Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: DukoinShimmer(height: 148, width: double.infinity),
+    );
     return FutureBuilder(
       future: statsBloc.loadMonthOverview(),
       builder: (context, snapshot) {
@@ -67,6 +70,7 @@ class MonthOverviewCard extends StatelessWidget {
                     CurrencyText.animated(
                       vm.totalAmount,
                       style: TextTheme.of(context).displayMedium,
+                      durationInMilliseconds: 750,
                     ),
                   ],
                 ),
@@ -108,6 +112,7 @@ class MonthOverviewCard extends StatelessWidget {
                             CurrencyText.animated(
                               vm.dailyAverage,
                               style: TextTheme.of(context).displayMedium,
+                              durationInMilliseconds: 750,
                             ),
                           ],
                         ),
@@ -141,6 +146,7 @@ class MonthOverviewCard extends StatelessWidget {
                             CurrencyText.animated(
                               vm.weeklyAverage,
                               style: TextTheme.of(context).displayMedium,
+                              durationInMilliseconds: 750,
                             ),
                           ],
                         ),
