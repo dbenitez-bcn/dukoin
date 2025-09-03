@@ -5,6 +5,7 @@ import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/month_evolution_vm.dart';
 import 'package:dukoin/domain/month_overview_vm.dart';
 import 'package:dukoin/domain/state_status.dart';
+import 'package:dukoin/domain/time_interval.dart';
 import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -95,21 +96,14 @@ class StatsBloc {
   }
 
   Future<void> loadMonthOverview() async {
-    final now = DateTime.now();
-    DateTime end = DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0);
-    if (end.isAfter(now)) {
-      end = now;
-    }
-    if (end.isBefore(_selectedMonth)) {
-      end = _selectedMonth;
-    }
+    final selectedInterval = _getMonthInterval(_selectedMonth);
 
-    final int daysBetween = end.difference(_selectedMonth).inDays + 1;
+    final int daysBetween = selectedInterval.duration.inDays + 1;
     final int weeksBetween = (daysBetween / 7).floor().clamp(1, daysBetween);
 
     final overview = await _expenseRepository.getTotalAmount(
-      start: _selectedMonth,
-      end: end,
+      start: selectedInterval.start,
+      end: selectedInterval.end,
       categories: _selectedCategories,
     );
     _monthOverviewVM = MonthOverviewVM(
@@ -128,17 +122,10 @@ class StatsBloc {
   }
 
   Future<void> loadMonthEvolution() async {
-    final now = DateTime.now();
-    DateTime end = DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0);
-    if (end.isAfter(now)) {
-      end = now;
-    }
-    if (end.isBefore(_selectedMonth)) {
-      end = _selectedMonth;
-    }
+    final selectedInterval = _getMonthInterval(_selectedMonth);
     List<TotalPerDayDTO> dataSelected = await _expenseRepository.getTotalPerDay(
-      start: _selectedMonth,
-      end: end,
+      start: selectedInterval.start,
+      end: selectedInterval.end,
       categories: _selectedCategories,
     );
 
@@ -147,9 +134,10 @@ class StatsBloc {
       _selectedMonth.month - 1,
       1,
     );
+    final previousInterval = _getMonthInterval(previousStart);
     List<TotalPerDayDTO> dataPrevious = await _expenseRepository.getTotalPerDay(
-      start: previousStart,
-      end: DateTime(_selectedMonth.year, _selectedMonth.month, 0),
+      start: previousInterval.start,
+      end: previousInterval.end,
       categories: _selectedCategories,
     );
 
@@ -172,6 +160,12 @@ class StatsBloc {
       sum += e.total;
       return FlSpot(e.date.day.toDouble(), sum);
     }).toList();
+  }
+
+  TimeInterval _getMonthInterval(DateTime date) {
+    final start = DateTime(date.year, date.month, 1);
+    final end = DateTime(date.year, date.month + 1, 0);
+    return TimeInterval(start, end);
   }
 
   void dispose() {
