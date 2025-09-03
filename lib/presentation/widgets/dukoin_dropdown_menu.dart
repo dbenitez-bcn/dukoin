@@ -69,8 +69,8 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
     setState(() {
       selectedValue = index;
     });
-    widget.onSelected(index);
     _animationController.reverse().then((_) {
+      widget.onSelected(index);
       _overlayEntry?.remove();
       _overlayEntry = null;
     });
