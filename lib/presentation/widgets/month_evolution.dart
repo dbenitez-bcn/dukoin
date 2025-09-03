@@ -122,6 +122,7 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
       aspectRatio: 2.0,
       child: LineChart(
         LineChartData(
+          clipData: FlClipData.all(),
           gridData: FlGridData(show: false),
           borderData: FlBorderData(show: false),
           titlesData: FlTitlesData(
