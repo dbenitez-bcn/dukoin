@@ -112,7 +112,8 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
         .map(
           (e) => LineChartBarData(
             spots: [FlSpot(0, 0), ...e.spots],
-            isCurved: false,
+            isCurved: true,
+            curveSmoothness: 0.1,
             barWidth: 1,
             dotData: FlDotData(show: false),
             color: widget.colors[widget.data.indexOf(e)],
@@ -158,7 +159,7 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
           minX: 1,
           maxX: maxX,
           minY: 0,
-          lineBarsData: [lines[0]],
+          lineBarsData: lines,
           lineTouchData: LineTouchData(
             getTouchedSpotIndicator: (barData, spotIndexes) {
               return spotIndexes.map((index) {
