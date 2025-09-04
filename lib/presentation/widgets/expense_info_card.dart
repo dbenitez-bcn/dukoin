@@ -21,7 +21,7 @@ class ExpenseInfoCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 16.0),
               child: Text(
-                getIconFromCategory(expense.category),
+                CategoryUtils.getIconFromCategory(expense.category),
                 style: TextTheme.of(context).displayMedium,
               ),
             ),
@@ -45,7 +45,7 @@ class ExpenseInfoCard extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    "${getCategoryTitle(context, expense.category)} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(expense.createdAt)}",
+                    "${CategoryUtils.getCategoryTitle(context, expense.category)} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(expense.createdAt)}",
                     style: TextTheme.of(context).bodyMedium,
                   ),
                 ],

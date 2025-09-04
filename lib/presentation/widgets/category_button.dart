@@ -105,7 +105,7 @@ class _CategoryButtonState extends State<CategoryButton>
                 children: [
                   Expanded(
                     child: Text(
-                      "${getIconFromCategory(widget.category)} ${getCategoryTitle(context, widget.category)}",
+                      "${CategoryUtils.getIconFromCategory(widget.category)} ${CategoryUtils.getCategoryTitle(context, widget.category)}",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: textColor,

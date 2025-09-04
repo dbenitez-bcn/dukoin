@@ -11,10 +11,10 @@ class CategoryDropdownMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(getIconFromCategory(category)),
+        Text(CategoryUtils.getIconFromCategory(category)),
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: Text(getCategoryTitle(context, category)),
+          child: Text(CategoryUtils.getCategoryTitle(context, category)),
         ),
       ],
     );

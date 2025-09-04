@@ -103,7 +103,7 @@ class TopExpensesListCard extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "${getCategoryTitle(context, expense.category)} ${getIconFromCategory(expense.category)} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(expense.createdAt)}",
+                      "${CategoryUtils.getCategoryTitle(context, expense.category)} ${CategoryUtils.getIconFromCategory(expense.category)} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(expense.createdAt)}",
                       style: TextTheme.of(context).bodyMedium,
                     ),
                   ],
