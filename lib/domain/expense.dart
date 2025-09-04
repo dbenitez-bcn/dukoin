@@ -47,7 +47,7 @@ class Expense implements Comparable<Expense> {
     return Expense(
       id: map['id'],
       amount: map['amount'],
-      category: _getCategoryFromString(map['category']),
+      category: getCategoryFromString(map['category']),
       description: map['description'],
       createdAt: DateTime.parse(map['createdAt']),
     );
@@ -59,7 +59,7 @@ class Expense implements Comparable<Expense> {
   }
 }
 
-ExpenseCategory _getCategoryFromString(String category) {
+ExpenseCategory getCategoryFromString(String category) {
   return ExpenseCategory.values.firstWhere(
     (e) => e.name == category,
     orElse: () => ExpenseCategory.others,

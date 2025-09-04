@@ -2,6 +2,7 @@ import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/state_status.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
+import 'package:dukoin/domain/total_per_category_dto.dart';
 import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -55,6 +56,13 @@ void main() {
             categories: anyNamed("categories"),
           ),
         ).thenAnswer((_) async => []);
+        when(
+          mockrepo.getCategoriesDistribution(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
       });
       test("Given a new date then it should update the state", () async {
         final sut = StatsBloc(mockrepo);
@@ -103,6 +111,20 @@ void main() {
 
         verify(
           mockrepo.getTotalPerDay(
+            start: newDate,
+            end: endOfMonth,
+            categories: anyNamed("categories"),
+          ),
+        ).called(1);
+      });
+
+      test("it should update category breakdown", () async {
+        final sut = StatsBloc(mockrepo);
+
+        await sut.onMonthSelected(newDate);
+
+        verify(
+          mockrepo.getCategoriesDistribution(
             start: newDate,
             end: endOfMonth,
             categories: anyNamed("categories"),
@@ -185,6 +207,13 @@ void main() {
             categories: anyNamed("categories"),
           ),
         ).thenAnswer((_) async => []);
+        when(
+          mockrepo.getCategoriesDistribution(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
       });
 
       test(
@@ -253,6 +282,23 @@ void main() {
           );
         },
       );
+      test(
+        "Given a new category list then it should update the category breakdown",
+        () async {
+          final sut = StatsBloc(mockrepo);
+          var expected = [ExpenseCategory.food, ExpenseCategory.travel];
+
+          await sut.onCategoriesUpdated(expected);
+
+          verify(
+            mockrepo.getCategoriesDistribution(
+              start: anyNamed("start"),
+              end: anyNamed("end"),
+              categories: expected,
+            ),
+          );
+        },
+      );
     });
 
     test("Should close the stream controller on dispose", () async {
@@ -276,6 +322,13 @@ void main() {
         ).thenAnswer((_) async => []);
         when(
           mockrepo.getTotalPerDay(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
+        when(
+          mockrepo.getCategoriesDistribution(
             start: anyNamed("start"),
             end: anyNamed("end"),
             categories: anyNamed("categories"),
@@ -385,6 +438,13 @@ void main() {
         ).thenAnswer((_) async => TotalAmountVM(12.34, 10));
         when(
           mockrepo.getTopHighestExpenses(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
+        when(
+          mockrepo.getCategoriesDistribution(
             start: anyNamed("start"),
             end: anyNamed("end"),
             categories: anyNamed("categories"),
@@ -514,6 +574,71 @@ void main() {
         expect(sut.monthEvolution.data.length, 2);
         expect(sut.monthEvolution.data[0].spots, isEmpty);
         expect(sut.monthEvolution.data[1].spots, isEmpty);
+      });
+    });
+
+    group("loadCategoryBreakdown", () {
+      setUp(() {
+        reset(mockrepo);
+      });
+      test("Default category breakdown data should be empty", () {
+        final sut = StatsBloc(mockrepo);
+
+        expect(sut.categoryBreakdown.data, isEmpty);
+      });
+      test("Given no data should return empty values", () async {
+        final sut = StatsBloc(mockrepo);
+        when(
+          mockrepo.getCategoriesDistribution(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
+
+        await sut.loadCategoryBreakdown();
+
+        expect(sut.categoryBreakdown.data, isEmpty);
+      });
+      test("Given data should return correct values", () async {
+        final sut = StatsBloc(mockrepo);
+        when(
+          mockrepo.getCategoriesDistribution(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer(
+          (_) async => [
+            TotalPerCategoryDTO(ExpenseCategory.food, 10.0),
+            TotalPerCategoryDTO(ExpenseCategory.health, 20.0),
+            TotalPerCategoryDTO(ExpenseCategory.others, 50.0),
+          ],
+        );
+
+        await sut.loadCategoryBreakdown();
+
+        expect(sut.categoryBreakdown.data.length, 3);
+        expect(sut.categoryBreakdown.data[0].category, ExpenseCategory.food);
+        expect(sut.categoryBreakdown.data[0].value, 10);
+        expect(sut.categoryBreakdown.data[0].percentage, 0.125);
+        expect(sut.categoryBreakdown.data[1].category, ExpenseCategory.health);
+        expect(sut.categoryBreakdown.data[1].value, 20);
+        expect(sut.categoryBreakdown.data[1].percentage, 0.25);
+        expect(sut.categoryBreakdown.data[2].category, ExpenseCategory.others);
+        expect(sut.categoryBreakdown.data[2].value, 50);
+        expect(sut.categoryBreakdown.data[2].percentage, 0.625);
+        verify(
+          mockrepo.getCategoriesDistribution(
+            start: sut.selectedMonth,
+            end: DateTime(
+              sut.selectedMonth.year,
+              sut.selectedMonth.month + 1,
+              0,
+            ),
+            categories: sut.selectedCategories,
+          ),
+        ).called(1);
       });
     });
   });

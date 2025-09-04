@@ -1,4 +1,5 @@
 import 'package:dukoin/domain/total_amount_vm.dart';
+import 'package:dukoin/domain/total_per_category_dto.dart';
 import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'expense.dart';
 
@@ -32,6 +33,12 @@ abstract class ExpenseRepository {
   });
 
   Future<List<TotalPerDayDTO>> getTotalPerDay({
+    required DateTime start,
+    required DateTime end,
+    List<ExpenseCategory>? categories,
+  });
+
+  Future<List<TotalPerCategoryDTO>> getCategoriesDistribution({
     required DateTime start,
     required DateTime end,
     List<ExpenseCategory>? categories,

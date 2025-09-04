@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dukoin/domain/category_breakdown_vm.dart';
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/month_evolution_vm.dart';
@@ -36,6 +37,7 @@ class StatsBloc {
   MonthOverviewVM _monthOverviewVM = MonthOverviewVM(0, 0, 0, 0);
   List<Expense> _topFiveExpenses = [];
   MonthEvolutionVM _monthEvolutionVM = MonthEvolutionVM([]);
+  CategoryBreakdownVM _categoryBreakdown = CategoryBreakdownVM([]);
 
   StatsBloc(this._expenseRepository)
     : _selectedMonth = DateTime(DateTime.now().year, DateTime.now().month, 1),
@@ -59,12 +61,15 @@ class StatsBloc {
 
   MonthEvolutionVM get monthEvolution => _monthEvolutionVM;
 
+  CategoryBreakdownVM get categoryBreakdown => _categoryBreakdown;
+
   Future<void> onMonthSelected(DateTime newDate) async {
     _statusController.add(StateStatus.loading);
     _selectedMonth = newDate;
     await loadMonthOverview();
     await loadHighestExpenses();
     await loadMonthEvolution();
+    await loadCategoryBreakdown();
     _statusController.add(StateStatus.done);
   }
 
@@ -74,6 +79,7 @@ class StatsBloc {
     await loadMonthOverview();
     await loadMonthEvolution();
     await loadHighestExpenses();
+    await loadCategoryBreakdown();
     _statusController.add(StateStatus.done);
   }
 
@@ -121,7 +127,7 @@ class StatsBloc {
     _topFiveExpenses = await _expenseRepository.getTopHighestExpenses(
       start: _selectedMonth,
       end: DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0),
-      categories: _selectedCategories
+      categories: _selectedCategories,
     );
   }
 
@@ -156,6 +162,25 @@ class StatsBloc {
     );
 
     _monthEvolutionVM = MonthEvolutionVM([selectedData, previousData]);
+  }
+
+  Future<void> loadCategoryBreakdown() async {
+    final selectedInterval = _getMonthInterval(_selectedMonth);
+    var distribution = await _expenseRepository.getCategoriesDistribution(
+      start: selectedInterval.start,
+      end: selectedInterval.end,
+      categories: _selectedCategories,
+    );
+    var total = 0.0;
+    for (var e in distribution) {
+      total += e.value;
+    }
+
+    final data = distribution
+        .map((e) => CategoryBreakdownData(e.category, e.value, e.value / total))
+        .toList();
+
+    _categoryBreakdown = CategoryBreakdownVM(data);
   }
 
   List<FlSpot> _accumulateSpots(List<TotalPerDayDTO> data) {
