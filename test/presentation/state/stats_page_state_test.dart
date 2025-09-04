@@ -34,35 +34,7 @@ void main() {
       final newDate = DateTime(2023, 1, 1);
       final endOfMonth = DateTime(2023, 1, 31);
       setUp(() {
-        reset(mockrepo);
-        when(
-          mockrepo.getTotalAmount(
-            start: newDate,
-            end: endOfMonth,
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => TotalAmountVM(23, 23));
-        when(
-          mockrepo.getTopHighestExpenses(
-            start: newDate,
-            end: endOfMonth,
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
-        when(
-          mockrepo.getTotalPerDay(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
-        when(
-          mockrepo.getCategoriesDistribution(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
+        arrangeStubs(mockrepo);
       });
       test("Given a new date then it should update the state", () async {
         final sut = StatsBloc(mockrepo);
@@ -185,35 +157,7 @@ void main() {
 
     group("onCategoriesUpdated", () {
       setUp(() {
-        reset(mockrepo);
-        when(
-          mockrepo.getTotalAmount(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => TotalAmountVM(23, 23));
-        when(
-          mockrepo.getTotalPerDay(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
-        when(
-          mockrepo.getTopHighestExpenses(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
-        when(
-          mockrepo.getCategoriesDistribution(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
+        arrangeStubs(mockrepo);
       });
 
       test(
@@ -312,28 +256,7 @@ void main() {
 
     group("loadMonthOverview", () {
       setUp(() {
-        reset(mockrepo);
-        when(
-          mockrepo.getTopHighestExpenses(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
-        when(
-          mockrepo.getTotalPerDay(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
-        when(
-          mockrepo.getCategoriesDistribution(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
+        arrangeStubs(mockrepo);
       });
       test("It should load the month overview data", () async {
         final sut = StatsBloc(mockrepo);
@@ -428,28 +351,7 @@ void main() {
 
     group("loadMonthEvolution", () {
       setUp(() {
-        reset(mockrepo);
-        when(
-          mockrepo.getTotalAmount(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => TotalAmountVM(12.34, 10));
-        when(
-          mockrepo.getTopHighestExpenses(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
-        when(
-          mockrepo.getCategoriesDistribution(
-            start: anyNamed("start"),
-            end: anyNamed("end"),
-            categories: anyNamed("categories"),
-          ),
-        ).thenAnswer((_) async => []);
+        arrangeStubs(mockrepo);
       });
       test("Default month evolution should be empty", () {
         final sut = StatsBloc(mockrepo);
@@ -642,4 +544,36 @@ void main() {
       });
     });
   });
+}
+
+void arrangeStubs(MockExpenseRepository mockrepo) {
+  reset(mockrepo);
+  when(
+    mockrepo.getTotalAmount(
+      start: anyNamed("start"),
+      end: anyNamed("end"),
+      categories: anyNamed("categories"),
+    ),
+  ).thenAnswer((_) async => TotalAmountVM(23, 23));
+  when(
+    mockrepo.getTopHighestExpenses(
+      start: anyNamed("start"),
+      end: anyNamed("end"),
+      categories: anyNamed("categories"),
+    ),
+  ).thenAnswer((_) async => []);
+  when(
+    mockrepo.getTotalPerDay(
+      start: anyNamed("start"),
+      end: anyNamed("end"),
+      categories: anyNamed("categories"),
+    ),
+  ).thenAnswer((_) async => []);
+  when(
+    mockrepo.getCategoriesDistribution(
+      start: anyNamed("start"),
+      end: anyNamed("end"),
+      categories: anyNamed("categories"),
+    ),
+  ).thenAnswer((_) async => []);
 }
