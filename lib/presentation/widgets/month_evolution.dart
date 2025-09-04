@@ -11,6 +11,7 @@ import 'package:dukoin/utils/utils.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class MonthEvolution extends StatelessWidget {
   const MonthEvolution({super.key});
@@ -22,22 +23,42 @@ class MonthEvolution extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: DukoinShimmer(height: 216.5, width: double.infinity),
     );
-    return FutureBuilder(
-      future: statsBloc.loadMonthEvolution(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.done) {
-          return shimmer;
-        }
-        return StreamBuilder<StateStatus>(
-          stream: statsBloc.statusStream.where(
-            (value) => value == StateStatus.done,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Icon(
+                LucideIcons.activity,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                AppLocalizations.of(context)!.statsMonthEvolutionTitle,
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+            ],
           ),
-          initialData: statsBloc.initialStatus,
-          builder: (context, asyncSnapshot) {
-            return MonthEvolutionCard(vm: statsBloc.monthEvolution);
-          },
-        );
-      },
+          FutureBuilder(
+            future: statsBloc.loadMonthEvolution(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState != ConnectionState.done) {
+                return shimmer;
+              }
+              return StreamBuilder<StateStatus>(
+                stream: statsBloc.statusStream.where(
+                  (value) => value == StateStatus.done,
+                ),
+                initialData: statsBloc.initialStatus,
+                builder: (context, asyncSnapshot) {
+                  return MonthEvolutionCard(vm: statsBloc.monthEvolution);
+                },
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }
@@ -140,7 +161,7 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-                reservedSize: (maxY.toString().length+1)*10.0,
+                reservedSize: (maxY.toString().length + 1) * 10.0,
                 interval: maxY / 3,
                 getTitlesWidget: (value, meta) {
                   return CurrencyText(
