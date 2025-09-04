@@ -84,8 +84,8 @@ void main() {
 
             verify(
               mockRepo.getTotalAmount(
-                start: currentDayDate(),
-                end: currentDayDate(),
+                start: DateUtils.currentDayDate(),
+                end: DateUtils.currentDayDate(),
               ),
             ).called(1);
             expectLater(sut.vmStream, emits(expectedVM));
@@ -104,7 +104,7 @@ void main() {
 
             await sut.setTimePeriod(TimePeriod.week);
 
-            var start = firstDayOfCurrentWeek();
+            var start = DateUtils.firstDayOfCurrentWeek();
             var end = start.add(Duration(days: 7));
             verify(
               mockRepo.getTotalAmount(start: start, end: end),
@@ -125,7 +125,7 @@ void main() {
 
             await sut.setTimePeriod(TimePeriod.month);
 
-            var start = firstDayOfCurrentMonth();
+            var start = DateUtils.firstDayOfCurrentMonth();
             var end = DateTime(start.year, start.month + 1, 0);
             verify(
               mockRepo.getTotalAmount(start: start, end: end),

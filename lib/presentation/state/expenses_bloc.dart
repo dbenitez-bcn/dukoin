@@ -50,15 +50,15 @@ class ExpensesBloc {
     switch (_currentTimePeriod) {
       case TimePeriod.day:
         _vm = await _repo.getTotalAmount(
-          start: currentDayDate(),
-          end: currentDayDate(),
+          start: DateUtils.currentDayDate(),
+          end: DateUtils.currentDayDate(),
         );
       case TimePeriod.week:
-        var start = firstDayOfCurrentWeek();
+        var start = DateUtils.firstDayOfCurrentWeek();
         var end = start.add(Duration(days: 7));
         _vm = await _repo.getTotalAmount(start: start, end: end);
       case TimePeriod.month:
-        var start = firstDayOfCurrentMonth();
+        var start = DateUtils.firstDayOfCurrentMonth();
         final end = DateTime(start.year, start.month + 1, 0);
         _vm = await _repo.getTotalAmount(start: start, end: end);
       case TimePeriod.all:

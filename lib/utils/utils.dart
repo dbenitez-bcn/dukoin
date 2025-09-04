@@ -61,27 +61,28 @@ class CategoryUtils {
   }
 }
 
-
-
-DateTime firstDayOfCurrentWeek() {
-  final now = DateTime.now();
-  final weekday = now.weekday;
-  return DateTime(
-    now.year,
-    now.month,
-    now.day,
-  ).subtract(Duration(days: weekday - 1));
+class DateUtils {
+  static DateTime firstDayOfCurrentWeek() {
+    final now = DateTime.now();
+    final weekday = now.weekday;
+    return DateTime(
+      now.year,
+      now.month,
+      now.day,
+    ).subtract(Duration(days: weekday - 1));
+  }
+  static DateTime currentDayDate() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, now.day);
+  }
+  static DateTime firstDayOfCurrentMonth() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, 1);
+  }
 }
 
-DateTime currentDayDate() {
-  final now = DateTime.now();
-  return DateTime(now.year, now.month, now.day);
-}
 
-DateTime firstDayOfCurrentMonth() {
-  final now = DateTime.now();
-  return DateTime(now.year, now.month, 1);
-}
+
 
 class FormatUtils {
   static String formatPercentage(
