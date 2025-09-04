@@ -10,6 +10,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
   final Color accent;
   final Color shimmer;
   final Color shimmerAccent;
+  final List<Color> chartColors;
 
   const DukoinColors({
     required this.emeraldGreen,
@@ -20,6 +21,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     required this.accent,
     required this.shimmer,
     required this.shimmerAccent,
+    required this.chartColors,
   });
 
   static const light = DukoinColors(
@@ -31,6 +33,13 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     accent: Color(0xFFE0E7FF),
     shimmer: Color(0xFFE0E0E0),
     shimmerAccent: Color(0xFFF5F5F5),
+    chartColors: [
+      Color(0xFF8B5CF6),
+      Color(0xFF06B6D4),
+      Color(0xFF10B981),
+      Color(0xFFF59E0B),
+      Color(0xFFEF4444),
+    ],
   );
 
   static const dark = DukoinColors(
@@ -42,6 +51,13 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     accent: Color(0xFF475569),
     shimmer: Color(0xFF2C2F38),
     shimmerAccent: Color(0xFF3A3F4A),
+    chartColors: [
+      Color(0xFFA78BFA),
+      Color(0xFF22D3EE),
+      Color(0xFF34D399),
+      Color(0xFFFBBF24),
+      Color(0xFFF87171),
+    ],
   );
 
   @override
@@ -54,6 +70,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
     Color? accent,
     Color? shimmer,
     Color? shimmerAccent,
+    List<Color>? chartColors,
   }) {
     return DukoinColors(
       emeraldGreen: emeraldGreen ?? this.emeraldGreen,
@@ -64,6 +81,7 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
       accent: accent ?? this.accent,
       shimmer: shimmer ?? this.shimmer,
       shimmerAccent: shimmerAccent ?? this.shimmerAccent,
+      chartColors: chartColors ?? this.chartColors,
     );
   }
 
@@ -87,6 +105,14 @@ class DukoinColors extends ThemeExtension<DukoinColors> {
       accent: Color.lerp(accent, other.accent, t)!,
       shimmer: Color.lerp(shimmer, other.shimmer, t)!,
       shimmerAccent: Color.lerp(shimmerAccent, other.shimmerAccent, t)!,
+      chartColors: List<Color>.generate(
+        chartColors.length,
+        (i) => Color.lerp(chartColors[i], other.chartColors[i], t)!,
+      ),
     );
+  }
+
+  Color chartColor(int i) {
+    return chartColors[i % chartColors.length];
   }
 }
