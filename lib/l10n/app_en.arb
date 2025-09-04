@@ -356,6 +356,10 @@
   "@statsMonthOverViewWeeklyAvg": {
     "description": "Displays the Weekly average in the month overview card"
   },
+  "statsCategoryBreakdownTitle": "Category Breakdown",
+  "@statsCategoryBreakdownTitle": {
+    "description": "Displays the Category Breakdown title"
+  },
   "statsMonthEvolutionTitle": "Monthly Expense Evolution",
   "@statsMonthEvolutionTitle": {
     "description": "Displays the Monthly Expense Evolution title"

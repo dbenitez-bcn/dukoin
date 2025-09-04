@@ -560,6 +560,12 @@ abstract class AppLocalizations {
   /// **'Weekly avg'**
   String get statsMonthOverViewWeeklyAvg;
 
+  /// Displays the Category Breakdown title
+  ///
+  /// In en, this message translates to:
+  /// **'Category Breakdown'**
+  String get statsCategoryBreakdownTitle;
+
   /// Displays the Monthly Expense Evolution title
   ///
   /// In en, this message translates to:

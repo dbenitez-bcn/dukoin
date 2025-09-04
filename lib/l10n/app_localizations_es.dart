@@ -282,6 +282,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statsMonthOverViewWeeklyAvg => 'Weekly avg';
 
   @override
+  String get statsCategoryBreakdownTitle => 'Category Breakdown';
+
+  @override
   String get statsMonthEvolutionTitle => 'Monthly Expense Evolution';
 
   @override
