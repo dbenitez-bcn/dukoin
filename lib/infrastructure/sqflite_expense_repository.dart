@@ -206,6 +206,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     FROM expenses
     WHERE $where
     GROUP BY category
+    ORDER BY value DESC
     ''', args);
 
     return result.map((e) => TotalPerCategoryDTO.fromMap(e)).toList();
