@@ -140,7 +140,7 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-                reservedSize: 50,
+                reservedSize: (maxY.toString().length+1)*10.0,
                 interval: maxY / 4,
                 getTitlesWidget: (value, meta) {
                   return CurrencyText(
