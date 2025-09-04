@@ -38,7 +38,7 @@ class CurrencyText extends StatelessWidget {
 
   Text _buildText(BuildContext context, double value) {
     return Text(
-      formatCurrency(
+      FormatUtils.formatCurrency(
         CurrencyProvider.of(context).currency,
         value,
         AppLocalizations.of(context)!.localeName,

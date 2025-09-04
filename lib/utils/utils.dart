@@ -5,16 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 // TODO: Split in different files (Effort: L | Value: M)
-String formatCurrency(Currency currency, double amount, String locale) {
-  final format = NumberFormat.currency(
-    locale: locale,
-    symbol: _getCurrencySymbol(currency),
-    decimalDigits: 2,
-  );
-
-  return format.format(amount);
-}
-
 String _getCurrencySymbol(Currency currency) {
   switch (currency) {
     case Currency.usd:
@@ -106,3 +96,23 @@ DateTime firstDayOfCurrentMonth() {
   return DateTime(now.year, now.month, 1);
 }
 
+class FormatUtils {
+  static String formatPercentage(double value, String locale,
+      {int minFractionDigits = 0, int maxFractionDigits = 2}) {
+    final formatter = NumberFormat.percentPattern(locale)
+      ..minimumFractionDigits = minFractionDigits
+      ..maximumFractionDigits = maxFractionDigits;
+
+    return formatter.format(value);
+  }
+
+  static String formatCurrency(Currency currency, double amount, String locale) {
+    final format = NumberFormat.currency(
+      locale: locale,
+      symbol: _getCurrencySymbol(currency),
+      decimalDigits: 2,
+    );
+
+    return format.format(amount);
+  }
+}

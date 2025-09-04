@@ -217,7 +217,7 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
               getTooltipItems: (touchedSpots) {
                 return touchedSpots.map((e) {
                   return LineTooltipItem(
-                    formatCurrency(
+                    FormatUtils.formatCurrency(
                       CurrencyProvider.of(context).currency,
                       e.y,
                       AppLocalizations.of(context)!.localeName,
