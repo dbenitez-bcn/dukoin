@@ -63,7 +63,7 @@ class StatsBloc {
     _statusController.add(StateStatus.loading);
     _selectedMonth = newDate;
     await loadMonthOverview();
-    await loadTopFive();
+    await loadHighestExpenses();
     await loadMonthEvolution();
     _statusController.add(StateStatus.done);
   }
@@ -73,7 +73,7 @@ class StatsBloc {
     _selectedCategories = newCategories;
     await loadMonthOverview();
     await loadMonthEvolution();
-    await loadTopFive();
+    await loadHighestExpenses();
     _statusController.add(StateStatus.done);
   }
 
@@ -117,8 +117,8 @@ class StatsBloc {
     );
   }
 
-  Future<void> loadTopFive() async {
-    _topFiveExpenses = await _expenseRepository.getTopFiveExpenses(
+  Future<void> loadHighestExpenses() async {
+    _topFiveExpenses = await _expenseRepository.getTopHighestExpenses(
       start: _selectedMonth,
       end: DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0),
       categories: _selectedCategories

@@ -10,15 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-class TopFiveOfTheMonth extends StatelessWidget {
-  const TopFiveOfTheMonth({super.key});
+class HighestExpenses extends StatelessWidget {
+  const HighestExpenses({super.key});
 
   @override
   Widget build(BuildContext context) {
     final shimmer = DukoinShimmer(height: 100);
     final statsBloc = StatsProvider.of(context);
     return FutureBuilder(
-      future: statsBloc.loadTopFive(),
+      future: statsBloc.loadHighestExpenses(),
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return shimmer;

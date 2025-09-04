@@ -133,7 +133,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }
 
   @override
-  Future<List<Expense>> getTopFiveExpenses({
+  Future<List<Expense>> getTopHighestExpenses({
     required DateTime start,
     required DateTime end,
   List<ExpenseCategory>? categories,

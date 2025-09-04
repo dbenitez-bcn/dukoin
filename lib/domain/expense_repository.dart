@@ -25,7 +25,7 @@ abstract class ExpenseRepository {
 
   Future<DateTime?> getOldestExpenseDate();
 
-  Future<List<Expense>> getTopFiveExpenses({
+  Future<List<Expense>> getTopHighestExpenses({
     required DateTime start,
     required DateTime end,
     List<ExpenseCategory>? categories,

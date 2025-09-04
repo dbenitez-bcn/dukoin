@@ -42,7 +42,7 @@ void main() {
           ),
         ).thenAnswer((_) async => TotalAmountVM(23, 23));
         when(
-          mockrepo.getTopFiveExpenses(
+          mockrepo.getTopHighestExpenses(
             start: newDate,
             end: endOfMonth,
             categories: anyNamed("categories"),
@@ -74,7 +74,7 @@ void main() {
         await sut.onMonthSelected(newDate);
 
         verify(
-          mockrepo.getTopFiveExpenses(
+          mockrepo.getTopHighestExpenses(
             start: newDate,
             end: endOfMonth,
             categories: anyNamed("categories"),
@@ -179,7 +179,7 @@ void main() {
           ),
         ).thenAnswer((_) async => []);
         when(
-          mockrepo.getTopFiveExpenses(
+          mockrepo.getTopHighestExpenses(
             start: anyNamed("start"),
             end: anyNamed("end"),
             categories: anyNamed("categories"),
@@ -245,7 +245,7 @@ void main() {
           await sut.onCategoriesUpdated(expected);
 
           verify(
-            mockrepo.getTopFiveExpenses(
+            mockrepo.getTopHighestExpenses(
               start: anyNamed("start"),
               end: anyNamed("end"),
               categories: expected,
@@ -268,7 +268,7 @@ void main() {
       setUp(() {
         reset(mockrepo);
         when(
-          mockrepo.getTopFiveExpenses(
+          mockrepo.getTopHighestExpenses(
             start: anyNamed("start"),
             end: anyNamed("end"),
             categories: anyNamed("categories"),
@@ -352,19 +352,19 @@ void main() {
           ),
         ).toList();
         when(
-          mockrepo.getTopFiveExpenses(
+          mockrepo.getTopHighestExpenses(
             start: anyNamed("start"),
             end: anyNamed("end"),
             categories: anyNamed("categories"),
           ),
         ).thenAnswer((_) async => expectedList);
 
-        await sut.loadTopFive();
+        await sut.loadHighestExpenses();
 
         expect(sut.topFiveExpenses.length, 5);
         expect(sut.topFiveExpenses, expectedList);
         verify(
-          mockrepo.getTopFiveExpenses(
+          mockrepo.getTopHighestExpenses(
             start: sut.selectedMonth,
             end: end,
             categories: sut.selectedCategories,
@@ -384,7 +384,7 @@ void main() {
           ),
         ).thenAnswer((_) async => TotalAmountVM(12.34, 10));
         when(
-          mockrepo.getTopFiveExpenses(
+          mockrepo.getTopHighestExpenses(
             start: anyNamed("start"),
             end: anyNamed("end"),
             categories: anyNamed("categories"),

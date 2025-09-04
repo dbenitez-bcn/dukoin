@@ -308,7 +308,7 @@ void main() {
       });
     });
 
-    group("getTopFiveExpenses", () {
+    group("getTopHighestExpenses", () {
       final start = DateTime(2023, 1, 1);
       final end = DateTime(2023, 1, 31);
 
@@ -334,7 +334,7 @@ void main() {
           ),
         ).thenAnswer((_) async => mockExpenses.take(5).toList());
 
-        final got = await sut.getTopFiveExpenses(start: start, end: end);
+        final got = await sut.getTopHighestExpenses(start: start, end: end);
 
         expect(got.length, 5);
         expect(got.first.amount, 100.0);
@@ -360,7 +360,7 @@ void main() {
           ),
         ).thenAnswer((_) async => []);
 
-        final got = await sut.getTopFiveExpenses(start: start, end: end);
+        final got = await sut.getTopHighestExpenses(start: start, end: end);
 
         expect(got, isEmpty);
       });
@@ -381,7 +381,7 @@ void main() {
           ),
         ).thenAnswer((_) async => []);
 
-        final got = await sut.getTopFiveExpenses(
+        final got = await sut.getTopHighestExpenses(
           start: start,
           end: end,
           categories: [ExpenseCategory.food, ExpenseCategory.bills],
