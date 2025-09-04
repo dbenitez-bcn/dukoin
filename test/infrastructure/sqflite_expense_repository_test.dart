@@ -1,6 +1,5 @@
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
-import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'package:dukoin/infrastructure/database_provider.dart';
 import 'package:dukoin/infrastructure/sqflite_expense_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -362,6 +361,31 @@ void main() {
         ).thenAnswer((_) async => []);
 
         final got = await sut.getTopFiveExpenses(start: start, end: end);
+
+        expect(got, isEmpty);
+      });
+
+      test("Should filter by categories", () async {
+        when(
+          mockDatabase.query(
+            'expenses',
+            where: 'createdAt >= ? AND createdAt <= ? AND category IN (?, ?)',
+            whereArgs: [
+              start.toIso8601String(),
+              end.toIso8601String(),
+              ExpenseCategory.food.name,
+              ExpenseCategory.bills.name,
+            ],
+            orderBy: 'amount DESC',
+            limit: 5,
+          ),
+        ).thenAnswer((_) async => []);
+
+        final got = await sut.getTopFiveExpenses(
+          start: start,
+          end: end,
+          categories: [ExpenseCategory.food, ExpenseCategory.bills],
+        );
 
         expect(got, isEmpty);
       });

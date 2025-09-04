@@ -136,12 +136,22 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   Future<List<Expense>> getTopFiveExpenses({
     required DateTime start,
     required DateTime end,
+  List<ExpenseCategory>? categories,
   }) async {
     final db = await _db;
+    final args = [start.toIso8601String(), end.toIso8601String()];
+    String where = 'createdAt >= ? AND createdAt <= ?';
+
+    if (categories != null && categories.isNotEmpty) {
+      final placeholders = List.filled(categories.length, '?').join(', ');
+      where += ' AND category IN ($placeholders)';
+      args.addAll(categories.map((c) => c.name));
+    }
+
     final maps = await db.query(
       'expenses',
-      where: 'createdAt >= ? AND createdAt <= ?',
-      whereArgs: [start.toIso8601String(), end.toIso8601String()],
+      where: where,
+      whereArgs: args,
       orderBy: 'amount DESC',
       limit: 5,
     );
