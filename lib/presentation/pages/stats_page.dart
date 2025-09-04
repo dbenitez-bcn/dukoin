@@ -1,3 +1,4 @@
+import 'package:dukoin/presentation/widgets/category_breakdown.dart';
 import 'package:dukoin/presentation/widgets/month_evolution.dart';
 import 'package:dukoin/presentation/widgets/month_overview.dart';
 import 'package:dukoin/presentation/widgets/statistics_app_bar.dart';
@@ -19,6 +20,7 @@ class StatsPage extends StatelessWidget {
                 children: [
                   StatisticsAppBar(),
                   MonthOverview(),
+                  CategoryBreakdown(),
                   MonthEvolution(),
                   HighestExpenses(),
                 ],
