@@ -144,7 +144,9 @@ class _MonthEvolutionChartState extends State<MonthEvolutionChart> {
             spots: e.spots.isEmpty
                 ? []
                 : [FlSpot(e.spots[0].x - 1, 0), ...e.spots],
-            isCurved: true,
+            barWidth: 3,
+            isStrokeCapRound: true,
+            isStrokeJoinRound: true,
             dotData: FlDotData(show: false),
             color: widget.colors[widget.data.indexOf(e)],
           ),
