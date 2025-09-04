@@ -4,7 +4,7 @@ import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
-// TODO: Split in different files (Effort: L | Value: M)
+// TODO: Split in different files and add tests (Effort: M | Value: L)
 
 class CategoryUtils {
   static String getIconFromCategory(ExpenseCategory category) {
@@ -80,9 +80,6 @@ class DateUtils {
     return DateTime(now.year, now.month, 1);
   }
 }
-
-
-
 
 class FormatUtils {
   static String formatPercentage(
