@@ -42,7 +42,11 @@ void main() {
           ),
         ).thenAnswer((_) async => TotalAmountVM(23, 23));
         when(
-          mockrepo.getTopFiveExpenses(start: newDate, end: endOfMonth),
+          mockrepo.getTopFiveExpenses(
+            start: newDate,
+            end: endOfMonth,
+            categories: anyNamed("categories"),
+          ),
         ).thenAnswer((_) async => []);
         when(
           mockrepo.getTotalPerDay(
@@ -70,7 +74,11 @@ void main() {
         await sut.onMonthSelected(newDate);
 
         verify(
-          mockrepo.getTopFiveExpenses(start: newDate, end: endOfMonth),
+          mockrepo.getTopFiveExpenses(
+            start: newDate,
+            end: endOfMonth,
+            categories: anyNamed("categories"),
+          ),
         ).called(1);
       });
 
@@ -170,6 +178,13 @@ void main() {
             categories: anyNamed("categories"),
           ),
         ).thenAnswer((_) async => []);
+        when(
+          mockrepo.getTopFiveExpenses(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
       });
 
       test(
@@ -221,6 +236,23 @@ void main() {
           );
         },
       );
+      test(
+        "Given a new category list then it should update the top highest expenses",
+        () async {
+          final sut = StatsBloc(mockrepo);
+          var expected = [ExpenseCategory.food, ExpenseCategory.travel];
+
+          await sut.onCategoriesUpdated(expected);
+
+          verify(
+            mockrepo.getTopFiveExpenses(
+              start: anyNamed("start"),
+              end: anyNamed("end"),
+              categories: expected,
+            ),
+          );
+        },
+      );
     });
 
     test("Should close the stream controller on dispose", () async {
@@ -239,6 +271,7 @@ void main() {
           mockrepo.getTopFiveExpenses(
             start: anyNamed("start"),
             end: anyNamed("end"),
+            categories: anyNamed("categories"),
           ),
         ).thenAnswer((_) async => []);
         when(
@@ -322,6 +355,7 @@ void main() {
           mockrepo.getTopFiveExpenses(
             start: anyNamed("start"),
             end: anyNamed("end"),
+            categories: anyNamed("categories"),
           ),
         ).thenAnswer((_) async => expectedList);
 
@@ -330,7 +364,11 @@ void main() {
         expect(sut.topFiveExpenses.length, 5);
         expect(sut.topFiveExpenses, expectedList);
         verify(
-          mockrepo.getTopFiveExpenses(start: sut.selectedMonth, end: end),
+          mockrepo.getTopFiveExpenses(
+            start: sut.selectedMonth,
+            end: end,
+            categories: sut.selectedCategories,
+          ),
         ).called(1);
       });
     });
@@ -349,6 +387,7 @@ void main() {
           mockrepo.getTopFiveExpenses(
             start: anyNamed("start"),
             end: anyNamed("end"),
+            categories: anyNamed("categories"),
           ),
         ).thenAnswer((_) async => []);
       });

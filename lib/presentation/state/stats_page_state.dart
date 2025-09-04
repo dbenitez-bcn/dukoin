@@ -73,6 +73,7 @@ class StatsBloc {
     _selectedCategories = newCategories;
     await loadMonthOverview();
     await loadMonthEvolution();
+    await loadTopFive();
     _statusController.add(StateStatus.done);
   }
 
@@ -120,6 +121,7 @@ class StatsBloc {
     _topFiveExpenses = await _expenseRepository.getTopFiveExpenses(
       start: _selectedMonth,
       end: DateTime(_selectedMonth.year, _selectedMonth.month + 1, 0),
+      categories: _selectedCategories
     );
   }
 
