@@ -236,6 +236,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     WHERE $where
     GROUP BY category
     ORDER BY count DESC
+    LIMIT 3
     ''', args);
 
     return result.map((e) => CategoryFrequency.fromMap(e)).toList();
