@@ -554,5 +554,98 @@ void main() {
       });
     });
 
+    group("getCategoryFrequencies", () {
+      final start = DateTime(2023, 1, 1);
+      final end = DateTime(2023, 1, 31);
+
+      test("should return frequencies grouped by category", () async {
+        final mockData = [
+          {'category': ExpenseCategory.food.name, 'average': 100.0, 'count': 4},
+          {
+            'category': ExpenseCategory.transport.name,
+            'average': 50.0,
+            'count': 2,
+          },
+        ];
+
+        when(
+          mockDatabase.rawQuery(any, [
+            start.toIso8601String(),
+            end.toIso8601String(),
+          ]),
+        ).thenAnswer((_) async => mockData);
+
+        final got = await sut.getCategoryFrequencies(start: start, end: end);
+
+        expect(got.length, 2);
+        expect(got[0].category, ExpenseCategory.food);
+        expect(got[0].average, 100.0);
+        expect(got[0].count, 4);
+        expect(got[1].category, ExpenseCategory.transport);
+        expect(got[1].average, 50.0);
+        expect(got[1].count, 2);
+
+        verify(
+          mockDatabase.rawQuery(any, [
+            start.toIso8601String(),
+            end.toIso8601String(),
+          ]),
+        ).called(1);
+      });
+
+      test("should filter by categories", () async {
+        final categories = [ExpenseCategory.food, ExpenseCategory.bills];
+        final mockData = [
+          {'category': ExpenseCategory.food.name, 'average': 75.0, 'count': 10},
+        ];
+
+        when(
+          mockDatabase.rawQuery(any, [
+            start.toIso8601String(),
+            end.toIso8601String(),
+            ...categories.map((c) => c.name),
+          ]),
+        ).thenAnswer((_) async => mockData);
+
+        final got = await sut.getCategoryFrequencies(
+          start: start,
+          end: end,
+          categories: categories,
+        );
+
+        expect(got.length, 1);
+        expect(got[0].category, ExpenseCategory.food);
+        expect(got[0].average, 75.0);
+        expect(got[0].count, 10);
+
+        verify(
+          mockDatabase.rawQuery(any, [
+            start.toIso8601String(),
+            end.toIso8601String(),
+            ...categories.map((c) => c.name),
+          ]),
+        ).called(1);
+      });
+
+      test("should return empty list when no data", () async {
+        when(
+          mockDatabase.rawQuery(any, [
+            start.toIso8601String(),
+            end.toIso8601String(),
+          ]),
+        ).thenAnswer((_) async => []);
+
+        final got = await sut.getCategoryFrequencies(start: start, end: end);
+
+        expect(got, isEmpty);
+
+        verify(
+          mockDatabase.rawQuery(any, [
+            start.toIso8601String(),
+            end.toIso8601String(),
+          ]),
+        ).called(1);
+      });
+    });
   });
 }
