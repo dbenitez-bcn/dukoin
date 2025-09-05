@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category_frequency.dart';
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/state_status.dart';
@@ -97,6 +98,20 @@ void main() {
 
         verify(
           mockrepo.getCategoriesDistribution(
+            start: newDate,
+            end: endOfMonth,
+            categories: anyNamed("categories"),
+          ),
+        ).called(1);
+      });
+
+      test("it should update category frequency", () async {
+        final sut = StatsBloc(mockrepo);
+
+        await sut.onMonthSelected(newDate);
+
+        verify(
+          mockrepo.getCategoryFrequencies(
             start: newDate,
             end: endOfMonth,
             categories: anyNamed("categories"),
@@ -236,6 +251,23 @@ void main() {
 
           verify(
             mockrepo.getCategoriesDistribution(
+              start: anyNamed("start"),
+              end: anyNamed("end"),
+              categories: expected,
+            ),
+          );
+        },
+      );
+      test(
+        "Given a new category list then it should update the category frequencies",
+        () async {
+          final sut = StatsBloc(mockrepo);
+          var expected = [ExpenseCategory.food, ExpenseCategory.travel];
+
+          await sut.onCategoriesUpdated(expected);
+
+          verify(
+            mockrepo.getCategoryFrequencies(
               start: anyNamed("start"),
               end: anyNamed("end"),
               categories: expected,
@@ -543,6 +575,71 @@ void main() {
         ).called(1);
       });
     });
+
+    group("loadCategoryFrequency", () {
+      setUp(() {
+        reset(mockrepo);
+      });
+      test("Default category frequency data should be empty", () {
+        final sut = StatsBloc(mockrepo);
+
+        expect(sut.categoryFrequency.data, isEmpty);
+      });
+      test("Given no data should return empty values", () async {
+        final sut = StatsBloc(mockrepo);
+        when(
+          mockrepo.getCategoryFrequencies(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer((_) async => []);
+
+        await sut.loadCategoryFrequency();
+
+        expect(sut.categoryFrequency.data, isEmpty);
+      });
+      test("Given data should return correct values", () async {
+        final sut = StatsBloc(mockrepo);
+        when(
+          mockrepo.getCategoryFrequencies(
+            start: anyNamed("start"),
+            end: anyNamed("end"),
+            categories: anyNamed("categories"),
+          ),
+        ).thenAnswer(
+          (_) async => [
+            CategoryFrequency(ExpenseCategory.food, 0.125, 10),
+            CategoryFrequency(ExpenseCategory.health, 0.25, 20),
+            CategoryFrequency(ExpenseCategory.others, 0.625, 50),
+          ],
+        );
+
+        await sut.loadCategoryFrequency();
+
+        expect(sut.categoryFrequency.data.length, 3);
+        expect(sut.categoryFrequency.data[0].category, ExpenseCategory.food);
+        expect(sut.categoryFrequency.data[0].average, 0.125);
+        expect(sut.categoryFrequency.data[0].count, 10);
+        expect(sut.categoryFrequency.data[1].category, ExpenseCategory.health);
+        expect(sut.categoryFrequency.data[1].average, 0.25);
+        expect(sut.categoryFrequency.data[1].count, 20);
+        expect(sut.categoryFrequency.data[2].category, ExpenseCategory.others);
+        expect(sut.categoryFrequency.data[2].average, 0.625);
+        expect(sut.categoryFrequency.data[2].count, 50);
+        verify(
+          mockrepo.getCategoryFrequencies(
+            start: sut.selectedMonth,
+            end: DateTime(
+              sut.selectedMonth.year,
+              sut.selectedMonth.month + 1,
+              0,
+            ),
+            categories: sut.selectedCategories,
+          ),
+        ).called(1);
+      });
+    });
   });
 }
 
@@ -571,6 +668,13 @@ void arrangeStubs(MockExpenseRepository mockrepo) {
   ).thenAnswer((_) async => []);
   when(
     mockrepo.getCategoriesDistribution(
+      start: anyNamed("start"),
+      end: anyNamed("end"),
+      categories: anyNamed("categories"),
+    ),
+  ).thenAnswer((_) async => []);
+  when(
+    mockrepo.getCategoryFrequencies(
       start: anyNamed("start"),
       end: anyNamed("end"),
       categories: anyNamed("categories"),

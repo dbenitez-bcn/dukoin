@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:dukoin/domain/category_breakdown_vm.dart';
+import 'package:dukoin/domain/category_frequency.dart';
+import 'package:dukoin/domain/category_frequency_vm.dart';
 import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/month_evolution_vm.dart';
@@ -38,6 +40,7 @@ class StatsBloc {
   List<Expense> _topFiveExpenses = [];
   MonthEvolutionVM _monthEvolutionVM = MonthEvolutionVM([]);
   CategoryBreakdownVM _categoryBreakdown = CategoryBreakdownVM([]);
+  CategoryFrequencyVM _categoryFrequency = CategoryFrequencyVM([]);
 
   StatsBloc(this._expenseRepository)
     : _selectedMonth = DateTime(DateTime.now().year, DateTime.now().month, 1),
@@ -63,6 +66,8 @@ class StatsBloc {
 
   CategoryBreakdownVM get categoryBreakdown => _categoryBreakdown;
 
+  CategoryFrequencyVM get categoryFrequency => _categoryFrequency;
+
   Future<void> onMonthSelected(DateTime newDate) async {
     _statusController.add(StateStatus.loading);
     _selectedMonth = newDate;
@@ -70,6 +75,7 @@ class StatsBloc {
     await loadHighestExpenses();
     await loadMonthEvolution();
     await loadCategoryBreakdown();
+    await loadCategoryFrequency();
     _statusController.add(StateStatus.done);
   }
 
@@ -80,6 +86,7 @@ class StatsBloc {
     await loadMonthEvolution();
     await loadHighestExpenses();
     await loadCategoryBreakdown();
+    await loadCategoryFrequency();
     _statusController.add(StateStatus.done);
   }
 
@@ -181,6 +188,18 @@ class StatsBloc {
         .toList();
 
     _categoryBreakdown = CategoryBreakdownVM(data);
+  }
+
+  Future<void> loadCategoryFrequency() async {
+    final selectedInterval = _getMonthInterval(_selectedMonth);
+
+    var frequencies = await _expenseRepository.getCategoryFrequencies(
+      start: selectedInterval.start,
+      end: selectedInterval.end,
+      categories: _selectedCategories,
+    );
+
+    _categoryFrequency = CategoryFrequencyVM(frequencies);
   }
 
   List<FlSpot> _accumulateSpots(List<TotalPerDayDTO> data) {
