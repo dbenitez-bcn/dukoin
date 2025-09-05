@@ -1,4 +1,4 @@
-package com.dukoin.tracker.dukoin
+package com.dukoin.expensetracker
 
 import io.flutter.embedding.android.FlutterActivity
 
