@@ -373,5 +373,13 @@
         "example": "5"
       }
     }
+  },
+  "statsMostFrequentCategoriesTitle": "Most Frequent",
+  "@statsMostFrequentCategoriesTitle": {
+    "description": "Displays the most frequent categories title"
+  },
+  "statsAverageText": "avg",
+  "@statsAverageText": {
+    "description": "Displays average text"
   }
 }

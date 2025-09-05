@@ -577,6 +577,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Top {count} this month'**
   String statsTopFiveTitle(int count);
+
+  /// Displays the most frequent categories title
+  ///
+  /// In en, this message translates to:
+  /// **'Most Frequent'**
+  String get statsMostFrequentCategoriesTitle;
+
+  /// Displays average text
+  ///
+  /// In en, this message translates to:
+  /// **'avg'**
+  String get statsAverageText;
 }
 
 class _AppLocalizationsDelegate

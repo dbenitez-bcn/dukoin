@@ -291,4 +291,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String statsTopFiveTitle(int count) {
     return 'Top $count this month';
   }
+
+  @override
+  String get statsMostFrequentCategoriesTitle => 'Most Frequent';
+
+  @override
+  String get statsAverageText => 'avg';
 }
