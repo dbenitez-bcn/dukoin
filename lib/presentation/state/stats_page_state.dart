@@ -69,25 +69,13 @@ class StatsBloc {
   CategoryFrequencyVM get categoryFrequency => _categoryFrequency;
 
   Future<void> onMonthSelected(DateTime newDate) async {
-    _statusController.add(StateStatus.loading);
     _selectedMonth = newDate;
-    await loadMonthOverview();
-    await loadHighestExpenses();
-    await loadMonthEvolution();
-    await loadCategoryBreakdown();
-    await loadCategoryFrequency();
-    _statusController.add(StateStatus.done);
+    await _updateState();
   }
 
   Future<void> onCategoriesUpdated(List<ExpenseCategory> newCategories) async {
-    _statusController.add(StateStatus.loading);
     _selectedCategories = newCategories;
-    await loadMonthOverview();
-    await loadMonthEvolution();
-    await loadHighestExpenses();
-    await loadCategoryBreakdown();
-    await loadCategoryFrequency();
-    _statusController.add(StateStatus.done);
+    await _updateState();
   }
 
   Future<void> loadAvailableMonths() async {
@@ -214,6 +202,16 @@ class StatsBloc {
     final start = DateTime(date.year, date.month, 1);
     final end = DateTime(date.year, date.month + 1, 0);
     return TimeInterval(start, end);
+  }
+
+  Future<void> _updateState() async {
+    _statusController.add(StateStatus.loading);
+    await loadMonthOverview();
+    await loadMonthEvolution();
+    await loadHighestExpenses();
+    await loadCategoryBreakdown();
+    await loadCategoryFrequency();
+    _statusController.add(StateStatus.done);
   }
 
   void dispose() {
