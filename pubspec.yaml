@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 0.0.1+1
 # TODO: Update available languages in Xcode
 
 environment:
@@ -119,13 +119,6 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 # Flutter launcher icons
 # see https://pub.dev/packages/flutter_launcher_icons
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/icon/icon.png"
-  adaptive_icon_background: "#6366F1"
-  adaptive_icon_foreground_inset: 2
-  adaptive_icon_foreground: "assets/icon/ic_launcher_foreground.png"
 
 # Flutter native splash
 # see https://pub.dev/packages/flutter_native_splash
