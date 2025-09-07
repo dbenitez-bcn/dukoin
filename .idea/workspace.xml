@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="910cd770-eed4-4134-93f3-8b9d16f2d351" name="Changes" comment="adds app icons flavors">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/main_stage.dart" afterDir="false" />
+    <list default="true" id="910cd770-eed4-4134-93f3-8b9d16f2d351" name="Changes" comment="adds flavors for dev, stage and prod">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icon/icon_beta.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icon/icon_stage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icon/icon_dev.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icon/icon_dev.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_launcher_icons-beta.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_launcher_icons-stage.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_launcher_icons-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_launcher_icons-dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_launcher_icons.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_launcher_icons-prod.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main_dev.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main_dev.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main_stage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main_stage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,15 +193,7 @@
       <workItem from="1757074325788" duration="1699000" />
       <workItem from="1757076405467" duration="1912000" />
       <workItem from="1757185009194" duration="752000" />
-      <workItem from="1757186197240" duration="3722000" />
-    </task>
-    <task id="LOCAL-00263" summary="adds fl chart dependency">
-      <option name="closed" value="true" />
-      <created>1756891927705</created>
-      <option name="number" value="00263" />
-      <option name="presentableId" value="LOCAL-00263" />
-      <option name="project" value="LOCAL" />
-      <updated>1756891927706</updated>
+      <workItem from="1757186197240" duration="5820000" />
     </task>
     <task id="LOCAL-00264" summary="updates month evolution onMonthSelected">
       <option name="closed" value="true" />
@@ -589,7 +579,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757076784644</updated>
     </task>
-    <option name="localTasksCounter" value="312" />
+    <task id="LOCAL-00312" summary="adds flavors for dev, stage and prod">
+      <option name="closed" value="true" />
+      <created>1757238288135</created>
+      <option name="number" value="00312" />
+      <option name="presentableId" value="LOCAL-00312" />
+      <option name="project" value="LOCAL" />
+      <updated>1757238288136</updated>
+    </task>
+    <option name="localTasksCounter" value="313" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -607,7 +605,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adds category filter to top 5 expenses" />
     <MESSAGE value="apply filters to top highest expenses" />
     <MESSAGE value="renames methods" />
     <MESSAGE value="adds month evolution title" />
@@ -632,7 +629,8 @@
     <MESSAGE value="updates package and bundle id" />
     <MESSAGE value="sets home as inical page" />
     <MESSAGE value="adds app icons flavors" />
-    <option name="LAST_COMMIT_MESSAGE" value="adds app icons flavors" />
+    <MESSAGE value="adds flavors for dev, stage and prod" />
+    <option name="LAST_COMMIT_MESSAGE" value="adds flavors for dev, stage and prod" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

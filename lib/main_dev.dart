@@ -1,6 +1,9 @@
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/dukoin_app.dart';
 import 'package:dukoin/main.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -264,5 +267,8 @@ void main() async {
     await repo.insert(expenses[i]);
   }
 
+  await Firebase.initializeApp();
+  FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
+  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   runApp(DukoinApp());
 }
