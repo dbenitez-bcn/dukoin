@@ -252,49 +252,49 @@ class AppLocalizationsEs extends AppLocalizations {
   String get yesterday => 'Ayer';
 
   @override
-  String get categoryFilterTitle => 'Filter Categories';
+  String get categoryFilterTitle => 'Filtrar categorías';
 
   @override
   String get categoryFilterSubtitle =>
-      'Select categories to include in your statistics';
+      'Selecciona categorías para incluir en tus estadísticas';
 
   @override
-  String get categoryFilterButtonTitle => 'Apply Filters';
+  String get categoryFilterButtonTitle => 'Aplicar filtros';
 
   @override
   String categoryFilterCounter(int min, int max) {
-    return '$min of $max';
+    return '$min de $max';
   }
 
   @override
-  String get clearAll => 'Clear all';
+  String get clearAll => 'Borrar todo';
 
   @override
-  String get selectAll => 'Select all';
+  String get selectAll => 'Seleccionar todo';
 
   @override
-  String get statsMonthOverViewTotal => 'Total Expenses';
+  String get statsMonthOverViewTotal => 'Gastos totales';
 
   @override
-  String get statsMonthOverViewDailyAvg => 'Daily avg';
+  String get statsMonthOverViewDailyAvg => 'Promedio diario';
 
   @override
-  String get statsMonthOverViewWeeklyAvg => 'Weekly avg';
+  String get statsMonthOverViewWeeklyAvg => 'Promedio semanal';
 
   @override
-  String get statsCategoryBreakdownTitle => 'Category Breakdown';
+  String get statsCategoryBreakdownTitle => 'Desglose por categoría';
 
   @override
-  String get statsMonthEvolutionTitle => 'Monthly Expense Evolution';
+  String get statsMonthEvolutionTitle => 'Evolución mensual de gastos';
 
   @override
   String statsTopFiveTitle(int count) {
-    return 'Top $count this month';
+    return 'Top $count este mes';
   }
 
   @override
-  String get statsMostFrequentCategoriesTitle => 'Most Frequent';
+  String get statsMostFrequentCategoriesTitle => 'Más frecuentes';
 
   @override
-  String get statsAverageText => 'avg';
+  String get statsAverageText => 'prom';
 }

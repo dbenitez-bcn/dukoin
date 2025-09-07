@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="910cd770-eed4-4134-93f3-8b9d16f2d351" name="Changes" comment="adds firebase configuration">
+    <list default="true" id="910cd770-eed4-4134-93f3-8b9d16f2d351" name="Changes" comment="builds iOS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/AppFrameworkInfo.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/l10n.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/l10n.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/l10n/app_es.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_es.arb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations_es.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations_es.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,15 +188,7 @@
       <workItem from="1757074325788" duration="1699000" />
       <workItem from="1757076405467" duration="1912000" />
       <workItem from="1757185009194" duration="752000" />
-      <workItem from="1757186197240" duration="7086000" />
-    </task>
-    <task id="LOCAL-00265" summary="updates month evolution onCategoriesUpdated">
-      <option name="closed" value="true" />
-      <created>1756893185259</created>
-      <option name="number" value="00265" />
-      <option name="presentableId" value="LOCAL-00265" />
-      <option name="project" value="LOCAL" />
-      <updated>1756893185259</updated>
+      <workItem from="1757186197240" duration="8859000" />
     </task>
     <task id="LOCAL-00266" summary="updates theme">
       <option name="closed" value="true" />
@@ -582,7 +574,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757241244320</updated>
     </task>
-    <option name="localTasksCounter" value="314" />
+    <task id="LOCAL-00314" summary="builds iOS">
+      <option name="closed" value="true" />
+      <created>1757242645347</created>
+      <option name="number" value="00314" />
+      <option name="presentableId" value="LOCAL-00314" />
+      <option name="project" value="LOCAL" />
+      <updated>1757242645347</updated>
+    </task>
+    <option name="localTasksCounter" value="315" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="renames methods" />
     <MESSAGE value="adds month evolution title" />
     <MESSAGE value="implements category breakdown business logic" />
     <MESSAGE value="simplies unit tests setup" />
@@ -625,7 +624,8 @@
     <MESSAGE value="adds app icons flavors" />
     <MESSAGE value="adds flavors for dev, stage and prod" />
     <MESSAGE value="adds firebase configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="adds firebase configuration" />
+    <MESSAGE value="builds iOS" />
+    <option name="LAST_COMMIT_MESSAGE" value="builds iOS" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

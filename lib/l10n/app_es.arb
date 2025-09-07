@@ -70,5 +70,20 @@
   "clearAllDataDialogButtonTitle": "Borrar todos los datos",
   "clearAllDataDialogCancelButton": "Cancelar",
   "today": "Hoy",
-  "yesterday": "Ayer"
+  "yesterday": "Ayer",
+  "categoryFilterTitle": "Filtrar categorías",
+  "categoryFilterSubtitle": "Selecciona categorías para incluir en tus estadísticas",
+  "categoryFilterButtonTitle": "Aplicar filtros",
+  "categoryFilterCounter": "{min} de {max}",
+  "clearAll": "Borrar todo",
+  "selectAll": "Seleccionar todo",
+  "statsMonthOverViewTotal": "Gastos totales",
+  "statsMonthOverViewDailyAvg": "Promedio diario",
+  "statsMonthOverViewWeeklyAvg": "Promedio semanal",
+  "statsCategoryBreakdownTitle": "Desglose por categoría",
+  "statsMonthEvolutionTitle": "Evolución mensual de gastos",
+  "statsTopFiveTitle": "Top {count} este mes",
+  "statsMostFrequentCategoriesTitle": "Más frecuentes",
+  "statsAverageText": "prom"
 }
+
