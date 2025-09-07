@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="910cd770-eed4-4134-93f3-8b9d16f2d351" name="Changes" comment="adds flavors for dev, stage and prod">
+    <list default="true" id="910cd770-eed4-4134-93f3-8b9d16f2d351" name="Changes" comment="adds firebase configuration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main_dev.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main_dev.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main_stage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main_stage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/AppFrameworkInfo.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +86,7 @@
       <recent name="$PROJECT_DIR$/lib/styles" />
     </key>
   </component>
-  <component name="RunManager" selected="Flutter.Run Stage">
+  <component name="RunManager" selected="Flutter.Run Dev">
     <configuration name="Run Dev" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="buildFlavor" value="dev" />
       <option name="filePath" value="$PROJECT_DIR$/lib/main_dev.dart" />
@@ -193,15 +188,7 @@
       <workItem from="1757074325788" duration="1699000" />
       <workItem from="1757076405467" duration="1912000" />
       <workItem from="1757185009194" duration="752000" />
-      <workItem from="1757186197240" duration="5820000" />
-    </task>
-    <task id="LOCAL-00264" summary="updates month evolution onMonthSelected">
-      <option name="closed" value="true" />
-      <created>1756892714369</created>
-      <option name="number" value="00264" />
-      <option name="presentableId" value="LOCAL-00264" />
-      <option name="project" value="LOCAL" />
-      <updated>1756892714369</updated>
+      <workItem from="1757186197240" duration="7086000" />
     </task>
     <task id="LOCAL-00265" summary="updates month evolution onCategoriesUpdated">
       <option name="closed" value="true" />
@@ -587,7 +574,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757238288136</updated>
     </task>
-    <option name="localTasksCounter" value="313" />
+    <task id="LOCAL-00313" summary="adds firebase configuration">
+      <option name="closed" value="true" />
+      <created>1757241244320</created>
+      <option name="number" value="00313" />
+      <option name="presentableId" value="LOCAL-00313" />
+      <option name="project" value="LOCAL" />
+      <updated>1757241244320</updated>
+    </task>
+    <option name="localTasksCounter" value="314" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="apply filters to top highest expenses" />
     <MESSAGE value="renames methods" />
     <MESSAGE value="adds month evolution title" />
     <MESSAGE value="implements category breakdown business logic" />
@@ -630,7 +624,8 @@
     <MESSAGE value="sets home as inical page" />
     <MESSAGE value="adds app icons flavors" />
     <MESSAGE value="adds flavors for dev, stage and prod" />
-    <option name="LAST_COMMIT_MESSAGE" value="adds flavors for dev, stage and prod" />
+    <MESSAGE value="adds firebase configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="adds firebase configuration" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
