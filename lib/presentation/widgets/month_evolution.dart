@@ -102,13 +102,83 @@ class MonthEvolutionCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onVerticalDragStart: (_) {},
-              child: MonthEvolutionChart(data: vm.data, colors: colors),
-            ),
+            vm.data.isEmpty
+                ? NoDataChart()
+                : GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onVerticalDragStart: (_) {},
+                    child: MonthEvolutionChart(data: vm.data, colors: colors),
+                  ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class NoDataChart extends StatelessWidget {
+  const NoDataChart({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 2.0,
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 32.0),
+            child: Text(
+              AppLocalizations.of(context)!.statsNoData,
+              style: TextTheme.of(context).labelLarge,
+            ),
+          ),
+          LineChart(
+            LineChartData(
+              clipData: FlClipData.all(),
+              gridData: FlGridData(show: false),
+              borderData: FlBorderData(show: false),
+              titlesData: FlTitlesData(
+                leftTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    reservedSize: 55.0,
+                    getTitlesWidget: (value, meta) {
+                      return CurrencyText(
+                        value,
+                        style: TextTheme.of(context).bodySmall,
+                      );
+                    },
+                  ),
+                ),
+                bottomTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    interval: 10.3333,
+                    reservedSize: 30,
+                    getTitlesWidget: (value, meta) {
+                      return Text(
+                        value.ceil().toString(),
+                        style: TextTheme.of(context).bodySmall,
+                      );
+                    },
+                  ),
+                ),
+                rightTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                topTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+              ),
+              minX: 1,
+              maxX: 31,
+              minY: 0,
+              maxY: 100,
+              lineTouchData: LineTouchData(enabled: false),
+            ),
+          ),
+        ],
       ),
     );
   }
