@@ -10,7 +10,8 @@ class NoExpensesWidget extends StatelessWidget {
     var theme = Theme.of(context);
     var isDark = theme.brightness == Brightness.dark;
     var textTheme = TextTheme.of(context);
-    return Center(
+    return SizedBox(
+      width: double.infinity,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

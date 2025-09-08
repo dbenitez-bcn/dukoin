@@ -3,6 +3,7 @@ import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_pagination_controller.dart';
 import 'package:dukoin/presentation/widgets/dismissible_expense_info_card.dart';
 import 'package:dukoin/presentation/widgets/dukoin_shimmer.dart';
+import 'package:dukoin/presentation/widgets/no_expenses.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:intl/intl.dart';
@@ -27,6 +28,12 @@ class ExpensesHistoryView extends StatelessWidget {
         if (snapshot.connectionState != ConnectionState.done) {
           return HistoryViewLoading();
         } else {
+          if (paginationController.expenses.isEmpty) {
+            return const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: NoExpensesWidget(),
+            );
+          }
           return ExpenseHistoryListView(
             paginationController: paginationController,
           );
