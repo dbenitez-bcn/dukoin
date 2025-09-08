@@ -84,7 +84,7 @@
   "statsMonthEvolutionTitle": "Evolución mensual de gastos",
   "statsTopFiveTitle": "Top {count} este mes",
   "statsMostFrequentCategoriesTitle": "Más frecuentes",
-  "statsAverageText": "prom",
+  "statsAverageText": "Promedio",
   "statsNoData": "No hay datos disponibles"
 }
 
