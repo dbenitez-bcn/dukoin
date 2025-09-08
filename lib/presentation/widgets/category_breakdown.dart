@@ -51,7 +51,7 @@ class CategoryBreakdown extends StatelessWidget {
                 ),
                 initialData: statsBloc.initialStatus,
                 builder: (context, asyncSnapshot) {
-                  if (!statsBloc.categoryBreakdown.data.isEmpty) {
+                  if (statsBloc.categoryBreakdown.data.isEmpty) {
                     return NoDataChart();
                   }
                   return CategoryBreakdownCard(vm: statsBloc.categoryBreakdown);
