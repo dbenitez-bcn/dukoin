@@ -51,12 +51,64 @@ class CategoryBreakdown extends StatelessWidget {
                 ),
                 initialData: statsBloc.initialStatus,
                 builder: (context, asyncSnapshot) {
+                  if (!statsBloc.categoryBreakdown.data.isEmpty) {
+                    return NoDataChart();
+                  }
                   return CategoryBreakdownCard(vm: statsBloc.categoryBreakdown);
                 },
               );
             },
           ),
         ],
+      ),
+    );
+  }
+}
+
+class NoDataChart extends StatelessWidget {
+  const NoDataChart({super.key});
+
+  Widget _buildChart(BuildContext context) {
+    final size = MediaQuery.of(context).size.width * 0.40;
+    return SizedBox(
+      width: size,
+      height: size,
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Opacity(
+          opacity: 0.35,
+          child: PieChart(
+            PieChartData(
+              sections: [PieChartSectionData(color: Colors.grey)],
+              sectionsSpace: 3,
+              startDegreeOffset: 100,
+            ),
+            duration: Duration(milliseconds: 1000),
+            curve: Curves.easeInQuart,
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Card.outlined(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              _buildChart(context),
+              Text(
+                AppLocalizations.of(context)!.statsNoData,
+                style: TextTheme.of(context).labelLarge,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -151,12 +203,12 @@ class CategoryBreakdownChart extends StatelessWidget {
                   (e) => PieChartSectionData(
                     value: e.value.value,
                     color: colors.chartColor(e.key),
-                    showTitle: false
+                    showTitle: false,
                   ),
                 )
                 .toList(),
             sectionsSpace: 3,
-            startDegreeOffset: 100
+            startDegreeOffset: 100,
           ),
           duration: Duration(milliseconds: 1000),
           curve: Curves.easeInQuart,
