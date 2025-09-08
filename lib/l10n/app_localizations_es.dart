@@ -296,7 +296,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statsMostFrequentCategoriesTitle => 'Más frecuentes';
 
   @override
-  String get statsAverageText => 'prom';
+  String get statsAverageText => 'Promedio';
 
   @override
   String get statsNoData => 'No hay datos disponibles';
