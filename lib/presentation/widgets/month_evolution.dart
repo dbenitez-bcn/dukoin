@@ -102,7 +102,7 @@ class MonthEvolutionCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            vm.data.isEmpty
+            vm.hasData
                 ? NoDataChart()
                 : GestureDetector(
                     behavior: HitTestBehavior.opaque,
