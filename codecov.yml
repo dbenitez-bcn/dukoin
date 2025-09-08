@@ -1,0 +1,4 @@
+coverage:
+  ignore:
+    - "lib/l10n/**"
+    - "lib/firebase_options.dart"
