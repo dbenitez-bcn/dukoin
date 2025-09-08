@@ -6,12 +6,18 @@ class DukoinDropdownMenu extends StatefulWidget {
   final List<String> items;
   final int initialValue;
   final void Function(int) onSelected;
+  final double padding;
+  final IconData? heading;
+  final DukoinDropdownMenuThemeData decoration;
 
   const DukoinDropdownMenu({
     super.key,
     required this.items,
     required this.initialValue,
     required this.onSelected,
+    this.padding = 0,
+    this.heading,
+    this.decoration = const DukoinDropdownMenuThemeData(),
   });
 
   @override
@@ -195,6 +201,8 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
   @override
   Widget build(BuildContext context) {
     return Card.outlined(
+      color: widget.decoration.color,
+      shape: widget.decoration.shape,
       child: InkWell(
         key: _key,
         borderRadius: BorderRadius.circular(appBorderRadius),
@@ -204,21 +212,52 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 6.0),
-                child: Icon(LucideIcons.calendar, size: 16, color: Colors.grey),
-              ),
+              widget.heading == null
+                  ? SizedBox(width: 6)
+                  : Padding(
+                      padding: const EdgeInsets.only(right: 6.0),
+                      child: Icon(
+                        LucideIcons.calendar,
+                        size: 16,
+                        color: Colors.grey,
+                      ),
+                    ),
               Expanded(
-                child: Text(
-                  widget.items[selectedValue],
-                  style: Theme.of(context).textTheme.titleSmall,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: widget.padding),
+                  child: Text(
+                    widget.items[selectedValue],
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
                 ),
               ),
               const SizedBox(width: 6),
-              Icon(LucideIcons.chevronDown, size: 16, color: Colors.grey),
+              Icon(
+                LucideIcons.chevronDown,
+                size: 16,
+                color: widget.decoration.color == null
+                    ? Colors.grey
+                    : Theme.of(context).colorScheme.onSecondary.withAlpha(200),
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class DukoinDropdownMenuThemeData {
+  final Color? color;
+  final ShapeBorder? shape;
+
+  const DukoinDropdownMenuThemeData({this.color, this.shape});
+
+  factory DukoinDropdownMenuThemeData.filled({required Color color}) {
+    return DukoinDropdownMenuThemeData(
+      color: color,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(appBorderRadius),
       ),
     );
   }

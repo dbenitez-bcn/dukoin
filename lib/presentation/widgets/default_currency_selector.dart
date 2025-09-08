@@ -2,20 +2,28 @@ import 'package:dukoin/domain/currency.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/currency_notifier.dart';
 import 'package:dukoin/presentation/state/currency_provider.dart';
-import 'package:dukoin/presentation/widgets/currency_dropdown_menu_item.dart';
+import 'package:dukoin/presentation/widgets/dukoin_dropdown_menu.dart';
 import 'package:dukoin/presentation/widgets/dukoin_icon.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
 
-// TODO: replace it with a DukoinDropdownButton
 class DefaultCurrencySelector extends StatelessWidget {
-  Currency selectedCurrency = Currency.eur;
+  const DefaultCurrencySelector({super.key});
 
-  DefaultCurrencySelector({super.key});
-
-  void setCurrency(Currency? currency) {
-    if (currency != null) {
-      selectedCurrency = currency;
+  String _getCurrencyText(BuildContext context, Currency currency) {
+    switch (currency) {
+      case Currency.usd:
+        return "\$ ${AppLocalizations.of(context)!.currencyUSD} (${currency.name})";
+      case Currency.eur:
+        return "€ ${AppLocalizations.of(context)!.currencyEUR} (${currency.name})";
+      case Currency.gbp:
+        return "£ ${AppLocalizations.of(context)!.currencyGBP} (${currency.name})";
+      case Currency.jpy:
+        return "¥ ${AppLocalizations.of(context)!.currencyJPY} (${currency.name})";
+      case Currency.cad:
+        return "C\$ ${AppLocalizations.of(context)!.currencyCAD} (${currency.name})";
+      case Currency.aud:
+        return "A\$ ${AppLocalizations.of(context)!.currencyAUD} (${currency.name})";
     }
   }
 
@@ -28,7 +36,7 @@ class DefaultCurrencySelector extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              contentPadding: const EdgeInsets.only(bottom: 16.0),
+              contentPadding: const EdgeInsets.all(0),
               leading: DukoinIcon(
                 icon: Icons.attach_money,
                 color: Theme.of(
@@ -44,23 +52,18 @@ class DefaultCurrencySelector extends StatelessWidget {
                 style: TextTheme.of(context).bodyMedium,
               ),
             ),
-            DropdownButtonFormField<Currency>(
-              initialValue: currencyNotifier.currency,
+            DukoinDropdownMenu(
               items: Currency.values
-                  .map(
-                    (c) => DropdownMenuItem(
-                      value: c,
-                      child: CurrencyDropdownMenuItem(currency: c),
-                    ),
-                  )
+                  .map((c) => _getCurrencyText(context, c))
                   .toList(),
-              onChanged: currencyNotifier.changeCurrency,
-              decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!.addExpenseCategoryHint,
+              initialValue: Currency.values.indexOf(currencyNotifier.currency),
+              onSelected: (index) {
+                currencyNotifier.changeCurrency(Currency.values[index]);
+              },
+              padding: 8.0,
+              decoration: DukoinDropdownMenuThemeData.filled(
+                color: Theme.of(context).colorScheme.secondary,
               ),
-              validator: (value) => value == null
-                  ? AppLocalizations.of(context)!.addExpenseCategoryHint
-                  : null,
             ),
           ],
         ),

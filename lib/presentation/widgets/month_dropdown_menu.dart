@@ -3,6 +3,7 @@ import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:dukoin/presentation/widgets/dukoin_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import 'dukoin_dropdown_menu.dart';
 
@@ -33,6 +34,7 @@ class MonthDropdownMenu extends StatelessWidget {
           onSelected: (index) {
             bloc.onMonthSelected(bloc.availableMonths[index]);
           },
+          heading: LucideIcons.calendar,
         );
       },
     );
