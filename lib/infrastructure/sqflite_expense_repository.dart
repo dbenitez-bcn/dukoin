@@ -235,7 +235,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     FROM expenses
     WHERE $where
     GROUP BY category
-    ORDER BY count DESC
+    ORDER BY count DESC, average DESC
     LIMIT 3
     ''', args);
 
