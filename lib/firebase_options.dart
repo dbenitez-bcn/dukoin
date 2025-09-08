@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'dukoin.firebasestorage.app',
     iosBundleId: 'com.dukoin.expensetracker',
   );
+
 }

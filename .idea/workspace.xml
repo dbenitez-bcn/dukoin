@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="910cd770-eed4-4134-93f3-8b9d16f2d351" name="Changes" comment="builds iOS">
+    <list default="true" id="910cd770-eed4-4134-93f3-8b9d16f2d351" name="Changes" comment="updates spanish translations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/l10n.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/l10n.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/app_es.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_es.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/app_localizations_es.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/app_localizations_es.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/google-services.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase.json" beforeDir="false" afterPath="$PROJECT_DIR$/firebase.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/firebase_options.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/firebase_options.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main_dev.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main_dev.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main_stage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main_stage.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +91,7 @@
       <recent name="$PROJECT_DIR$/lib/styles" />
     </key>
   </component>
-  <component name="RunManager" selected="Flutter.Run Dev">
+  <component name="RunManager" selected="Flutter.Run Stage">
     <configuration name="Run Dev" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="buildFlavor" value="dev" />
       <option name="filePath" value="$PROJECT_DIR$/lib/main_dev.dart" />
@@ -188,15 +193,7 @@
       <workItem from="1757074325788" duration="1699000" />
       <workItem from="1757076405467" duration="1912000" />
       <workItem from="1757185009194" duration="752000" />
-      <workItem from="1757186197240" duration="8859000" />
-    </task>
-    <task id="LOCAL-00266" summary="updates theme">
-      <option name="closed" value="true" />
-      <created>1756897937572</created>
-      <option name="number" value="00266" />
-      <option name="presentableId" value="LOCAL-00266" />
-      <option name="project" value="LOCAL" />
-      <updated>1756897937572</updated>
+      <workItem from="1757186197240" duration="12644000" />
     </task>
     <task id="LOCAL-00267" summary="adds month evolution">
       <option name="closed" value="true" />
@@ -582,7 +579,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757242645347</updated>
     </task>
-    <option name="localTasksCounter" value="315" />
+    <task id="LOCAL-00315" summary="updates spanish translations">
+      <option name="closed" value="true" />
+      <created>1757244573675</created>
+      <option name="number" value="00315" />
+      <option name="presentableId" value="LOCAL-00315" />
+      <option name="project" value="LOCAL" />
+      <updated>1757244573675</updated>
+    </task>
+    <option name="localTasksCounter" value="316" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +605,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adds month evolution title" />
     <MESSAGE value="implements category breakdown business logic" />
     <MESSAGE value="simplies unit tests setup" />
     <MESSAGE value="adds format utils" />
@@ -625,7 +629,8 @@
     <MESSAGE value="adds flavors for dev, stage and prod" />
     <MESSAGE value="adds firebase configuration" />
     <MESSAGE value="builds iOS" />
-    <option name="LAST_COMMIT_MESSAGE" value="builds iOS" />
+    <MESSAGE value="updates spanish translations" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates spanish translations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

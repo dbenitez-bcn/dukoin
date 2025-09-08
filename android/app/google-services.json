@@ -23,6 +23,44 @@
           "other_platform_oauth_client": []
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082829086203:android:105da9b2d6620dfbc2bf5e",
+        "android_client_info": {
+          "package_name": "com.dukoin.expensetracker.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAplenOgo3wMvj_OF-Cqsl7BAb-OxI0ALE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082829086203:android:a899bfc31dd9e5a5c2bf5e",
+        "android_client_info": {
+          "package_name": "com.dukoin.expensetracker.stage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAplenOgo3wMvj_OF-Cqsl7BAb-OxI0ALE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
     }
   ],
   "configuration_version": "1"

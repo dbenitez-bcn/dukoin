@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import 'domain/expense.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -215,49 +216,49 @@ void main() async {
       amount: 7.00,
       category: ExpenseCategory.transport,
       description: "Taxi ride",
-      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month-1, 1),
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month - 1, 1),
     ),
     Expense(
       id: 30,
       amount: 10.00,
       category: ExpenseCategory.shopping,
       description: "Smartwatch",
-      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month-1, 2),
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month - 1, 2),
     ),
     Expense(
       id: 31,
       amount: 240.00,
       category: ExpenseCategory.entertainment,
       description: "Concert ticket",
-      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month-1, 10),
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month - 1, 10),
     ),
     Expense(
       id: 32,
       amount: 65.00,
       category: ExpenseCategory.bills,
       description: "Internet bill",
-      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month-1, 13),
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month - 1, 13),
     ),
     Expense(
       id: 33,
       amount: 42.00,
       category: ExpenseCategory.health,
       description: "Gym membership",
-      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month-1, 20),
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month - 1, 20),
     ),
     Expense(
       id: 34,
       amount: 23.00,
       category: ExpenseCategory.education,
       description: "Workshop fee",
-      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month-1, 22),
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month - 1, 22),
     ),
     Expense(
       id: 35,
       amount: 145.00,
       category: ExpenseCategory.others,
       description: "Stationery",
-      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month-1, 31),
+      createdAt: DateTime(twoMonthAgo.year, twoMonthAgo.month - 1, 31),
     ),
   ];
 
@@ -267,7 +268,7 @@ void main() async {
     await repo.insert(expenses[i]);
   }
 
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   runApp(DukoinApp());
