@@ -1,15 +1,10 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Workflow
 
 on:
   push:
-    branches: ["main"  ]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main" ]
+    branches: [ "main" ]
 
 jobs:
   workflow:
@@ -25,6 +20,16 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Run builder
-        run: dart run build_runner build
+        run: dart run build_runner build --delete-conflicting-outputs
+
       - name: Run unit tests
-        run: flutter test
+        run: flutter test --coverage
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        with:
+          file: coverage/lcov.info
+          flags: unittests
+          fail_ci_if_error: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
