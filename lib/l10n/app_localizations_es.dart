@@ -299,5 +299,5 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statsAverageText => 'prom';
 
   @override
-  String get statsNoData => 'No data available';
+  String get statsNoData => 'No hay datos disponibles';
 }
