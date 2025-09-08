@@ -297,4 +297,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statsAverageText => 'avg';
+
+  @override
+  String get statsNoData => 'No data available';
 }

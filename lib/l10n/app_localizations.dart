@@ -589,6 +589,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'avg'**
   String get statsAverageText;
+
+  /// Displays text when no data is available to display
+  ///
+  /// In en, this message translates to:
+  /// **'No data available'**
+  String get statsNoData;
 }
 
 class _AppLocalizationsDelegate

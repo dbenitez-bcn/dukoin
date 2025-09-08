@@ -381,5 +381,9 @@
   "statsAverageText": "avg",
   "@statsAverageText": {
     "description": "Displays average text"
+  },
+  "statsNoData": "No data available",
+  "@statsNoData": {
+    "description": "Displays text when no data is available to display"
   }
 }

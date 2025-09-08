@@ -276,10 +276,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statsMonthOverViewTotal => 'Gastos totales';
 
   @override
-  String get statsMonthOverViewDailyAvg => 'Promedio diario';
+  String get statsMonthOverViewDailyAvg => 'Media diaria';
 
   @override
-  String get statsMonthOverViewWeeklyAvg => 'Promedio semanal';
+  String get statsMonthOverViewWeeklyAvg => 'Media semanal';
 
   @override
   String get statsCategoryBreakdownTitle => 'Desglose por categoría';
@@ -297,4 +297,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get statsAverageText => 'prom';
+
+  @override
+  String get statsNoData => 'No data available';
 }
