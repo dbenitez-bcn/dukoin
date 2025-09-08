@@ -45,7 +45,7 @@ class DefaultCurrencySelector extends StatelessWidget {
               ),
             ),
             DropdownButtonFormField<Currency>(
-              value: currencyNotifier.currency,
+              initialValue: currencyNotifier.currency,
               items: Currency.values
                   .map(
                     (c) => DropdownMenuItem(

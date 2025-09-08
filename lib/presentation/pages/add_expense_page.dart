@@ -142,7 +142,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                 FormCardItem(
                   title: AppLocalizations.of(context)!.addExpenseCategoryTitle,
                   child: DropdownButtonFormField<ExpenseCategory>(
-                    value: selectedCategory,
+                    initialValue: selectedCategory,
                     focusNode: _categoryFocus,
                     menuMaxHeight: 300.0,
                     items: ExpenseCategory.values

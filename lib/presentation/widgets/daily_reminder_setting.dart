@@ -51,7 +51,7 @@ class _DailySwtichState extends State<DailySwtich> {
       context,
     ).extension<DukoinColors>()!.relaxingTurquoise;
     return Switch.adaptive(
-      activeColor: color,
+      activeThumbColor: color,
       value: isActive,
       onChanged: setActive,
     );
