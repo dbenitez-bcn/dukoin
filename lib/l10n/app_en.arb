@@ -360,7 +360,7 @@
   "@statsCategoryBreakdownTitle": {
     "description": "Displays the Category Breakdown title"
   },
-  "statsMonthEvolutionTitle": "Monthly Expense Evolution",
+  "statsMonthEvolutionTitle": "Monthly Evolution",
   "@statsMonthEvolutionTitle": {
     "description": "Displays the Monthly Expense Evolution title"
   },
