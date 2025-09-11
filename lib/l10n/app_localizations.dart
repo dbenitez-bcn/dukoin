@@ -569,7 +569,7 @@ abstract class AppLocalizations {
   /// Displays the Monthly Expense Evolution title
   ///
   /// In en, this message translates to:
-  /// **'Monthly Expense Evolution'**
+  /// **'Monthly Evolution'**
   String get statsMonthEvolutionTitle;
 
   /// Displays the title for the top 5 section

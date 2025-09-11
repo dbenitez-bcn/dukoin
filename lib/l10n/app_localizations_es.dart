@@ -285,7 +285,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get statsCategoryBreakdownTitle => 'Desglose por categoría';
 
   @override
-  String get statsMonthEvolutionTitle => 'Evolución mensual de gastos';
+  String get statsMonthEvolutionTitle => 'Evolución mensual';
 
   @override
   String statsTopFiveTitle(int count) {
