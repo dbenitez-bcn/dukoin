@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:dukoin/domain/dukoin_flavor.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/dukoin_app.dart';
 import 'package:dukoin/infrastructure/database_provider.dart';
@@ -27,6 +28,7 @@ Future<void> setup() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  DukoinFlavors.stage();
   await setup();
   await setupFirebase();
   runApp(DukoinApp());

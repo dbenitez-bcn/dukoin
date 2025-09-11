@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/dukoin_flavor.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/dukoin_app.dart';
 import 'package:dukoin/main.dart';
@@ -271,5 +272,6 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+  DukoinFlavors.dev();
   runApp(DukoinApp());
 }
