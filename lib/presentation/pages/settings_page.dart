@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/dukoin_flavor.dart';
 import 'package:dukoin/presentation/widgets/app_info_card.dart';
 import 'package:dukoin/presentation/widgets/daily_reminder_setting.dart';
 import 'package:dukoin/presentation/widgets/data_management_setting.dart';
@@ -21,7 +22,7 @@ class SettingsPage extends StatelessWidget {
               SizedBox(height: 16.0),
               ThemeCardSwitch(),
               DefaultCurrencySelector(),
-              DailyReminderSetting(),
+              if (DukoinFlavors.instance.isDev) DailyReminderSetting(),
               DataManagementSetting(),
               AppInfoCard(),
               SizedBox(height: 16),
