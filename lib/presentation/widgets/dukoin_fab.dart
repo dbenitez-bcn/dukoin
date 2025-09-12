@@ -14,10 +14,7 @@ class DukoinFab extends StatefulWidget {
 class _DukoinFabState extends State<DukoinFab>
     with SingleTickerProviderStateMixin {
   bool _isOpen = false;
-  final shortDuration = Duration(milliseconds: 250);
-  final longDuration = Duration(milliseconds: 500);
-
-  final curve = Curves.elasticOut;
+  final duration = Duration(milliseconds: 250);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +45,7 @@ class _DukoinFabState extends State<DukoinFab>
         SizedBox(height: 8),
         AnimatedScale(
           scale: _isOpen ? 0.9 : 1,
-          duration: longDuration,
+          duration: duration,
           curve: Curves.elasticOut,
           child: FloatingActionButton(
             onPressed: _toggle,
@@ -61,7 +58,7 @@ class _DukoinFabState extends State<DukoinFab>
               ), // border
             ),
             child: AnimatedRotation(
-              duration: shortDuration,
+              duration: duration,
               turns: _isOpen ? 0.375 : 0,
               child: const Icon(LucideIcons.plus),
             ),
@@ -86,11 +83,11 @@ class _DukoinFabState extends State<DukoinFab>
   ) {
     return AnimatedSlide(
       offset: _isOpen ? const Offset(0, 0) : offset,
-      duration: longDuration,
-      curve: curve,
+      duration: duration,
+      curve: Curves.easeOutExpo,
       child: AnimatedOpacity(
         opacity: _isOpen ? 1 : 0,
-        duration: shortDuration,
+        duration: duration,
         curve: Curves.easeOut,
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.5,
@@ -100,7 +97,7 @@ class _DukoinFabState extends State<DukoinFab>
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text(title), SizedBox(width: 8), Icon(icon)],
+                children: [Text(title), const SizedBox(width: 8), Icon(icon)],
               ),
             ),
           ),
