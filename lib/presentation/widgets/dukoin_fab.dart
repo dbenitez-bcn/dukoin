@@ -28,7 +28,7 @@ class _DukoinFabState extends State<DukoinFab>
         _buildButton(
           context,
           () {},
-          AppLocalizations.of(context)!.expense,
+          AppLocalizations.of(context)!.income,
           LucideIcons.plus,
           const Offset(0, 2.45),
         ),
@@ -41,7 +41,7 @@ class _DukoinFabState extends State<DukoinFab>
               context,
             ).push(MaterialPageRoute(builder: (_) => AddExpensePage()));
           },
-          AppLocalizations.of(context)!.income,
+          AppLocalizations.of(context)!.expense,
           LucideIcons.minus,
           const Offset(0, 1.20),
         ),
