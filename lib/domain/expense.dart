@@ -1,3 +1,5 @@
+import 'package:dukoin/domain/transaction.dart';
+
 enum ExpenseCategory {
   food,
   transport,
@@ -12,35 +14,16 @@ enum ExpenseCategory {
   others,
 }
 
-class Expense implements Comparable<Expense> {
-  int? id;
-  double amount;
+class Expense extends Transaction {
   ExpenseCategory category;
-  String description;
-  DateTime createdAt;
 
   Expense({
-    this.id,
-    required this.amount,
+    super.id,
+    required super.amount,
     required this.category,
-    required this.description,
-    required DateTime createdAt,
-  }) : createdAt = DateTime(
-         createdAt.year,
-         createdAt.month,
-         createdAt.day,
-       ); // Normalize to date only
-
-  // Convert to Map for DB
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'amount': amount,
-      'category': category.name,
-      'description': description,
-      'createdAt': createdAt.toIso8601String(),
-    };
-  }
+    required super.description,
+    required super.createdAt,
+  }) : super(isExpense: true);
 
   // Create from Map
   factory Expense.fromMap(Map<String, dynamic> map) {
@@ -54,8 +37,10 @@ class Expense implements Comparable<Expense> {
   }
 
   @override
-  int compareTo(Expense obj) {
-    return obj.createdAt.compareTo(createdAt);
+  Map<String, dynamic> toMap() {
+    var map = super.toMap();
+    map["category"] = category.name;
+    return map;
   }
 }
 
