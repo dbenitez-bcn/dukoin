@@ -85,6 +85,8 @@
   "statsTopFiveTitle": "Top {count} este mes",
   "statsMostFrequentCategoriesTitle": "Más frecuentes",
   "statsAverageText": "Promedio",
-  "statsNoData": "No hay datos disponibles"
+  "statsNoData": "No hay datos disponibles",
+  "expense":  "Gasto",
+  "income": "Ingreso"
 }
 
