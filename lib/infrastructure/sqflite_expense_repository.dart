@@ -18,15 +18,16 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   @override
   Future<int> insert(Expense expense) async {
     final db = await _db;
-    return db.insert('expenses', expense.toMap());
+    return db.insert('transactions', expense.toMap());
   }
 
   @override
   Future<List<Expense>> getLast() async {
     final db = await _db;
     final maps = await db.query(
-      'expenses',
-      orderBy: 'createdAt DESC',
+      'transactions',
+      where: "isExpense = 1",
+      orderBy: 'createdAt DESC, id DESC',
       limit: 4,
     );
     return maps.map((e) => Expense.fromMap(e)).toList();
@@ -35,7 +36,11 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   @override
   Future<Expense?> getById(int id) async {
     final db = await _db;
-    final maps = await db.query('expenses', where: 'id = ?', whereArgs: [id]);
+    final maps = await db.query(
+      'transactions',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
     return maps.isNotEmpty ? Expense.fromMap(maps.first) : null;
   }
 
@@ -46,7 +51,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     }
     final db = await _db;
     return db.update(
-      'expenses',
+      'transactions',
       expense.toMap(),
       where: 'id = ?',
       whereArgs: [expense.id],
@@ -56,18 +61,18 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   @override
   Future<int> delete(int id) async {
     final db = await _db;
-    return db.delete('expenses', where: 'id = ?', whereArgs: [id]);
+    return db.delete('transactions', where: 'id = ?', whereArgs: [id]);
   }
 
   @override
   Future<void> deleteAll() async {
     final db = await _db;
     await db.transaction((txn) async {
-      await txn.delete('expenses');
+      await txn.delete('transactions');
       await txn.delete(
         'sqlite_sequence',
         where: 'name = ?',
-        whereArgs: ['expenses'],
+        whereArgs: ['transactions'],
       );
     });
   }
@@ -79,8 +84,9 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }) async {
     final db = await _db;
     final maps = await db.query(
-      'expenses',
-      orderBy: 'createdAt DESC',
+      'transactions',
+      where: 'isExpense = 1',
+      orderBy: 'createdAt DESC, id DESC',
       limit: limit,
       offset: offset,
     );
@@ -95,7 +101,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }) async {
     final db = await _db;
     final args = [start.toIso8601String(), end.toIso8601String()];
-    String where = 'createdAt >= ? AND createdAt <= ?';
+    String where = 'isExpense = 1 AND createdAt >= ? AND createdAt <= ?';
 
     if (categories != null && categories.isNotEmpty) {
       final placeholders = List.filled(categories.length, '?').join(', ');
@@ -105,7 +111,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
 
     final result = await db.rawQuery('''
     SELECT COUNT(*) as total, SUM(amount) as amount
-    FROM expenses
+    FROM transactions
     WHERE $where
     ''', args);
 
@@ -122,7 +128,8 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   Future<DateTime?> getOldestExpenseDate() async {
     final db = await _db;
     final results = await db.query(
-      'expenses',
+      'transactions',
+      where: 'isExpense = 1',
       orderBy: 'createdAt ASC',
       limit: 1,
     );
@@ -142,7 +149,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }) async {
     final db = await _db;
     final args = [start.toIso8601String(), end.toIso8601String()];
-    String where = 'createdAt >= ? AND createdAt <= ?';
+    String where = 'isExpense = 1 AND createdAt >= ? AND createdAt <= ?';
 
     if (categories != null && categories.isNotEmpty) {
       final placeholders = List.filled(categories.length, '?').join(', ');
@@ -151,7 +158,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     }
 
     final maps = await db.query(
-      'expenses',
+      'transactions',
       where: where,
       whereArgs: args,
       orderBy: 'amount DESC',
@@ -168,7 +175,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }) async {
     final db = await _db;
     final args = [start.toIso8601String(), end.toIso8601String()];
-    String where = 'createdAt >= ? AND createdAt <= ?';
+    String where = 'isExpense = 1 AND createdAt >= ? AND createdAt <= ?';
 
     if (categories != null && categories.isNotEmpty) {
       final placeholders = List.filled(categories.length, '?').join(', ');
@@ -178,7 +185,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
 
     final result = await db.rawQuery('''
     SELECT DATE(createdAt) as date, SUM(amount) as total
-    FROM expenses
+    FROM transactions
     WHERE $where
     GROUP BY DATE(createdAt)
     ORDER BY DATE(createdAt) ASC
@@ -195,7 +202,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }) async {
     final db = await _db;
     final args = [start.toIso8601String(), end.toIso8601String()];
-    String where = 'createdAt >= ? AND createdAt <= ?';
+    String where = 'isExpense = 1 AND createdAt >= ? AND createdAt <= ?';
 
     if (categories != null && categories.isNotEmpty) {
       final placeholders = List.filled(categories.length, '?').join(', ');
@@ -205,7 +212,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
 
     final result = await db.rawQuery('''
     SELECT category as category, SUM(amount) as value
-    FROM expenses
+    FROM transactions
     WHERE $where
     GROUP BY category
     ORDER BY value DESC
@@ -222,7 +229,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }) async {
     final db = await _db;
     final args = [start.toIso8601String(), end.toIso8601String()];
-    String where = 'createdAt >= ? AND createdAt <= ?';
+    String where = 'isExpense = 1 AND createdAt >= ? AND createdAt <= ?';
 
     if (categories != null && categories.isNotEmpty) {
       final placeholders = List.filled(categories.length, '?').join(', ');
@@ -232,7 +239,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
 
     final result = await db.rawQuery('''
     SELECT category, AVG(amount) as average, COUNT(*) as count
-    FROM expenses
+    FROM transactions
     WHERE $where
     GROUP BY category
     ORDER BY count DESC, average DESC

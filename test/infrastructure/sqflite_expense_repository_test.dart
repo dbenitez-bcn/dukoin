@@ -33,31 +33,43 @@ void main() {
 
     test("getLast should fetch all data", () async {
       when(
-        mockDatabase.query('expenses', orderBy: 'createdAt DESC', limit: 4),
+        mockDatabase.query(
+          'transactions',
+          where: 'isExpense = 1',
+          orderBy: 'createdAt DESC, id DESC',
+          limit: 4,
+        ),
       ).thenAnswer((_) async => []);
 
       var got = await sut.getLast();
 
       expect(got.length, 0);
       verify(
-        mockDatabase.query('expenses', orderBy: 'createdAt DESC', limit: 4),
+        mockDatabase.query(
+          'transactions',
+          where: 'isExpense = 1',
+          orderBy: 'createdAt DESC, id DESC',
+          limit: 4,
+        ),
       ).called(1);
     });
 
     test("insert should call db.insert", () async {
       when(
-        mockDatabase.insert('expenses', testExpense.toMap()),
+        mockDatabase.insert('transactions', testExpense.toMap()),
       ).thenAnswer((_) async => 1);
 
       final id = await sut.insert(testExpense);
 
       expect(id, 1);
-      verify(mockDatabase.insert('expenses', testExpense.toMap())).called(1);
+      verify(
+        mockDatabase.insert('transactions', testExpense.toMap()),
+      ).called(1);
     });
 
     test("getById should return testExpense when found", () async {
       when(
-        mockDatabase.query('expenses', where: 'id = ?', whereArgs: [1]),
+        mockDatabase.query('transactions', where: 'id = ?', whereArgs: [1]),
       ).thenAnswer((_) async => [testExpense.toMap()]);
 
       final result = await sut.getById(1);
@@ -69,7 +81,7 @@ void main() {
 
     test("getById should return null when not found", () async {
       when(
-        mockDatabase.query('expenses', where: 'id = ?', whereArgs: [999]),
+        mockDatabase.query('transactions', where: 'id = ?', whereArgs: [999]),
       ).thenAnswer((_) async => []);
 
       final result = await sut.getById(999);
@@ -80,7 +92,7 @@ void main() {
     test("update should call db.update", () async {
       when(
         mockDatabase.update(
-          'expenses',
+          'transactions',
           testExpense.toMap(),
           where: 'id = ?',
           whereArgs: [1],
@@ -92,7 +104,7 @@ void main() {
       expect(count, 1);
       verify(
         mockDatabase.update(
-          'expenses',
+          'transactions',
           testExpense.toMap(),
           where: 'id = ?',
           whereArgs: [1],
@@ -102,14 +114,14 @@ void main() {
 
     test("delete should call db.delete", () async {
       when(
-        mockDatabase.delete('expenses', where: 'id = ?', whereArgs: [1]),
+        mockDatabase.delete('transactions', where: 'id = ?', whereArgs: [1]),
       ).thenAnswer((_) async => 1);
 
       final count = await sut.delete(1);
 
       expect(count, 1);
       verify(
-        mockDatabase.delete('expenses', where: 'id = ?', whereArgs: [1]),
+        mockDatabase.delete('transactions', where: 'id = ?', whereArgs: [1]),
       ).called(1);
     });
 
@@ -129,24 +141,24 @@ void main() {
         return null;
       });
 
-      when(mockTransaction.delete('expenses')).thenAnswer((_) async => 1);
+      when(mockTransaction.delete('transactions')).thenAnswer((_) async => 1);
       when(
         mockTransaction.delete(
           'sqlite_sequence',
           where: 'name = ?',
-          whereArgs: ['expenses'],
+          whereArgs: ['transactions'],
         ),
       ).thenAnswer((_) async => 1);
 
       final sut = SqfliteExpenseRepository(mockDBProvider);
       await sut.deleteAll();
 
-      verify(mockTransaction.delete('expenses')).called(1);
+      verify(mockTransaction.delete('transactions')).called(1);
       verify(
         mockTransaction.delete(
           'sqlite_sequence',
           where: 'name = ?',
-          whereArgs: ['expenses'],
+          whereArgs: ['transactions'],
         ),
       ).called(1);
     });
@@ -170,8 +182,9 @@ void main() {
 
         when(
           mockDatabase.query(
-            'expenses',
-            orderBy: 'createdAt DESC',
+            'transactions',
+            where: 'isExpense = 1',
+            orderBy: 'createdAt DESC, id DESC',
             limit: 2,
             offset: 0,
           ),
@@ -197,8 +210,9 @@ void main() {
 
         when(
           mockDatabase.query(
-            'expenses',
-            orderBy: 'createdAt DESC',
+            'transactions',
+            where: 'isExpense = 1',
+            orderBy: 'createdAt DESC, id DESC',
             limit: 1,
             offset: 2,
           ),
@@ -214,8 +228,9 @@ void main() {
       test("It should return empty list when no more data", () async {
         when(
           mockDatabase.query(
-            'expenses',
-            orderBy: 'createdAt DESC',
+            'transactions',
+            where: 'isExpense = 1',
+            orderBy: 'createdAt DESC, id DESC',
             limit: 2,
             offset: 10,
           ),
@@ -290,7 +305,12 @@ void main() {
     group("getOldestExpenseDate", () {
       test("If there is no last expense should return null", () {
         when(
-          mockDatabase.query('expenses', orderBy: 'createdAt ASC', limit: 1),
+          mockDatabase.query(
+            'transactions',
+            where: 'isExpense = 1',
+            orderBy: 'createdAt ASC',
+            limit: 1,
+          ),
         ).thenAnswer((_) async => []);
 
         final got = sut.getOldestExpenseDate();
@@ -299,7 +319,12 @@ void main() {
       });
       test("Given a expense should return the date", () {
         when(
-          mockDatabase.query('expenses', orderBy: 'createdAt ASC', limit: 1),
+          mockDatabase.query(
+            'transactions',
+            where: 'isExpense = 1',
+            orderBy: 'createdAt ASC',
+            limit: 1,
+          ),
         ).thenAnswer((_) async => [testExpense.toMap()]);
 
         final got = sut.getOldestExpenseDate();
@@ -326,8 +351,8 @@ void main() {
 
         when(
           mockDatabase.query(
-            'expenses',
-            where: 'createdAt >= ? AND createdAt <= ?',
+            'transactions',
+            where: 'isExpense = 1 AND createdAt >= ? AND createdAt <= ?',
             whereArgs: [start.toIso8601String(), end.toIso8601String()],
             orderBy: 'amount DESC',
             limit: 5,
@@ -352,8 +377,8 @@ void main() {
       test("returns empty list if no expenses in range", () async {
         when(
           mockDatabase.query(
-            'expenses',
-            where: 'createdAt >= ? AND createdAt <= ?',
+            'transactions',
+            where: 'isExpense = 1 AND createdAt >= ? AND createdAt <= ?',
             whereArgs: [start.toIso8601String(), end.toIso8601String()],
             orderBy: 'amount DESC',
             limit: 5,
@@ -368,8 +393,9 @@ void main() {
       test("Should filter by categories", () async {
         when(
           mockDatabase.query(
-            'expenses',
-            where: 'createdAt >= ? AND createdAt <= ? AND category IN (?, ?)',
+            'transactions',
+            where:
+                'isExpense = 1 AND createdAt >= ? AND createdAt <= ? AND category IN (?, ?)',
             whereArgs: [
               start.toIso8601String(),
               end.toIso8601String(),
