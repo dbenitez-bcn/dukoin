@@ -385,5 +385,13 @@
   "statsNoData": "No data available",
   "@statsNoData": {
     "description": "Displays text when no data is available to display"
+  },
+  "expense": "Expense",
+  "@expense": {
+    "description": "Expense label"
+  },
+  "income": "Income",
+  "@income": {
+    "description": "Income label"
   }
 }

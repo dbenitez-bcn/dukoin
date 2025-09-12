@@ -300,4 +300,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statsNoData => 'No data available';
+
+  @override
+  String get expense => 'Expense';
+
+  @override
+  String get income => 'Income';
 }

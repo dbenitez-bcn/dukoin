@@ -595,6 +595,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No data available'**
   String get statsNoData;
+
+  /// Expense label
+  ///
+  /// In en, this message translates to:
+  /// **'Expense'**
+  String get expense;
+
+  /// Income label
+  ///
+  /// In en, this message translates to:
+  /// **'Income'**
+  String get income;
 }
 
 class _AppLocalizationsDelegate
