@@ -1,4 +1,6 @@
+import 'package:dukoin/domain/dukoin_flavor.dart';
 import 'package:dukoin/presentation/pages/add_expense_page.dart';
+import 'package:dukoin/presentation/widgets/dukoin_fab.dart';
 import 'package:dukoin/presentation/widgets/home_app_bar.dart';
 import 'package:dukoin/presentation/widgets/home_content.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +20,17 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        shape: const CircleBorder(),
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (_) => AddExpensePage()));
-        },
-      ),
+      floatingActionButton: DukoinFlavors.instance.isDev
+          ? DukoinFab()
+          : FloatingActionButton(
+              shape: const CircleBorder(),
+              child: const Icon(Icons.add),
+              onPressed: () {
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (_) => AddExpensePage()));
+              },
+            ),
     );
   }
 }
