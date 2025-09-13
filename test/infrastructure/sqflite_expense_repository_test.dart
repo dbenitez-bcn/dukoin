@@ -5,11 +5,11 @@ import 'package:dukoin/infrastructure/sqflite_expense_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqflite.dart' as sqflite;
 
 import 'sqflite_expense_repository_test.mocks.dart';
 
-@GenerateMocks([DatabaseProvider, Database, Transaction])
+@GenerateMocks([DatabaseProvider, sqflite.Database, sqflite.Transaction])
 void main() {
   group('SqfliteExpenseRepository', () {
     late MockDatabase mockDatabase;
@@ -136,7 +136,7 @@ void main() {
       when(mockDatabase.transaction(any)).thenAnswer((invocation) async {
         final txnFn =
             invocation.positionalArguments[0]
-                as Future<void> Function(Transaction txn);
+                as Future<void> Function(sqflite.Transaction txn);
         await txnFn(mockTransaction);
         return null;
       });

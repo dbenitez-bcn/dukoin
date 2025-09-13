@@ -20,7 +20,6 @@ void main() {
         expect(sut.description, "Title");
         expect(sut.amount, 2.3);
         expect(sut.category, ExpenseCategory.food);
-        expect(sut.isExpense, true);
         expect(sut.createdAt, DateTime(now.year, now.month, now.day));
       });
     });

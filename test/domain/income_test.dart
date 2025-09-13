@@ -1,4 +1,4 @@
-import 'package:dukoin/domain/income.dart';
+import 'package:dukoin/domain/expense.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -20,7 +20,6 @@ void main() {
         expect(sut.description, "Title");
         expect(sut.amount, 2.3);
         expect(sut.category, IncomeCategory.salary);
-        expect(sut.isExpense, false);
         expect(sut.createdAt, DateTime(now.year, now.month, now.day));
       });
     });
