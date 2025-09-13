@@ -29,7 +29,7 @@ class _DukoinFabState extends State<DukoinFab>
           LucideIcons.plus,
           const Offset(0, 2.45),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         _buildButton(
           context,
           () {
@@ -42,7 +42,7 @@ class _DukoinFabState extends State<DukoinFab>
           LucideIcons.minus,
           const Offset(0, 1.20),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         AnimatedScale(
           scale: _isOpen ? 0.9 : 1,
           duration: duration,
