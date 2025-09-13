@@ -1,4 +1,4 @@
-import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
 import 'package:dukoin/presentation/state/navigation_state.dart';

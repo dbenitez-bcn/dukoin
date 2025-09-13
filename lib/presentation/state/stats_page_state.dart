@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:dukoin/domain/category_breakdown_vm.dart';
 import 'package:dukoin/domain/category_frequency_vm.dart';
-import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/month_evolution_vm.dart';
 import 'package:dukoin/domain/month_overview_vm.dart';
 import 'package:dukoin/domain/state_status.dart';
 import 'package:dukoin/domain/time_interval.dart';
 import 'package:dukoin/domain/total_per_day_dto.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';

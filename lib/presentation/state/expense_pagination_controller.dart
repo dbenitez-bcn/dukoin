@@ -1,5 +1,5 @@
-import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:get_it/get_it.dart';
 
 class ExpensePaginationController {

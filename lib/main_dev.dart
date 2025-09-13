@@ -8,7 +8,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import 'domain/expense.dart';
+import 'domain/transaction.dart';
 import 'firebase_options.dart';
 
 void main() async {

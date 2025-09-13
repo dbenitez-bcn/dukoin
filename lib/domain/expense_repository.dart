@@ -3,7 +3,7 @@ import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/domain/total_per_category_dto.dart';
 import 'package:dukoin/domain/total_per_day_dto.dart';
 
-import 'expense.dart';
+import 'transaction.dart';
 
 abstract class ExpenseRepository {
   Future<int> insert(

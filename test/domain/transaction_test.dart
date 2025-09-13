@@ -1,4 +1,4 @@
-import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:test/test.dart';
 
 void main() {

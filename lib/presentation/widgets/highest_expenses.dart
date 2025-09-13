@@ -1,5 +1,5 @@
-import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/state_status.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:dukoin/presentation/widgets/currency_text.dart';

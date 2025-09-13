@@ -1,4 +1,4 @@
-import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:flutter/material.dart';
 

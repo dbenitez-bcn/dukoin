@@ -1,5 +1,5 @@
-import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/infrastructure/database_provider.dart';
 import 'package:dukoin/infrastructure/sqflite_expense_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

@@ -1,4 +1,4 @@
-import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
 import 'package:dukoin/presentation/widgets/dismissible_expense_info_card.dart';
 import 'package:flutter/material.dart';

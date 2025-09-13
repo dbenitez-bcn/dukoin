@@ -1,10 +1,10 @@
 import 'package:dukoin/domain/category_frequency.dart';
-import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/state_status.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/domain/total_per_category_dto.dart';
 import 'package:dukoin/domain/total_per_day_dto.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_test/flutter_test.dart';

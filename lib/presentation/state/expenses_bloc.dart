@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:dukoin/domain/expense.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/time_period.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

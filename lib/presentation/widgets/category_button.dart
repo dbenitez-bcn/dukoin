@@ -1,6 +1,7 @@
-import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:flutter/material.dart';
+
 class CategoryButton extends StatefulWidget {
   final ExpenseCategory category;
   final bool isActive;
@@ -33,13 +34,17 @@ class _CategoryButtonState extends State<CategoryButton>
 
     _scaleAnimation = TweenSequence<double>([
       TweenSequenceItem(
-        tween: Tween(begin: 1.0, end: 0.95)
-            .chain(CurveTween(curve: Curves.easeOut)),
+        tween: Tween(
+          begin: 1.0,
+          end: 0.95,
+        ).chain(CurveTween(curve: Curves.easeOut)),
         weight: 20,
       ),
       TweenSequenceItem(
-        tween: Tween(begin: 0.95, end: 1.0)
-            .chain(CurveTween(curve: Curves.easeOut)),
+        tween: Tween(
+          begin: 0.95,
+          end: 1.0,
+        ).chain(CurveTween(curve: Curves.easeOut)),
         weight: 40,
       ),
     ]).animate(_controller);
@@ -50,8 +55,11 @@ class _CategoryButtonState extends State<CategoryButton>
   }
 
   void _onTapDown(_) {
-    _controller.animateTo(0.2,
-        duration: const Duration(milliseconds: 100), curve: Curves.easeOut);
+    _controller.animateTo(
+      0.2,
+      duration: const Duration(milliseconds: 100),
+      curve: Curves.easeOut,
+    );
   }
 
   void _onTapUp(_) {

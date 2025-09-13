@@ -1,5 +1,5 @@
 import 'package:dukoin/domain/currency.dart';
-import 'package:dukoin/domain/expense.dart';
+import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -33,7 +33,11 @@ class CategoryUtils {
         return '🏠';
     }
   }
-  static String getCategoryTitle(BuildContext context, ExpenseCategory category) {
+
+  static String getCategoryTitle(
+    BuildContext context,
+    ExpenseCategory category,
+  ) {
     switch (category) {
       case ExpenseCategory.food:
         return AppLocalizations.of(context)!.categoryFood;
@@ -71,10 +75,12 @@ class DateUtils {
       now.day,
     ).subtract(Duration(days: weekday - 1));
   }
+
   static DateTime currentDayDate() {
     final now = DateTime.now();
     return DateTime(now.year, now.month, now.day);
   }
+
   static DateTime firstDayOfCurrentMonth() {
     final now = DateTime.now();
     return DateTime(now.year, now.month, 1);
