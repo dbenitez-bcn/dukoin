@@ -452,12 +452,6 @@ abstract class AppLocalizations {
   /// **'Investment'**
   String get categoryInvestment;
 
-  /// Category for business income
-  ///
-  /// In en, this message translates to:
-  /// **'Business'**
-  String get categoryBusiness;
-
   /// Category for gift income
   ///
   /// In en, this message translates to:

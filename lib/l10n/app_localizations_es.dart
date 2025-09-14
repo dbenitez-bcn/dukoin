@@ -215,25 +215,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get categoryHouse => 'Hogar';
 
   @override
-  String get categorySalary => 'Salary';
+  String get categorySalary => 'Salario';
 
   @override
   String get categoryFreelance => 'Freelance';
 
   @override
-  String get categoryInvestment => 'Investment';
+  String get categoryInvestment => 'Inversión';
 
   @override
-  String get categoryBusiness => 'Business';
+  String get categoryGift => 'Regalo';
 
   @override
-  String get categoryGift => 'Gift';
+  String get categoryBonus => 'Bono';
 
   @override
-  String get categoryBonus => 'Bonus';
-
-  @override
-  String get categoryInterest => 'Interest';
+  String get categoryInterest => 'Interés';
 
   @override
   String get currencyUSD => 'Dólar estadounidense';
@@ -329,11 +326,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get income => 'Ingreso';
 
   @override
-  String get addIncomeTitle => 'Add Income';
+  String get addIncomeTitle => 'Agregar Ingreso';
 
   @override
   String addIncomeAmountTitle(String currency) {
-    return 'Amount ($currency)';
+    return 'Cantidad ($currency)';
   }
 
   @override
@@ -349,19 +346,19 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get addIncomeDescriptionTitle => 'Description';
+  String get addIncomeDescriptionTitle => 'Descripción';
 
   @override
-  String get addIncomeDescriptionHint => 'What income did you receive?';
+  String get addIncomeDescriptionHint => '¿Qué ingreso recibiste?';
 
   @override
-  String get addIncomeCategoryTitle => 'Category';
+  String get addIncomeCategoryTitle => 'Categoría';
 
   @override
-  String get addIncomeCategoryHint => 'Select a category';
+  String get addIncomeCategoryHint => 'Selecciona una categoría';
 
   @override
-  String get addIncomeDateTitle => 'Date';
+  String get addIncomeDateTitle => 'Fecha';
 
   @override
   String addIncomeDateValue(DateTime date) {
@@ -372,5 +369,5 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get addIncomeSubmitButtonTitle => 'Save Income';
+  String get addIncomeSubmitButtonTitle => 'Guardar Ingreso';
 }

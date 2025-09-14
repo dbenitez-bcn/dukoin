@@ -274,10 +274,6 @@
   "@categoryInvestment": {
     "description": "Category for investment income"
   },
-  "categoryBusiness": "Business",
-  "@categoryBusiness": {
-    "description": "Category for business income"
-  },
   "categoryGift": "Gift",
   "@categoryGift": {
     "description": "Category for gift income"

@@ -87,6 +87,23 @@
   "statsAverageText": "Promedio",
   "statsNoData": "No hay datos disponibles",
   "expense":  "Gasto",
-  "income": "Ingreso"
+  "income": "Ingreso",
+  "categorySalary": "Salario",
+  "categoryFreelance": "Freelance",
+  "categoryInvestment": "Inversión",
+  "categoryBusiness": "Negocios",
+  "categoryGift": "Regalo",
+  "categoryBonus": "Bono",
+  "categoryInterest": "Interés",
+  "addIncomeTitle": "Agregar Ingreso",
+  "addIncomeAmountTitle": "Cantidad ({currency})",
+  "addIncomeAmountHint": "{value}",
+  "addIncomeDescriptionTitle": "Descripción",
+  "addIncomeDescriptionHint": "¿Qué ingreso recibiste?",
+  "addIncomeCategoryTitle": "Categoría",
+  "addIncomeCategoryHint": "Selecciona una categoría",
+  "addIncomeDateTitle": "Fecha",
+  "addIncomeDateValue": "{date}",
+  "addIncomeSubmitButtonTitle": "Guardar Ingreso"
 }
 
