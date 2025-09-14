@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:dukoin/domain/dukoin_flavor.dart';
 import 'package:dukoin/domain/expense_repository.dart';
+import 'package:dukoin/domain/transaction_repository.dart';
 import 'package:dukoin/dukoin_app.dart';
 import 'package:dukoin/infrastructure/database_provider.dart';
 import 'package:dukoin/infrastructure/sqflite_expense_repository.dart';
+import 'package:dukoin/infrastructure/sqflite_transaction_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,9 @@ Future<void> setup() async {
     getIt<DatabaseProvider>(),
   );
   getIt.registerSingleton<ExpenseRepository>(sqfliteExpenseRepository);
+  SqfliteTransactionRepository sqfliteTransactionRepository =
+      SqfliteTransactionRepository(getIt<DatabaseProvider>());
+  getIt.registerSingleton<TransactionRepository>(sqfliteTransactionRepository);
 }
 
 void main() async {

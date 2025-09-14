@@ -1,4 +1,5 @@
 import 'package:dukoin/domain/expense_repository.dart';
+import 'package:dukoin/domain/transaction_repository.dart';
 import 'package:dukoin/presentation/state/expenses_bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
@@ -10,6 +11,7 @@ class ExpensesProvider extends InheritedWidget {
   ExpensesProvider({super.key, required super.child})
     : bloc = ExpensesBloc(
         GetIt.I<ExpenseRepository>(),
+        GetIt.I<TransactionRepository>(),
         GetIt.I<SharedPreferences>(),
       );
 
