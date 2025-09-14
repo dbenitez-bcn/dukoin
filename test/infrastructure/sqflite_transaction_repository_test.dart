@@ -50,14 +50,14 @@ void main() {
       });
       test("insert should create a new Income", () async {
         when(
-          mockDatabase.insert('transactions', testExpense.toMap()),
+          mockDatabase.insert('transactions', testIncome.toMap()),
         ).thenAnswer((_) async => 1);
 
-        final id = await sut.insert(testExpense);
+        final id = await sut.insert(testIncome);
 
         expect(id, 1);
         verify(
-          mockDatabase.insert('transactions', testExpense.toMap()),
+          mockDatabase.insert('transactions', testIncome.toMap()),
         ).called(1);
       });
     });
