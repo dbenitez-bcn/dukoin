@@ -15,7 +15,7 @@ class FormCardItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(title, style: TextTheme.of(context).displaySmall),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             child,
           ],
         ),
