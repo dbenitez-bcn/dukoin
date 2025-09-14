@@ -4,20 +4,22 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class DukoinDropdownMenu extends StatefulWidget {
   final List<String> items;
-  final int initialValue;
+  final int? initialValue;
   final void Function(int) onSelected;
   final double padding;
   final IconData? heading;
   final DukoinDropdownMenuThemeData decoration;
+  final String hintText;
 
   const DukoinDropdownMenu({
     super.key,
     required this.items,
-    required this.initialValue,
+    this.initialValue,
     required this.onSelected,
     this.padding = 0,
     this.heading,
     this.decoration = const DukoinDropdownMenuThemeData(),
+    this.hintText = '',
   });
 
   @override
@@ -27,7 +29,7 @@ class DukoinDropdownMenu extends StatefulWidget {
 class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
     with SingleTickerProviderStateMixin {
   final GlobalKey _key = GlobalKey();
-  late int selectedValue;
+  late int? selectedValue;
   OverlayEntry? _overlayEntry;
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -88,11 +90,13 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
     Offset offset = renderBox.localToGlobal(Offset.zero);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_itemKeys[selectedValue].currentContext != null) {
-        Scrollable.ensureVisible(
-          _itemKeys[selectedValue].currentContext!,
-          alignment: 0.5,
-        );
+      if (selectedValue != null) {
+        if (_itemKeys[selectedValue!].currentContext != null) {
+          Scrollable.ensureVisible(
+            _itemKeys[selectedValue!].currentContext!,
+            alignment: 0.5,
+          );
+        }
       }
     });
 
@@ -225,10 +229,18 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: widget.padding),
-                  child: Text(
-                    widget.items[selectedValue],
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
+                  child: selectedValue == null
+                      ? Text(
+                          widget.hintText,
+                          style: Theme.of(
+                            context,
+                          ).inputDecorationTheme.hintStyle,
+                        )
+                      : Text(
+                          widget.items[selectedValue!],
+                          style: Theme.of(context).textTheme.titleSmall!
+                              .copyWith(fontSize: widget.decoration.fontSize),
+                        ),
                 ),
               ),
               const SizedBox(width: 6),
@@ -250,15 +262,20 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
 class DukoinDropdownMenuThemeData {
   final Color? color;
   final ShapeBorder? shape;
+  final double? fontSize;
 
-  const DukoinDropdownMenuThemeData({this.color, this.shape});
+  const DukoinDropdownMenuThemeData({this.color, this.shape, this.fontSize});
 
-  factory DukoinDropdownMenuThemeData.filled({required Color color}) {
+  factory DukoinDropdownMenuThemeData.filled({
+    required Color color,
+    double fontSize = 14,
+  }) {
     return DukoinDropdownMenuThemeData(
       color: color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(appBorderRadius),
       ),
+      fontSize: fontSize,
     );
   }
 }
