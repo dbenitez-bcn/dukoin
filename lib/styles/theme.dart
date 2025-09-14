@@ -110,7 +110,7 @@ final lightTheme = ThemeData(
     filled: true,
     fillColor: lightColorScheme.secondary,
     contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-    hintStyle: TextStyle(color: Colors.grey[700]),
+    hintStyle: TextStyle(color: Colors.grey[700], fontSize: 16),
     border: OutlineInputBorder(
       borderSide: BorderSide(color: lightColorScheme.outline), // border
       borderRadius: const BorderRadius.all(Radius.circular(appBorderRadius)),
@@ -169,7 +169,7 @@ final darkTheme = ThemeData(
     fillColor: darkColorScheme.secondary,
     // input-background
     contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-    hintStyle: TextStyle(color: Colors.white54),
+    hintStyle: TextStyle(color: Colors.white54, fontSize: 16),
     border: OutlineInputBorder(
       borderSide: BorderSide(color: darkColorScheme.outline), // border
       borderRadius: BorderRadius.all(Radius.circular(appBorderRadius)),
