@@ -1,5 +1,4 @@
-import 'package:dukoin/domain/transaction.dart';
-import 'package:dukoin/utils/utils.dart';
+import 'package:dukoin/domain/category.dart';
 import 'package:flutter/material.dart';
 
 class CategoryButton extends StatefulWidget {
@@ -113,7 +112,7 @@ class _CategoryButtonState extends State<CategoryButton>
                 children: [
                   Expanded(
                     child: Text(
-                      "${CategoryUtils.getIconFromCategory(widget.category)} ${CategoryUtils.getCategoryTitle(context, widget.category)}",
+                      "${widget.category.icon} ${widget.category.localized(context)}",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: textColor,

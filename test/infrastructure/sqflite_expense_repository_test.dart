@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/infrastructure/database_provider.dart';

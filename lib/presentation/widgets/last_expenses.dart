@@ -52,7 +52,7 @@ class LastExpenses extends StatelessWidget {
             }
             return Column(
               children: List<Widget>.generate(expenses.length, (index) {
-                return ExpenseInfoCard(expense: expenses[index]);
+                return TransactionInfoCard(transaction: expenses[index]);
               }),
             );
           },

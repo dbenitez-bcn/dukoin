@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/transaction.dart';
 
 class TotalPerCategoryDTO {

@@ -5,7 +5,6 @@ import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:dukoin/presentation/widgets/currency_text.dart';
 import 'package:dukoin/presentation/widgets/dukoin_shimmer.dart';
 import 'package:dukoin/styles/theme.dart';
-import 'package:dukoin/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
@@ -79,7 +78,7 @@ class CategoryFrequenciesListCard extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                CategoryUtils.getIconFromCategory(frequency.category),
+                frequency.category.icon,
                 style: TextTheme.of(context).displayMedium,
               ),
               SizedBox(width: 16),
@@ -92,10 +91,7 @@ class CategoryFrequenciesListCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            CategoryUtils.getCategoryTitle(
-                              context,
-                              frequency.category,
-                            ),
+                            frequency.category.localized(context),
                             style: TextTheme.of(context).displaySmall,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -111,8 +107,10 @@ class CategoryFrequenciesListCard extends StatelessWidget {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.outline,
-                            borderRadius: BorderRadius.circular(appBorderRadius-2),
+                            color: Theme.of(context).colorScheme.outline,
+                            borderRadius: BorderRadius.circular(
+                              appBorderRadius - 2,
+                            ),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -126,7 +124,7 @@ class CategoryFrequenciesListCard extends StatelessWidget {
                         Text(
                           AppLocalizations.of(context)!.statsAverageText,
                           style: TextTheme.of(context).bodyMedium,
-                        )
+                        ),
                       ],
                     ),
                   ],

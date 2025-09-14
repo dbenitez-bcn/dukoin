@@ -5,7 +5,6 @@ import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:dukoin/presentation/widgets/currency_text.dart';
 import 'package:dukoin/presentation/widgets/dukoin_shimmer.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
-import 'package:dukoin/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
@@ -103,7 +102,7 @@ class TopExpensesListCard extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "${CategoryUtils.getCategoryTitle(context, expense.category)} ${CategoryUtils.getIconFromCategory(expense.category)} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(expense.createdAt)}",
+                      "${expense.category.localized(context)} ${expense.category.icon} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(expense.createdAt)}",
                       style: TextTheme.of(context).bodyMedium,
                     ),
                   ],

@@ -130,7 +130,7 @@ class CategoryBreakdownCard extends StatelessWidget {
         SizedBox(width: 8),
         Expanded(
           child: Text(
-            "${CategoryUtils.getIconFromCategory(data.category)} ${CategoryUtils.getCategoryTitle(context, data.category)}",
+            "${data.category.icon} ${data.category.localized(context)}",
             style: TextTheme.of(context).titleSmall,
           ),
         ),

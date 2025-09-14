@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/dukoin_flavor.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/dukoin_app.dart';
@@ -269,9 +270,16 @@ void main() async {
       GetIt.I<TransactionRepository>();
 
   await repo.deleteAll();
+  var income = Income(
+    amount: 12.50,
+    category: IncomeCategory.salary,
+    description: "Nomina",
+    createdAt: DateTime.now().subtract(const Duration(days: 0, hours: 3)),
+  );
   for (int i = 0; i < expenses.length; i++) {
     await transactionRepo.insert(expenses[i]);
   }
+  transactionRepo.insert(income);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);

@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/infrastructure/database_provider.dart';
 import 'package:dukoin/infrastructure/sqflite_transaction_repository.dart';

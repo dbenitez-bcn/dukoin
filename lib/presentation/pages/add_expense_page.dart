@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
@@ -5,7 +6,6 @@ import 'package:dukoin/presentation/widgets/dukoin_dropdown_menu.dart';
 import 'package:dukoin/presentation/widgets/fade_in_slice_from_bottom_animation.dart';
 import 'package:dukoin/presentation/widgets/form_card_item.dart';
 import 'package:dukoin/styles/theme.dart';
-import 'package:dukoin/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class AddExpensePage extends StatefulWidget {
@@ -147,10 +147,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                   title: AppLocalizations.of(context)!.addExpenseCategoryTitle,
                   child: DukoinDropdownMenu(
                     items: ExpenseCategory.values
-                        .map(
-                          (c) =>
-                              "${CategoryUtils.getIconFromCategory(c)} ${CategoryUtils.getCategoryTitle(context, c)}",
-                        )
+                        .map((c) => "${c.icon} ${c.localized(context)}")
                         .toList(),
                     hintText: AppLocalizations.of(
                       context,

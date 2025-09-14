@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/category_frequency.dart';
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/state_status.dart';

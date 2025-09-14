@@ -1,3 +1,5 @@
+import 'package:dukoin/domain/category.dart';
+
 sealed class Transaction implements Comparable<Transaction> {
   int? id;
   double amount;
@@ -24,32 +26,8 @@ sealed class Transaction implements Comparable<Transaction> {
   }
 }
 
-enum ExpenseCategory {
-  food,
-  transport,
-  shopping,
-  entertainment,
-  health,
-  bills,
-  house,
-  education,
-  investments,
-  travel,
-  others,
-}
-
-enum IncomeCategory {
-  salary,
-  freelance,
-  investment,
-  gift,
-  bonus,
-  interest,
-  others,
-}
-
 class Expense extends Transaction {
-  ExpenseCategory category;
+  Category category;
 
   Expense({
     super.id,
@@ -64,7 +42,7 @@ class Expense extends Transaction {
     return Expense(
       id: map['id'],
       amount: map['amount'],
-      category: getCategoryFromString(map['category']),
+      category: Category.fromString(map['category'], isExpense: true),
       description: map['description'],
       createdAt: DateTime.parse(map['createdAt']),
     );
@@ -77,7 +55,7 @@ class Expense extends Transaction {
       'amount': amount,
       'description': description,
       'isExpense': 1,
-      'category': category.name,
+      'category': category.cName,
       'createdAt': createdAt.toIso8601String(),
     };
   }
@@ -91,7 +69,7 @@ ExpenseCategory getCategoryFromString(String category) {
 }
 
 class Income extends Transaction {
-  IncomeCategory category;
+  Category category;
 
   Income({
     super.id,
@@ -105,7 +83,7 @@ class Income extends Transaction {
     return Income(
       id: map['id'],
       amount: map['amount'],
-      category: getCategoryFromString(map['category']),
+      category: Category.fromString(map['category'], isExpense: false),
       description: map['description'],
       createdAt: DateTime.parse(map['createdAt']),
     );
@@ -118,7 +96,7 @@ class Income extends Transaction {
       'amount': amount,
       'description': description,
       'isExpense': 0,
-      'category': category.name,
+      'category': category.cName,
       'createdAt': createdAt.toIso8601String(),
     };
   }

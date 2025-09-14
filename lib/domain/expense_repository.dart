@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/category_frequency.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/domain/total_per_category_dto.dart';

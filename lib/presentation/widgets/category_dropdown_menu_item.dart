@@ -1,5 +1,4 @@
-import 'package:dukoin/domain/transaction.dart';
-import 'package:dukoin/utils/utils.dart';
+import 'package:dukoin/domain/category.dart';
 import 'package:flutter/material.dart';
 
 class CategoryDropdownMenuItem extends StatelessWidget {
@@ -11,10 +10,10 @@ class CategoryDropdownMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(CategoryUtils.getIconFromCategory(category)),
+        Text(category.icon),
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: Text(CategoryUtils.getCategoryTitle(context, category)),
+          child: Text(category.localized(context)),
         ),
       ],
     );

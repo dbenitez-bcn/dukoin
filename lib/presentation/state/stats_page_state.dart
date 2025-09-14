@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/category_breakdown_vm.dart';
 import 'package:dukoin/domain/category_frequency_vm.dart';
 import 'package:dukoin/domain/expense_repository.dart';

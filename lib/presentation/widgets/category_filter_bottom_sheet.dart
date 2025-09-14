@@ -1,4 +1,4 @@
-import 'package:dukoin/domain/transaction.dart';
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/stats_page_state.dart';
 import 'package:dukoin/presentation/widgets/category_button.dart';

@@ -1,5 +1,7 @@
 import 'package:dukoin/domain/transaction.dart';
 
+import 'category.dart';
+
 class CategoryFrequency {
   final ExpenseCategory category;
   final double average;

@@ -1,4 +1,4 @@
-import 'package:dukoin/domain/transaction.dart';
+import 'package:dukoin/domain/category.dart';
 
 class CategoryBreakdownVM {
   List<CategoryBreakdownData> data;
