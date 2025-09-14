@@ -434,6 +434,48 @@ abstract class AppLocalizations {
   /// **'House'**
   String get categoryHouse;
 
+  /// Category for salary income
+  ///
+  /// In en, this message translates to:
+  /// **'Salary'**
+  String get categorySalary;
+
+  /// Category for freelance income
+  ///
+  /// In en, this message translates to:
+  /// **'Freelance'**
+  String get categoryFreelance;
+
+  /// Category for investment income
+  ///
+  /// In en, this message translates to:
+  /// **'Investment'**
+  String get categoryInvestment;
+
+  /// Category for business income
+  ///
+  /// In en, this message translates to:
+  /// **'Business'**
+  String get categoryBusiness;
+
+  /// Category for gift income
+  ///
+  /// In en, this message translates to:
+  /// **'Gift'**
+  String get categoryGift;
+
+  /// Category for bonus income
+  ///
+  /// In en, this message translates to:
+  /// **'Bonus'**
+  String get categoryBonus;
+
+  /// Category for interest income
+  ///
+  /// In en, this message translates to:
+  /// **'Interest'**
+  String get categoryInterest;
+
   /// US Dollar currency
   ///
   /// In en, this message translates to:
@@ -607,6 +649,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Income'**
   String get income;
+
+  /// Title for the screen where the user adds a new income
+  ///
+  /// In en, this message translates to:
+  /// **'Add Income'**
+  String get addIncomeTitle;
+
+  /// Label for the amount input field, showing the currency as a placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Amount ({currency})'**
+  String addIncomeAmountTitle(String currency);
+
+  /// Hint text shown inside the amount input field
+  ///
+  /// In en, this message translates to:
+  /// **'{value}'**
+  String addIncomeAmountHint(double value);
+
+  /// Label for the description input field when adding a new income
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get addIncomeDescriptionTitle;
+
+  /// Hint text shown inside the description input field
+  ///
+  /// In en, this message translates to:
+  /// **'What income did you receive?'**
+  String get addIncomeDescriptionHint;
+
+  /// Label for the category selection when adding a new income
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get addIncomeCategoryTitle;
+
+  /// Hint text prompting the user to select a category
+  ///
+  /// In en, this message translates to:
+  /// **'Select a category'**
+  String get addIncomeCategoryHint;
+
+  /// Label for the date picker when adding a new income
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get addIncomeDateTitle;
+
+  /// Displays date's value
+  ///
+  /// In en, this message translates to:
+  /// **'{date}'**
+  String addIncomeDateValue(DateTime date);
+
+  /// Text for the button that saves the new income
+  ///
+  /// In en, this message translates to:
+  /// **'Save Income'**
+  String get addIncomeSubmitButtonTitle;
 }
 
 class _AppLocalizationsDelegate

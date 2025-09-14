@@ -215,6 +215,27 @@ class AppLocalizationsEs extends AppLocalizations {
   String get categoryHouse => 'Hogar';
 
   @override
+  String get categorySalary => 'Salary';
+
+  @override
+  String get categoryFreelance => 'Freelance';
+
+  @override
+  String get categoryInvestment => 'Investment';
+
+  @override
+  String get categoryBusiness => 'Business';
+
+  @override
+  String get categoryGift => 'Gift';
+
+  @override
+  String get categoryBonus => 'Bonus';
+
+  @override
+  String get categoryInterest => 'Interest';
+
+  @override
   String get currencyUSD => 'Dólar estadounidense';
 
   @override
@@ -306,4 +327,50 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get income => 'Ingreso';
+
+  @override
+  String get addIncomeTitle => 'Add Income';
+
+  @override
+  String addIncomeAmountTitle(String currency) {
+    return 'Amount ($currency)';
+  }
+
+  @override
+  String addIncomeAmountHint(double value) {
+    final intl.NumberFormat valueNumberFormat =
+        intl.NumberFormat.decimalPatternDigits(
+          locale: localeName,
+          decimalDigits: 2,
+        );
+    final String valueString = valueNumberFormat.format(value);
+
+    return '$valueString';
+  }
+
+  @override
+  String get addIncomeDescriptionTitle => 'Description';
+
+  @override
+  String get addIncomeDescriptionHint => 'What income did you receive?';
+
+  @override
+  String get addIncomeCategoryTitle => 'Category';
+
+  @override
+  String get addIncomeCategoryHint => 'Select a category';
+
+  @override
+  String get addIncomeDateTitle => 'Date';
+
+  @override
+  String addIncomeDateValue(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$dateString';
+  }
+
+  @override
+  String get addIncomeSubmitButtonTitle => 'Save Income';
 }

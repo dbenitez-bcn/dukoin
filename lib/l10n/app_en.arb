@@ -262,6 +262,34 @@
   "@categoryHouse": {
     "description": "Category for house expenses"
   },
+  "categorySalary": "Salary",
+  "@categorySalary": {
+    "description": "Category for salary income"
+  },
+  "categoryFreelance": "Freelance",
+  "@categoryFreelance": {
+    "description": "Category for freelance income"
+  },
+  "categoryInvestment": "Investment",
+  "@categoryInvestment": {
+    "description": "Category for investment income"
+  },
+  "categoryBusiness": "Business",
+  "@categoryBusiness": {
+    "description": "Category for business income"
+  },
+  "categoryGift": "Gift",
+  "@categoryGift": {
+    "description": "Category for gift income"
+  },
+  "categoryBonus": "Bonus",
+  "@categoryBonus": {
+    "description": "Category for bonus income"
+  },
+  "categoryInterest": "Interest",
+  "@categoryInterest": {
+    "description": "Category for interest income"
+  },
   "currencyUSD": "US Dollar",
   "@currencyUSD": {
     "description": "US Dollar currency"
@@ -393,5 +421,66 @@
   "income": "Income",
   "@income": {
     "description": "Income label"
+  },
+  "addIncomeTitle": "Add Income",
+  "@addIncomeTitle": {
+    "description": "Title for the screen where the user adds a new income"
+  },
+  "addIncomeAmountTitle": "Amount ({currency})",
+  "@addIncomeAmountTitle": {
+    "description": "Label for the amount input field, showing the currency as a placeholder",
+    "placeholders": {
+      "currency": {
+        "type": "String",
+        "example": "€"
+      }
+    }
+  },
+  "addIncomeAmountHint": "{value}",
+  "@addIncomeAmountHint": {
+    "description": "Hint text shown inside the amount input field",
+    "placeholders": {
+      "value": {
+        "type": "double",
+        "format": "decimalPatternDigits",
+        "optionalParameters": {
+          "decimalDigits": 2
+        }
+      }
+    }
+  },
+  "addIncomeDescriptionTitle": "Description",
+  "@addIncomeDescriptionTitle": {
+    "description": "Label for the description input field when adding a new income"
+  },
+  "addIncomeDescriptionHint": "What income did you receive?",
+  "@addIncomeDescriptionHint": {
+    "description": "Hint text shown inside the description input field"
+  },
+  "addIncomeCategoryTitle": "Category",
+  "@addIncomeCategoryTitle": {
+    "description": "Label for the category selection when adding a new income"
+  },
+  "addIncomeCategoryHint": "Select a category",
+  "@addIncomeCategoryHint": {
+    "description": "Hint text prompting the user to select a category"
+  },
+  "addIncomeDateTitle": "Date",
+  "@addIncomeDateTitle": {
+    "description": "Label for the date picker when adding a new income"
+  },
+  "addIncomeDateValue": "{date}",
+  "@addIncomeDateValue": {
+    "description": "Displays date's value",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMd"
+      }
+    }
+  },
+  "addIncomeSubmitButtonTitle": "Save Income",
+  "@addIncomeSubmitButtonTitle": {
+    "description": "Text for the button that saves the new income"
   }
 }
