@@ -103,12 +103,12 @@ class MonthEvolutionCard extends StatelessWidget {
             ),
             SizedBox(height: 16),
             vm.hasData
-                ? NoDataChart()
-                : GestureDetector(
+                ? GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onVerticalDragStart: (_) {},
                     child: MonthEvolutionChart(data: vm.data, colors: colors),
-                  ),
+                  )
+                : NoDataChart(),
           ],
         ),
       ),
