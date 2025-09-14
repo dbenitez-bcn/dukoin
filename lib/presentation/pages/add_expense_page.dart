@@ -1,10 +1,11 @@
 import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
-import 'package:dukoin/presentation/widgets/category_dropdown_menu_item.dart';
+import 'package:dukoin/presentation/widgets/dukoin_dropdown_menu.dart';
 import 'package:dukoin/presentation/widgets/fade_in_slice_from_bottom_animation.dart';
 import 'package:dukoin/presentation/widgets/form_card_item.dart';
 import 'package:dukoin/styles/theme.dart';
+import 'package:dukoin/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class AddExpensePage extends StatefulWidget {
@@ -91,14 +92,14 @@ class _AddExpensePageState extends State<AddExpensePage> {
           child: Form(
             key: _formKey,
             child: ListView(
-              padding: EdgeInsets.only(top: 16),
+              padding: const EdgeInsets.only(top: 16),
               children: [
                 FormCardItem(
                   title: AppLocalizations.of(
                     context,
                   )!.addExpenseAmountTitle("€"),
                   child: TextField(
-                    keyboardType: TextInputType.numberWithOptions(
+                    keyboardType: const TextInputType.numberWithOptions(
                       decimal: true,
                     ),
                     textInputAction: TextInputAction.next,
@@ -111,8 +112,11 @@ class _AddExpensePageState extends State<AddExpensePage> {
                       ).requestFocus(_descriptionFocus); // Go to next
                     },
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 24),
+                    style: const TextStyle(fontSize: 24),
                     decoration: InputDecoration(
+                      hintStyle: Theme.of(
+                        context,
+                      ).inputDecorationTheme.hintStyle!.copyWith(fontSize: 24),
                       contentPadding: const EdgeInsets.all(16),
                       hintText: AppLocalizations.of(
                         context,
@@ -141,27 +145,23 @@ class _AddExpensePageState extends State<AddExpensePage> {
                 ),
                 FormCardItem(
                   title: AppLocalizations.of(context)!.addExpenseCategoryTitle,
-                  child: DropdownButtonFormField<ExpenseCategory>(
-                    value: selectedCategory,
-                    focusNode: _categoryFocus,
-                    menuMaxHeight: 300.0,
+                  child: DukoinDropdownMenu(
                     items: ExpenseCategory.values
                         .map(
-                          (c) => DropdownMenuItem(
-                            value: c,
-                            child: CategoryDropdownMenuItem(category: c),
-                          ),
+                          (c) =>
+                              "${CategoryUtils.getIconFromCategory(c)} ${CategoryUtils.getCategoryTitle(context, c)}",
                         )
                         .toList(),
-                    onChanged: setCategory,
-                    decoration: InputDecoration(
-                      hintText: AppLocalizations.of(
-                        context,
-                      )!.addExpenseCategoryHint,
+                    hintText: AppLocalizations.of(
+                      context,
+                    )!.addExpenseCategoryHint,
+                    onSelected: (index) {
+                      setCategory(ExpenseCategory.values[index]);
+                    },
+                    padding: 8.0,
+                    decoration: DukoinDropdownMenuThemeData.filled(
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
-                    validator: (value) => value == null
-                        ? AppLocalizations.of(context)!.addExpenseCategoryHint
-                        : null,
                   ),
                 ),
                 FormCardItem(
@@ -221,7 +221,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     AppLocalizations.of(context)!.addExpenseSubmitButtonTitle,
                   ),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
               ],
             ),
           ),
