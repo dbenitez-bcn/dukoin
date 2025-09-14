@@ -1,5 +1,6 @@
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/pages/add_expense_page.dart';
+import 'package:dukoin/presentation/pages/add_income_page.dart';
 import 'package:dukoin/styles/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
@@ -24,7 +25,12 @@ class _DukoinFabState extends State<DukoinFab>
       children: [
         _buildButton(
           context,
-          () {},
+          () {
+            _toggle();
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => AddIncomePage()));
+          },
           AppLocalizations.of(context)!.income,
           LucideIcons.plus,
           const Offset(0, 2.45),

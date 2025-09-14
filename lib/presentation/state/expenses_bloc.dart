@@ -78,7 +78,7 @@ class ExpensesBloc {
     await _updateVM();
   }
 
-  Future<void> addExpense(Expense expense) async {
+  Future<void> addExpense(Transaction expense) async {
     await _transactionRepo.insert(expense);
     await _updateStreams();
   }
