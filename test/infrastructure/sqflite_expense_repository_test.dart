@@ -54,19 +54,6 @@ void main() {
       ).called(1);
     });
 
-    test("insert should call db.insert", () async {
-      when(
-        mockDatabase.insert('transactions', testExpense.toMap()),
-      ).thenAnswer((_) async => 1);
-
-      final id = await sut.insert(testExpense);
-
-      expect(id, 1);
-      verify(
-        mockDatabase.insert('transactions', testExpense.toMap()),
-      ).called(1);
-    });
-
     test("getById should return testExpense when found", () async {
       when(
         mockDatabase.query('transactions', where: 'id = ?', whereArgs: [1]),

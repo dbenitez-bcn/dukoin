@@ -6,10 +6,6 @@ import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'transaction.dart';
 
 abstract class ExpenseRepository {
-  Future<int> insert(
-    Expense expense,
-  ); // TODO: Extract to transaction repository
-
   Future<List<Expense>> getLast(); // TODO: Extract to transaction repository
 
   Future<Expense?> getById(int id);

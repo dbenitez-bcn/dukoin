@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import 'domain/transaction.dart';
+import 'domain/transaction_repository.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -264,9 +265,12 @@ void main() async {
   ];
 
   final ExpenseRepository repo = GetIt.I<ExpenseRepository>();
+  final TransactionRepository transactionRepo =
+      GetIt.I<TransactionRepository>();
+
   await repo.deleteAll();
   for (int i = 0; i < expenses.length; i++) {
-    await repo.insert(expenses[i]);
+    await transactionRepo.insert(expenses[i]);
   }
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

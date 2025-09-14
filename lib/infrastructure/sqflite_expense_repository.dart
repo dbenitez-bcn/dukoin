@@ -16,12 +16,6 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   Future<Database> get _db async => await dbProvider.database;
 
   @override
-  Future<int> insert(Expense expense) async {
-    final db = await _db;
-    return db.insert('transactions', expense.toMap());
-  }
-
-  @override
   Future<List<Expense>> getLast() async {
     final db = await _db;
     final maps = await db.query(
