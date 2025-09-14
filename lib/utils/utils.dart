@@ -34,6 +34,25 @@ class CategoryUtils {
     }
   }
 
+  static String getIconFromIncomeCategory(IncomeCategory category) {
+    switch (category) {
+      case IncomeCategory.salary:
+        return '💼';
+      case IncomeCategory.freelance:
+        return '🖥️️';
+      case IncomeCategory.investment:
+        return '📈️';
+      case IncomeCategory.gift:
+        return '🎁️';
+      case IncomeCategory.bonus:
+        return '⭐️';
+      case IncomeCategory.interest:
+        return '🏛️️';
+      case IncomeCategory.others:
+        return '💰️';
+    }
+  }
+
   static String getCategoryTitle(
     BuildContext context,
     ExpenseCategory category,
@@ -61,6 +80,28 @@ class CategoryUtils {
         return AppLocalizations.of(context)!.categoryInvestments;
       case ExpenseCategory.house:
         return AppLocalizations.of(context)!.categoryHouse;
+    }
+  }
+
+  static String getIncomeCategoryTitle(
+    BuildContext context,
+    IncomeCategory category,
+  ) {
+    switch (category) {
+      case IncomeCategory.salary:
+        return AppLocalizations.of(context)!.categorySalary;
+      case IncomeCategory.freelance:
+        return AppLocalizations.of(context)!.categoryFreelance;
+      case IncomeCategory.investment:
+        return AppLocalizations.of(context)!.categoryInvestment;
+      case IncomeCategory.gift:
+        return AppLocalizations.of(context)!.categoryGift;
+      case IncomeCategory.bonus:
+        return AppLocalizations.of(context)!.categoryBonus;
+      case IncomeCategory.interest:
+        return AppLocalizations.of(context)!.categoryInterest;
+      case IncomeCategory.others:
+        return AppLocalizations.of(context)!.categoryOthers;
     }
   }
 }
