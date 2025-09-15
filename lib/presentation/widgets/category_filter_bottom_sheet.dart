@@ -132,17 +132,20 @@ class _CategoryFilterBottomSheetState extends State<CategoryFilterBottomSheet> {
               ),
             ),
             Expanded(
-              child: GridView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                itemCount: ExpenseCategory.values.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 🔹 two per row
-                  mainAxisSpacing: 12, // vertical spacing
-                  crossAxisSpacing: 8, // horizontal spacing
-                  childAspectRatio:
-                      4.0, // 🔹 wider than tall (adjust as you like)
+              child: Scrollbar(
+                thumbVisibility: true,
+                child: GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  itemCount: ExpenseCategory.values.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // 🔹 two per row
+                    mainAxisSpacing: 12, // vertical spacing
+                    crossAxisSpacing: 8, // horizontal spacing
+                    childAspectRatio:
+                        4.0, // 🔹 wider than tall (adjust as you like)
+                  ),
+                  itemBuilder: _buildCategoryButton,
                 ),
-                itemBuilder: _buildCategoryButton,
               ),
             ),
             SizedBox(
