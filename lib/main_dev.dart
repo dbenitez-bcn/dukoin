@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import 'domain/transaction.dart';
-import 'domain/transaction_repository.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -266,8 +265,6 @@ void main() async {
   ];
 
   final ExpenseRepository repo = GetIt.I<ExpenseRepository>();
-  final TransactionRepository transactionRepo =
-      GetIt.I<TransactionRepository>();
 
   await repo.deleteAll();
   var income = Transaction(
@@ -277,9 +274,9 @@ void main() async {
     createdAt: DateTime.now().subtract(const Duration(days: 0, hours: 3)),
   );
   for (int i = 0; i < expenses.length; i++) {
-    await transactionRepo.insert(expenses[i]);
+    await repo.insert(expenses[i]);
   }
-  transactionRepo.insert(income);
+  repo.insert(income);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);

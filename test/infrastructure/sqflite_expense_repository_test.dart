@@ -23,6 +23,12 @@ void main() {
       category: ExpenseCategory.food,
       createdAt: DateTime(2023, 1, 1),
     );
+    final testIncome = Transaction(
+      description: 'Nomina',
+      amount: 10.5,
+      category: IncomeCategory.salary,
+      createdAt: DateTime(2023, 1, 1),
+    );
 
     setUp(() {
       mockDatabase = MockDatabase();
@@ -30,6 +36,33 @@ void main() {
       when(mockDBProvider.database).thenAnswer((_) async => mockDatabase);
 
       sut = SqfliteExpenseRepository(mockDBProvider);
+    });
+
+    group("insert", () {
+      test("insert should create a new Expense", () async {
+        when(
+          mockDatabase.insert('transactions', testExpense.toMap()),
+        ).thenAnswer((_) async => 1);
+
+        final id = await sut.insert(testExpense);
+
+        expect(id, 1);
+        verify(
+          mockDatabase.insert('transactions', testExpense.toMap()),
+        ).called(1);
+      });
+      test("insert should create a new Income", () async {
+        when(
+          mockDatabase.insert('transactions', testIncome.toMap()),
+        ).thenAnswer((_) async => 1);
+
+        final id = await sut.insert(testIncome);
+
+        expect(id, 1);
+        verify(
+          mockDatabase.insert('transactions', testIncome.toMap()),
+        ).called(1);
+      });
     });
 
     test("getLast should fetch all data", () async {

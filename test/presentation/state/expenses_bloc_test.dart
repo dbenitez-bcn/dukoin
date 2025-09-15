@@ -1,7 +1,6 @@
 import 'package:dukoin/domain/expense_repository.dart';
 import 'package:dukoin/domain/time_period.dart';
 import 'package:dukoin/domain/total_amount_vm.dart';
-import 'package:dukoin/domain/transaction_repository.dart';
 import 'package:dukoin/presentation/state/expenses_bloc.dart';
 import 'package:dukoin/utils/utils.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,12 +11,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'expenses_bloc_test.mocks.dart';
 
 // TODO: Add tests for addExpense
-@GenerateMocks([ExpenseRepository, TransactionRepository])
+@GenerateMocks([ExpenseRepository])
 void main() {
   group("Expenses Bloc", () {
     group("time period", () {
       var mockExpenseRepository = MockExpenseRepository();
-      var mockTransactionRepository = MockTransactionRepository();
       when(mockExpenseRepository.getLast()).thenAnswer((_) async => []);
       when(
         mockExpenseRepository.getTotalAmount(
@@ -28,11 +26,7 @@ void main() {
       test("It should load week as default time priod", () async {
         SharedPreferences.setMockInitialValues({});
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        ExpensesBloc sut = ExpensesBloc(
-          mockExpenseRepository,
-          mockTransactionRepository,
-          prefs,
-        );
+        ExpensesBloc sut = ExpensesBloc(mockExpenseRepository, prefs);
 
         expect(sut.currentTimePeriod, TimePeriod.week);
       });
@@ -40,11 +34,7 @@ void main() {
       test("Given a new time period it should update time period", () async {
         SharedPreferences.setMockInitialValues({});
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        ExpensesBloc sut = ExpensesBloc(
-          mockExpenseRepository,
-          mockTransactionRepository,
-          prefs,
-        );
+        ExpensesBloc sut = ExpensesBloc(mockExpenseRepository, prefs);
 
         await sut.setTimePeriod(TimePeriod.month);
 
@@ -57,11 +47,7 @@ void main() {
           'time_period': TimePeriod.day.index,
         });
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        ExpensesBloc sut = ExpensesBloc(
-          mockExpenseRepository,
-          mockTransactionRepository,
-          prefs,
-        );
+        ExpensesBloc sut = ExpensesBloc(mockExpenseRepository, prefs);
 
         await sut.load();
 
@@ -71,11 +57,7 @@ void main() {
       test("It should have a default VM value", () async {
         SharedPreferences.setMockInitialValues({});
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        ExpensesBloc sut = ExpensesBloc(
-          mockExpenseRepository,
-          mockTransactionRepository,
-          prefs,
-        );
+        ExpensesBloc sut = ExpensesBloc(mockExpenseRepository, prefs);
 
         await sut.load();
 
@@ -97,11 +79,7 @@ void main() {
                 end: anyNamed("end"),
               ),
             ).thenAnswer((_) async => expectedVM);
-            ExpensesBloc sut = ExpensesBloc(
-              mockRepo,
-              mockTransactionRepository,
-              prefs,
-            );
+            ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
 
             await sut.setTimePeriod(TimePeriod.day);
 
@@ -126,11 +104,7 @@ void main() {
                 end: anyNamed("end"),
               ),
             ).thenAnswer((_) async => expectedVM);
-            ExpensesBloc sut = ExpensesBloc(
-              mockRepo,
-              mockTransactionRepository,
-              prefs,
-            );
+            ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
 
             await sut.setTimePeriod(TimePeriod.week);
 
@@ -152,11 +126,7 @@ void main() {
                 end: anyNamed("end"),
               ),
             ).thenAnswer((_) async => expectedVM);
-            ExpensesBloc sut = ExpensesBloc(
-              mockRepo,
-              mockTransactionRepository,
-              prefs,
-            );
+            ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
 
             await sut.setTimePeriod(TimePeriod.month);
 
@@ -178,11 +148,7 @@ void main() {
                 end: anyNamed("end"),
               ),
             ).thenAnswer((_) async => expectedVM);
-            ExpensesBloc sut = ExpensesBloc(
-              mockRepo,
-              mockTransactionRepository,
-              prefs,
-            );
+            ExpensesBloc sut = ExpensesBloc(mockRepo, prefs);
 
             await sut.setTimePeriod(TimePeriod.all);
 
