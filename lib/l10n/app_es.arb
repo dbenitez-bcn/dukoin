@@ -14,7 +14,7 @@
   "homeMonthTotalTitle": "Total del mes",
   "homeAllTotalTitle": "Total acumulado",
   "homeTransactionsCounterTitle": "{count, plural, =0 {Sin transacciones} one {{count} transacción} other {{count} transacciones}}",
-  "homeLastExpensesTitle": "Últimos gastos",
+  "homeLastExpensesTitle": "Últimos movimientos",
   "homeNoExpensesTitle": "Aún no tienes gastos",
   "homeNoExpensesSubtitle": "Pulsa el botón + para añadir tu primer gasto",
   "homeLastExpensesSeeAll": "Ver todos",

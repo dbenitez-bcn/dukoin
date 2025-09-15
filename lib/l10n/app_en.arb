@@ -72,9 +72,9 @@
       }
     }
   },
-  "homeLastExpensesTitle": "Last Expenses",
+  "homeLastExpensesTitle": "Last Transactions",
   "@homeLastExpensesTitle": {
-    "description": "Title displayed on last expenses"
+    "description": "Title displayed on last transactions"
   },
   "homeNoExpensesTitle": "You have no expenses yet",
   "@homeNoExpensesTitle": {
