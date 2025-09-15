@@ -2,6 +2,7 @@ import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/navigation_state.dart';
 import 'package:dukoin/styles/dukoin_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import 'bouncy_nav_item.dart';
@@ -66,8 +67,10 @@ class _BouncyBottomNavBarState extends State<BouncyBottomNavBar> {
                   icon: item.icon,
                   label: item.label,
                   index: index,
-                  onTap: () =>
-                      NavigationStateProvider.of(context).setPageIndex(index),
+                  onTap: () {
+                    NavigationStateProvider.of(context).setPageIndex(index);
+                    HapticFeedback.mediumImpact();
+                  },
                 ),
               );
             }),
