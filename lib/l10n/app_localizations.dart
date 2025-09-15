@@ -188,10 +188,10 @@ abstract class AppLocalizations {
   /// **'{count, plural, =0 {No transactions} one {{count} transaction} other {{count} transactions}}'**
   String homeTransactionsCounterTitle(int count);
 
-  /// Title displayed on last expenses
+  /// Title displayed on last transactions
   ///
   /// In en, this message translates to:
-  /// **'Last Expenses'**
+  /// **'Last Transactions'**
   String get homeLastExpensesTitle;
 
   /// Title displayed when no expenses are found

@@ -70,7 +70,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get homeLastExpensesTitle => 'Últimos gastos';
+  String get homeLastExpensesTitle => 'Últimos movimientos';
 
   @override
   String get homeNoExpensesTitle => 'Aún no tienes gastos';
