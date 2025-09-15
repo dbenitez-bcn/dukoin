@@ -157,6 +157,7 @@ class _AddIncomePageState extends State<AddIncomePage> {
                     decoration: DukoinDropdownMenuThemeData.filled(
                       color: Theme.of(context).colorScheme.secondary,
                     ),
+                    centered: true,
                   ),
                 ),
                 FormCardItem(

@@ -159,6 +159,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     decoration: DukoinDropdownMenuThemeData.filled(
                       color: Theme.of(context).colorScheme.secondary,
                     ),
+                    centered: true,
                   ),
                 ),
                 FormCardItem(

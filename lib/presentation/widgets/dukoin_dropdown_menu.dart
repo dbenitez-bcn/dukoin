@@ -10,6 +10,7 @@ class DukoinDropdownMenu extends StatefulWidget {
   final IconData? heading;
   final DukoinDropdownMenuThemeData decoration;
   final String hintText;
+  final bool centered;
 
   const DukoinDropdownMenu({
     super.key,
@@ -20,6 +21,7 @@ class DukoinDropdownMenu extends StatefulWidget {
     this.heading,
     this.decoration = const DukoinDropdownMenuThemeData(),
     this.hintText = '',
+    this.centered = false,
   });
 
   @override
@@ -35,6 +37,7 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
   final List<GlobalKey> _itemKeys = [];
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -61,6 +64,7 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
       _overlayEntry = _createOverlay();
       Overlay.of(context).insert(_overlayEntry!);
       _animationController.forward();
+      FocusScope.of(context).unfocus();
     } else {
       _animationController.reverse().then((_) {
         _overlayEntry?.remove();
@@ -113,7 +117,9 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
           children: [
             Positioned(
               left: offset.dx,
-              top: offset.dy + size.height,
+              top: widget.centered
+                  ? offset.dy - size.height * 1.3
+                  : offset.dy + size.height,
               width: size.width,
               child: Material(
                 color: Colors.transparent,
@@ -126,16 +132,22 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: ConstrainedBox(
-                          constraints: BoxConstraints(maxHeight: 195),
-                          child: ListView(
-                            shrinkWrap: true,
-                            padding: EdgeInsets.zero,
-                            children: [
-                              const SizedBox(height: 8),
-                              ...widget.items.asMap().entries.map((entry) {
-                                var selected = isSelected(entry.key);
+                          constraints: BoxConstraints(
+                            maxHeight: size.height * 3.6,
+                          ),
+                          child: Scrollbar(
+                            thumbVisibility: true,
+                            controller: _scrollController,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              controller: _scrollController,
+                              itemCount: widget.items.length,
+                              itemBuilder: (context, i) {
+                                var selected = isSelected(i);
+                                var entry = widget.items[i];
                                 return Container(
-                                  key: _itemKeys[entry.key],
+                                  key: _itemKeys[i],
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).colorScheme.primary
                                         .withAlpha(selected ? 51 : 0),
@@ -147,8 +159,7 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
                                     borderRadius: BorderRadius.circular(
                                       appBorderRadius,
                                     ),
-                                    onTap: () =>
-                                        _updateSelectedValue(entry.key),
+                                    onTap: () => _updateSelectedValue(i),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -156,7 +167,7 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
-                                            entry.value,
+                                            entry,
                                             style: TextTheme.of(
                                               context,
                                             ).titleSmall,
@@ -179,9 +190,8 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
                                     ),
                                   ),
                                 );
-                              }),
-                              const SizedBox(height: 8),
-                            ],
+                              },
+                            ),
                           ),
                         ),
                       ),
@@ -199,6 +209,7 @@ class _DukoinDropdownMenuState extends State<DukoinDropdownMenu>
   @override
   void dispose() {
     _animationController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
