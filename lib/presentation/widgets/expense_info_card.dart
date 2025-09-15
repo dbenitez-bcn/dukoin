@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/widgets/currency_text.dart';
@@ -20,7 +21,7 @@ class TransactionInfoCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 16.0),
               child: Text(
-                buildCategoryIcon(),
+                transaction.category.icon,
                 style: TextTheme.of(context).displayMedium,
               ),
             ),
@@ -41,14 +42,14 @@ class TransactionInfoCard extends StatelessWidget {
                         ),
                       ),
                       CurrencyText(
-                        transaction is Expense
+                        transaction.category is ExpenseCategory
                             ? -1 * transaction.amount
                             : transaction.amount,
                       ),
                     ],
                   ),
                   Text(
-                    "${buildCategoryTitle(context)} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(transaction.createdAt)}",
+                    "${transaction.category.localized(context)} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(transaction.createdAt)}",
                     style: TextTheme.of(context).bodyMedium,
                   ),
                 ],
@@ -58,21 +59,5 @@ class TransactionInfoCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String buildCategoryTitle(BuildContext context) {
-    if (transaction is Expense) {
-      return (transaction as Expense).category.localized(context);
-    } else {
-      return (transaction as Income).category.localized(context);
-    }
-  }
-
-  String buildCategoryIcon() {
-    if (transaction is Expense) {
-      return (transaction as Expense).category.icon;
-    } else {
-      return (transaction as Income).category.icon;
-    }
   }
 }

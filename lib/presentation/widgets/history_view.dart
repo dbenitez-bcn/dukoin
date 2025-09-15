@@ -96,7 +96,7 @@ class _ExpenseHistoryListViewState extends State<ExpenseHistoryListView> {
 
   @override
   Widget build(BuildContext context) {
-    final Map<DateTime, List<Expense>> grouped = {};
+    final Map<DateTime, List<Transaction>> grouped = {};
     for (final e in widget.paginationController.expenses) {
       final day = DateTime(
         e.createdAt.year,

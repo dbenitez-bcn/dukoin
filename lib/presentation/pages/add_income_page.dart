@@ -68,7 +68,7 @@ class _AddIncomePageState extends State<AddIncomePage> {
   Future<void> _submit(BuildContext context) async {
     if (!_formKey.currentState!.validate() || selectedCategory == null) return;
 
-    final income = Income(
+    final income = Transaction(
       amount: double.parse(amountController.text.replaceAll(",", ".")),
       category: selectedCategory!,
       description: descriptionController.text,

@@ -15,7 +15,7 @@ void main() {
           "createdAt": now.toIso8601String(),
         };
 
-        Expense sut = Expense.fromMap(map);
+        Transaction sut = Transaction.fromMap(map);
 
         expect(sut.id, 1);
         expect(sut.description, "Title");
@@ -35,7 +35,7 @@ void main() {
           "createdAt": DateTime(now.year, now.month, now.day).toIso8601String(),
         };
 
-        Expense sut = Expense(
+        Transaction sut = Transaction(
           id: 1,
           amount: 2.3,
           category: ExpenseCategory.food,

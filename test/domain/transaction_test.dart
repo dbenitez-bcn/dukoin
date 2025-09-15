@@ -6,14 +6,14 @@ void main() {
   group("Transaction", () {
     group('compareTo', () {
       test('returns 0 when createdAt is the same', () {
-        final t1 = Income(
+        final t1 = Transaction(
           amount: 100,
           description: 'Same day',
           createdAt: DateTime(2023, 1, 1),
           category: IncomeCategory.salary,
         );
 
-        final t2 = Expense(
+        final t2 = Transaction(
           amount: 200,
           description: 'Same day',
           createdAt: DateTime(2023, 1, 1),
@@ -25,14 +25,14 @@ void main() {
       });
 
       test('returns negative when this is more recent (should come first)', () {
-        final newer = Income(
+        final newer = Transaction(
           amount: 100,
           description: 'Newer',
           createdAt: DateTime(2023, 1, 2),
           category: IncomeCategory.salary,
         );
 
-        final older = Expense(
+        final older = Transaction(
           amount: 50,
           description: 'Older',
           createdAt: DateTime(2023, 1, 1),
@@ -43,14 +43,14 @@ void main() {
       });
 
       test('returns positive when this is older (should come later)', () {
-        final newer = Income(
+        final newer = Transaction(
           amount: 100,
           description: 'Newer',
           createdAt: DateTime(2023, 1, 2),
           category: IncomeCategory.salary,
         );
 
-        final older = Expense(
+        final older = Transaction(
           amount: 50,
           description: 'Older',
           createdAt: DateTime(2023, 1, 1),
@@ -61,21 +61,21 @@ void main() {
       });
 
       test('sorting a list puts newest first', () {
-        final t1 = Income(
+        final t1 = Transaction(
           amount: 10,
           description: 'Oldest',
           createdAt: DateTime(2023, 1, 1),
           category: IncomeCategory.salary,
         );
 
-        final t2 = Expense(
+        final t2 = Transaction(
           amount: 20,
           description: 'Middle',
           createdAt: DateTime(2023, 1, 2),
           category: ExpenseCategory.food,
         );
 
-        final t3 = Income(
+        final t3 = Transaction(
           amount: 30,
           description: 'Newest',
           createdAt: DateTime(2023, 1, 3),

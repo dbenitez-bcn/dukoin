@@ -350,9 +350,9 @@ void main() {
           sut.selectedMonth.month + 1,
           0,
         );
-        final List<Expense> expectedList = List.generate(
+        final List<Transaction> expectedList = List.generate(
           5,
-          (i) => Expense(
+          (i) => Transaction(
             id: i,
             amount: i * 10,
             category: ExpenseCategory.values[i],

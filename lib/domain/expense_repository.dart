@@ -7,17 +7,18 @@ import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'transaction.dart';
 
 abstract class ExpenseRepository {
-  Future<List<Expense>> getLast(); // TODO: Extract to transaction repository
+  Future<List<Transaction>>
+  getLast(); // TODO: Extract to transaction repository
 
-  Future<Expense?> getById(int id);
+  Future<Transaction?> getById(int id);
 
-  Future<int> update(Expense expense);
+  Future<int> update(Transaction expense);
 
   Future<int> delete(int id); // TODO: Extract to transaction repository
 
   Future<void> deleteAll();
 
-  Future<List<Expense>> getPaginated({
+  Future<List<Transaction>> getPaginated({
     required int limit,
     required int offset,
   }); // TODO: Extract to transaction repository
@@ -30,7 +31,7 @@ abstract class ExpenseRepository {
 
   Future<DateTime?> getOldestExpenseDate();
 
-  Future<List<Expense>> getTopHighestExpenses({
+  Future<List<Transaction>> getTopHighestExpenses({
     required DateTime start,
     required DateTime end,
     List<ExpenseCategory>? categories,

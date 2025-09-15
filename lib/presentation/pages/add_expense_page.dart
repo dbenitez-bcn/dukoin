@@ -68,7 +68,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
   Future<void> _submit(BuildContext context) async {
     if (!_formKey.currentState!.validate() || selectedCategory == null) return;
 
-    final expense = Expense(
+    final expense = Transaction(
       amount: double.parse(amountController.text.replaceAll(",", ".")),
       category: selectedCategory!,
       description: descriptionController.text,

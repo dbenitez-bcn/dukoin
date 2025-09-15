@@ -1,6 +1,4 @@
-import 'package:dukoin/domain/transaction.dart';
-
-import 'category.dart';
+import 'package:dukoin/domain/category.dart';
 
 class CategoryFrequency {
   final ExpenseCategory category;
@@ -11,7 +9,7 @@ class CategoryFrequency {
 
   factory CategoryFrequency.fromMap(Map<String, dynamic> map) {
     return CategoryFrequency(
-      getCategoryFromString(map['category']),
+      Category.fromString(map['category']) as ExpenseCategory,
       map["average"],
       map["count"],
     );

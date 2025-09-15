@@ -16,7 +16,7 @@ void main() {
     late MockDatabase mockDatabase;
     late MockDatabaseProvider mockDBProvider;
     late SqfliteExpenseRepository sut;
-    final testExpense = Expense(
+    final testExpense = Transaction(
       id: 1,
       description: 'Coffee',
       amount: 3.5,
@@ -36,7 +36,6 @@ void main() {
       when(
         mockDatabase.query(
           'transactions',
-          where: 'isExpense = 1',
           orderBy: 'createdAt DESC, id DESC',
           limit: 4,
         ),
@@ -48,7 +47,6 @@ void main() {
       verify(
         mockDatabase.query(
           'transactions',
-          where: 'isExpense = 1',
           orderBy: 'createdAt DESC, id DESC',
           limit: 4,
         ),
@@ -181,7 +179,7 @@ void main() {
         final got = await sut.getPaginated(limit: 2, offset: 0);
 
         expect(got.length, 2);
-        expect(got.first, isA<Expense>());
+        expect(got.first, isA<Transaction>());
         expect(got.first.description, equals('Lunch'));
         expect(got.first.category, ExpenseCategory.food);
       });

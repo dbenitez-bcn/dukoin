@@ -21,20 +21,20 @@ class ExpensesBloc {
   TotalAmountVM get vm => _vm;
   TotalAmountVM _vm = TotalAmountVM(0.0, 0);
 
-  final _lastExpensesController = StreamController<List<Expense>>();
+  final _lastExpensesController = StreamController<List<Transaction>>();
   final _timePeriodController = StreamController<TimePeriod>();
   final TimePeriod initialTimePeriod = TimePeriod.week;
 
-  List<Expense> _expenses = [];
+  List<Transaction> _expenses = [];
   TimePeriod _currentTimePeriod = TimePeriod.week;
 
   ExpensesBloc(this._repo, this._transactionRepo, this._prefs);
 
   TimePeriod get currentTimePeriod => _currentTimePeriod;
 
-  List<Expense> get lastExpenses => _expenses;
+  List<Transaction> get lastExpenses => _expenses;
 
-  Stream<List<Expense>> get lastExpensesStream =>
+  Stream<List<Transaction>> get lastExpensesStream =>
       _lastExpensesController.stream;
 
   Stream<TimePeriod> get timePeriodStream => _timePeriodController.stream;

@@ -37,7 +37,7 @@ class StatsBloc {
   final StreamController<StateStatus> _statusController =
       StreamController<StateStatus>.broadcast();
   MonthOverviewVM _monthOverviewVM = MonthOverviewVM(0, 0, 0, 0);
-  List<Expense> _topFiveExpenses = [];
+  List<Transaction> _topFiveExpenses = [];
   MonthEvolutionVM _monthEvolutionVM = MonthEvolutionVM([]);
   CategoryBreakdownVM _categoryBreakdown = CategoryBreakdownVM([]);
   CategoryFrequencyVM _categoryFrequency = CategoryFrequencyVM([]);
@@ -60,7 +60,7 @@ class StatsBloc {
 
   MonthOverviewVM get monthOverview => _monthOverviewVM;
 
-  List<Expense> get topFiveExpenses => List.unmodifiable(_topFiveExpenses);
+  List<Transaction> get topFiveExpenses => List.unmodifiable(_topFiveExpenses);
 
   MonthEvolutionVM get monthEvolution => _monthEvolutionVM;
 

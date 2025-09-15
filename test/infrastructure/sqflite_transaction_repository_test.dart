@@ -15,14 +15,14 @@ void main() {
     late MockDatabase mockDatabase;
     late MockDatabaseProvider mockDBProvider;
     late SqfliteTransactionRepository sut;
-    final testExpense = Expense(
+    final testExpense = Transaction(
       id: 1,
       description: 'Coffee',
       amount: 3.5,
       category: ExpenseCategory.food,
       createdAt: DateTime(2023, 1, 1),
     );
-    final testIncome = Income(
+    final testIncome = Transaction(
       description: 'Nomina',
       amount: 10.5,
       category: IncomeCategory.salary,

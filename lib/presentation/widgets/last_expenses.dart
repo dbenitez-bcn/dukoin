@@ -42,11 +42,11 @@ class LastExpenses extends StatelessWidget {
             ),
           ],
         ),
-        StreamBuilder<List<Expense>>(
+        StreamBuilder<List<Transaction>>(
           stream: ExpensesProvider.of(context).lastExpensesStream,
           initialData: ExpensesProvider.of(context).lastExpenses,
           builder: (context, snapshot) {
-            List<Expense> expenses = snapshot.data ?? [];
+            List<Transaction> expenses = snapshot.data ?? [];
             if (expenses.isEmpty) {
               return NoExpensesWidget();
             }

@@ -10,12 +10,12 @@ class ExpensePaginationController {
   bool _hasMore = true;
   bool _isLoading = false;
 
-  List<Expense> _expenses = [];
+  List<Transaction> _expenses = [];
 
   ExpensePaginationController({this.pageSize = 10})
     : repository = GetIt.I<ExpenseRepository>();
 
-  List<Expense> get expenses => _expenses;
+  List<Transaction> get expenses => _expenses;
 
   bool get hasMore => _hasMore;
 

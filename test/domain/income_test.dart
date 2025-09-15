@@ -6,16 +6,17 @@ void main() {
   group("Income", () {
     final now = DateTime.now();
     group("fromMap", () {
-      test("It should create an Expense from a map", () {
+      test("It should create an Income from a map", () {
         Map<String, dynamic> map = {
           "id": 1,
           "amount": 2.3,
           "category": IncomeCategory.salary.name,
           "description": "Title",
+          "isExpense": 0,
           "createdAt": now.toIso8601String(),
         };
 
-        Income sut = Income.fromMap(map);
+        Transaction sut = Transaction.fromMap(map);
 
         expect(sut.id, 1);
         expect(sut.description, "Title");
@@ -35,7 +36,7 @@ void main() {
           "createdAt": DateTime(now.year, now.month, now.day).toIso8601String(),
         };
 
-        Income sut = Income(
+        Transaction sut = Transaction(
           id: 1,
           amount: 2.3,
           category: IncomeCategory.salary,

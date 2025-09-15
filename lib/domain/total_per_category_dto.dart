@@ -1,5 +1,4 @@
 import 'package:dukoin/domain/category.dart';
-import 'package:dukoin/domain/transaction.dart';
 
 class TotalPerCategoryDTO {
   final ExpenseCategory category;
@@ -9,7 +8,7 @@ class TotalPerCategoryDTO {
 
   factory TotalPerCategoryDTO.fromMap(Map<String, dynamic> map) {
     return TotalPerCategoryDTO(
-      getCategoryFromString(map['category']),
+      Category.fromString(map['category']) as ExpenseCategory,
       map['value'],
     );
   }

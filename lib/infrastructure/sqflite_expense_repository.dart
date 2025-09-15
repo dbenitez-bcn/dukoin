@@ -5,7 +5,7 @@ import 'package:dukoin/domain/total_amount_vm.dart';
 import 'package:dukoin/domain/total_per_category_dto.dart';
 import 'package:dukoin/domain/total_per_day_dto.dart';
 import 'package:dukoin/domain/transaction.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqflite.dart' show Database;
 
 import 'database_provider.dart';
 
@@ -17,30 +17,29 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   Future<Database> get _db async => await dbProvider.database;
 
   @override
-  Future<List<Expense>> getLast() async {
+  Future<List<Transaction>> getLast() async {
     final db = await _db;
     final maps = await db.query(
       'transactions',
-      where: "isExpense = 1",
       orderBy: 'createdAt DESC, id DESC',
       limit: 4,
     );
-    return maps.map((e) => Expense.fromMap(e)).toList();
+    return maps.map((e) => Transaction.fromMap(e)).toList();
   }
 
   @override
-  Future<Expense?> getById(int id) async {
+  Future<Transaction?> getById(int id) async {
     final db = await _db;
     final maps = await db.query(
       'transactions',
       where: 'id = ?',
       whereArgs: [id],
     );
-    return maps.isNotEmpty ? Expense.fromMap(maps.first) : null;
+    return maps.isNotEmpty ? Transaction.fromMap(maps.first) : null;
   }
 
   @override
-  Future<int> update(Expense expense) async {
+  Future<int> update(Transaction expense) async {
     if (expense.id == null) {
       throw ArgumentError('Cannot update an expense without an ID');
     }
@@ -73,7 +72,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
   }
 
   @override
-  Future<List<Expense>> getPaginated({
+  Future<List<Transaction>> getPaginated({
     required int limit,
     required int offset,
   }) async {
@@ -85,7 +84,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
       limit: limit,
       offset: offset,
     );
-    return maps.map((e) => Expense.fromMap(e)).toList();
+    return maps.map((e) => Transaction.fromMap(e)).toList();
   }
 
   @override
@@ -131,13 +130,13 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     if (results.isEmpty) {
       return null;
     } else {
-      final oldestExpense = Expense.fromMap(results.first);
+      final oldestExpense = Transaction.fromMap(results.first);
       return oldestExpense.createdAt;
     }
   }
 
   @override
-  Future<List<Expense>> getTopHighestExpenses({
+  Future<List<Transaction>> getTopHighestExpenses({
     required DateTime start,
     required DateTime end,
     List<ExpenseCategory>? categories,
@@ -159,7 +158,7 @@ class SqfliteExpenseRepository implements ExpenseRepository {
       orderBy: 'amount DESC',
       limit: 5,
     );
-    return maps.map((e) => Expense.fromMap(e)).toList();
+    return maps.map((e) => Transaction.fromMap(e)).toList();
   }
 
   @override

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DismissibleExpenseInfoCard extends StatelessWidget {
-  final Expense expense;
+  final Transaction expense;
 
   const DismissibleExpenseInfoCard({super.key, required this.expense});
 

@@ -63,11 +63,15 @@ class HighestExpenses extends StatelessWidget {
 }
 
 class TopExpensesListCard extends StatelessWidget {
-  final List<Expense> expenses;
+  final List<Transaction> expenses;
 
   const TopExpensesListCard({super.key, required this.expenses});
 
-  Widget _buildExpenseItem(BuildContext context, Expense expense, int index) {
+  Widget _buildExpenseItem(
+    BuildContext context,
+    Transaction expense,
+    int index,
+  ) {
     Color golden = Theme.of(context).extension<DukoinColors>()!.goldenEra;
     Widget numberCircle = CircleAvatar(
       backgroundColor: golden.withAlpha(64),
