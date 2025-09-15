@@ -119,7 +119,7 @@ class _ExpenseHistoryListViewState extends State<ExpenseHistoryListView> {
           SliverStickyHeader(), // makes refresh indicator better looking
           ...grouped.entries.map((entry) {
             final date = entry.key;
-            final expenses = entry.value;
+            final transaction = entry.value;
 
             return SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -136,8 +136,8 @@ class _ExpenseHistoryListViewState extends State<ExpenseHistoryListView> {
                 sliver: SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, i) =>
-                        DismissibleExpenseInfoCard(expense: expenses[i]),
-                    childCount: expenses.length,
+                        DismissibleExpenseInfoCard(transaction: transaction[i]),
+                    childCount: transaction.length,
                   ),
                 ),
               ),

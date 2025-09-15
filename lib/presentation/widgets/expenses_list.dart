@@ -15,7 +15,7 @@ class ExpensesList extends StatelessWidget {
         List<Transaction> expenses = snapshot.data ?? [];
         return Column(
           children: List<Widget>.generate(expenses.length, (index) {
-            return DismissibleExpenseInfoCard(expense: expenses[index]);
+            return DismissibleExpenseInfoCard(transaction: expenses[index]);
           }),
         );
       },

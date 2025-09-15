@@ -1,3 +1,4 @@
+import 'package:dukoin/domain/category.dart';
 import 'package:dukoin/domain/transaction.dart';
 import 'package:dukoin/l10n/app_localizations.dart';
 import 'package:dukoin/presentation/state/expense_provider.dart';
@@ -7,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DismissibleExpenseInfoCard extends StatelessWidget {
-  final Transaction expense;
+  final Transaction transaction;
 
-  const DismissibleExpenseInfoCard({super.key, required this.expense});
+  const DismissibleExpenseInfoCard({super.key, required this.transaction});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DismissibleExpenseInfoCard extends StatelessWidget {
     return DismissibleAnimatedItem(
       key: key,
       onRemove: () {
-        ExpensesProvider.of(context).delete(expense.id!);
+        ExpensesProvider.of(context).delete(transaction.id!);
       },
       child: Card.outlined(
         margin: const EdgeInsets.symmetric(vertical: 4.0),
@@ -29,7 +30,7 @@ class DismissibleExpenseInfoCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 16.0),
                 child: Text(
-                  expense.category.icon,
+                  transaction.category.icon,
                   style: TextTheme.of(context).displayMedium,
                 ),
               ),
@@ -42,18 +43,22 @@ class DismissibleExpenseInfoCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            expense.description,
+                            transaction.description,
                             style: TextTheme.of(context).displaySmall,
                             softWrap: true, // allows multiple lines
                             maxLines: 2, // limit to 2 lines if needed
                             overflow: TextOverflow.fade,
                           ),
                         ),
-                        CurrencyText(expense.amount),
+                        CurrencyText(
+                          transaction.category is ExpenseCategory
+                              ? -1 * transaction.amount
+                              : transaction.amount,
+                        ),
                       ],
                     ),
                     Text(
-                      "${expense.category.localized(context)} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(expense.createdAt)}",
+                      "${transaction.category.localized(context)} · ${DateFormat('MMM d', AppLocalizations.of(context)!.localeName).format(transaction.createdAt)}",
                       style: TextTheme.of(context).bodyMedium,
                     ),
                   ],

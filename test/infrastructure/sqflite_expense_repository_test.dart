@@ -202,7 +202,6 @@ void main() {
         when(
           mockDatabase.query(
             'transactions',
-            where: 'isExpense = 1',
             orderBy: 'createdAt DESC, id DESC',
             limit: 2,
             offset: 0,
@@ -230,7 +229,6 @@ void main() {
         when(
           mockDatabase.query(
             'transactions',
-            where: 'isExpense = 1',
             orderBy: 'createdAt DESC, id DESC',
             limit: 1,
             offset: 2,
@@ -248,7 +246,6 @@ void main() {
         when(
           mockDatabase.query(
             'transactions',
-            where: 'isExpense = 1',
             orderBy: 'createdAt DESC, id DESC',
             limit: 2,
             offset: 10,

@@ -85,7 +85,6 @@ class SqfliteExpenseRepository implements ExpenseRepository {
     final db = await _db;
     final maps = await db.query(
       'transactions',
-      where: 'isExpense = 1',
       orderBy: 'createdAt DESC, id DESC',
       limit: limit,
       offset: offset,
